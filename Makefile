@@ -89,7 +89,6 @@ all:
 	@$(MAKE) --no-print-directory make_mlx
 	@$(MAKE) --no-print-directory $(NAME)
 
-
 $(NAME): $(LIBFT_LIB) $(OBJS)
 	@printf "$(BLUE)Linking objects and creating program...$(DEF_COLOR)\n"
 	$(CC) $(CCFLAGS) $(OBJS) $(LIBFT_LIB) $(LIBRARIES) $(LIBRARIES_DEPS) -o $(NAME)
@@ -111,7 +110,7 @@ fclean: libft_fclean mlx_fclean clean
 re: fclean all
 
 bonus:
-	$(MAKE) --no-print-directory all
+	$(MAKE) --no-print-directory all BONUS=1
 
 b: bonus
 
@@ -129,15 +128,17 @@ libft_fclean:
 	@echo "$(RED)Cleaning $(PINK)Libft$(RED)...$(DEF_COLOR)"
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 
-make_mlx:
-	printf "$(CYAN)Downloading $(PINK)MLX...$(DEF_COLOR)\n"
+$(MLX_DIR):
+	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
 	curl -sOL https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.3.4.tar.gz
 	tar -xpf v2.3.4.tar.gz
 	rm -rf v2.3.4.tar.gz
 	mv -fu MLX42-2.3.4 lib/mlx
-	printf "$(CYAN)Installing $(PINK)MLX...$(DEF_COLOR)\n"
+	printf "$(CYAN)Installing $(PINK)mlx...$(DEF_COLOR)\n"
+	@echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) installed!!!$(DEF_COLOR)\n"
+
+make_mlx: $(MLX_DIR)
 	cd lib/mlx && cmake -B build/ > /dev/null && make --no-print-directory -C build > /dev/null
-	@echo "$(GREEN)[✓] $(PINK)MLX$(GREEN) installed!!!$(DEF_COLOR)\n"
 
 mlx_fclean:
 	rm -rf lib/mlx
@@ -153,6 +154,8 @@ mlx_fclean:
 		make_libft \
 		libft_clean \
 		libft_fclean \
+		make_mlx \
+		mlx_fclean 
 
 -include $(DEPS)
 -include $(MDEPS)
