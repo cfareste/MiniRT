@@ -1,0 +1,9 @@
+bin/
+
+a.out
+miniRT
+
+*.a
+lib/mlx
+
+.vscode
