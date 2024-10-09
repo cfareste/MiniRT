@@ -11,10 +11,6 @@ BLUE = \033[1;34m
 PINK = \033[1;35m
 CYAN = \033[1;36m
 
-#----COMPILER----#
-CC = cc
-CCFLAGS = -Wall -Werror -Wextra -O3
-
 #----OS COMPATIBILITY----#
 ifeq ($(OS),Windows_NT)
     CCFLAGS += -D WIN32
@@ -50,11 +46,21 @@ else
     endif
 endif
 
+#----COMPILER----#
+CC = cc
+CCFLAGS = -Wall -Werror -Wextra -fsanitize=address #-O3
+
 #----DIRS----#
 BIN_DIR = bin/
-INC_DIR = inc/
-SRCS_DIR = src/
-INCLUDES = -I$(INC_DIR)
+SRC = src/
+INCLUDES = -I$(SRC)figure
+INCLUDES += -I$(SRC)figure/types
+INCLUDES += -I$(SRC)light
+INCLUDES += -I$(SRC)scene
+INCLUDES += -I$(SRC)utils
+
+
+#----LIBS----#
 
 #----LIBFT----#
 LIBFT_DIR = lib/libft/
@@ -64,9 +70,11 @@ INCLUDES += -I$(LIBFT_DIR)
 #----MLX----#
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
+MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 LIBRARIES = -L$(MLX_BUILD_DIR) -lmlx42
 LIBRARIES_DEPS = -ldl -lglfw -lm -lpthread
-INCLUDES += -I$(MLX_DIR)/include
+INCLUDES += -I$(MLX_DIR)/include/MLX42
+
 
 #----SHARED----#
 SRCS = miniRT.c
@@ -77,19 +85,16 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRCS_DIR)
-
-
+vpath %.c $(SRC):$(SRC)/figure
 
 
 #----- R U L E S -----#
 
 all:
 	@$(MAKE) --no-print-directory make_libft
-	@$(MAKE) --no-print-directory make_mlx
 	@$(MAKE) --no-print-directory $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(OBJS)
+$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 	@printf "$(BLUE)Linking objects and creating program...$(DEF_COLOR)\n"
 	$(CC) $(CCFLAGS) $(OBJS) $(LIBFT_LIB) $(LIBRARIES) $(LIBRARIES_DEPS) -o $(NAME)
 	@echo "$(GREEN)[✓] $(PINK)$(NAME)$(GREEN) created!!!$(DEF_COLOR)"
@@ -134,11 +139,12 @@ $(MLX_DIR):
 	tar -xpf v2.3.4.tar.gz
 	rm -rf v2.3.4.tar.gz
 	mv -fu MLX42-2.3.4 lib/mlx
-	printf "$(CYAN)Installing $(PINK)mlx...$(DEF_COLOR)\n"
-	@echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) installed!!!$(DEF_COLOR)\n"
+	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
-make_mlx: $(MLX_DIR)
+$(MLX_LIB): | $(MLX_DIR)
+	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
 	cd lib/mlx && cmake -B build/ > /dev/null && make --no-print-directory -C build > /dev/null
+	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:
 	rm -rf lib/mlx
