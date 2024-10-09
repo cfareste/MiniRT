@@ -53,7 +53,8 @@ CCFLAGS = -Wall -Werror -Wextra -fsanitize=address #-O3
 #----DIRS----#
 BIN_DIR = bin/
 SRC = src/
-INCLUDES = -I$(SRC)figure
+INCLUDES = -I$(SRC)
+INCLUDES += -I$(SRC)figure
 INCLUDES += -I$(SRC)figure/types
 INCLUDES += -I$(SRC)light
 INCLUDES += -I$(SRC)scene
@@ -77,7 +78,10 @@ INCLUDES += -I$(MLX_DIR)/include/MLX42
 
 
 #----SHARED----#
-SRCS = miniRT.c
+SRCS = miniRT.c \
+	scene.c \
+	errors.c \
+	file_utils.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -85,7 +89,7 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)/figure
+vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure
 
 
 #----- R U L E S -----#

@@ -21,4 +21,6 @@ typedef struct s_scene
 	t_figure	*figures;
 }	t_scene;
 
+void	create_scene(t_scene *scene, char *filename);
+
 #endif

@@ -2,16 +2,11 @@
 #include "scene.h"
 #include "MLX42.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	mlx_t *mlx = mlx_init(1000, 1000, "hola", false);
-
-	if (!mlx)
-		exit(1);
-
-	mlx_loop(mlx);
-
-	mlx_terminate(mlx);
-
-	return (0);
+	t_scene scene;
+	if (argc != 2)
+		return (ft_printff(STDERR_FILENO, "Wrong arguments!"), EXIT_FAILURE);
+	create_scene(&scene, argv[1]);
+	return (EXIT_SUCCESS);
 }
