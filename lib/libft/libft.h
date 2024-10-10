@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/07/15 23:03:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:00:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 char		*ft_strrstr(const char *haystack, const char *needle);
 
+int			is_allowed_char(char c);
+
 int			ft_atoi(const char *str);
+
+double		ft_atod(char *str);
 
 long		ft_atol(const char *str);
 

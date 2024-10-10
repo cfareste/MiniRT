@@ -4,14 +4,7 @@
 # include "utils.h"
 # include "light.h"
 # include "figure.h"
-
-typedef struct s_camera
-{
-	char			id;
-	t_coordinates	position;
-	t_coordinates	orientation;
-	int				fov;
-}	t_camera;
+# include "camera.h"
 
 typedef struct s_scene
 {

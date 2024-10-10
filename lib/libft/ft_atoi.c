@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 09:04:02 by arcanava          #+#    #+#             */
-/*   Updated: 2024/07/09 23:08:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:00:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_allowed_char(char c)
+int	is_allowed_char(char c)
 {
 	return (c == '\t'
 		|| c == '\n'

@@ -26,6 +26,7 @@ BINDIR = bin
 #----MANDATORY----#
 SRCS = ft_isdigit.c \
 		ft_atoi.c \
+		ft_atod.c \
 		ft_bzero.c \
 		ft_calloc.c \
 		ft_isalnum.c \

@@ -48,7 +48,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -fsanitize=address #-O3
+CCFLAGS = -Wall -Werror -Wextra -g -fsanitize=address #-O3
 
 #----DIRS----#
 BIN_DIR = bin/
@@ -59,6 +59,9 @@ INCLUDES += -I$(SRC)figure/types
 INCLUDES += -I$(SRC)light
 INCLUDES += -I$(SRC)scene
 INCLUDES += -I$(SRC)utils
+INCLUDES += -I$(SRC)shared
+INCLUDES += -I$(SRC)camera
+INCLUDES += -I$(SRC)shared/coordinates
 
 
 #----LIBS----#
@@ -81,7 +84,11 @@ INCLUDES += -I$(MLX_DIR)/include/MLX42
 SRCS = miniRT.c \
 	scene.c \
 	errors.c \
-	file_utils.c
+	file_utils.c \
+	light.c \
+	color.c \
+	camera.c \
+	coordinates.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -89,7 +96,7 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure
+vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)camera:$(SRC)shared/coordinates
 
 
 #----- R U L E S -----#
