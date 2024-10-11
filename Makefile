@@ -48,7 +48,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address #-O3
+CCFLAGS = -Wall -Werror -Wextra -g -fsanitize=address #-O3
 
 #----DIRS----#
 BIN_DIR = bin/
@@ -58,9 +58,9 @@ INCLUDES += -I$(SRC)figure
 INCLUDES += -I$(SRC)figure/types
 INCLUDES += -I$(SRC)light
 INCLUDES += -I$(SRC)scene
+INCLUDES += -I$(SRC)scene/camera
 INCLUDES += -I$(SRC)utils
 INCLUDES += -I$(SRC)shared
-INCLUDES += -I$(SRC)camera
 INCLUDES += -I$(SRC)shared/coordinates
 
 
@@ -89,9 +89,10 @@ SRCS = miniRT.c \
 	color.c \
 	camera.c \
 	coordinates.c \
-	cylinder.c \
 	figure.c \
-	plane.c
+	cylinder.c \
+	plane.c \
+	sphere.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -99,7 +100,7 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)camera:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane
+vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere
 
 
 #----- R U L E S -----#
