@@ -21,4 +21,6 @@ void	push_light(char **pieces, t_light **lights);
 
 void	free_lights(t_light *lights);
 
+void	print_light(t_light *light);
+
 #endif

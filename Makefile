@@ -48,7 +48,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -g -fsanitize=address #-O3
+CCFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address #-O3
 
 #----DIRS----#
 BIN_DIR = bin/
@@ -88,7 +88,10 @@ SRCS = miniRT.c \
 	light.c \
 	color.c \
 	camera.c \
-	coordinates.c
+	coordinates.c \
+	cylinder.c \
+	figure.c \
+	plane.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -96,7 +99,7 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)camera:$(SRC)shared/coordinates
+vpath %.c $(SRC):$(SRC)scene:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)camera:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane
 
 
 #----- R U L E S -----#

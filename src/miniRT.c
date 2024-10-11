@@ -5,6 +5,7 @@
 void	destroy(t_scene *scene)
 {
 	free_lights(scene->lights);
+	free_figures(scene->figures);
 }
 
 int	main(int argc, char **argv)

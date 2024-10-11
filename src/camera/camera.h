@@ -6,12 +6,13 @@
 
 typedef struct s_camera
 {
-	char			id;
 	t_coordinates	position;
 	t_coordinates	orientation;
 	int				fov;
 }	t_camera;
 
 void	set_camera(char **pieces, t_camera *camera);
+
+void	print_camera(t_camera *camera);
 
 #endif

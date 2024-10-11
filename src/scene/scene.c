@@ -22,9 +22,9 @@ int	set_scene_attr(char *line, t_scene *scene)
 		set_camera(pieces, &scene->camera);
 	else if (*pieces[0] == LIGHT_ID)
 		push_light(pieces, &scene->lights);
-	else if (*pieces[0] != '#')
-		return (free_matrix(pieces), 0);
-	scene->camera.id = 'c';
+	else if (!push_figure(pieces, &scene->figures))
+		if (*pieces[0] != '#')
+			return (free_matrix(pieces), 0);
 	return (free_matrix(pieces), 1);
 }
 
@@ -44,6 +44,28 @@ void	set_scene(int fd, t_scene *scene)
 	}
 }
 
+void	print_scene(t_scene *scene)
+{
+	t_light		*lights;
+	t_figure	*figures;
+
+	ft_printf("Ambient light: ");
+	print_light(&scene->ambient_light);
+	print_camera(&scene->camera);
+	lights = scene->lights;
+	while (lights)
+	{
+		print_light(lights);
+		lights = lights->next;
+	}
+	figures = scene->figures;
+	while (figures)
+	{
+		print_figure(figures);
+		figures = figures->next;
+	}
+}
+
 // TODO: Check if scene is valid
 void	create_scene(t_scene *scene, char *filename)
 {
@@ -55,4 +77,5 @@ void	create_scene(t_scene *scene, char *filename)
 		throw_sys_error(filename);
 	set_scene(fd, scene);
 	close(fd);
+	print_scene(scene);
 }

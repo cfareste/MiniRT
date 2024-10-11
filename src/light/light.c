@@ -8,6 +8,9 @@ int	set_ambient_light(char **pieces, t_light *light)
 	light->brightness = ft_atod(pieces[1]);
 	set_color(pieces[2], &light->color);
 	light->next = NULL;
+	light->position.x = -1;
+	light->position.y = -1;
+	light->position.z = -1;
 	return (1);
 }
 
@@ -50,4 +53,13 @@ void	free_lights(t_light *lights)
 		lights = lights->next;
 		free(aux);
 	}
+}
+
+void	print_light(t_light *light)
+{
+	printf("Light (%p): %f, %f, %f | %f | %i, %i, %i\n",
+		light,
+		light->position.x, light->position.y, light->position.z,
+		light->brightness,
+		light->color.red, light->color.green, light->color.blue);
 }
