@@ -11,7 +11,7 @@ typedef struct s_camera
 	int				fov;
 }	t_camera;
 
-void	set_camera(char **pieces, t_camera *camera);
+void	set_camera(char **pieces, t_camera **camera);
 
 void	print_camera(t_camera *camera);
 

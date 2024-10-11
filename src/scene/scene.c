@@ -1,15 +1,9 @@
 #include "libft.h"
 #include "scene.h"
 #include "utils.h"
-#include "camera.h"
+#include "scene/camera/camera.h"
 #include "light.h"
 #include <fcntl.h>
-
-void	check_file_errors(char *filename)
-{
-	if (!correct_file_extension(filename, ".rt"))
-		throw_error("No .rt file provided");
-}
 
 int	set_scene_attr(char *line, t_scene *scene)
 {
@@ -32,8 +26,7 @@ void	set_scene(int fd, t_scene *scene)
 {
 	char	*line;
 
-	scene->lights = NULL;
-	scene->figures = NULL;
+	ft_bzero(scene, sizeof(t_scene));
 	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
@@ -49,15 +42,21 @@ void	print_scene(t_scene *scene)
 	t_light		*lights;
 	t_figure	*figures;
 
-	ft_printf("Ambient ");
-	print_light(&scene->ambient_light);
-	print_camera(&scene->camera);
+	if (scene->ambient_light)
+	{
+		ft_printf("Ambient ");
+		print_light(scene->ambient_light);
+	}
+	if (scene->camera)
+		print_camera(scene->camera);
 	lights = scene->lights;
 	while (lights)
 	{
 		print_light(lights);
 		lights = lights->next;
 	}
+	if (scene->figures)
+		printf("\nFigures:\n");
 	figures = scene->figures;
 	while (figures)
 	{
@@ -66,16 +65,25 @@ void	print_scene(t_scene *scene)
 	}
 }
 
-// TODO: Check if scene is valid
+void	check_scene(t_scene *scene)
+{
+	if (!scene->camera)
+		throw_error("A camera is needed to start rendering!");
+	else if (!scene->ambient_light && !scene->lights)
+		throw_error("Some light is missing!");
+}
+
 void	create_scene(t_scene *scene, char *filename)
 {
 	int	fd;
 
-	check_file_errors(filename);
+	if (!correct_file_extension(filename, ".rt"))
+		throw_error("Only .rt file allowed");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		throw_sys_error(filename);
 	set_scene(fd, scene);
 	close(fd);
+	check_scene(scene);
 	print_scene(scene);
 }

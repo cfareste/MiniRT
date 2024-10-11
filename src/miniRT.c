@@ -4,6 +4,8 @@
 
 void	destroy(t_scene *scene)
 {
+	free(scene->ambient_light);
+	free(scene->camera);
 	free_lights(scene->lights);
 	free_figures(scene->figures);
 }

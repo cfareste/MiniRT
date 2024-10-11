@@ -1,34 +1,45 @@
 #include "scene.h"
 #include "libft.h"
 
-int	set_ambient_light(char **pieces, t_light *light)
+int	set_ambient_light(char **pieces, t_light **light)
 {
+	if (*light)
+		throw_error("Multiple ambient lights are not allowed");
 	if (!pieces[1] || !pieces[2])
 		throw_error("Missing ambient light params");
-	light->brightness = ft_atod(pieces[1]);
-	set_color(pieces[2], &light->color);
-	light->next = NULL;
-	light->position.x = -1;
-	light->position.y = -1;
-	light->position.z = -1;
+	*light = ft_calloc(1, sizeof(t_light));
+	if (!*light)
+		throw_sys_error("trying to allocate ambient light");
+	(*light)->brightness = ft_atod(pieces[1]);
+	set_color(pieces[2], &(*light)->color);
+	(*light)->position.x = -1;
+	(*light)->position.y = -1;
+	(*light)->position.z = -1;
 	return (1);
 }
 
 static t_light	*new_light(t_light **lights)
 {
 	t_light	*new;
+	t_light	*aux;
 
 	new = ft_calloc(1, sizeof(t_light));
 	if (!new)
 		throw_sys_error("trying allocate t_light");
 	new->next = NULL;
-	if (*lights)
-		(*lights)->next = new;
-	else
+	if (!*lights)
 		*lights = new;
+	else
+	{
+		aux = *lights;
+		while (aux->next)
+			aux = aux->next;
+		aux->next = new;
+	}
 	return (new);
 }
 
+// TODO: Check multiple lights not allowed on mandatory!
 void	push_light(char **pieces, t_light **lights)
 {
 	t_light	*light;
