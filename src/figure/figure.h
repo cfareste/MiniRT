@@ -1,8 +1,6 @@
 #ifndef FIGURE_H
 # define FIGURE_H
 
-typedef struct s_figure t_figure;
-
 # include "sphere/sphere.h"
 # include "plane/plane.h"
 # include "cylinder/cylinder.h"
@@ -24,7 +22,7 @@ typedef struct s_figure
 		t_plane_attrs		*pl_attrs;
 		t_cylinder_attrs	*cy_attrs;
 	};
-	t_figure	*next;
+	t_figure		*next;
 }	t_figure;
 
 int			push_figure(char **pieces, t_figure **figure);

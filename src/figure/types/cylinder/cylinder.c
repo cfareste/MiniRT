@@ -3,7 +3,7 @@
 #include "utils.h"
 #include "coordinates.h"
 
-static void print_attrs(void *param)
+static void	print_attrs(void *param)
 {
 	t_cylinder_attrs	*attrs;
 
@@ -13,9 +13,8 @@ static void print_attrs(void *param)
 		attrs->diameter, attrs->height);
 }
 
-static void hit(void)
+static void	hit(void)
 {
-
 }
 
 t_figure	*new_cylinder(char **pieces)

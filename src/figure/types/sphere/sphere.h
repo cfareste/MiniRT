@@ -7,4 +7,8 @@ typedef struct s_sphere_attrs
 	double	diameter;
 }	t_sphere_attrs;
 
+typedef struct s_figure	t_figure;
+
+t_figure	*new_sphere(char **pieces);
+
 #endif

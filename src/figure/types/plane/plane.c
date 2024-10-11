@@ -2,7 +2,7 @@
 #include "utils.h"
 #include "figure.h"
 
-static void print_attrs(void *param)
+static void	print_attrs(void *param)
 {
 	t_plane_attrs	*attrs;
 
@@ -11,9 +11,8 @@ static void print_attrs(void *param)
 		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
 }
 
-static void hit(void)
+static void	hit(void)
 {
-	
 }
 
 t_figure	*new_plane(char **pieces)

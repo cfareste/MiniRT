@@ -11,7 +11,10 @@ typedef struct s_cylinder_attrs
 	t_coordinates	orientation;
 }	t_cylinder_attrs;
 
-void	set_cylinder_attrs(char **pieces, t_cylinder_attrs *attrs, t_color *color);
+typedef struct s_figure	t_figure;
+
+void		set_cylinder_attrs(char **pieces, t_cylinder_attrs *attrs,
+				t_color *color);
 
 t_figure	*new_cylinder(char **pieces);
 

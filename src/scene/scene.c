@@ -49,7 +49,7 @@ void	print_scene(t_scene *scene)
 	t_light		*lights;
 	t_figure	*figures;
 
-	ft_printf("Ambient light: ");
+	ft_printf("Ambient ");
 	print_light(&scene->ambient_light);
 	print_camera(&scene->camera);
 	lights = scene->lights;
