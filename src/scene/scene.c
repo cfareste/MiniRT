@@ -78,7 +78,7 @@ void	create_scene(t_scene *scene, char *filename)
 	int	fd;
 
 	if (!correct_file_extension(filename, ".rt"))
-		throw_error("Only .rt file allowed");
+		throw_error("Only .rt files are allowed");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		throw_sys_error(filename);

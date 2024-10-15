@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 	t_scene	scene;
 
 	if (argc != 2)
-		return (ft_printff(STDERR_FILENO, "Wrong arguments!"), EXIT_FAILURE);
+		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
 	create_scene(&scene, argv[1]);
 	return (destroy(&scene), EXIT_SUCCESS);
 }
