@@ -75,9 +75,16 @@ INCLUDES += -I$(LIBFT_DIR)
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
-LIBRARIES = -L$(MLX_BUILD_DIR) -lmlx42
-LIBRARIES_DEPS = -ldl -lglfw -lm -lpthread
+LIBRARIES += -L$(MLX_BUILD_DIR) -lmlx42
 INCLUDES += -I$(MLX_DIR)/include/MLX42
+LIBRARIES_DEPS += -ldl -lglfw -lm -lpthread
+ifeq ($(UNAME_S), Darwin)
+ifneq ($(filter arm%,$(UNAME_P)),)
+LIBRARIES_DEPS += -L"/opt/homebrew/lib/"
+else
+LIBRARIES_DEPS += -L"/opt/homebrew/Cellar/glfw/$(GLFW_V)/lib/"
+endif
+endif
 
 
 #----SHARED----#
@@ -149,11 +156,19 @@ libft_fclean:
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 
 $(MLX_DIR):
+ifeq ($(UNAME_S), Linux)
+	sudo apt update
+	sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
+endif
+ifeq ($(UNAME_S), Darwin)
+	brew install --formula glfw &>/dev/null
+	brew install --formula cmake &>/dev/null
+endif
 	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
 	curl -sOL https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.3.4.tar.gz
 	tar -xpf v2.3.4.tar.gz
 	rm -rf v2.3.4.tar.gz
-	mv -fu MLX42-2.3.4 lib/mlx
+	mv -f MLX42-2.3.4 lib/mlx
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
 $(MLX_LIB): | $(MLX_DIR)
