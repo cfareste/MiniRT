@@ -8,3 +8,16 @@ int	correct_file_extension(char *filename, char *extension)
 	return (ft_strnrcmp(filename, extension, extension_len) == EQUAL_STRINGS
 		&& ft_strlen(filename) > extension_len);
 }
+char	*get_file_name(char *filename, char *extension)
+{
+	char	**parts;
+	char	*name;
+
+	parts = ft_split(filename, '/');
+	if (!parts || !filename || !extension)
+		return (NULL);
+	name = parts[ft_stroccurrences(filename, '/')];
+	name = ft_substr(name, 0, ft_strlen(name) - ft_strlen(extension));
+	free_matrix(parts);
+	return (name);
+}

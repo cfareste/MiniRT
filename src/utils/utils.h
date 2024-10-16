@@ -9,4 +9,6 @@ void	throw_sys_error(char *msg);
 
 void	jump_spaces(char **str);
 
+char	*get_file_name(char *filename, char *extension);
+
 #endif

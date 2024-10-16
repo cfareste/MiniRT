@@ -1,5 +1,6 @@
 NAME = miniRT
 
+
 #----COLORS----#
 DEF_COLOR = \033[0m
 WHITE_BOLD = \033[1;39m
@@ -10,6 +11,7 @@ YELLOW = \033[1;33m
 BLUE = \033[1;34m
 PINK = \033[1;35m
 CYAN = \033[1;36m
+
 
 #----OS COMPATIBILITY----#
 ifeq ($(OS),Windows_NT)
@@ -46,9 +48,11 @@ else
     endif
 endif
 
+
 #----COMPILER----#
 CC = cc
 CCFLAGS = -Wall -Werror -Wextra -g -fsanitize=address #-O3
+
 
 #----DIRS----#
 BIN_DIR = bin/
@@ -66,10 +70,12 @@ INCLUDES += -I$(SRC)shared/coordinates
 
 #----LIBS----#
 
+
 #----LIBFT----#
 LIBFT_DIR = lib/libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
 INCLUDES += -I$(LIBFT_DIR)
+
 
 #----MLX----#
 MLX_DIR = lib/mlx
@@ -100,15 +106,29 @@ SRCS = miniRT.c \
 	cylinder.c \
 	plane.c \
 	sphere.c \
-	render.c
+	render.c \
+	window.c 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
+
 #----MACROS----#
 export GNL_BUFFER_SIZE := 50000
+ifeq ($(UNAME_S), Darwin)
+	WINDOW_WIDTH := $(shell system_profiler -json SPDisplaysDataType 2>/dev/null | grep _spdisplays_resolution | awk 'NR==1{print substr($$3, 2, length($$3)) - 70}')
+	WINDOW_HEIGHT := $(shell system_profiler -json SPDisplaysDataType 2>/dev/null | grep _spdisplays_resolution | awk 'NR==1{print $$5 - 70}')
+	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
+endif
+ifeq ($(UNAME_S), Linux)
+	WINDOW_WIDTH := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 1 | xargs)
+	WINDOW_HEIGHT := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 2 | cut -d' ' -f 1)
+	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
+endif
+
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)render
+vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)render:$(SRC)window
+
 
 
 #----- R U L E S -----#

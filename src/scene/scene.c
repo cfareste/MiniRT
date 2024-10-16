@@ -26,7 +26,6 @@ void	set_scene(int fd, t_scene *scene)
 {
 	char	*line;
 
-	ft_bzero(scene, sizeof(t_scene));
 	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
@@ -77,11 +76,15 @@ void	create_scene(t_scene *scene, char *filename)
 {
 	int	fd;
 
-	if (!correct_file_extension(filename, ".rt"))
+	if (!correct_file_extension(filename, SCENE_FILE_EXTENSION))
 		throw_error("Only .rt files are allowed");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		throw_sys_error(filename);
+	ft_bzero(scene, sizeof(t_scene));
+	scene->name = get_file_name(filename, SCENE_FILE_EXTENSION);
+	if (!scene->name)
+		throw_sys_error("trying to allocate scene name");
 	set_scene(fd, scene);
 	close(fd);
 	check_scene(scene);
