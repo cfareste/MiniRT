@@ -7,6 +7,8 @@ void	set_coordinates(char *str, t_coordinates *coordinates)
 	char	**pieces;
 
 	pieces = ft_split(str, ',');
+	if (!pieces)
+		throw_sys_error("trying to allocate split pieces");
 	if (!pieces[0] || !pieces[1] || !pieces[2])
 		throw_error("Missing some coordinates param");
 	coordinates->x = ft_atod(pieces[0]);
