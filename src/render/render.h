@@ -1,8 +1,6 @@
 #ifndef RENDER_H
 # define RENDER_H
 
-# define WIDTH 2000
-# define HEIGHT 800
 # include "MLX42.h"
 # include "shared/coordinates/coordinates.h"
 # include "figure/figure.h"
