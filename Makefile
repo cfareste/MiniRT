@@ -62,6 +62,8 @@ INCLUDES += -I$(SRC)scene/camera
 INCLUDES += -I$(SRC)utils
 INCLUDES += -I$(SRC)shared
 INCLUDES += -I$(SRC)shared/coordinates
+INCLUDES += -I$(SRC)render
+INCLUDES += -I$(SRC)render/ray
 
 
 #----LIBS----#
@@ -100,7 +102,8 @@ SRCS = miniRT.c \
 	cylinder.c \
 	plane.c \
 	sphere.c \
-	render.c
+	render.c \
+	vector.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 

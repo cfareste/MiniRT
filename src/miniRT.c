@@ -18,9 +18,9 @@ void	show_scene(t_scene *scene)
 	mlx_image_t	*image;
 
 	(void) scene;
-	mlx = mlx_init(1000, 1000, "Test", true);
-	image = mlx_new_image(mlx, 1000, 1000);
-	render_scene(scene, image);
+	mlx = mlx_init(1600, 900, "Test", true);
+	image = mlx_new_image(mlx, 1600, 900);
+	render_scene(scene, image, 1600, 900);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_loop(mlx);
 }
