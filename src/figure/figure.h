@@ -6,7 +6,7 @@
 # include "cylinder/cylinder.h"
 # include "shared/coordinates/coordinates.h"
 # include "shared/color/color.h"
-# include "render/render.h"
+# include "render/ray/ray.h"
 
 typedef struct s_figure
 {

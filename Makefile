@@ -99,7 +99,8 @@ SRCS = miniRT.c \
 	figure.c \
 	cylinder.c \
 	plane.c \
-	sphere.c
+	sphere.c \
+	render.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -107,7 +108,7 @@ DEPS = $(OBJS:%.o=%.d)
 export GNL_BUFFER_SIZE := 50000
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere
+vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)render
 
 
 #----- R U L E S -----#
