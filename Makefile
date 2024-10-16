@@ -157,8 +157,9 @@ libft_fclean:
 
 $(MLX_DIR):
 ifeq ($(UNAME_S), Linux)
-	sudo apt update
+ifeq (sudo apt update,)
 	sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
+endif
 endif
 ifeq ($(UNAME_S), Darwin)
 	brew install --formula glfw &>/dev/null
