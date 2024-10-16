@@ -6,13 +6,14 @@
 # include "cylinder/cylinder.h"
 # include "shared/coordinates/coordinates.h"
 # include "shared/color/color.h"
+# include "render/render.h"
 
 typedef struct s_figure
 {
 	char			*type;
 	t_coordinates	position;
 	t_color			color;
-	void			(*hit)(void);
+	int				(*hit)(t_figure *figure, t_ray *ray, float *distance);
 	void			(*print_attrs)(void *attrs);
 	void			(*free)(t_figure *figure);
 	union

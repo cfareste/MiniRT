@@ -13,8 +13,12 @@ static void	print_attrs(void *param)
 		attrs->diameter, attrs->height);
 }
 
-static void	hit(void)
+static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
+	(void) figure;
+	(void) ray;
+	(void) distance;
+	return (0);
 }
 
 t_figure	*new_cylinder(char **pieces)

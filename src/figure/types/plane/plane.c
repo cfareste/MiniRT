@@ -11,8 +11,12 @@ static void	print_attrs(void *param)
 		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
 }
 
-static void	hit(void)
+static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
+	(void) figure;
+	(void) ray;
+	(void) distance;
+	return (0);
 }
 
 t_figure	*new_plane(char **pieces)
