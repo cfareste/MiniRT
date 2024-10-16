@@ -25,16 +25,16 @@ static int	is_negative(char *str)
 
 double	ft_atod(char *str)
 {
-	char	**pieces;
-	double	num;
-	int		mod;
-	int		i;
-	int		neg;
+	char		**pieces;
+	double		num;
+	long long	mod;
+	int			i;
+	int			neg;
 
 	pieces = ft_split(str, '.');
 	i = -1;
 	neg = is_negative(pieces[0]);
-	num = (double) ft_atol(pieces[0]);
+	num = (double) ft_atoll(pieces[0]);
 	if (pieces[1] && *pieces[1])
 	{
 		i = -1;
@@ -42,9 +42,9 @@ double	ft_atod(char *str)
 		while (pieces[1][++i])
 			mod *= 10;
 		if (neg)
-			num -= (double) ft_atol(pieces[1]) / mod;
+			num -= (double) ft_atoll(pieces[1]) / mod;
 		else
-			num += (double) ft_atol(pieces[1]) / mod;
+			num += (double) ft_atoll(pieces[1]) / mod;
 	}
 	free_matrix(pieces);
 	return (num);
