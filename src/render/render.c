@@ -3,13 +3,16 @@
 
 void	config_viewport(t_camera *camera, t_viewport *vp, int width, int height)
 {
+	float	focal_distance;
+
 	vp->height = 9.0;
 	vp->width = (width * vp->height) / height;
 	vp->x_unit = vp->width / width;
 	vp->y_unit = vp->height / height;
-	vp->center.x = camera->position.x + 2.0 * camera->front.x;
-	vp->center.y = camera->position.y + 2.0 * camera->front.y;
-	vp->center.z = camera->position.z + 2.0 * camera->front.z;
+	focal_distance = 2.0;
+	vp->center.x = camera->position.x + focal_distance * camera->front.x;
+	vp->center.y = camera->position.y + focal_distance * camera->front.y;
+	vp->center.z = camera->position.z + focal_distance * camera->front.z;
 	vp->start.x = vp->center.x - (vp->width * camera->right.x / 2.0) + \
 		(vp->height * camera->up.x / 2.0);
 	vp->start.y = vp->center.y - (vp->width * camera->right.y / 2.0) + \
