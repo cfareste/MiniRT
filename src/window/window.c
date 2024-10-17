@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "window.h"
 #include "render/render.h"
 
@@ -23,7 +24,7 @@ void	start_window(t_scene *scene)
 	window.mlx = mlx_init(window.width, window.height, scene->name, true);
 	window.image = mlx_new_image(window.mlx, window.width, window.height);
 	render_scene(scene, &window);
-	mlx_loop(window.mlx);
 	mlx_image_to_window(window.mlx, window.image, 0, 0);
 	mlx_key_hook(window.mlx, key_hook, &window);
+	mlx_loop(window.mlx);
 }
