@@ -20,6 +20,7 @@ void	start_window(t_window *window)
 	window->size.height = WINDOW_HEIGHT;
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			window->scene.name, true);
-	window->image = mlx_new_image(window->mlx, window->size.width, window->size.height);
+	window->image = mlx_new_image(window->mlx, window->size.width,
+			window->size.height);
 	mlx_key_hook(window->mlx, key_hook, window);
 }

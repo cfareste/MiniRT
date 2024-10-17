@@ -21,9 +21,9 @@ char	*get_file_name(char *filename, char *extension)
 	if (!parts || !filename || !extension)
 		return (NULL);
 	name = parts[ft_stroccurrences(filename, '/')];
-	free_matrix(parts);
 	name = ft_substr(name, 0, ft_strlen(name) - ft_strlen(extension));
 	if (!name)
 		throw_sys_error("ft_substr");
+	free_matrix(parts);
 	return (name);
 }

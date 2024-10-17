@@ -32,7 +32,8 @@ t_figure	*new_cylinder(char **parts)
 	if (!cylinder->cy_attrs)
 		throw_sys_error("trying to allocate cylinder attributes");
 	set_coordinates(parts[2], &cylinder->cy_attrs->orientation);
-	cylinder->cy_attrs->diameter = ft_atod(parts[3], throw_sys_error, "ft_atod");
+	cylinder->cy_attrs->diameter = ft_atod(parts[3],
+			throw_sys_error, "ft_atod");
 	cylinder->cy_attrs->height = ft_atod(parts[4], throw_sys_error, "ft_atod");
 	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;
