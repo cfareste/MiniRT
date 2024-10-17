@@ -5,7 +5,7 @@
 #include "light.h"
 #include <fcntl.h>
 
-int	set_scene_attr(char *line, t_scene *scene)
+void	set_scene_attr(char *line, t_scene *scene)
 {
 	char	**parts;
 
@@ -16,12 +16,11 @@ int	set_scene_attr(char *line, t_scene *scene)
 		set_ambient_light(parts, &scene->ambient_light);
 	else if (*parts[0] == CAMERA_ID)
 		set_camera(parts, &scene->camera);
-	else if (*parts[0] == LIGHT_ID)
+	else if (*parts[0] == LIGHT_ID_MANDATORY || *parts[0] == LIGHT_ID)
 		push_light(parts, &scene->lights);
-	else if (!push_figure(parts, &scene->figures))
-		if (*parts[0] != '#')
-			return (free_matrix(parts), 0);
-	return (free_matrix(parts), 1);
+	else if (!push_figure(parts, &scene->figures) && *parts[0] != '#')
+		throw_error("Unknown element identifier");
+	free_matrix(parts);
 }
 
 void	set_scene(int fd, t_scene *scene)
@@ -31,8 +30,8 @@ void	set_scene(int fd, t_scene *scene)
 	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
-		if (*line && !set_scene_attr(line, scene))
-			throw_error("Unknown element identifier");
+		if (*line)
+			set_scene_attr(line, scene);
 		free(line);
 		line = get_next_line(fd, 0);
 	}
@@ -68,10 +67,23 @@ void	print_scene(t_scene *scene)
 
 void	check_scene(t_scene *scene)
 {
+	t_light	*lights;
+	int		mandatory_lights;
+
 	if (!scene->camera)
 		throw_error("A camera is needed to start rendering!");
 	else if (!scene->ambient_light && !scene->lights)
 		throw_error("Some light is missing!");
+	lights = scene->lights;
+	mandatory_lights = 0;
+	while (lights && mandatory_lights < 2)
+	{
+		if (lights->type == LIGHT_ID_MANDATORY)
+			mandatory_lights++;
+		lights = lights->next;
+	}
+	if (mandatory_lights > 1)
+		throw_error("Multiple lights for mandatory are not allowed");
 }
 
 void	create_scene(t_scene *scene, char *filename)

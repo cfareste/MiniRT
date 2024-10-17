@@ -1,14 +1,20 @@
 #ifndef LIGHT_H
 # define LIGHT_H
-# define LIGHT_ID 'L'
-# define AMBIENT_LIGHT_ID 'A'
 
 # include "float.h"
 # include "color/color.h"
 # include "coordinates.h"
 
+typedef enum e_light_types
+{
+	LIGHT_ID = 'l',
+	LIGHT_ID_MANDATORY = 'L',
+	AMBIENT_LIGHT_ID = 'A'
+}	t_light_type;
+
 typedef struct s_light
 {
+	t_light_type	type;
 	t_coordinates	position;
 	double			brightness;
 	struct s_light	*next;

@@ -4,7 +4,9 @@
 
 void	set_camera(char **parts, t_camera **camera)
 {
-	if (!parts[1] || !parts[2] || !parts[3])
+	if (*camera)
+		throw_error("Multiple cameras are not allowed");
+	else if (!parts[1] || !parts[2] || !parts[3])
 		throw_error("Missing camera params");
 	*camera = ft_calloc(1, sizeof(t_camera));
 	if (!*camera)
