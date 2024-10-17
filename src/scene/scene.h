@@ -14,8 +14,6 @@ typedef struct s_scene
 	t_light		*lights;
 	t_figure	*figures;
 	char		*name;
-	int			width;
-	int			height;
 }	t_scene;
 
 void	create_scene(t_scene *scene, char *filename);

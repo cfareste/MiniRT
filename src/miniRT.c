@@ -4,22 +4,25 @@
 #include "render/render.h"
 #include "window/window.h"
 
-void	destroy(t_scene *scene)
+void	destroy(t_window *window)
 {
-	free(scene->ambient_light);
-	free(scene->camera);
-	free_lights(scene->lights);
-	free_figures(scene->figures);
-	free(scene->name);
+	mlx_terminate(window->mlx);
+	free(window->scene.ambient_light);
+	free(window->scene.camera);
+	free_lights(window->scene.lights);
+	free_figures(window->scene.figures);
+	free(window->scene.name);
 }
 
 int	main(int argc, char **argv)
 {
-	t_scene	scene;
+	t_window	window;
 
 	if (argc != 2)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
-	create_scene(&scene, argv[1]);
-	start_window(&scene);
-	return (destroy(&scene), EXIT_SUCCESS);
+	create_scene(&window.scene, argv[1]);
+	start_window(&window);
+	render_scene(&window);
+	mlx_loop(window.mlx);
+	return (destroy(&window), EXIT_SUCCESS);
 }

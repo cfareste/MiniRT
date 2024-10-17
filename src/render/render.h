@@ -15,6 +15,6 @@ typedef struct s_hit_record
 	t_coordinates	normal;
 }	t_hit_record;
 
-void	render_scene(t_scene *scene, t_window *window);
+void	render_scene(t_window *window);
 
 #endif
