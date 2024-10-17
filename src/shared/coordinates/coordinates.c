@@ -4,13 +4,15 @@
 
 void	set_coordinates(char *str, t_coordinates *coordinates)
 {
-	char	**pieces;
+	char	**parts;
 
-	pieces = ft_split(str, ',');
-	if (!pieces[0] || !pieces[1] || !pieces[2])
+	parts = ft_split(str, ',');
+	if (!parts)
+		throw_sys_error("ft_split");
+	if (!parts[0] || !parts[1] || !parts[2])
 		throw_error("Missing some coordinates param");
-	coordinates->x = ft_atod(pieces[0]);
-	coordinates->y = ft_atod(pieces[1]);
-	coordinates->z = ft_atod(pieces[2]);
-	free_matrix(pieces);
+	coordinates->x = ft_atod(parts[0], throw_sys_error, "ft_atod");
+	coordinates->y = ft_atod(parts[1], throw_sys_error, "ft_atod");
+	coordinates->z = ft_atod(parts[2], throw_sys_error, "ft_atod");
+	free_matrix(parts);
 }

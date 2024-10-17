@@ -7,19 +7,21 @@
 
 int	set_scene_attr(char *line, t_scene *scene)
 {
-	char	**pieces;
+	char	**parts;
 
-	pieces = ft_split(line, ' ');
-	if (*pieces[0] == AMBIENT_LIGHT_ID)
-		set_ambient_light(pieces, &scene->ambient_light);
-	else if (*pieces[0] == CAMERA_ID)
-		set_camera(pieces, &scene->camera);
-	else if (*pieces[0] == LIGHT_ID)
-		push_light(pieces, &scene->lights);
-	else if (!push_figure(pieces, &scene->figures))
-		if (*pieces[0] != '#')
-			return (free_matrix(pieces), 0);
-	return (free_matrix(pieces), 1);
+	parts = ft_split(line, ' ');
+	if (!parts)
+		throw_sys_error("ft_split");
+	if (*parts[0] == AMBIENT_LIGHT_ID)
+		set_ambient_light(parts, &scene->ambient_light);
+	else if (*parts[0] == CAMERA_ID)
+		set_camera(parts, &scene->camera);
+	else if (*parts[0] == LIGHT_ID)
+		push_light(parts, &scene->lights);
+	else if (!push_figure(parts, &scene->figures))
+		if (*parts[0] != '#')
+			return (free_matrix(parts), 0);
+	return (free_matrix(parts), 1);
 }
 
 void	set_scene(int fd, t_scene *scene)

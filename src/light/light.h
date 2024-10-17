@@ -15,9 +15,9 @@ typedef struct s_light
 	t_color			color;
 }	t_light;
 
-int		set_ambient_light(char **pieces, t_light **light);
+int		set_ambient_light(char **parts, t_light **light);
 
-void	push_light(char **pieces, t_light **lights);
+void	push_light(char **parts, t_light **lights);
 
 void	free_lights(t_light *lights);
 

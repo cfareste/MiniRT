@@ -9,6 +9,6 @@ typedef struct s_sphere_attrs
 
 typedef struct s_figure	t_figure;
 
-t_figure	*new_sphere(char **pieces);
+t_figure	*new_sphere(char **parts);
 
 #endif

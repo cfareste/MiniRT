@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/10 13:00:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:00:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			is_allowed_char(char c);
 
 int			ft_atoi(const char *str);
 
-double		ft_atod(char *str);
+double		ft_atod(char *str, void (*crash)(char *), char *param);
 
 long		ft_atol(const char *str);
 

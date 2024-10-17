@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "utils.h"
 
 int	correct_file_extension(char *filename, char *extension)
 {
@@ -15,10 +16,14 @@ char	*get_file_name(char *filename, char *extension)
 	char	*name;
 
 	parts = ft_split(filename, '/');
+	if (!parts)
+		throw_sys_error("ft_split");
 	if (!parts || !filename || !extension)
 		return (NULL);
 	name = parts[ft_stroccurrences(filename, '/')];
-	name = ft_substr(name, 0, ft_strlen(name) - ft_strlen(extension));
 	free_matrix(parts);
+	name = ft_substr(name, 0, ft_strlen(name) - ft_strlen(extension));
+	if (!name)
+		throw_sys_error("ft_substr");
 	return (name);
 }

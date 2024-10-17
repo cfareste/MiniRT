@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:58:57 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/10 17:38:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:07:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,31 @@ static int	is_negative(char *str)
 	return (neg);
 }
 
-double	ft_atod(char *str)
+double	ft_atod(char *str, void (*crash)(char *), char *param)
 {
-	char	**pieces;
+	char	**parts;
 	double	num;
 	int		mod;
 	int		i;
 	int		neg;
 
-	pieces = ft_split(str, '.');
+	parts = ft_split(str, '.');
+	if (!parts)
+		return (crash(param), 0);
 	i = -1;
-	neg = is_negative(pieces[0]);
-	num = (double) ft_atol(pieces[0]);
-	if (pieces[1] && *pieces[1])
+	neg = is_negative(parts[0]);
+	num = (double) ft_atol(parts[0]);
+	if (parts[1] && *parts[1])
 	{
 		i = -1;
 		mod = 1;
-		while (pieces[1][++i])
+		while (parts[1][++i])
 			mod *= 10;
 		if (neg)
-			num -= (double) ft_atol(pieces[1]) / mod;
+			num -= (double) ft_atol(parts[1]) / mod;
 		else
-			num += (double) ft_atol(pieces[1]) / mod;
+			num += (double) ft_atol(parts[1]) / mod;
 	}
-	free_matrix(pieces);
+	free_matrix(parts);
 	return (num);
 }

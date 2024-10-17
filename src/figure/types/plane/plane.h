@@ -11,6 +11,6 @@ typedef struct s_plane_attrs
 
 typedef struct s_figure	t_figure;
 
-t_figure	*new_plane(char **pieces);
+t_figure	*new_plane(char **parts);
 
 #endif

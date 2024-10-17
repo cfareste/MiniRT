@@ -16,17 +16,17 @@ t_figure	*new_figure(char *type, char *coord_str, char *color_str)
 	return (new);
 }
 
-int	push_figure(char **pieces, t_figure **figure)
+int	push_figure(char **parts, t_figure **figure)
 {
 	t_figure	*new;
 	t_figure	*aux;
 
-	if (ft_strcmp(pieces[0], CYLINDER_ID) == EQUAL_STRINGS)
-		new = new_cylinder(pieces);
-	else if (ft_strcmp(pieces[0], PLANE_ID) == EQUAL_STRINGS)
-		new = new_plane(pieces);
-	else if (ft_strcmp(pieces[0], SPHERE_ID) == EQUAL_STRINGS)
-		new = new_sphere(pieces);
+	if (ft_strcmp(parts[0], CYLINDER_ID) == EQUAL_STRINGS)
+		new = new_cylinder(parts);
+	else if (ft_strcmp(parts[0], PLANE_ID) == EQUAL_STRINGS)
+		new = new_plane(parts);
+	else if (ft_strcmp(parts[0], SPHERE_ID) == EQUAL_STRINGS)
+		new = new_sphere(parts);
 	else
 		return (0);
 	if (!*figure)

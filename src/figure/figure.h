@@ -26,7 +26,7 @@ typedef struct s_figure
 	t_figure		*next;
 }	t_figure;
 
-int			push_figure(char **pieces, t_figure **figure);
+int			push_figure(char **parts, t_figure **figure);
 
 void		free_figures(t_figure *figures);
 
