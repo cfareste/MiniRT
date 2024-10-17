@@ -1,6 +1,8 @@
 #include "figure.h"
 #include "libft.h"
 #include "utils.h"
+#include "math.h"
+#include "quadratic.h"
 
 static void	print_attrs(void *param)
 {
@@ -12,10 +14,39 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	(void) figure;
-	(void) ray;
-	(void) distance;
-	return (0);
+	t_coordinates		ray_to_sphere;
+	t_quadratic_params	params;
+	float				radius;
+	float				square_root;
+
+	ray_to_sphere.x = figure->position.x - ray->origin.x;
+	ray_to_sphere.y = figure->position.y - ray->origin.y;
+	ray_to_sphere.z = figure->position.z - ray->origin.z;
+	radius = figure->sp_attrs->diameter / 2.0;
+	params.a = dot(&ray->direction, &ray->direction);
+	params.b = -2.0 * dot(&ray->direction, &ray_to_sphere);
+	params.c = dot(&ray_to_sphere, &ray_to_sphere) - (radius * radius);
+	params.discriminant = (params.b * params.b) - (4.0 * params.a * params.c);
+	if (params.discriminant < 0.0)
+		return (0);
+	square_root = sqrt(params.discriminant);
+	params.root = (-params.b - square_root) / (2.0 * params.a);
+	if (params.root <= ray->bounds.min || params.root >= ray->bounds.max)
+	{
+		params.root = (-params.b + square_root) / (2.0 * params.a);
+		if (params.root <= ray->bounds.min || params.root >= ray->bounds.max)
+			return (0);
+	}
+	*distance = params.root;
+	return (1);
+}
+
+static void	normal(t_figure *figure, t_coordinates *point, t_coordinates *res)
+{
+	res->x = point->x - figure->position.x;
+	res->y = point->y - figure->position.y;
+	res->z = point->z - figure->position.z;
+	normalize(res);
 }
 
 t_figure	*new_sphere(char **pieces)
@@ -31,5 +62,6 @@ t_figure	*new_sphere(char **pieces)
 	sphere->sp_attrs->diameter = ft_atod(pieces[2]);
 	sphere->print_attrs = print_attrs;
 	sphere->hit = hit;
+	sphere->normal = normal;
 	return (sphere);
 }

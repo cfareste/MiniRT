@@ -62,6 +62,7 @@ INCLUDES += -I$(SRC)scene/camera
 INCLUDES += -I$(SRC)utils
 INCLUDES += -I$(SRC)shared
 INCLUDES += -I$(SRC)shared/coordinates
+INCLUDES += -I$(SRC)shared/quadratic
 INCLUDES += -I$(SRC)render
 INCLUDES += -I$(SRC)render/ray
 
