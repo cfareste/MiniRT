@@ -106,8 +106,9 @@ SRCS = miniRT.c \
 	cylinder.c \
 	plane.c \
 	sphere.c \
-	render.c \
-	window.c 
+	renderer.c \
+	window.c \
+	starter_bonus.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -127,7 +128,7 @@ endif
 
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)render:$(SRC)window
+vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)renderer:$(SRC)window:$(SRC)renderer/starter
 
 
 

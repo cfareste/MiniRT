@@ -1,17 +1,17 @@
 #include "libft.h"
 #include "MLX42.h"
 #include "scene.h"
-#include "render/render.h"
+#include "renderer/starter/starter_bonus.h"
 #include "window/window.h"
 
 void	destroy(t_window *window)
 {
 	mlx_terminate(window->mlx);
+	free(window->scene.name);
 	free(window->scene.ambient_light);
 	free(window->scene.camera);
 	free_lights(window->scene.lights);
 	free_figures(window->scene.figures);
-	free(window->scene.name);
 }
 
 int	main(int argc, char **argv)
@@ -20,9 +20,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
+	ft_bzero(&window, sizeof(t_window));
 	create_scene(&window.scene, argv[1]);
 	start_window(&window);
-	render_scene(&window);
+	start_renderer(&window);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }

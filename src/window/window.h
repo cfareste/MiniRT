@@ -9,6 +9,7 @@
 
 # include "MLX42.h"
 # include "scene/scene.h"
+# include "renderer/starter/starter_bonus.h"
 
 typedef struct s_window_size
 {
@@ -22,6 +23,7 @@ typedef struct s_window
 	mlx_image_t		*image;
 	mlx_t			*mlx;
 	t_scene			scene;
+	t_renderer		renderer;
 }	t_window;
 
 void	start_window(t_window *window);
