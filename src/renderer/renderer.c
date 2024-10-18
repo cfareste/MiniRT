@@ -75,10 +75,11 @@ void	render_scene(t_window *window)
 	i = 0;
 	config_viewport(window->scene.camera, &window->scene.camera->viewport,
 		window->size.width, window->size.height);
-	while (i < window->image->width)
+	while (!is_render_finished(&window->renderer) && i < window->image->width)
 	{
 		j = 0;
-		while (j < window->image->height && !is_render_finished(&window->renderer))
+		while (!is_render_finished(&window->renderer)
+			&& j < window->image->height)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&window->scene, &hit_record, i, j);
@@ -87,6 +88,4 @@ void	render_scene(t_window *window)
 		}
 		i++;
 	}
-	set_render_finish(&window->renderer, 1);
-	ft_printf("SALGOOO!!!");
 }

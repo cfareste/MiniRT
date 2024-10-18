@@ -8,7 +8,7 @@
 #  define LINUX 0
 # endif
 
-#include "window/window.h"
+# include "window/window.h"
 
 void	destroy(t_window *window);
 

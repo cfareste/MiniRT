@@ -14,9 +14,15 @@
 
 typedef struct s_window_size
 {
-	int			width;
-	int			height;
+	int	width;
+	int	height;
 }	t_window_size;
+
+typedef struct s_resize
+{
+	t_window_size	size;
+	double			last_resize;
+}	t_resize;
 
 typedef struct s_window
 {
@@ -26,6 +32,7 @@ typedef struct s_window
 	mlx_t			*mlx;
 	t_scene			scene;
 	t_renderer		renderer;
+	t_resize		resize;
 }	t_window;
 
 void	start_window(t_window *window);

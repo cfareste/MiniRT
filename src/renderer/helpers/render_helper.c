@@ -37,6 +37,7 @@ int	is_render_finished(t_renderer *renderer)
 	pthread_mutex_unlock(&renderer->render_mutex);
 	return (finished);
 }
+
 void	set_render_finish(t_renderer *renderer, int value)
 {
 	pthread_mutex_lock(&renderer->render_mutex);
