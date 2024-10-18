@@ -11,6 +11,6 @@ void	throw_error(char *msg)
 
 void	throw_sys_error(char *msg)
 {
-	ft_printff(STDERR_FILENO, "%s: %s: %s", PROGRAM_NAME, msg, strerror(errno));
+	ft_printff(STDERR_FILENO, "%s: %s: %s\n", PROGRAM_NAME, msg, strerror(errno));
 	exit(EXIT_FAILURE);
 }

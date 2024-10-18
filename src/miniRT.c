@@ -7,6 +7,7 @@
 void	destroy(t_window *window)
 {
 	mlx_terminate(window->mlx);
+	mlx_delete_texture(window->icon);
 	free(window->scene.name);
 	free(window->scene.ambient_light);
 	free(window->scene.camera);
