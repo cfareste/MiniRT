@@ -29,11 +29,11 @@ ifeq ($(OS),Windows_NT)
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        CCFLAGS += -D LINUX
+        CCFLAGS += -D LINUX=1
 		export LINUX=1
     endif
     ifeq ($(UNAME_S),Darwin)
-        CCFLAGS += -D OSX
+        CCFLAGS += -D DARWIN=1
 		export DARWIN=1
     endif
     UNAME_P := $(shell uname -p)
@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -g -fsanitize=address #-O3
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address #-O3
 
 
 #----DIRS----#

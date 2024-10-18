@@ -28,6 +28,7 @@ void	start_window(t_window *window)
 			window->scene.name, true);
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
-	mlx_key_hook(window->mlx, (void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
+	mlx_key_hook(window->mlx,
+		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
 	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
 }
