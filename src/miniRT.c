@@ -6,7 +6,6 @@
 
 void	destroy(t_window *window)
 {
-	pthread_cancel(window->renderer.render);
 	mlx_close_window(window->mlx);
 	mlx_terminate(window->mlx);
 	mlx_delete_texture(window->icon);

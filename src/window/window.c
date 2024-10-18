@@ -17,7 +17,7 @@ static void	global_hook(t_window *window)
 
 static void	close_window(t_window *window)
 {
-	pthread_cancel(window->renderer.render);
+	stop_renderer(window);
 	mlx_close_window(window->mlx);
 }
 
