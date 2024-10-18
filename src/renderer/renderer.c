@@ -175,7 +175,10 @@ void	render_scene(t_window *window)
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&window->scene, &hit_record, i, j);
 			color = process_lighting(&window->scene, &hit_record);
-			mlx_put_pixel(window->image, i, j, color);
+			pthread_mutex_lock(&window->image_mutex);
+			if (!is_render_finished(&window->renderer) && window->image && i < window->image->width && j < window->image->height)
+				mlx_put_pixel(window->image, i, j, color);
+			pthread_mutex_unlock(&window->image_mutex);
 			j++;
 		}
 		i++;

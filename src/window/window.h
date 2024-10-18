@@ -28,6 +28,7 @@ typedef struct s_window
 {
 	t_window_size	size;
 	mlx_image_t		*image;
+	pthread_mutex_t	image_mutex;
 	mlx_texture_t	*icon;
 	mlx_t			*mlx;
 	t_scene			scene;

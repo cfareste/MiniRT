@@ -17,7 +17,7 @@ static void	global_hook(t_window *window)
 
 static void	close_window(t_window *window)
 {
-	stop_renderer(window);
+	stop_renderer(&window->renderer);
 	mlx_close_window(window->mlx);
 }
 
@@ -33,6 +33,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 void	start_window(t_window *window)
 {
 	pthread_mutex_init(&window->renderer.render_mutex, NULL);
+	pthread_mutex_init(&window->image_mutex, NULL);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
