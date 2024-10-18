@@ -12,7 +12,7 @@ void	config_viewport(t_camera *camera, t_viewport *vp, int width, int height)
 	vp->width = (width * vp->height) / height;
 	vp->x_unit = vp->width / width;
 	vp->y_unit = vp->height / height;
-	focal_distance = 1.0 / tan((camera->fov * 0.5) * M_PI / 180);
+	focal_distance = tan((camera->fov * 0.5) * M_PI / 180);
 	vp->center.x = camera->position.x + focal_distance * camera->front.x;
 	vp->center.y = camera->position.y + focal_distance * camera->front.y;
 	vp->center.z = camera->position.z + focal_distance * camera->front.z;
@@ -64,10 +64,27 @@ void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
 	}
 }
 
+int	process_lighting(t_scene *scene, t_hit_record *hit_record)
+{
+	t_color	ambient;
+	t_color	diffuse;
+	t_color	specular;
+	t_color	color;
+
+	if (!hit_record->figure)
+		return (get_sky_color(scene));
+	(void) diffuse;
+	(void) specular;
+	mix_light_color(&hit_record->figure->color, scene->ambient_light, &ambient);
+	phong(&ambient, &diffuse, &specular, &color);
+	return (get_color_value(&color));
+}
+
 void	render_scene(t_window *window)
 {
 	int				i;
 	int				j;
+	int				color;
 	t_hit_record	hit_record;
 
 	i = 0;
@@ -80,7 +97,8 @@ void	render_scene(t_window *window)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&window->scene, &hit_record, i, j);
-			mlx_put_pixel(window->image, i, j, get_color(hit_record.figure));
+			color = process_lighting(&window->scene, &hit_record);
+			mlx_put_pixel(window->image, i, j, color);
 			j++;
 		}
 		i++;

@@ -18,3 +18,9 @@ void	set_color(char *params, t_color *color)
 		throw_error("Color params must be [0,255]");
 	free_matrix(color_parts);
 }
+
+int	get_color_value(t_color *color)
+{
+	return ((int)(color->red * 255) << 24 | (int)(color->green * 255) << 16
+		| (int)(color->blue * 255) << 8 | 0xFF);
+}

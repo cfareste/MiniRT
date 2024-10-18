@@ -1,16 +1,30 @@
 #include "render_helper.h"
 
-int	get_color(t_figure *figure)
+int	get_sky_color(t_scene *scene)
 {
-	t_color	*figure_color;
-	int		color;
+	t_color	sky_color;
 
-	if (!figure)
-		return (0xD6EAF8FF);
-	figure_color = &figure->color;
-	color = (int) (figure_color->red * 255) << 24 | (int) (figure_color->green * 255) << 16 | \
-		(int) (figure_color->blue * 255) << 8 | 0xFF;
-	return (color);
+	sky_color.red = (0xD6 / (float)255) * scene->ambient_light->brightness;
+	sky_color.green = (0xEA / (float)255) * scene->ambient_light->brightness;
+	sky_color.blue = (0xF8 / (float)255) * scene->ambient_light->brightness;
+	sky_color.alpha = 1.0;
+	return (get_color_value(&sky_color));
+}
+
+void	mix_light_color(t_color *color, t_light *light, t_color *res)
+{
+	res->red = color->red * light->brightness * light->color.red;
+	res->green = color->green * light->brightness * light->color.green;
+	res->blue = color->blue * light->brightness * light->color.blue;
+}
+
+void	phong(t_color *ambient, t_color *diffuse, t_color *specular, t_color *res)
+{
+	(void) diffuse;
+	(void) specular;
+	res->red = ambient->red; // + diffuse->red + specular->red;
+	res->green = ambient->green; // + diffuse->green + specular->green;
+	res->blue = ambient->blue; // + diffuse->blue + specular->blue;
 }
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
