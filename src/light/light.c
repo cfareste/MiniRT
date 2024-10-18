@@ -13,9 +13,6 @@ int	set_ambient_light(char **parts, t_light **light)
 	(*light)->type = AMBIENT_LIGHT_ID;
 	(*light)->brightness = ft_atod(parts[1], throw_sys_error, "ft_atod");
 	set_color(parts[2], &(*light)->color);
-	(*light)->position.x = -1;
-	(*light)->position.y = -1;
-	(*light)->position.z = -1;
 	return (1);
 }
 

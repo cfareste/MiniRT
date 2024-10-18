@@ -198,9 +198,10 @@ endif
 	mv -f MLX42-2.3.4 lib/mlx
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
+# TODO: Quit debug!!!!
 $(MLX_LIB): | $(MLX_DIR)
 	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake -B build/ > /dev/null && make --no-print-directory -C build > /dev/null
+	cd lib/mlx && cmake -DDEBUG=1 -B build/ > /dev/null && make --no-print-directory -C build > /dev/null
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:

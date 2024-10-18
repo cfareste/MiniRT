@@ -15,3 +15,10 @@ void	throw_sys_error(char *msg)
 		PROGRAM_NAME, msg, strerror(errno));
 	exit(EXIT_FAILURE);
 }
+
+void	throw_mlx_error(char *msg, const char *mlx_msg)
+{
+	ft_printff(STDERR_FILENO, "%s: %s: %s\n",
+		PROGRAM_NAME, msg, mlx_msg);
+	exit(EXIT_FAILURE);
+}

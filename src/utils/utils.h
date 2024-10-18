@@ -31,4 +31,6 @@ void	get_axis(t_coordinates *axis, t_pointing direction);
 
 void	normalize(t_coordinates *vec);
 
+void	throw_mlx_error(char *msg, const char *mlx_msg);
+
 #endif

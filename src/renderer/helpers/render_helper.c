@@ -27,3 +27,19 @@ void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 		hit_record->distance * ray->direction.z;
 	figure->normal(figure, &hit_record->point, &hit_record->normal);
 }
+
+int	is_render_finished(t_renderer *renderer)
+{
+	int	finished;
+
+	pthread_mutex_lock(&renderer->render_mutex);
+	finished = renderer->finished;
+	pthread_mutex_unlock(&renderer->render_mutex);
+	return (finished);
+}
+void	set_render_finish(t_renderer *renderer, int value)
+{
+	pthread_mutex_lock(&renderer->render_mutex);
+	renderer->finished = value;
+	pthread_mutex_unlock(&renderer->render_mutex);
+}
