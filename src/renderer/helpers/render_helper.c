@@ -8,8 +8,8 @@ int	get_color(t_figure *figure)
 	if (!figure)
 		return (0xD6EAF8FF);
 	figure_color = &figure->color;
-	color = figure_color->red << 24 | figure_color->green << 16 | \
-		figure_color->blue << 8 | 0xFF;
+	color = (int) (figure_color->red * 255) << 24 | (int) (figure_color->green * 255) << 16 | \
+		(int) (figure_color->blue * 255) << 8 | 0xFF;
 	return (color);
 }
 

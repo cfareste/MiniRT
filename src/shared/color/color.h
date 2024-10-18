@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-typedef unsigned char	t_rgb_comp;
+typedef float	t_rgb_comp;
 
 typedef struct s_color
 {

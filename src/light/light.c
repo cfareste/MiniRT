@@ -16,6 +16,8 @@ int	set_ambient_light(char **parts, t_light **light)
 	(*light)->position.x = -1;
 	(*light)->position.y = -1;
 	(*light)->position.z = -1;
+	if ((*light)->brightness > 1.0 || (*light)->brightness < 0.0)
+		throw_error("Invalid brightness param for ambient light");
 	return (1);
 }
 
@@ -69,7 +71,7 @@ void	free_lights(t_light *lights)
 
 void	print_light(t_light *light)
 {
-	printf("Light (%p): %f, %f, %f | %f | %i, %i, %i\n",
+	printf("Light (%p): %f, %f, %f | %f | %f, %f, %f\n",
 		light,
 		light->position.x, light->position.y, light->position.z,
 		light->brightness,
