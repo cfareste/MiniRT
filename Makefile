@@ -66,6 +66,9 @@ INCLUDES += -I$(SRC)scene/camera
 INCLUDES += -I$(SRC)utils
 INCLUDES += -I$(SRC)shared
 INCLUDES += -I$(SRC)shared/coordinates
+INCLUDES += -I$(SRC)shared/quadratic
+INCLUDES += -I$(SRC)renderer
+INCLUDES += -I$(SRC)render/ray
 
 
 #----LIBS----#
@@ -108,7 +111,9 @@ SRCS = miniRT.c \
 	sphere.c \
 	renderer.c \
 	window.c \
-	starter_bonus.c
+	starter_bonus.c \
+	vector.c \
+	render_helper.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -128,8 +133,7 @@ endif
 
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)renderer:$(SRC)window:$(SRC)renderer/starter
-
+vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)renderer:$(SRC)window:$(SRC)renderer/starter:$(SRC)renderer/helpers
 
 
 #----- R U L E S -----#

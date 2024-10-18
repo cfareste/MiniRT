@@ -14,6 +14,8 @@ typedef struct s_figure
 	t_coordinates	position;
 	t_color			color;
 	int				(*hit)(t_figure *figure, t_ray *ray, float *distance);
+	void			(*normal)(t_figure *figure, t_coordinates *point, \
+						t_coordinates *res);
 	void			(*print_attrs)(void *attrs);
 	void			(*free)(t_figure *figure);
 	union

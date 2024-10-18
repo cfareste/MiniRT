@@ -3,11 +3,11 @@
 #include "renderer/renderer.h"
 #include <pthread.h>
 
-static void	stop_renderer(t_renderer *renderer)
-{
-	if (renderer && renderer->render)
-		pthread_cancel(renderer->render);
-}
+// static void	stop_renderer(t_renderer *renderer)
+// {
+// 	if (renderer && renderer->render)
+// 		pthread_cancel(renderer->render);
+// }
 
 // TODO: Loader!!
 static void	start_routine(t_window *window)
@@ -22,9 +22,11 @@ static void	start_routine(t_window *window)
 
 void	start_renderer(t_window *window)
 {
-	stop_renderer(&window->renderer);
-	if (window->image)
-		mlx_delete_image(window->mlx, window->image);
-	if (pthread_create(&window->renderer.render, NULL, (void *(*)(void *)) start_routine, window))
-		throw_sys_error("creating new scene render thread");
+	// stop_renderer(&window->renderer);
+	// if (window->image)
+	// 	mlx_delete_image(window->mlx, window->image);
+	// if (pthread_create(&window->renderer.render, NULL, (void *(*)(void *)) start_routine, window))
+	// 	throw_sys_error("creating new scene render thread");
+
+	start_routine(window);
 }

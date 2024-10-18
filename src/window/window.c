@@ -16,14 +16,12 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 
 void	start_window(t_window *window)
 {
-	window->size.width = WINDOW_WIDTH;
-	window->size.height = WINDOW_HEIGHT;
+	window->size.width = 1600;// WINDOW_WIDTH;
+	window->size.height = 900;// WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
-	mlx_set_setting(MLX_MAXIMIZED, 1);
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			window->scene.name, true);
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
 	mlx_key_hook(window->mlx, key_hook, window);
-	// mlx_set_icon(mlx_t* mlx, mlx_texture_t* image);
 }

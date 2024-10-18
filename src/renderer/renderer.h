@@ -1,5 +1,5 @@
-#ifndef RENDER_H
-# define RENDER_H
+#ifndef RENDERER_H
+# define RENDERER_H
 
 # include "MLX42.h"
 # include "shared/coordinates/coordinates.h"
@@ -14,7 +14,6 @@ typedef struct s_hit_record
 	t_coordinates	point;
 	t_coordinates	normal;
 }	t_hit_record;
-
 
 void	render_scene(t_window *window);
 
