@@ -2,6 +2,7 @@
 #include "libft.h"
 #include "math.h"
 #include "shared/color/color.h"
+#include "helpers/render_helper.h"
 
 void	config_viewport(t_camera *camera, t_viewport *vp, int width, int height)
 {
@@ -47,21 +48,6 @@ void	init_ray(t_ray *ray, t_camera *camera, int i, int j)
 	normalize(&ray->direction);
 }
 
-void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
-{
-	if (hit_record->distance >= ray->bounds.max)
-		return ;
-	ray->bounds.max = hit_record->distance;
-	hit_record->figure = figure;
-	hit_record->point.x = ray->origin.x + \
-		hit_record->distance * ray->direction.x;
-	hit_record->point.y = ray->origin.y + \
-		hit_record->distance * ray->direction.y;
-	hit_record->point.z = ray->origin.z + \
-		hit_record->distance * ray->direction.z;
-	figure->normal(figure, &hit_record->point, &hit_record->normal);
-}
-
 void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
 {
 	t_ray		ray;
@@ -76,18 +62,6 @@ void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
 			set_hit_record(hit_record, &ray, figure);
 		figure = figure->next;
 	}
-}
-
-int	get_color(t_figure *figure)
-{
-	t_color	*color;
-	int		final_color;
-
-	if (!figure)
-		return (0xD6EAF8FF);
-	color = &figure->color;
-	final_color = color->red << 24 | color->green << 16 | color->blue << 8 | 0xFF;
-	return (final_color);	
 }
 
 void	render_scene(t_scene *scene, mlx_image_t *image, int width, int height)
