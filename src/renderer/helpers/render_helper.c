@@ -1,3 +1,4 @@
+#include "math.h"
 #include "render_helper.h"
 
 int	get_sky_color(t_scene *scene)
@@ -11,20 +12,11 @@ int	get_sky_color(t_scene *scene)
 	return (get_color_value(&sky_color));
 }
 
-void	mix_light_color(t_color *color, t_light *light, t_color *res)
+void	apply_ambient_lighting(t_light *ambient, t_color *res)
 {
-	res->red = color->red * light->brightness * light->color.red;
-	res->green = color->green * light->brightness * light->color.green;
-	res->blue = color->blue * light->brightness * light->color.blue;
-}
-
-void	phong(t_color *ambient, t_color *diffuse, t_color *specular, t_color *res)
-{
-	(void) diffuse;
-	(void) specular;
-	res->red = ambient->red; // + diffuse->red + specular->red;
-	res->green = ambient->green; // + diffuse->green + specular->green;
-	res->blue = ambient->blue; // + diffuse->blue + specular->blue;
+	res->red = ambient->brightness * ambient->color.red;
+	res->green = ambient->brightness * ambient->color.green;
+	res->blue = ambient->brightness * ambient->color.blue;
 }
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
@@ -40,4 +32,19 @@ void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 	hit_record->point.z = ray->origin.z + \
 		hit_record->distance * ray->direction.z;
 	figure->normal(figure, &hit_record->point, &hit_record->normal);
+}
+
+void
+	set_shadow_ray(t_hit_record *hit_record, t_ray *shadow_ray, t_light *light)
+{
+	shadow_ray->origin.x = hit_record->point.x;
+	shadow_ray->origin.y = hit_record->point.y;
+	shadow_ray->origin.z = hit_record->point.z;
+	shadow_ray->direction.x = light->position.x - shadow_ray->origin.x;
+	shadow_ray->direction.y = light->position.y - shadow_ray->origin.y;
+	shadow_ray->direction.z = light->position.z - shadow_ray->origin.z;
+	shadow_ray->bounds.max = sqrt(dot(&shadow_ray->direction, \
+		&shadow_ray->direction));
+	shadow_ray->bounds.min = 0.01;
+	normalize(&shadow_ray->direction);
 }

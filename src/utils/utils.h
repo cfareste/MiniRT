@@ -31,4 +31,6 @@ void	get_axis(t_coordinates *axis, t_pointing direction);
 
 void	normalize(t_coordinates *vec);
 
+void	reflect(t_coordinates *vec, t_coordinates *normal, t_coordinates *res);
+
 #endif

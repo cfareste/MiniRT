@@ -44,3 +44,14 @@ void	normalize(t_coordinates *vec)
 	vec->y = vec->y / length;
 	vec->z = vec->z / length;
 }
+
+void	reflect(t_coordinates *vec, t_coordinates *normal, t_coordinates *res)
+{
+	float	product;
+
+	product = 2.0 * dot(vec, normal);
+	res->x = vec->x - product * normal->x;
+	res->y = vec->y - product * normal->y;
+	res->z = vec->z - product * normal->z;
+	normalize(res);
+}
