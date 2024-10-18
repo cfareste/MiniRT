@@ -60,6 +60,6 @@ void	print_figure(t_figure *figure)
 	printf("%s (%p): %f, %f, %f | ", figure->type, figure,
 		figure->position.x, figure->position.y, figure->position.z);
 	figure->print_attrs(figure->attrs);
-	printf(" | %i, %i, %i\n",
+	printf(" | %f, %f, %f\n",
 		figure->color.red, figure->color.green, figure->color.blue);
 }

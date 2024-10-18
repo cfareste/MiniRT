@@ -13,6 +13,8 @@ int	set_ambient_light(char **parts, t_light **light)
 	(*light)->type = AMBIENT_LIGHT_ID;
 	(*light)->brightness = ft_atod(parts[1], throw_sys_error, "ft_atod");
 	set_color(parts[2], &(*light)->color);
+	if ((*light)->brightness > 1.0 || (*light)->brightness < 0.0)
+		throw_error("Invalid brightness param for ambient light");
 	return (1);
 }
 
@@ -66,7 +68,7 @@ void	free_lights(t_light *lights)
 
 void	print_light(t_light *light)
 {
-	printf("Light (%p): %f, %f, %f | %f | %i, %i, %i\n",
+	printf("Light (%p): %f, %f, %f | %f | %f, %f, %f\n",
 		light,
 		light->position.x, light->position.y, light->position.z,
 		light->brightness,

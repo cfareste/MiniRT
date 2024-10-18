@@ -12,7 +12,7 @@ void	config_viewport(t_camera *camera, t_viewport *vp, int width, int height)
 	vp->width = (width * vp->height) / height;
 	vp->x_unit = vp->width / width;
 	vp->y_unit = vp->height / height;
-	focal_distance = 1.0 / tan((camera->fov * 0.5) * M_PI / 180);
+	focal_distance = tan((camera->fov * 0.5) * M_PI / 180);
 	vp->center.x = camera->position.x + focal_distance * camera->front.x;
 	vp->center.y = camera->position.y + focal_distance * camera->front.y;
 	vp->center.z = camera->position.z + focal_distance * camera->front.z;
@@ -64,10 +64,101 @@ void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
 	}
 }
 
+void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record, \
+							t_light *light, t_color *color)
+{
+	float	strength;
+
+	strength = dot(&shadow_ray->direction, &hit_record->normal);
+	if (strength < 0.0)
+		strength = 0.0;
+	color->red += strength * light->brightness * light->color.red;
+	color->green += strength * light->brightness * light->color.green;
+	color->blue += strength * light->brightness * light->color.blue;
+}
+
+void	compute_specular(t_scene *scene, t_ray *shadow_ray, \
+							t_hit_record *hit_record, t_light *light, \
+							t_color *color)
+{
+	float			strength;
+	t_coordinates	reverse_light;
+	t_coordinates	reflected;
+
+	reverse_light.x = shadow_ray->direction.x;
+	reverse_light.y = shadow_ray->direction.y;
+	reverse_light.z = shadow_ray->direction.z;
+	reflect(&reverse_light, &hit_record->normal, &reflected);
+	strength = dot(&scene->camera->front, &reflected);
+	if (strength < 0.0)
+		strength = 0.0;
+	strength = pow(strength, 200.0);
+	color->red += strength * light->brightness * light->color.red;
+	color->green += strength * light->brightness * light->color.green;
+	color->blue += strength * light->brightness * light->color.blue;
+}
+
+void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
+{
+	t_ray		shadow_ray;
+	t_light		*light;
+	t_figure	*figure;
+	float		distance;
+
+	light = scene->lights;
+	while (light)
+	{
+		set_shadow_ray(hit_record, &shadow_ray, light);
+		figure = scene->figures;
+		while (figure)
+		{
+			if (figure->hit(figure, &shadow_ray, &distance))
+				break ;
+			figure = figure->next;
+		}
+		if (!figure)
+		{
+			compute_diffuse(&shadow_ray, hit_record, light, color);
+			compute_specular(scene, &shadow_ray, hit_record, light, color);
+		}
+		light = light->next;
+	}
+}
+
+int	process_lighting(t_scene *scene, t_hit_record *hit_record)
+{
+	t_color	light_color;
+	t_color	final_color;
+	float	intensity;
+
+	light_color.red = 0.0;
+	light_color.green = 0.0;
+	light_color.blue = 0.0;
+	if (!hit_record->figure)
+		return (get_sky_color(scene));
+	check_lights(hit_record, scene, &light_color);
+	final_color.red = light_color.red * hit_record->figure->color.red;
+	final_color.green = light_color.green * hit_record->figure->color.green;
+	final_color.blue = light_color.blue * hit_record->figure->color.blue;
+	intensity = sqrt(final_color.red * final_color.red + final_color.green * \
+		final_color.green + final_color.blue * final_color.blue);
+	if (intensity <= 1.0)
+	{
+		apply_ambient_lighting(scene->ambient_light, &light_color);
+		return (get_color_value(&final_color));
+	}
+	final_color.red /= intensity;
+	final_color.green /= intensity;
+	final_color.blue /= intensity;
+	apply_ambient_lighting(scene->ambient_light, &light_color);
+	return (get_color_value(&final_color));
+}
+
 void	render_scene(t_window *window)
 {
 	uint32_t		i;
 	uint32_t		j;
+	int				color;
 	t_hit_record	hit_record;
 
 	if (is_render_finished(&window->renderer))
@@ -83,7 +174,8 @@ void	render_scene(t_window *window)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&window->scene, &hit_record, i, j);
-			mlx_put_pixel(window->image, i, j, get_color(hit_record.figure));
+			color = process_lighting(&window->scene, &hit_record);
+			mlx_put_pixel(window->image, i, j, color);
 			j++;
 		}
 		i++;

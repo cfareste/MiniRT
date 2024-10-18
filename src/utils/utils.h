@@ -33,4 +33,6 @@ void	normalize(t_coordinates *vec);
 
 void	throw_mlx_error(char *msg, const char *mlx_msg);
 
+void	reflect(t_coordinates *vec, t_coordinates *normal, t_coordinates *res);
+
 #endif
