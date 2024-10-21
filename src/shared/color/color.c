@@ -21,6 +21,12 @@ void	set_color(char *params, t_color *color)
 
 int	get_color_value(t_color *color)
 {
+	if (color->red > 1.0)
+		color->red = 1.0;
+	if (color->green > 1.0)
+		color->green = 1.0;
+	if (color->blue > 1.0)
+		color->blue = 1.0;
 	return ((int)(color->red * 255) << 24 | (int)(color->green * 255) << 16
 		| (int)(color->blue * 255) << 8 | 0xFF);
 }

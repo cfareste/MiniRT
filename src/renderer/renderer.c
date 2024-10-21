@@ -136,12 +136,6 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 	final_color.red = light_color.red * hit_record->figure->color.red;
 	final_color.green = light_color.green * hit_record->figure->color.green;
 	final_color.blue = light_color.blue * hit_record->figure->color.blue;
-	if (final_color.red > 1.0)
-		final_color.red = 1.0;
-	if (final_color.green > 1.0)
-		final_color.green = 1.0;
-	if (final_color.blue > 1.0)
-		final_color.blue = 1.0;
 	return (get_color_value(&final_color));
 }
 
