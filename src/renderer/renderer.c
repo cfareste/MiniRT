@@ -72,9 +72,9 @@ void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record, \
 	strength = dot(&shadow_ray->direction, &hit_record->normal);
 	if (strength < 0.0)
 		strength = 0.0;
-	color->red += strength * light->brightness * light->color.red;
-	color->green += strength * light->brightness * light->color.green;
-	color->blue += strength * light->brightness * light->color.blue;
+	color->red += strength * light->brightness * light->color.red * 0.5;
+	color->green += strength * light->brightness * light->color.green * 0.5;
+	color->blue += strength * light->brightness * light->color.blue * 0.5;
 }
 
 void	compute_specular(t_scene *scene, t_ray *shadow_ray, \
@@ -82,20 +82,16 @@ void	compute_specular(t_scene *scene, t_ray *shadow_ray, \
 							t_color *color)
 {
 	float			strength;
-	t_coordinates	reverse_light;
 	t_coordinates	reflected;
 
-	reverse_light.x = shadow_ray->direction.x;
-	reverse_light.y = shadow_ray->direction.y;
-	reverse_light.z = shadow_ray->direction.z;
-	reflect(&reverse_light, &hit_record->normal, &reflected);
+	reflect(&shadow_ray->direction, &hit_record->normal, &reflected);
 	strength = dot(&scene->camera->front, &reflected);
 	if (strength < 0.0)
 		strength = 0.0;
-	strength = pow(strength, 200.0);
-	color->red += strength * light->brightness * light->color.red;
-	color->green += strength * light->brightness * light->color.green;
-	color->blue += strength * light->brightness * light->color.blue;
+	strength = pow(strength, 256);
+	color->red += strength * light->brightness * light->color.red * 0.5;
+	color->green += strength * light->brightness * light->color.green * 0.5;
+	color->blue += strength * light->brightness * light->color.blue * 0.5;
 }
 
 void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
@@ -129,28 +125,23 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 {
 	t_color	light_color;
 	t_color	final_color;
-	float	intensity;
 
 	light_color.red = 0.0;
 	light_color.green = 0.0;
 	light_color.blue = 0.0;
 	if (!hit_record->figure)
 		return (get_sky_color(scene));
+	apply_ambient_lighting(scene->ambient_light, &light_color);
 	check_lights(hit_record, scene, &light_color);
 	final_color.red = light_color.red * hit_record->figure->color.red;
 	final_color.green = light_color.green * hit_record->figure->color.green;
 	final_color.blue = light_color.blue * hit_record->figure->color.blue;
-	intensity = sqrt(final_color.red * final_color.red + final_color.green * \
-		final_color.green + final_color.blue * final_color.blue);
-	if (intensity <= 1.0)
-	{
-		apply_ambient_lighting(scene->ambient_light, &light_color);
-		return (get_color_value(&final_color));
-	}
-	final_color.red /= intensity;
-	final_color.green /= intensity;
-	final_color.blue /= intensity;
-	apply_ambient_lighting(scene->ambient_light, &light_color);
+	if (final_color.red > 1.0)
+		final_color.red = 1.0;
+	if (final_color.green > 1.0)
+		final_color.green = 1.0;
+	if (final_color.blue > 1.0)
+		final_color.blue = 1.0;
 	return (get_color_value(&final_color));
 }
 

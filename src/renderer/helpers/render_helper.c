@@ -14,9 +14,9 @@ int	get_sky_color(t_scene *scene)
 
 void	apply_ambient_lighting(t_light *ambient, t_color *res)
 {
-	res->red = ambient->brightness * ambient->color.red;
-	res->green = ambient->brightness * ambient->color.green;
-	res->blue = ambient->brightness * ambient->color.blue;
+	res->red += ambient->brightness * ambient->color.red;
+	res->green += ambient->brightness * ambient->color.green;
+	res->blue += ambient->brightness * ambient->color.blue;
 }
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
