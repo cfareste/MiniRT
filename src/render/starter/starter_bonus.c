@@ -8,8 +8,8 @@ void	stop_render(t_render *render)
 {
 	if (!render || !render->render)
 		return ;
-	pthread_cancel(render->render);
 	set_render_finish(render, 1);
+	pthread_cancel(render->render);
 }
 
 void	*start_routine(t_window *window)
