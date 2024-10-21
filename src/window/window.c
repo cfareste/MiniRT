@@ -1,7 +1,7 @@
 #include "libft.h"
 #include "window.h"
 #include "helpers/window_helper.h"
-#include "renderer/renderer.h"
+#include "render/render.h"
 #include "miniRT.h"
 
 static void	global_hook(t_window *window)
@@ -11,13 +11,13 @@ static void	global_hook(t_window *window)
 	{
 		window->resize.last_resize = 0;
 		window->size = window->resize.size;
-		start_renderer(window);
+		start_render(window);
 	}
 }
 
 static void	close_window(t_window *window)
 {
-	stop_renderer(&window->renderer);
+	stop_render(&window->render);
 	mlx_close_window(window->mlx);
 }
 
@@ -27,12 +27,12 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		close_window(window);
 	else if (keydata.action == MLX_PRESS
 		&& (keydata.key == MLX_KEY_R || keydata.key == MLX_KEY_F5))
-		start_renderer(window);
+		start_render(window);
 }
 
 void	start_window(t_window *window)
 {
-	pthread_mutex_init(&window->renderer.render_mutex, NULL);
+	pthread_mutex_init(&window->render.render_mutex, NULL);
 	pthread_mutex_init(&window->image_mutex, NULL);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;

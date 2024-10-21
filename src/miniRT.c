@@ -1,7 +1,7 @@
 #include "libft.h"
 #include "MLX42.h"
 #include "scene.h"
-#include "renderer/starter/starter_bonus.h"
+#include "render/starter/starter_bonus.h"
 #include "window/window.h"
 
 void	destroy(t_window *window)
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&window, sizeof(t_window));
 	create_scene(&window.scene, argv[1]);
 	start_window(&window);
-	start_renderer(&window);
+	start_render(&window);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }

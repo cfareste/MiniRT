@@ -1,4 +1,4 @@
-#include "renderer.h"
+#include "render.h"
 #include "libft.h"
 #include "math.h"
 #include "shared/color/color.h"
@@ -77,9 +77,8 @@ void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record, \
 	color->blue += strength * light->brightness * light->color.blue;
 }
 
-void	compute_specular(t_scene *scene, t_ray *shadow_ray, \
-							t_hit_record *hit_record, t_light *light, \
-							t_color *color)
+void	compute_specular(t_scene *scene, t_ray *shadow_ray,
+			t_hit_record *hit_record, t_light *light, t_color *color)
 {
 	float			strength;
 	t_coordinates	reverse_light;
@@ -156,27 +155,25 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 
 void	render_scene(t_window *window)
 {
-	uint32_t		i;
-	uint32_t		j;
+	unsigned int	i;
+	unsigned int	j;
 	int				color;
 	t_hit_record	hit_record;
 
-	if (is_render_finished(&window->renderer))
-		return ;
-	i = 0;
 	config_viewport(window->scene.camera, &window->scene.camera->viewport,
 		window->size.width, window->size.height);
-	while (!is_render_finished(&window->renderer) && i < window->image->width)
+	i = 0;
+	while (!is_render_finished(&window->render) && i < window->size.width)
 	{
 		j = 0;
-		while (!is_render_finished(&window->renderer)
-			&& j < window->image->height)
+		while (!is_render_finished(&window->render) && j < window->size.height)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&window->scene, &hit_record, i, j);
 			color = process_lighting(&window->scene, &hit_record);
 			pthread_mutex_lock(&window->image_mutex);
-			if (!is_render_finished(&window->renderer) && window->image && i < window->image->width && j < window->image->height)
+			if (!is_render_finished(&window->render) && window->image
+				&& i < window->image->width && j < window->image->height)
 				mlx_put_pixel(window->image, i, j, color);
 			pthread_mutex_unlock(&window->image_mutex);
 			j++;

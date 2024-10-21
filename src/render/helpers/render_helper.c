@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "math.h"
 #include "render_helper.h"
 
@@ -34,21 +35,22 @@ void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 	figure->normal(figure, &hit_record->point, &hit_record->normal);
 }
 
-int	is_render_finished(t_renderer *renderer)
+int	is_render_finished(t_render *render)
 {
 	int	finished;
 
-	pthread_mutex_lock(&renderer->render_mutex);
-	finished = renderer->finished;
-	pthread_mutex_unlock(&renderer->render_mutex);
+	pthread_mutex_lock(&render->render_mutex);
+	finished = render->finished;
+	pthread_mutex_unlock(&render->render_mutex);
 	return (finished);
+	return (0);
 }
 
-void	set_render_finish(t_renderer *renderer, int value)
+void	set_render_finish(t_render *render, int value)
 {
-	pthread_mutex_lock(&renderer->render_mutex);
-	renderer->finished = value;
-	pthread_mutex_unlock(&renderer->render_mutex);
+	pthread_mutex_lock(&render->render_mutex);
+	render->finished = value;
+	pthread_mutex_unlock(&render->render_mutex);
 }
 
 void
