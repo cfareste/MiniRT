@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address #-O3
+CCFLAGS += -Wall -Werror -Wextra  -g -fsanitize=address #-O3
 
 
 #----DIRS----#
@@ -114,7 +114,9 @@ SRCS = miniRT.c \
 	starter_bonus.c \
 	vector.c \
 	render_helper.c \
-	window_helper.c
+	window_helper.c \
+	loader.c \
+	render_loader_helper.c
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -134,7 +136,24 @@ endif
 
 
 #----VPATH----#
-vpath %.c $(SRC):$(SRC)scene:$(SRC)scene/camera:$(SRC)utils:$(SRC)light:$(SRC)figure:$(SRC)shared/color:$(SRC)shared/coordinates:$(SRC)figure/types/cylinder:$(SRC)figure/types/plane:$(SRC)figure/types/sphere:$(SRC)render:$(SRC)window:$(SRC)render/starter:$(SRC)render/helpers:$(SRC)window/helpers
+vpath %.c	$(SRC):\
+			$(SRC)scene:\
+			$(SRC)scene/camera:\
+			$(SRC)utils:\
+			$(SRC)light:\
+			$(SRC)figure:\
+			$(SRC)shared/color:\
+			$(SRC)shared/coordinates:\
+			$(SRC)figure/types/cylinder:\
+			$(SRC)figure/types/plane:\
+			$(SRC)figure/types/sphere:\
+			$(SRC)render:\
+			$(SRC)window:\
+			$(SRC)render/starter:\
+			$(SRC)render/helpers:\
+			$(SRC)window/helpers:\
+			$(SRC)render/loader:\
+			$(SRC)render/loader/helpers
 
 
 #----- R U L E S -----#

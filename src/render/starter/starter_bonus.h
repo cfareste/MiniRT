@@ -2,11 +2,12 @@
 # define STARTER_BONUS_H
 
 # include <pthread.h>
+# include "render/loader/loader.h"
 
 typedef struct s_render
 {
 	pthread_t		render;
-	pthread_t		loader;
+	t_loader		loader;
 	int				finished;
 	pthread_mutex_t	render_mutex;
 }	t_render;

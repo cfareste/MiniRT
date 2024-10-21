@@ -8,4 +8,6 @@ void	window_resized(int32_t width, int32_t height, t_window *window);
 
 int		diff_sizes(t_window_size *a, t_window_size *b);
 
+void	put_image(mlx_image_t *image, mlx_t *mlx);
+
 #endif

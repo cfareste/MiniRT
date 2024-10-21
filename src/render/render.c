@@ -3,6 +3,7 @@
 #include "math.h"
 #include "shared/color/color.h"
 #include "helpers/render_helper.h"
+#include "loader/helpers/render_loader_helper.h"
 
 void	config_viewport(t_camera *camera, t_viewport *vp, int width, int height)
 {
@@ -180,4 +181,6 @@ void	render_scene(t_window *window)
 		}
 		i++;
 	}
+	ft_printf("Render finished\n");
+	update_rend_loader(&window->render.loader, 100);
 }
