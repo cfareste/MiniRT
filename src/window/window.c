@@ -9,6 +9,7 @@ static void	global_hook(t_window *window)
 	if (window->resize.last_resize
 		&& diff_sizes(&window->size, &window->resize.size))
 	{
+		stop_render(&window->render);
 		window->resize.last_resize = 0;
 		window->size = window->resize.size;
 		start_render(window);
