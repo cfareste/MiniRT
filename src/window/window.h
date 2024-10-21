@@ -17,7 +17,7 @@ typedef struct s_window_size
 	unsigned int	width;
 	unsigned int	height;
 }	t_window_size;
-asd
+
 typedef struct s_resize
 {
 	t_window_size	size;
