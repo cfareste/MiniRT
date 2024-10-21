@@ -72,8 +72,6 @@ void	check_scene(t_scene *scene)
 
 	if (!scene->camera)
 		throw_error("A camera is needed to start rendering!");
-	else if (!scene->ambient_light && !scene->lights)
-		throw_error("Some light is missing!");
 	lights = scene->lights;
 	mandatory_lights = 0;
 	while (lights && mandatory_lights < 2)
@@ -82,7 +80,9 @@ void	check_scene(t_scene *scene)
 			mandatory_lights++;
 		lights = lights->next;
 	}
-	if (mandatory_lights > 1)
+	if (!scene->ambient_light || !mandatory_lights)
+		throw_error("Some mandatory light is missing!");
+	else if (mandatory_lights > 1)
 		throw_error("Multiple lights for mandatory are not allowed");
 }
 
