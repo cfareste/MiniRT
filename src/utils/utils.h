@@ -1,7 +1,10 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+# include "MLX42.h"
 # include "coordinates.h"
+# include "shared/size/size.h"
+# include <pthread.h>
 
 typedef enum e_pointing
 {
@@ -34,5 +37,11 @@ void	normalize(t_coordinates *vec);
 void	throw_mlx_error(char *msg, const char *mlx_msg);
 
 void	reflect(t_coordinates *vec, t_coordinates *normal, t_coordinates *res);
+
+t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex);
+
+int		is_image_enabled(mlx_image_t *image, pthread_mutex_t *mutex);
+
+void	paint_black_image(mlx_image_t *image, int width, int height);
 
 #endif

@@ -177,10 +177,9 @@ void	render_scene(t_window *window)
 				&& i < window->image->width && j < window->image->height)
 				mlx_put_pixel(window->image, i, j, color);
 			pthread_mutex_unlock(&window->image_mutex);
+			rend_loader_tick(&window->render.loader);
 			j++;
 		}
 		i++;
 	}
-	ft_printf("Render finished\n");
-	update_rend_loader(&window->render.loader, 100);
 }

@@ -11,22 +11,17 @@
 # include "MLX42.h"
 # include "scene/scene.h"
 # include "render/starter/starter_bonus.h"
-
-typedef struct s_window_size
-{
-	unsigned int	width;
-	unsigned int	height;
-}	t_window_size;
+# include "shared/size/size.h"
 
 typedef struct s_resize
 {
-	t_window_size	size;
+	t_size	size;
 	double			last_resize;
 }	t_resize;
 
 typedef struct s_window
 {
-	t_window_size	size;
+	t_size	size;
 	mlx_image_t		*image;
 	pthread_mutex_t	image_mutex;
 	mlx_texture_t	*icon;

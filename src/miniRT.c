@@ -3,10 +3,12 @@
 #include "scene.h"
 #include "render/starter/starter_bonus.h"
 #include "window/window.h"
+#include "render/loader/loader.h"
 
 void	destroy(t_window *window)
 {
 	mlx_close_window(window->mlx);
+	destroy_rend_loader(&window->render.loader);
 	mlx_terminate(window->mlx);
 	mlx_delete_texture(window->icon);
 	free(window->scene.name);
@@ -25,6 +27,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&window, sizeof(t_window));
 	create_scene(&window.scene, argv[1]);
 	start_window(&window);
+	init_render_loader(&window.render.loader, window.mlx);
 	start_render(&window);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);

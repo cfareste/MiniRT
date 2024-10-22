@@ -11,11 +11,10 @@ static void	global_hook(t_window *window)
 	{
 		stop_render(&window->render);
 		window->resize.last_resize = 0;
-		ft_printf("RENDERING!!!! window: %ix%i; resize: %ix%i\n",
-			window->size.width, window->size.height,
-			window->resize.size.width, window->resize.size.height);
 		window->size = window->resize.size;
 		start_render(window);
+		put_image(window->render.loader.image, window->mlx,
+			&window->render.loader.image_mutex);
 	}
 }
 
@@ -37,8 +36,6 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 void	start_window(t_window *window)
 {
 	pthread_mutex_init(&window->render.render_mutex, NULL);
-	pthread_mutex_init(&window->render.loader.current_mutex, NULL);
-	pthread_mutex_init(&window->render.loader.total_mutex, NULL);
 	pthread_mutex_init(&window->image_mutex, NULL);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
@@ -48,7 +45,6 @@ void	start_window(t_window *window)
 			window->scene.name, true);
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
-	start_render_loader(&window->render.loader, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
 	mlx_resize_hook(window->mlx,

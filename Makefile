@@ -116,7 +116,11 @@ SRCS = miniRT.c \
 	render_helper.c \
 	window_helper.c \
 	loader.c \
-	render_loader_helper.c
+	render_loader_helper.c \
+	size.c \
+	images.c \
+	loader_thread_helper.c
+
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
 
@@ -153,7 +157,8 @@ vpath %.c	$(SRC):\
 			$(SRC)render/helpers:\
 			$(SRC)window/helpers:\
 			$(SRC)render/loader:\
-			$(SRC)render/loader/helpers
+			$(SRC)render/loader/helpers:\
+			$(SRC)shared/size/
 
 
 #----- R U L E S -----#
