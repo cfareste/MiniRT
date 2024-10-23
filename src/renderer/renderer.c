@@ -108,7 +108,8 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 		figure = scene->figures;
 		while (figure)
 		{
-			if (figure->hit(figure, &shadow_ray, &distance))
+			if (figure != hit_record->figure
+				&& figure->hit(figure, &shadow_ray, &distance))
 				break ;
 			figure = figure->next;
 		}
@@ -136,6 +137,9 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 	final_color.red = light_color.red * hit_record->figure->color.red;
 	final_color.green = light_color.green * hit_record->figure->color.green;
 	final_color.blue = light_color.blue * hit_record->figure->color.blue;
+	// final_color.red = 0.5 * (hit_record->normal.x + 1);
+	// final_color.green = 0.5 * (hit_record->normal.y + 1);
+	// final_color.blue = 0.5 * (hit_record->normal.z + 1);
 	return (get_color_value(&final_color));
 }
 
