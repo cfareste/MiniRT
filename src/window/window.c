@@ -35,10 +35,18 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 
 void	start_window(t_window *window)
 {
+	int	width;
+	int	height;
+
 	pthread_mutex_init(&window->render.render_mutex, NULL);
 	pthread_mutex_init(&window->image_mutex, NULL);
+	mlx_get_monitor_size(0, &width, &height);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
+	if (width > 0)
+		window->size.width = width;
+	if (height > 0)
+		window->size.height = height;
 	window->icon = mlx_load_png(ICON_PATH);
 	// mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	window->mlx = mlx_init(window->size.width, window->size.height,
