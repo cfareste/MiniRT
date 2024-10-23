@@ -182,4 +182,5 @@ void	render_scene(t_window *window)
 		}
 		i++;
 	}
+	// set_loader_visibility(&window->render.loader, false);
 }

@@ -42,6 +42,6 @@ t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex);
 
 int		is_image_enabled(mlx_image_t *image, pthread_mutex_t *mutex);
 
-void	paint_black_image(mlx_image_t *image, int width, int height);
+void	paint_black_image(mlx_image_t *image, pthread_mutex_t *mutex);
 
 #endif

@@ -22,6 +22,7 @@ void	*start_routine(t_window *window)
 		return (NULL);
 	set_rend_loader_total(&window->render.loader,
 		window->size.width * window->size.height);
+	set_loader_visibility(&window->render.loader, true);
 	render_scene(window);
 	pthread_mutex_lock(&window->image_mutex);
 	window->image->instances[0].enabled = true;

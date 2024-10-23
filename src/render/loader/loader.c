@@ -32,7 +32,7 @@ void	paint_progress(t_loader *loader, unsigned int current, unsigned int total)
 		j = 0;
 		while (loading && j < size.height)
 		{
-			if (i >= (size.width / 2 -  loader_width / 2) && i < (size.width / 2 - bar_width / 2) +  bar_width
+			if (i >= (size.width / 2 - loader_width / 2) && i < (size.width / 2 - bar_width / 2) + bar_width
 				&& j >= (size.height / 2 - LOADER_HEIGHT / 2) && j < (size.height / 2 - LOADER_HEIGHT / 2) + LOADER_HEIGHT)
 			{
 				pthread_mutex_lock(&loader->image_mutex);
@@ -59,16 +59,25 @@ void	*render_loader_routine(t_loader *loader)
 {
 	unsigned int	current;
 	unsigned int	current_prev;
+	int				enabled;
+	int				enabled_prev;
 
 	current_prev = 101;
 	current = get_current(loader);
 	while (loader_thread_alive(loader))
 	{
-		if (current_prev != current && is_image_enabled(loader->image, &loader->image_mutex))
+		enabled_prev = enabled;
+		enabled = is_image_enabled(loader->image, &loader->image_mutex);
+		if (enabled && current_prev != current)
 		{
 			paint_progress(loader, get_current(loader), get_total(loader));
-			current_prev = current;
 		}
+		if ((!enabled && enabled_prev) || (enabled && current == get_total(loader) && current_prev != current))
+		{
+			ft_printf("Painting in black\n\n");
+			paint_black_image(loader->image, &loader->image_mutex);
+		}
+		current_prev = current;
 		current = get_current(loader);
 	}
 	set_loader_visibility(loader, false);
@@ -87,7 +96,7 @@ void	init_render_loader(t_loader *loader, mlx_t *mlx)
 	if (!loader->image)
 		loader->image = mlx_new_image(mlx, mlx->width,
 				mlx->height);
-	paint_black_image(loader->image, mlx->width, mlx->height);
+	paint_black_image(loader->image, NULL);
 	pthread_mutex_init(&loader->current_mutex, NULL);
 	pthread_mutex_init(&loader->total_mutex, NULL);
 	pthread_mutex_init(&loader->image_mutex, NULL);

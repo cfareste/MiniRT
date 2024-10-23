@@ -1,5 +1,6 @@
 #include "libft.h"
 #include "render/loader/loader.h"
+#include "utils/utils.h"
 #include <pthread.h>
 
 unsigned int	get_current(t_loader *loader)

@@ -1,3 +1,4 @@
+#include "libft.h"
 #include "MLX42.h"
 #include "shared/size/size.h"
 #include <pthread.h>
@@ -34,18 +35,26 @@ int	is_image_enabled(mlx_image_t *image, pthread_mutex_t *mutex)
 	return (enabled);
 }
 
-void	paint_black_image(mlx_image_t *image, int width, int height)
+void	paint_black_image(mlx_image_t *image, pthread_mutex_t *mutex)
 {
-	int	i;
-	int	j;
+	unsigned int	i;
+	unsigned int	j;
+	t_size			size;
 
+	
+	size = get_image_size(image, mutex);
 	i = 0;
-	while (i < width)
+	while (i < size.width)
 	{
 		j = 0;
-		while (j < height)
+		while (j < size.height)
 		{
-			mlx_put_pixel(image, i, j, 255);
+			if (mutex)
+				pthread_mutex_lock(mutex);
+			if (!mutex || (is_image_enabled(image, NULL) && i < image->width && j < image->height))
+				mlx_put_pixel(image, i, j, 255);
+			if (mutex)
+				pthread_mutex_unlock(mutex);
 			j++;
 		}
 		i++;
