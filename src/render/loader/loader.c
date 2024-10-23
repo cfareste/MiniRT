@@ -20,9 +20,11 @@ void	paint_progress(t_loader *loader, unsigned int current, unsigned int total)
 	int				loading;
 	int				bar_width;
 	int				loader_width;
+	int				loader_height;
 
 	size = get_image_size(loader->image, &loader->image_mutex);
 	loader_width = size.width / 2;
+	loader_height = ft_normalize(size.height / 10, 2, LOADER_HEIGHT);
 	bar_width = (loader_width * (current * 100 / total)) / 100;
 	loading = is_image_enabled(loader->image, &loader->image_mutex);
 	ft_printf("bar width: %d {current: %d, total: %d, %%: %d}\n\n", bar_width, current, total, current * 100 / total);
@@ -32,8 +34,8 @@ void	paint_progress(t_loader *loader, unsigned int current, unsigned int total)
 		j = 0;
 		while (loading && j < size.height)
 		{
-			if (i >= (size.width / 2 - loader_width / 2) && i < (size.width / 2 - bar_width / 2) + bar_width
-				&& j >= (size.height / 2 - LOADER_HEIGHT / 2) && j < (size.height / 2 - LOADER_HEIGHT / 2) + LOADER_HEIGHT)
+			if (i >= (size.width / 2 - loader_width / 2) && i < (size.width / 2 - loader_width / 2) + bar_width
+				&& j >= (size.height / 2 - loader_height / 2) && j < (size.height / 2 - loader_height / 2) + loader_height)
 			{
 				pthread_mutex_lock(&loader->image_mutex);
 				loading = is_image_enabled(loader->image, NULL);
