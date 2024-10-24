@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=thread
 
 
 #----DIRS----#
@@ -70,6 +70,8 @@ INCLUDES += -I$(LIBFT_DIR)
 
 
 #----MLX----#
+MLX_VERSION = 2.4.1
+MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
@@ -209,10 +211,10 @@ ifeq ($(UNAME_S), Darwin)
 	brew install --formula cmake &>/dev/null
 endif
 	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
-	curl -sOL https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.3.4.tar.gz
-	tar -xpf v2.3.4.tar.gz
-	rm -rf v2.3.4.tar.gz
-	mv -f MLX42-2.3.4 lib/mlx
+	curl -sOL $(MLX_URL)
+	tar -xpf v$(MLX_VERSION).tar.gz
+	rm -rf v$(MLX_VERSION).tar.gz
+	mv -f MLX42-$(MLX_VERSION) lib/mlx
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
 # TODO: Quit debug!!!!
