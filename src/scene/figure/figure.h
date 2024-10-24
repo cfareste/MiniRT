@@ -1,9 +1,9 @@
 #ifndef FIGURE_H
 # define FIGURE_H
 
-# include "sphere/sphere.h"
-# include "plane/plane.h"
-# include "cylinder/cylinder.h"
+# include "types/sphere/sphere.h"
+# include "types/plane/plane.h"
+# include "types/cylinder/cylinder.h"
 # include "shared/coordinates/coordinates.h"
 # include "shared/color/color.h"
 # include "render/ray/ray.h"

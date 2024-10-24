@@ -2,8 +2,8 @@
 # define LIGHT_H
 
 # include "float.h"
-# include "color/color.h"
-# include "coordinates.h"
+# include "shared/color/color.h"
+# include "shared/coordinates/coordinates.h"
 
 typedef enum e_light_types
 {

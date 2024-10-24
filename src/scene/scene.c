@@ -1,8 +1,8 @@
 #include "libft.h"
 #include "scene.h"
-#include "utils.h"
+#include "utils/utils.h"
 #include "scene/camera/camera.h"
-#include "light.h"
+#include "light/light.h"
 #include <fcntl.h>
 
 void	set_scene_attr(char *line, t_scene *scene)

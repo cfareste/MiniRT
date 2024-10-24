@@ -1,6 +1,6 @@
 #include "libft.h"
 #include "figure.h"
-#include "utils.h"
+#include "utils/utils.h"
 #include "types/cylinder/cylinder.h"
 
 t_figure	*new_figure(char *type, char *coord_str, char *color_str)

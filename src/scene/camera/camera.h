@@ -2,7 +2,7 @@
 # define CAMERA_H
 # define CAMERA_ID 'C'
 
-# include "coordinates.h"
+# include "shared/coordinates/coordinates.h"
 
 typedef struct s_viewport
 {

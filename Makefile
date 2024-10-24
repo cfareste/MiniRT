@@ -51,24 +51,13 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra  -g -fsanitize=address #-O3
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
 BIN_DIR = bin/
 SRC = src/
 INCLUDES = -I$(SRC)
-INCLUDES += -I$(SRC)figure
-INCLUDES += -I$(SRC)figure/types
-INCLUDES += -I$(SRC)light
-INCLUDES += -I$(SRC)scene
-INCLUDES += -I$(SRC)scene/camera
-INCLUDES += -I$(SRC)utils
-INCLUDES += -I$(SRC)shared
-INCLUDES += -I$(SRC)shared/coordinates
-INCLUDES += -I$(SRC)shared/quadratic
-INCLUDES += -I$(SRC)render
-INCLUDES += -I$(SRC)render/ray
 
 
 #----LIBS----#
@@ -119,7 +108,8 @@ SRCS = miniRT.c \
 	render_loader_helper.c \
 	size.c \
 	images.c \
-	loader_thread_helper.c
+	loader_thread_helper.c \
+	loader_thread.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -143,22 +133,24 @@ endif
 vpath %.c	$(SRC):\
 			$(SRC)scene:\
 			$(SRC)scene/camera:\
-			$(SRC)utils:\
-			$(SRC)light:\
-			$(SRC)figure:\
-			$(SRC)shared/color:\
-			$(SRC)shared/coordinates:\
-			$(SRC)figure/types/cylinder:\
-			$(SRC)figure/types/plane:\
-			$(SRC)figure/types/sphere:\
+			$(SRC)scene/light:\
+			$(SRC)scene/figure:\
+			$(SRC)scene/figure/types/cylinder:\
+			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/sphere:\
 			$(SRC)render:\
-			$(SRC)window:\
 			$(SRC)render/starter:\
 			$(SRC)render/helpers:\
-			$(SRC)window/helpers:\
 			$(SRC)render/loader:\
 			$(SRC)render/loader/helpers:\
-			$(SRC)shared/size/
+			$(SRC)render/loader/thread:\
+			$(SRC)render/loader/thread/helpers:\
+			$(SRC)window:\
+			$(SRC)window/helpers:\
+			$(SRC)shared/color:\
+			$(SRC)shared/coordinates:\
+			$(SRC)shared/size/:\
+			$(SRC)utils:\
 
 
 #----- R U L E S -----#

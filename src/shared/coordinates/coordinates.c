@@ -1,5 +1,5 @@
 #include "libft.h"
-#include "utils.h"
+#include "utils/utils.h"
 #include "coordinates.h"
 
 void	set_coordinates(char *str, t_coordinates *coordinates)

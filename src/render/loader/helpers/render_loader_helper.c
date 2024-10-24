@@ -21,13 +21,6 @@ unsigned int	get_total(t_loader *loader)
 	return (total);
 }
 
-void	set_total(t_loader *loader, unsigned int total)
-{
-	pthread_mutex_lock(&loader->total_mutex);
-		loader->total = total;
-	pthread_mutex_unlock(&loader->total_mutex);
-}
-
 void	set_loader_visibility(t_loader *loader, bool visible)
 {
 	pthread_mutex_lock(&loader->image_mutex);

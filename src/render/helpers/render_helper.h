@@ -1,7 +1,7 @@
 #ifndef RENDER_HELPER_H
 # define RENDER_HELPER_H
 
-# include "figure.h"
+# include "scene/figure/figure.h"
 # include "render/render.h"
 
 int		get_sky_color(t_scene *scene);

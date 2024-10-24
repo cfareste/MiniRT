@@ -1,7 +1,7 @@
 #pragma once
 #include "MLX42.h"
 #include "shared/coordinates/coordinates.h"
-#include "figure/figure.h"
+#include "scene/figure/figure.h"
 #include "scene/scene.h"
 #include "window/window.h"
 

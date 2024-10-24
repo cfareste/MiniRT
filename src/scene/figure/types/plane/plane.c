@@ -1,6 +1,6 @@
 #include "libft.h"
-#include "utils.h"
-#include "figure.h"
+#include "utils/utils.h"
+#include "scene/figure/figure.h"
 
 static void	print_attrs(void *param)
 {

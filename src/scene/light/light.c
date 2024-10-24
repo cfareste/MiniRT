@@ -1,4 +1,4 @@
-#include "scene.h"
+#include "scene/scene.h"
 #include "libft.h"
 
 int	set_ambient_light(char **parts, t_light **light)

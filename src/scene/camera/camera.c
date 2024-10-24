@@ -1,5 +1,5 @@
 #include "libft.h"
-#include "utils.h"
+#include "utils/utils.h"
 #include "camera.h"
 
 void	set_camera(char **parts, t_camera **camera)

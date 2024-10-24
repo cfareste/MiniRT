@@ -1,8 +1,8 @@
-#include "figure.h"
+#include "scene/figure/figure.h"
 #include "libft.h"
-#include "utils.h"
+#include "utils/utils.h"
 #include "math.h"
-#include "quadratic.h"
+#include "shared/quadratic/quadratic.h"
 
 static void	print_attrs(void *param)
 {

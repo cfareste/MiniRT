@@ -2,10 +2,10 @@
 # define SCENE_H
 # define SCENE_FILE_EXTENSION ".rt"
 
-# include "utils.h"
-# include "light.h"
-# include "figure.h"
-# include "scene/camera/camera.h"
+# include "utils/utils.h"
+# include "light/light.h"
+# include "figure/figure.h"
+# include "camera/camera.h"
 
 typedef struct s_scene
 {

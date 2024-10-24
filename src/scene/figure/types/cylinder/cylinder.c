@@ -1,7 +1,7 @@
-#include "figure.h"
+#include "scene/figure/figure.h"
 #include "libft.h"
-#include "utils.h"
-#include "coordinates.h"
+#include "utils/utils.h"
+#include "shared/coordinates/coordinates.h"
 
 static void	print_attrs(void *param)
 {

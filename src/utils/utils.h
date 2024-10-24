@@ -2,7 +2,7 @@
 # define UTILS_H
 
 # include "MLX42.h"
-# include "coordinates.h"
+# include "shared/coordinates/coordinates.h"
 # include "shared/size/size.h"
 # include <pthread.h>
 

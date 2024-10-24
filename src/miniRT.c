@@ -1,6 +1,6 @@
 #include "libft.h"
 #include "MLX42.h"
-#include "scene.h"
+#include "scene/scene.h"
 #include "render/starter/starter_bonus.h"
 #include "window/window.h"
 #include "render/loader/loader.h"

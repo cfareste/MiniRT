@@ -1,6 +1,6 @@
 #include "libft.h"
 #include "color.h"
-#include "utils.h"
+#include "utils/utils.h"
 
 void	set_color(char *params, t_color *color)
 {
