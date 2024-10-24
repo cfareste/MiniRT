@@ -1,8 +1,8 @@
 #pragma once
 #include "MLX42.h"
 #include <pthread.h>
-#define LOADER_HEIGHT 50
-#define LOADER_WIDTH 200
+#define LOADER_HEIGHT_MAX 50
+#define LOADER_WIDTH_MAX 1200
 
 typedef struct s_loader
 {

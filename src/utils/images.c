@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "MLX42.h"
 #include "shared/size/size.h"
+#include "render/loader/loader.h"
 #include <pthread.h>
 
 t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex)
@@ -35,28 +36,48 @@ int	is_image_enabled(mlx_image_t *image, pthread_mutex_t *mutex)
 	return (enabled);
 }
 
+static void	paint_background_pixel(mlx_image_t *image, pthread_mutex_t *mutex,
+	t_size size, t_size curr_size)
+{
+	t_size	loader_size;
+	t_size	min_size;
+	t_size	max_size;
+	int	color;
+
+	loader_size.width = ft_normalize(size.width / 2, 10, LOADER_WIDTH_MAX);
+	loader_size.height = ft_normalize(size.height / 20, 2, LOADER_HEIGHT_MAX);
+	min_size.width = (size.width / 2 - loader_size.width / 2);
+	min_size.height = (size.height / 2 - loader_size.height / 2);
+	max_size.width = (size.width / 2 - loader_size.width / 2) + loader_size.width;
+	max_size.height = (size.height / 2 - loader_size.height / 2) + loader_size.height;
+	color = 255;
+	if (curr_size.width >= min_size.width && curr_size.width < max_size.width
+		&& curr_size.height >= min_size.height && curr_size.height < max_size.height)
+		color = 0;
+	if (mutex)
+		pthread_mutex_lock(mutex);
+	if (!mutex|| (is_image_enabled(image, NULL)
+			&& curr_size.width < image->width && curr_size.height < image->height))
+		mlx_put_pixel(image, curr_size.width, curr_size.height, color);
+	if (mutex)
+		pthread_mutex_unlock(mutex);
+}
 void	paint_black_image(mlx_image_t *image, pthread_mutex_t *mutex)
 {
-	unsigned int	i;
-	unsigned int	j;
 	t_size			size;
+	t_size			curr_size;
 
 	
 	size = get_image_size(image, mutex);
-	i = 0;
-	while (i < size.width)
+	curr_size.width = 0;
+	while (curr_size.width < size.width)
 	{
-		j = 0;
-		while (j < size.height)
+		curr_size.height = 0;
+		while (curr_size.height < size.height)
 		{
-			if (mutex)
-				pthread_mutex_lock(mutex);
-			if (!mutex || (is_image_enabled(image, NULL) && i < image->width && j < image->height))
-				mlx_put_pixel(image, i, j, 255);
-			if (mutex)
-				pthread_mutex_unlock(mutex);
-			j++;
+			paint_background_pixel(image, mutex, size, curr_size);
+			curr_size.height++;
 		}
-		i++;
+		curr_size.width++;
 	}
 }
