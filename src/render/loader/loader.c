@@ -24,7 +24,7 @@ void	paint_progress(t_loader *loader, unsigned int current, unsigned int total)
 
 	size = get_image_size(loader->image, &loader->image_mutex);
 	loader_width = size.width / 2;
-	loader_height = ft_normalize(size.height / 10, 2, LOADER_HEIGHT);
+	loader_height = ft_normalize(size.height / 20, 2, LOADER_HEIGHT);
 	bar_width = (loader_width * (current * 100 / total)) / 100;
 	loading = is_image_enabled(loader->image, &loader->image_mutex);
 	ft_printf("bar width: %d {current: %d, total: %d, %%: %d}\n\n", bar_width, current, total, current * 100 / total);
@@ -91,6 +91,7 @@ void	destroy_rend_loader(t_loader *loader)
 	set_loader_visibility(loader, false);
 	set_loader_finished(loader);
 	pthread_cancel(loader->thread);
+	pthread_join(loader->thread, NULL);
 }
 
 void	init_render_loader(t_loader *loader, mlx_t *mlx)

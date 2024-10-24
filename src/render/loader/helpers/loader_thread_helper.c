@@ -1,4 +1,5 @@
 #include "render/loader/loader.h"
+
 int	loader_thread_alive(t_loader *loader)
 {
 	int	alive;
