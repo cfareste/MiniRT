@@ -1,8 +1,8 @@
-#ifndef CAMERA_H
-# define CAMERA_H
-# define CAMERA_ID 'C'
+#pragma once
 
-# include "shared/coordinates/coordinates.h"
+#define CAMERA_ID 'C'
+
+#include "shared/coordinates/coordinates.h"
 
 typedef struct s_viewport
 {
@@ -27,5 +27,3 @@ typedef struct s_camera
 void	set_camera(char **parts, t_camera **camera);
 
 void	print_camera(t_camera *camera);
-
-#endif

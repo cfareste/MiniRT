@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:58:57 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/18 11:40:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/24 23:27:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,39 @@ static int	is_negative(char *str)
 	return (neg);
 }
 
-double	ft_atod(char *str, void (*crash)(char *), char *param)
+static double	exec_ft_atod(char *str, void (*crash)(char *), char *param)
 {
-	char		**parts;
+	char		**str_parts;
 	double		num;
 	long long	mod;
 	int			i;
 	int			neg;
 
-	parts = ft_split(str, '.');
-	if (!parts)
+	str_parts = ft_split(str, '.');
+	if (!str_parts)
 		return (crash(param), 0);
 	i = -1;
-	neg = is_negative(parts[0]);
-	num = (double) ft_atoll(parts[0]);
-	if (parts[1] && *parts[1])
+	neg = is_negative(str_parts[0]);
+	num = (double) ft_atoll(str_parts[0]);
+	if (str_parts[1] && *str_parts[1])
 	{
 		i = -1;
 		mod = 1;
-		while (parts[1][++i])
+		while (str_parts[1][++i])
 			mod *= 10;
 		if (neg)
-			num -= (double) ft_atoll(parts[1]) / mod;
+			num -= (double) ft_atoll(str_parts[1]) / mod;
 		else
-			num += (double) ft_atoll(parts[1]) / mod;
+			num += (double) ft_atoll(str_parts[1]) / mod;
 	}
-	free_matrix(parts);
+	free_matrix(str_parts);
 	return (num);
+}
+
+double	ft_atod(char *str, void (*crash_fun)(char *), char *param)
+{
+	if (ft_stroccurrences(str, '.'))
+		return (exec_ft_atod(str, crash_fun, param));
+	else
+		return ((double) ft_atol(str));
 }

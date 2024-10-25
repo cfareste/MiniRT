@@ -7,20 +7,23 @@
 
 void	set_scene_attr(char *line, t_scene *scene)
 {
-	char	**parts;
+	char	**scene_args;
 
-	parts = ft_split(line, ' ');
-	if (!parts)
+	scene_args = ft_split(line, ' ');
+	if (!scene_args)
 		throw_sys_error("ft_split");
-	if (*parts[0] == AMBIENT_LIGHT_ID)
-		set_ambient_light(parts, &scene->ambient_light);
-	else if (*parts[0] == CAMERA_ID)
-		set_camera(parts, &scene->camera);
-	else if (*parts[0] == LIGHT_ID_MANDATORY || *parts[0] == LIGHT_ID)
-		push_light(parts, &scene->lights);
-	else if (!push_figure(parts, &scene->figures) && *parts[0] != '#')
-		throw_error("Unknown element identifier");
-	free_matrix(parts);
+	if (*scene_args[0] == AMBIENT_LIGHT_ID)
+		set_ambient_light(scene_args, &scene->ambient_light);
+	else if (*scene_args[0] == CAMERA_ID)
+		set_camera(scene_args, &scene->camera);
+	else if (*scene_args[0] == LIGHT_ID_MANDATORY || *scene_args[0] == LIGHT_ID)
+		push_light(scene_args, &scene->lights);
+	else if (!push_figure(scene_args, &scene->figures) && *scene_args[0] != '#')
+	{
+		ft_printff(STDERR_FILENO, "Error\nUnknown scene parameter: %s\n", *scene_args);
+		exit(EXIT_FAILURE);
+	}
+	free_matrix(scene_args);
 }
 
 void	set_scene(int fd, t_scene *scene)
