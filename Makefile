@@ -74,16 +74,18 @@ MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
+MLX_COMP_FLAGS = -DDEBUG=1 -DGLFW_FETCH=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
-LIBRARIES += -L$(MLX_BUILD_DIR) -lmlx42
 INCLUDES += -I$(MLX_DIR)/include/MLX42
-LIBRARIES_DEPS += -ldl -lglfw -lm -lpthread
+LIBRARIES += -L$(MLX_BUILD_DIR)
+LIBRARIES_DEPS += -ldl -lm -lpthread -lglfw3 -lmlx42
 ifeq ($(UNAME_S), Darwin)
-ifneq ($(filter arm%,$(UNAME_P)),)
-LIBRARIES_DEPS += -L"/opt/homebrew/lib/"
-else
-LIBRARIES_DEPS += -L"/opt/homebrew/Cellar/glfw/$(GLFW_V)/lib/"
-endif
+	ifeq ($(shell test -f $(HOMEBREW_PREFIX)/lib/libglfw3.a || echo "not_installed"), not_installed)
+		LIBRARIES += -L$(MLX_BUILD_DIR)/_deps/glfw-build/src
+	else
+		LIBRARIES += -L$(HOMEBREW_PREFIX)/lib
+	endif
+	LIBRARIES_DEPS += -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
 
@@ -200,16 +202,7 @@ libft_fclean:
 	@echo "$(RED)Cleaning $(PINK)Libft$(RED)...$(DEF_COLOR)"
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 
-$(MLX_DIR):
-ifeq ($(UNAME_S), Linux)
-ifeq (sudo apt update,)
-	sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
-endif
-endif
-ifeq ($(UNAME_S), Darwin)
-	brew install --formula glfw &>/dev/null
-	brew install --formula cmake &>/dev/null
-endif
+$(MLX_DIR): 
 	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
 	curl -sOL $(MLX_URL)
 	tar -xpf v$(MLX_VERSION).tar.gz
@@ -217,14 +210,13 @@ endif
 	mv -f MLX42-$(MLX_VERSION) lib/mlx
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
-# TODO: Quit debug!!!!
 $(MLX_LIB): | $(MLX_DIR)
 	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake -DDEBUG=1 -B build/ > /dev/null && make --no-print-directory -C build > /dev/null
+	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -B build/ &>/dev/null && make --no-print-directory -C build > /dev/null
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:
-	rm -rf lib/mlx
+	rm -rf $(MLX_DIR)
 
 .PHONY: all \
 		clean \
