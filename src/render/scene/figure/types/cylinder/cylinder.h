@@ -4,13 +4,20 @@
 
 #include "render/utils/color/color.h"
 #include "render/scene/figure/figure.h"
+#include "render/ray/ray.h"
 
 typedef struct s_cylinder_attrs
 {
-	double			diameter;
+	double			radius;
 	double			height;
 	t_coordinates	orientation;
 }	t_cylinder_attrs;
+
+typedef struct s_reference_system
+{
+	t_ray			ray;
+	t_coordinates	center;
+}	t_reference_system;
 
 void		set_cylinder_attrs(char **parts, t_cylinder_attrs *attrs,
 				t_color *color);

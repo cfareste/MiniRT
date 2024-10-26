@@ -37,7 +37,8 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 		figure = scene->figures;
 		while (figure)
 		{
-			if (figure->hit(figure, &shadow_ray, &distance))
+			if (figure != hit_record->figure
+				&& figure->hit(figure, &shadow_ray, &distance))
 				break ;
 			figure = figure->next;
 		}
@@ -55,28 +56,17 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 {
 	t_color	light_color;
 	t_color	final_color;
-	float	intensity;
 
 	light_color.red = 0.0;
 	light_color.green = 0.0;
 	light_color.blue = 0.0;
 	if (!hit_record->figure)
 		return (get_sky_color(scene->ambient_light));
+	apply_ambient_lighting(scene->ambient_light, &light_color);
 	check_lights(hit_record, scene, &light_color);
 	final_color.red = light_color.red * hit_record->figure->color.red;
 	final_color.green = light_color.green * hit_record->figure->color.green;
 	final_color.blue = light_color.blue * hit_record->figure->color.blue;
-	intensity = sqrt(final_color.red * final_color.red + final_color.green * \
-		final_color.green + final_color.blue * final_color.blue);
-	if (intensity <= 1.0)
-	{
-		apply_ambient_lighting(scene->ambient_light, &light_color);
-		return (get_color_value(&final_color));
-	}
-	final_color.red /= intensity;
-	final_color.green /= intensity;
-	final_color.blue /= intensity;
-	apply_ambient_lighting(scene->ambient_light, &light_color);
 	return (get_color_value(&final_color));
 }
 

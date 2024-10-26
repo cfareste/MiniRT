@@ -21,6 +21,19 @@ void	set_color(char *params, t_color *color)
 
 int	get_color_value(t_color *color)
 {
+	if (color->red > 1.0)
+		color->red = 1.0;
+	if (color->green > 1.0)
+		color->green = 1.0;
+	if (color->blue > 1.0)
+		color->blue = 1.0;
 	return ((int)(color->red * 255) << 24 | (int)(color->green * 255) << 16
 		| (int)(color->blue * 255) << 8 | 0xFF);
+}
+
+void	get_normal_color(t_color *color, t_coordinates *normal)
+{
+	color->red = 0.5 * (normal->x + 1);
+	color->green = 0.5 * (normal->y + 1);
+	color->blue = 0.5 * (normal->z + 1);
 }

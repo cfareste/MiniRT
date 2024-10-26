@@ -40,6 +40,8 @@ void	normalize(t_coordinates *vec)
 	float	length;
 
 	length = sqrt(dot(vec, vec));
+	if (length == 0.0)
+		return ;
 	vec->x = vec->x / length;
 	vec->y = vec->y / length;
 	vec->z = vec->z / length;

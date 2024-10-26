@@ -14,4 +14,7 @@ typedef struct s_figure	t_figure;
 
 t_figure	*new_plane(char **parts);
 
+void		set_plane(t_figure *plane, t_coordinates *position,
+				t_plane_attrs *attrs);
+
 #endif
