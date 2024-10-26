@@ -22,9 +22,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	n_dot_rdir = dot(&figure->pl_attrs->orientation, &ray->direction);
 	if (n_dot_rdir == 0.0)
 		return (0);
-	plane_to_ray.x = ray->origin.x - figure->position.x;
-	plane_to_ray.y = ray->origin.y - figure->position.y;
-	plane_to_ray.z = ray->origin.z - figure->position.z;
+	get_vector(&ray->origin, &figure->position, &plane_to_ray);
 	n_dot_pltoray = -1 * dot(&figure->pl_attrs->orientation, &plane_to_ray);
 	root = n_dot_pltoray / n_dot_rdir;
 	if (root <= ray->bounds.min || root >= ray->bounds.max)

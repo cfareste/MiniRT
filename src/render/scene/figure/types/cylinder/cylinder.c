@@ -67,9 +67,7 @@ float	get_height(t_point *point, t_point *center, float base)
 	float		point_height;
 	float		hypotenuse;
 
-	center_to_point.x = point->x - center->x;
-	center_to_point.y = point->y - center->y;
-	center_to_point.z = point->z - center->z;
+	get_vector(point, center, &center_to_point);
 	hypotenuse = dot(&center_to_point, &center_to_point);
 	point_height = sqrt(hypotenuse - base * base);
 	return (point_height);
@@ -119,9 +117,7 @@ int	hit_base(t_reference_system *refsys, float base_center_distance, float radiu
 		return (0);
 	translate_point(&refsys->ray.origin, &refsys->ray.direction, base_distance,
 		&hit_to_base_center);
-	hit_to_base_center.x -= base_center.x;
-	hit_to_base_center.y -= base_center.y;
-	hit_to_base_center.z -= base_center.z;
+	get_vector(&hit_to_base_center, &base_center, &hit_to_base_center);
 	if (base_distance <= refsys->ray.bounds.min || base_distance >= refsys->ray.bounds.max
 		|| sqrt(dot(&hit_to_base_center, &hit_to_base_center)) > radius)
 		return (0);
@@ -138,8 +134,7 @@ int	hit_body(t_reference_system *refsys, t_figure *cylinder, t_ray *ray, float *
 	t_point				point;
 	float				point_height;
 
-	ray_to_cylinder.x = refsys->center.x - refsys->ray.origin.x;
-	ray_to_cylinder.y = refsys->center.y - refsys->ray.origin.y;
+	get_vector(&refsys->center, &refsys->ray.origin, &ray_to_cylinder);
 	ray_to_cylinder.z = 0;
 	params.a = (refsys->ray.direction.x * refsys->ray.direction.x) + (refsys->ray.direction.y * refsys->ray.direction.y);
 	params.b = -2.0 * ((refsys->ray.direction.x * ray_to_cylinder.x) + (refsys->ray.direction.y * ray_to_cylinder.y));
@@ -177,9 +172,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 	refsys.ray.bounds.min = ray->bounds.min;
 	refsys.ray.bounds.max = ray->bounds.max;
-	refsys.ray.origin.x = ray->origin.x - figure->position.x;
-	refsys.ray.origin.y = ray->origin.y - figure->position.y;
-	refsys.ray.origin.z = ray->origin.z - figure->position.z;
+	get_vector(&ray->origin, &figure->position, &refsys.ray.origin);
 	refsys.ray.direction = ray->direction;
 	ft_bzero(&refsys.center, sizeof(t_point));
 	rotate_reference_system(&refsys.ray.direction, &refsys.ray.origin, &refsys.center, &figure->cy_attrs->orientation);
@@ -207,18 +200,14 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	}
 	else
 	{
-		center_to_point.x = point->x - figure->position.x;
-		center_to_point.y = point->y - figure->position.y;
-		center_to_point.z = point->z - figure->position.z;
+		get_vector(point, &figure->position, &center_to_point);
 		point_height = get_height(point, &figure->position,
 			figure->cy_attrs->radius);
 		if (dot(&center_to_point, &figure->cy_attrs->orientation) < 0.0)
 			point_height *= -1;
 		translate_point(&figure->position, &figure->cy_attrs->orientation,
 			point_height, &center_offset);
-		res->x = point->x - center_offset.x;
-		res->y = point->y - center_offset.y;
-		res->z = point->z - center_offset.z;
+		get_vector(point, &center_offset, res);
 		normalize(res);
 	}
 }

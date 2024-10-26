@@ -19,9 +19,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	t_quadratic_params	params;
 	float				root;
 
-	ray_to_sphere.x = figure->position.x - ray->origin.x;
-	ray_to_sphere.y = figure->position.y - ray->origin.y;
-	ray_to_sphere.z = figure->position.z - ray->origin.z;
+	get_vector(&figure->position, &ray->origin, &ray_to_sphere);
 	params.a = dot(&ray->direction, &ray->direction);
 	params.b = -2.0 * dot(&ray->direction, &ray_to_sphere);
 	params.c = dot(&ray_to_sphere, &ray_to_sphere)
@@ -43,9 +41,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	res->x = point->x - figure->position.x;
-	res->y = point->y - figure->position.y;
-	res->z = point->z - figure->position.z;
+	get_vector(point, &figure->position, res);
 	normalize(res);
 }
 
