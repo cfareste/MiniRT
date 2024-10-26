@@ -122,6 +122,13 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 	}
 }
 
+void	get_normal_color(t_color *color, t_coordinates *normal)
+{
+	color->red = 0.5 * (normal->x + 1);
+	color->green = 0.5 * (normal->y + 1);
+	color->blue = 0.5 * (normal->z + 1);
+}
+
 int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 {
 	t_color	light_color;
@@ -137,9 +144,7 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 	final_color.red = light_color.red * hit_record->figure->color.red;
 	final_color.green = light_color.green * hit_record->figure->color.green;
 	final_color.blue = light_color.blue * hit_record->figure->color.blue;
-	// final_color.red = 0.5 * (hit_record->normal.x + 1);
-	// final_color.green = 0.5 * (hit_record->normal.y + 1);
-	// final_color.blue = 0.5 * (hit_record->normal.z + 1);
+	get_normal_color(&final_color, &hit_record->normal);
 	return (get_color_value(&final_color));
 }
 
