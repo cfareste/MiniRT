@@ -1,4 +1,5 @@
 #include "render_helper.h"
+#include "render/utils/point/point.h"
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 {
@@ -6,12 +7,8 @@ void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 		return ;
 	ray->bounds.max = hit_record->distance;
 	hit_record->figure = figure;
-	hit_record->point.x = ray->origin.x + \
-		hit_record->distance * ray->direction.x;
-	hit_record->point.y = ray->origin.y + \
-		hit_record->distance * ray->direction.y;
-	hit_record->point.z = ray->origin.z + \
-		hit_record->distance * ray->direction.z;
+	translate_point(&ray->origin, &ray->direction, hit_record->distance,
+		&hit_record->point);
 	figure->normal(figure, &hit_record->point, &hit_record->normal);
 }
 

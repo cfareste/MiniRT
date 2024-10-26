@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "camera.h"
 #include "utils/utils.h"
+#include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include <math.h>
 
@@ -39,9 +40,8 @@ void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 	vp->x_unit = vp->width / w_size.width;
 	vp->y_unit = vp->height / w_size.height;
 	focal_distance = tan((camera->fov * 0.5) * M_PI / 180);
-	vp->center.x = camera->position.x + focal_distance * camera->front.x;
-	vp->center.y = camera->position.y + focal_distance * camera->front.y;
-	vp->center.z = camera->position.z + focal_distance * camera->front.z;
+	translate_point(&camera->position, &camera->front, focal_distance,
+		&vp->center);
 	vp->start.x = vp->center.x - (vp->width * camera->right.x / 2.0) + \
 		(vp->height * camera->up.x / 2.0);
 	vp->start.y = vp->center.y - (vp->width * camera->right.y / 2.0) + \

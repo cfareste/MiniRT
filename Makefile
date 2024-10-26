@@ -128,6 +128,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
+			$(SRC)render/utils/point:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
@@ -149,6 +150,8 @@ SRCS = miniRT.c \
 	window.c \
 	renderer.c \
 	vector.c \
+	product.c \
+	point.c \
 	render_helper.c \
 	window_helper.c \
 	loader.c \

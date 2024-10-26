@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "float.h"
 #include "utils/utils.h"
+#include "render/utils/point/point.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
@@ -34,9 +35,12 @@ void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
 	cosine = cos(angle);
 	sine = sin(angle);
 	dot_product = dot(vec, axis);
-	rotated->x = (vec->x * cosine) + (aux.x * sine) + (dot_product * axis->x * (1 - cosine));
-	rotated->y = (vec->y * cosine) + (aux.y * sine) + (dot_product * axis->y * (1 - cosine));
-	rotated->z = (vec->z * cosine) + (aux.z * sine) + (dot_product * axis->z * (1 - cosine));
+	rotated->x = (vec->x * cosine) + (aux.x * sine)
+		+ (dot_product * axis->x * (1 - cosine));
+	rotated->y = (vec->y * cosine) + (aux.y * sine)
+		+ (dot_product * axis->y * (1 - cosine));
+	rotated->z = (vec->z * cosine) + (aux.z * sine)
+		+ (dot_product * axis->z * (1 - cosine));
 }
 
 void	rotate_reference_system(t_vector *vec, t_point *point,
@@ -113,9 +117,11 @@ int	hit_base(t_reference_system *refsys, float base_center_distance, float radiu
 	set_plane(&plane, &base_center, &pl_attrs);
 	if (!plane.hit(&plane, &refsys->ray, &base_distance))
 		return (0);
-	hit_to_base_center.x = refsys->ray.origin.x + (refsys->ray.direction.x * base_distance) - base_center.x;
-	hit_to_base_center.y = refsys->ray.origin.y + (refsys->ray.direction.y * base_distance) - base_center.y;
-	hit_to_base_center.z = refsys->ray.origin.z + (refsys->ray.direction.z * base_distance) - base_center.z;
+	translate_point(&refsys->ray.origin, &refsys->ray.direction, base_distance,
+		&hit_to_base_center);
+	hit_to_base_center.x -= base_center.x;
+	hit_to_base_center.y -= base_center.y;
+	hit_to_base_center.z -= base_center.z;
 	if (base_distance <= refsys->ray.bounds.min || base_distance >= refsys->ray.bounds.max
 		|| sqrt(dot(&hit_to_base_center, &hit_to_base_center)) > radius)
 		return (0);
@@ -143,17 +149,15 @@ int	hit_body(t_reference_system *refsys, t_figure *cylinder, t_ray *ray, float *
 		return (0);
 	params.square_root = sqrt(params.discriminant);
 	params.roots.close = (-params.b - params.square_root) / (2.0 * params.a);
-	point.x = refsys->ray.origin.x + params.roots.close * refsys->ray.direction.x;
-	point.y = refsys->ray.origin.y + params.roots.close * refsys->ray.direction.y;
-	point.z = refsys->ray.origin.z + params.roots.close * refsys->ray.direction.z;
+	translate_point(&refsys->ray.origin, &refsys->ray.direction,
+		params.roots.close, &point);
 	point_height = get_height(&point, &refsys->center, cylinder->cy_attrs->radius);
 	if (params.roots.close <= ray->bounds.min || params.roots.close >= ray->bounds.max
 		|| point_height > cylinder->cy_attrs->height / 2.0)
 	{
 		params.roots.far = (-params.b + params.square_root) / (2.0 * params.a);
-		point.x = refsys->ray.origin.x + params.roots.far * refsys->ray.direction.x;
-		point.y = refsys->ray.origin.y + params.roots.far * refsys->ray.direction.y;
-		point.z = refsys->ray.origin.z + params.roots.far * refsys->ray.direction.z;
+		translate_point(&refsys->ray.origin, &refsys->ray.direction,
+			params.roots.far, &point);
 		point_height = get_height(&point, &refsys->center, cylinder->cy_attrs->radius);
 		if (params.roots.far <= ray->bounds.min || params.roots.far >= ray->bounds.max
 			|| point_height > cylinder->cy_attrs->height / 2.0)
@@ -187,10 +191,10 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	int		is_base;
-	float	point_height;
-	t_point	center_offset;
-	t_point	center_to_point;
+	int			is_base;
+	float		point_height;
+	t_point		center_offset;
+	t_vector	center_to_point;
 
 	is_base = belongs_to_base(point, &figure->position, &figure->cy_attrs->orientation, figure->cy_attrs->height);
 	if (is_base == 1)
@@ -210,12 +214,8 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 			figure->cy_attrs->radius);
 		if (dot(&center_to_point, &figure->cy_attrs->orientation) < 0.0)
 			point_height *= -1;
-		center_offset.x = figure->position.x
-			+ point_height * figure->cy_attrs->orientation.x;
-		center_offset.y = figure->position.y
-			+ point_height * figure->cy_attrs->orientation.y;
-		center_offset.z = figure->position.z
-			+ point_height * figure->cy_attrs->orientation.z;
+		translate_point(&figure->position, &figure->cy_attrs->orientation,
+			point_height, &center_offset);
 		res->x = point->x - center_offset.x;
 		res->y = point->y - center_offset.y;
 		res->z = point->z - center_offset.z;

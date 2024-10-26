@@ -10,17 +10,15 @@ void	set_ray_from_camera(t_ray *ray, t_camera *camera, int i, int j)
 	t_point			origin;
 	t_vector		direction;
 
-	origin.x = camera->position.x;
-	origin.y = camera->position.y;
-	origin.z = camera->position.z;
-	viewport_coords.x = camera->viewport.start.x + \
-		(camera->right.x * camera->viewport.x_unit * i) - \
+	origin = camera->position;
+	viewport_coords.x = camera->viewport.start.x +
+		(camera->right.x * camera->viewport.x_unit * i) -
 		(camera->up.x * camera->viewport.y_unit * j);
-	viewport_coords.y = camera->viewport.start.y + \
-		(camera->right.y * camera->viewport.x_unit * i) - \
+	viewport_coords.y = camera->viewport.start.y +
+		(camera->right.y * camera->viewport.x_unit * i) -
 		(camera->up.y * camera->viewport.y_unit * j);
-	viewport_coords.z = camera->viewport.start.z + \
-		(camera->right.z * camera->viewport.x_unit * i) - \
+	viewport_coords.z = camera->viewport.start.z +
+		(camera->right.z * camera->viewport.x_unit * i) -
 		(camera->up.z * camera->viewport.y_unit * j);
 	direction.x = viewport_coords.x - camera->position.x;
 	direction.y = viewport_coords.y - camera->position.y;
