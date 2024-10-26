@@ -1,6 +1,6 @@
-#include "utils/utils.h"
-#include "render/ray/ray.h"
 #include "render/render.h"
+#include "render/ray/ray.h"
+#include "render/utils/vector/vector.h"
 #include <math.h>
 
 void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,

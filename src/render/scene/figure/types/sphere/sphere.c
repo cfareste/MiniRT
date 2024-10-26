@@ -1,7 +1,8 @@
-#include "render/scene/figure/figure.h"
+#include "math.h"
 #include "libft.h"
 #include "utils/utils.h"
-#include "math.h"
+#include "render/scene/figure/figure.h"
+#include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
 
 static void	print_attrs(void *param)

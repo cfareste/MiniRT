@@ -1,6 +1,7 @@
 #include "utils/utils.h"
-#include "../ray.h"
+#include "render/ray/ray.h"
 #include "render/scene/camera/camera.h"
+#include "render/utils/vector/vector.h"
 #include <math.h>
 
 void	set_ray_from_camera(t_ray *ray, t_camera *camera, int i, int j)

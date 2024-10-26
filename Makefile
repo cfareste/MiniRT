@@ -127,6 +127,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/helpers:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/coordinates:\
+			$(SRC)render/utils/vector:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
@@ -211,7 +212,7 @@ libft_fclean:
 	@echo "$(RED)Cleaning $(PINK)Libft$(RED)...$(DEF_COLOR)"
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 
-$(MLX_DIR): 
+$(MLX_DIR):
 	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
 	curl -sOL $(MLX_URL)
 	tar -xpf v$(MLX_VERSION).tar.gz
@@ -239,7 +240,7 @@ mlx_fclean:
 		libft_clean \
 		libft_fclean \
 		make_mlx \
-		mlx_fclean 
+		mlx_fclean
 
 -include $(DEPS)
 -include $(MDEPS)

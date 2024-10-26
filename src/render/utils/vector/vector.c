@@ -1,19 +1,19 @@
-#include "utils.h"
-#include "math.h"
+#include "render/utils/vector/vector.h"
+#include <math.h>
 
-void	cross(t_coordinates *vec1, t_coordinates *vec2, t_coordinates *res)
+void	cross(t_vector *vec1, t_vector *vec2, t_vector *res)
 {
 	res->x = (vec1->y * vec2->z) - (vec1->z * vec2->y);
 	res->y = (vec1->z * vec2->x) - (vec1->x * vec2->z);
 	res->z = (vec1->x * vec2->y) - (vec1->y * vec2->x);
 }
 
-float	dot(t_coordinates *vec1, t_coordinates *vec2)
+float	dot(t_vector *vec1, t_vector *vec2)
 {
 	return ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
 }
 
-void	get_axis(t_coordinates *axis, t_pointing direction)
+void	get_axis(t_vector *axis, t_pointing direction)
 {
 	if (direction == RIGHT)
 		axis->x = 1.0;
@@ -35,7 +35,7 @@ void	get_axis(t_coordinates *axis, t_pointing direction)
 		axis->z = 0.0;
 }
 
-void	normalize(t_coordinates *vec)
+void	normalize(t_vector *vec)
 {
 	float	length;
 
@@ -47,7 +47,7 @@ void	normalize(t_coordinates *vec)
 	vec->z = vec->z / length;
 }
 
-void	reflect(t_coordinates *vec, t_coordinates *normal, t_coordinates *res)
+void	reflect(t_vector *vec, t_vector *normal, t_vector *res)
 {
 	float	product;
 

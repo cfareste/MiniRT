@@ -1,6 +1,7 @@
 #include "libft.h"
-#include "utils/utils.h"
 #include "camera.h"
+#include "utils/utils.h"
+#include "render/utils/vector/vector.h"
 #include <math.h>
 
 void	set_camera(char **parts, t_camera **camera)

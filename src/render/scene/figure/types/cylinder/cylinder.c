@@ -1,10 +1,11 @@
-#include <math.h>
-#include "float.h"
-#include "render/scene/figure/figure.h"
 #include "libft.h"
+#include "float.h"
 #include "utils/utils.h"
+#include "render/scene/figure/figure.h"
+#include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "render/utils/coordinates/coordinates.h"
+#include <math.h>
 
 static void	print_attrs(void *param)
 {

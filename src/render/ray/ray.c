@@ -1,6 +1,6 @@
 #include "ray.h"
 #include "float.h"
-#include "utils/utils.h"
+#include "render/utils/vector/vector.h"
 
 void	set_ray(t_ray *ray, t_coordinates *origin, t_coordinates *direction)
 {

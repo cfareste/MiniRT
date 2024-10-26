@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "utils/utils.h"
 #include "render/scene/figure/figure.h"
+#include "render/utils/vector/vector.h"
 
 static void	print_attrs(void *param)
 {
