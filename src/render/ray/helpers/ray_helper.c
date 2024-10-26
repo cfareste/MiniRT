@@ -7,8 +7,8 @@
 void	set_ray_from_camera(t_ray *ray, t_camera *camera, int i, int j)
 {
 	t_coordinates	viewport_coords;
-	t_coordinates	origin;
-	t_coordinates	direction;
+	t_point			origin;
+	t_vector		direction;
 
 	origin.x = camera->position.x;
 	origin.y = camera->position.y;
@@ -28,8 +28,7 @@ void	set_ray_from_camera(t_ray *ray, t_camera *camera, int i, int j)
 	set_ray(ray, &origin, &direction);
 }
 
-void	set_shadow_ray(t_ray *shadow_ray, t_coordinates *origin,
-			t_coordinates *light_pos)
+void	set_shadow_ray(t_ray *shadow_ray, t_point *origin, t_point *light_pos)
 {
 	shadow_ray->origin = *origin;
 	shadow_ray->direction.x = light_pos->x - shadow_ray->origin.x;

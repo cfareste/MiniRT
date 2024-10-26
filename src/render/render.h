@@ -1,8 +1,9 @@
 #pragma once
 #include "MLX42.h"
-#include "render/utils/coordinates/coordinates.h"
-#include "render/scene/scene.h"
 #include "loader/loader.h"
+#include "render/scene/scene.h"
+#include "render/utils/vector/vector.h"
+#include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_render
 {
@@ -19,8 +20,8 @@ typedef struct s_hit_record
 {
 	t_figure		*figure;
 	float			distance;
-	t_coordinates	point;
-	t_coordinates	normal;
+	t_point			point;
+	t_vector		normal;
 }	t_hit_record;
 
 void	render_scene(t_render *render, t_scene *scene, t_size size);

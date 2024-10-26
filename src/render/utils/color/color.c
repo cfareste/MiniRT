@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "color.h"
 #include "utils/utils.h"
+#include "render/utils/vector/vector.h"
 
 void	set_color(char *params, t_color *color)
 {
@@ -31,7 +32,7 @@ int	get_color_value(t_color *color)
 		| (int)(color->blue * 255) << 8 | 0xFF);
 }
 
-void	get_normal_color(t_color *color, t_coordinates *normal)
+void	get_normal_color(t_color *color, t_vector *normal)
 {
 	color->red = 0.5 * (normal->x + 1);
 	color->green = 0.5 * (normal->y + 1);

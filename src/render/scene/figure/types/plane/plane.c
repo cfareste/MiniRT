@@ -14,10 +14,10 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	t_coordinates	plane_to_ray;
-	float			n_dot_pltoray;
-	float			n_dot_rdir;
-	float			root;
+	t_vector	plane_to_ray;
+	float		n_dot_pltoray;
+	float		n_dot_rdir;
+	float		root;
 
 	n_dot_rdir = dot(&figure->pl_attrs->orientation, &ray->direction);
 	if (n_dot_rdir == 0.0)
@@ -33,13 +33,10 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	return (1);
 }
 
-static void	normal(t_figure *figure, t_coordinates *point, \
-						t_coordinates *res)
+static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
 	(void) point;
-	res->x = figure->pl_attrs->orientation.x;
-	res->y = figure->pl_attrs->orientation.y;
-	res->z = figure->pl_attrs->orientation.z;
+	*res = figure->pl_attrs->orientation;
 }
 
 t_figure	*new_plane(char **parts)
@@ -60,8 +57,7 @@ t_figure	*new_plane(char **parts)
 	return (plane);
 }
 
-void	set_plane(t_figure *plane, t_coordinates *position,
-			t_plane_attrs *attrs)
+void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
 	plane->hit = hit;
 	plane->pl_attrs = attrs;

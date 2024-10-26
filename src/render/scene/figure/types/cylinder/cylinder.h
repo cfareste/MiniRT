@@ -8,18 +8,15 @@
 
 typedef struct s_cylinder_attrs
 {
-	double			radius;
-	double			height;
-	t_coordinates	orientation;
+	double		radius;
+	double		height;
+	t_vector	orientation;
 }	t_cylinder_attrs;
 
 typedef struct s_reference_system
 {
-	t_ray			ray;
-	t_coordinates	center;
+	t_ray	ray;
+	t_point	center;
 }	t_reference_system;
-
-void		set_cylinder_attrs(char **parts, t_cylinder_attrs *attrs,
-				t_color *color);
 
 t_figure	*new_cylinder(char **parts);

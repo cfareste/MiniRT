@@ -15,7 +15,7 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	t_coordinates		ray_to_sphere;
+	t_vector			ray_to_sphere;
 	t_quadratic_params	params;
 	float				root;
 
@@ -41,7 +41,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	return (1);
 }
 
-static void	normal(t_figure *figure, t_coordinates *point, t_coordinates *res)
+static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
 	res->x = point->x - figure->position.x;
 	res->y = point->y - figure->position.y;

@@ -6,7 +6,7 @@
 
 void	set_camera(char **parts, t_camera **camera)
 {
-	t_coordinates	world_axis;
+	t_vector	world_axis;
 
 	if (*camera)
 		throw_error("Multiple cameras are not allowed");

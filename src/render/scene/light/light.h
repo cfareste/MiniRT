@@ -15,7 +15,7 @@ typedef enum e_light_types
 typedef struct s_light
 {
 	t_light_type	type;
-	t_coordinates	position;
+	t_point			position;
 	double			brightness;
 	struct s_light	*next;
 	t_color			color;

@@ -17,18 +17,18 @@ static void	print_attrs(void *param)
 		attrs->radius, attrs->height);
 }
 
-void	print_vector(char *name, t_coordinates *vec)
+void	print_vector(char *name, t_vector *vec)
 {
 	printf("%s: (%.10f, %.10f, %.10f)\n", name, vec->x, vec->y, vec->z);
 }
 
-void	rotate_vector(t_coordinates *vec, t_coordinates *axis, float angle,
-	t_coordinates *rotated)
+void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
+	t_vector *rotated)
 {
-	t_coordinates	aux;
-	float			dot_product;
-	float			cosine;
-	float			sine;
+	t_vector	aux;
+	float		dot_product;
+	float		cosine;
+	float		sine;
 
 	cross(axis, vec, &aux);
 	cosine = cos(angle);
@@ -39,12 +39,12 @@ void	rotate_vector(t_coordinates *vec, t_coordinates *axis, float angle,
 	rotated->z = (vec->z * cosine) + (aux.z * sine) + (dot_product * axis->z * (1 - cosine));
 }
 
-void	rotate_reference_system(t_coordinates *vec, t_coordinates *point,
-	t_coordinates *cy_center, t_coordinates *normal)
+void	rotate_reference_system(t_vector *vec, t_point *point,
+	t_point *cy_center, t_vector *normal)
 {
-	t_coordinates	ideal;
-	t_coordinates	axis;
-	float			angle;
+	t_vector	ideal;
+	t_vector	axis;
+	float		angle;
 
 	get_axis(&ideal, BACK);
 	cross(normal, &ideal, &axis);
@@ -57,11 +57,11 @@ void	rotate_reference_system(t_coordinates *vec, t_coordinates *point,
 	rotate_vector(cy_center, &axis, angle, cy_center);
 }
 
-float	get_height(t_coordinates *point, t_coordinates *center, float base)
+float	get_height(t_point *point, t_point *center, float base)
 {
-	t_coordinates	center_to_point;
-	float			point_height;
-	float			hypotenuse;
+	t_vector	center_to_point;
+	float		point_height;
+	float		hypotenuse;
 
 	center_to_point.x = point->x - center->x;
 	center_to_point.y = point->y - center->y;
@@ -71,12 +71,13 @@ float	get_height(t_coordinates *point, t_coordinates *center, float base)
 	return (point_height);
 }
 
-int	belongs_to_base(t_coordinates *point, t_coordinates *center, t_coordinates *normal, float height)
+int	belongs_to_base(t_point *point, t_point *center, t_vector *normal,
+	float height)
 {
-	t_coordinates	top_to_point;
-	t_coordinates	bottom_to_point;
-	float			dot_top;
-	float			dot_bottom;
+	t_vector	top_to_point;
+	t_vector	bottom_to_point;
+	float		dot_top;
+	float		dot_bottom;
 
 	top_to_point.x = point->x - (center->x + (height / 2.0) * normal->x);
 	top_to_point.y = point->y - (center->y + (height / 2.0) * normal->y);
@@ -100,14 +101,14 @@ int	hit_base(t_reference_system *refsys, float base_center_distance, float radiu
 {
 	t_figure		plane;
 	t_plane_attrs	pl_attrs;
-	t_coordinates	base_center;
-	t_coordinates	hit_to_base_center;
+	t_point			base_center;
+	t_vector		hit_to_base_center;
 	float			base_distance;
 
 	base_distance = FLT_MAX;
 	ft_bzero(&pl_attrs, sizeof(t_plane_attrs));
 	pl_attrs.orientation.z = 1.0f;
-	ft_bzero(&base_center, sizeof(t_coordinates));
+	ft_bzero(&base_center, sizeof(t_point));
 	base_center.z = refsys->center.z + base_center_distance;
 	set_plane(&plane, &base_center, &pl_attrs);
 	if (!plane.hit(&plane, &refsys->ray, &base_distance))
@@ -126,9 +127,9 @@ int	hit_base(t_reference_system *refsys, float base_center_distance, float radiu
 
 int	hit_body(t_reference_system *refsys, t_figure *cylinder, t_ray *ray, float *distance)
 {
-	t_coordinates		ray_to_cylinder;
+	t_vector			ray_to_cylinder;
 	t_quadratic_params	params;
-	t_coordinates		point;
+	t_point				point;
 	float				point_height;
 
 	ray_to_cylinder.x = refsys->center.x - refsys->ray.origin.x;
@@ -176,7 +177,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	refsys.ray.origin.y = ray->origin.y - figure->position.y;
 	refsys.ray.origin.z = ray->origin.z - figure->position.z;
 	refsys.ray.direction = ray->direction;
-	ft_bzero(&refsys.center, sizeof(t_coordinates));
+	ft_bzero(&refsys.center, sizeof(t_point));
 	rotate_reference_system(&refsys.ray.direction, &refsys.ray.origin, &refsys.center, &figure->cy_attrs->orientation);
 	hitted = hit_base(&refsys, figure->cy_attrs->height / 2.0, figure->cy_attrs->radius, distance);
 	hitted |= hit_body(&refsys, figure, ray, distance);
@@ -184,13 +185,12 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	return (hitted);
 }
 
-static void	normal(t_figure *figure, t_coordinates *point,
-	t_coordinates *res)
+static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	int				is_base;
-	float			point_height;
-	t_coordinates	center_offset;
-	t_coordinates	center_to_point;
+	int		is_base;
+	float	point_height;
+	t_point	center_offset;
+	t_point	center_to_point;
 
 	is_base = belongs_to_base(point, &figure->position, &figure->cy_attrs->orientation, figure->cy_attrs->height);
 	if (is_base == 1)

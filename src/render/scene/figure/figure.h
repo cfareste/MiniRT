@@ -1,23 +1,23 @@
 #ifndef FIGURE_H
 # define FIGURE_H
 
-# include "types/sphere/sphere.h"
-# include "types/plane/plane.h"
-# include "types/cylinder/cylinder.h"
-# include "render/utils/coordinates/coordinates.h"
-# include "render/utils/color/color.h"
 # include "render/ray/ray.h"
+# include "types/plane/plane.h"
+# include "types/sphere/sphere.h"
+# include "types/cylinder/cylinder.h"
+# include "render/utils/color/color.h"
+# include "render/utils/vector/vector.h"
+# include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_figure
 {
-	char			*type;
-	t_coordinates	position;
-	t_color			color;
-	int				(*hit)(t_figure *figure, t_ray *ray, float *distance);
-	void			(*normal)(t_figure *figure, t_coordinates *point, \
-						t_coordinates *res);
-	void			(*print_attrs)(void *attrs);
-	void			(*free)(t_figure *figure);
+	char	*type;
+	t_point	position;
+	t_color	color;
+	int		(*hit)(t_figure *figure, t_ray *ray, float *distance);
+	void	(*normal)(t_figure *figure, t_point *point, t_vector *res);
+	void	(*print_attrs)(void *attrs);
+	void	(*free)(t_figure *figure);
 	union
 	{
 		void				*attrs;

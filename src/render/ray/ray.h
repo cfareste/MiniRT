@@ -1,5 +1,6 @@
 #pragma once
 
+#include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_bounds
@@ -10,9 +11,9 @@ typedef struct s_bounds
 
 typedef struct s_ray
 {
-	t_coordinates	origin;
-	t_coordinates	direction;
-	t_bounds		bounds;
+	t_point		origin;
+	t_vector	direction;
+	t_bounds	bounds;
 }	t_ray;
 
-void	set_ray(t_ray *ray, t_coordinates *origin, t_coordinates *direction);
+void	set_ray(t_ray *ray, t_point *origin, t_vector *direction);

@@ -16,15 +16,15 @@ void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
 	color->blue += strength * light->brightness * light->color.blue * 0.5;
 }
 
-t_coordinates	get_reflection(t_ray *shadow_ray, t_hit_record *hit_record)
+t_vector	get_reflection(t_ray *shadow_ray, t_hit_record *hit_record)
 {
-	t_coordinates	reflected;
+	t_vector	reflected;
 
 	reflect(&shadow_ray->direction, &hit_record->normal, &reflected);
 	return (reflected);
 }
 
-void	compute_specular(t_scene *scene, t_coordinates reflected,
+void	compute_specular(t_scene *scene, t_vector reflected,
 			t_light *light, t_color *color)
 {
 	float			strength;
