@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
-	set_scene_from_file(&window.render.scene, argv[1]);
+	set_scene_from_filename(&window.render.scene, argv[1]);
 	init_window(&window);
 	init_render(&window.render, window.mlx);
 	render(&window.render, window.mlx);

@@ -19,7 +19,7 @@ typedef struct s_reference_system
 	t_coordinates	center;
 }	t_reference_system;
 
-void		set_cylinder_attrs(char **parts, t_cylinder_attrs *attrs,
+void		set_cylinder(char **parts, t_cylinder_attrs *attrs,
 				t_color *color);
 
 t_figure	*new_cylinder(char **parts);

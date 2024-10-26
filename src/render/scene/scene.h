@@ -15,6 +15,6 @@ typedef struct s_scene
 	char		*name;
 }	t_scene;
 
-void	set_scene_from_file(t_scene *scene, char *filename);
+void	set_scene_from_filename(t_scene *scene, char *filename);
 
 #endif
