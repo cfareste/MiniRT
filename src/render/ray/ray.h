@@ -1,7 +1,6 @@
-#ifndef RAY_H
-# define RAY_H
+#pragma once
 
-# include "shared/coordinates/coordinates.h"
+#include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_bounds
 {
@@ -16,4 +15,4 @@ typedef struct s_ray
 	t_bounds		bounds;
 }	t_ray;
 
-#endif
+void	set_ray(t_ray *ray, t_coordinates *origin, t_coordinates *direction);

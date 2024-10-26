@@ -76,7 +76,7 @@ SRCS = ft_isdigit.c \
 		number_utils.c \
 		ft_filename.c \
 		ft_stroccurrences.c \
-		ft_normalize.c \
+		ft_clamp.c \
 		ft_closest_multiple.c \
 		ft_sort.c \
 		ft_override_val.c

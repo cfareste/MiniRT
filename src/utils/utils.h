@@ -2,8 +2,8 @@
 # define UTILS_H
 
 # include "MLX42.h"
-# include "shared/coordinates/coordinates.h"
-# include "shared/size/size.h"
+# include "render/utils/coordinates/coordinates.h"
+# include "utils/size/size.h"
 # include <pthread.h>
 
 typedef enum e_pointing

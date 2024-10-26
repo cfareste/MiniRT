@@ -1,8 +1,10 @@
 #pragma once
-#include "MLX42.h"
-#include <pthread.h>
+
 #define LOADER_HEIGHT_MAX 50
 #define LOADER_WIDTH_MAX 1200
+
+#include "MLX42.h"
+#include <pthread.h>
 
 typedef struct s_loader
 {
@@ -11,14 +13,14 @@ typedef struct s_loader
 	pthread_mutex_t	image_mutex;
 	unsigned int	total;
 	pthread_mutex_t	total_mutex;
-	unsigned int	current;
-	pthread_mutex_t	current_mutex;
+	unsigned int	progress;
+	pthread_mutex_t	progress_mutex;
 	int				thread_finished;
 	pthread_mutex_t	thread_finish_mutex;
 }	t_loader;
 
-void	init_render_loader(t_loader *loader, mlx_t *mlx);
+void	destroy_loader(t_loader *loader);
 
-void	destroy_rend_loader(t_loader *loader);
+void	set_loader_visibility(t_loader *loader, bool visible);
 
-void	rend_loader_tick(t_loader *loader);
+void	init_loader(t_loader *loader, mlx_t *mlx);

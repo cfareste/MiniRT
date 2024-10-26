@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=thread
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
@@ -89,36 +89,6 @@ ifeq ($(UNAME_S), Darwin)
 endif
 
 
-#----SHARED----#
-SRCS = miniRT.c \
-	scene.c \
-	errors.c \
-	file_utils.c \
-	light.c \
-	color.c \
-	camera.c \
-	coordinates.c \
-	figure.c \
-	cylinder.c \
-	plane.c \
-	sphere.c \
-	render.c \
-	window.c \
-	starter_bonus.c \
-	vector.c \
-	render_helper.c \
-	window_helper.c \
-	loader.c \
-	render_loader_helper.c \
-	size.c \
-	images.c \
-	loader_thread_helper.c \
-	loader_thread.c
-
-OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
-DEPS = $(OBJS:%.o=%.d)
-
-
 #----MACROS----#
 export GNL_BUFFER_SIZE := 50000
 ifeq ($(UNAME_S), Darwin)
@@ -135,26 +105,65 @@ endif
 
 #----VPATH----#
 vpath %.c	$(SRC):\
-			$(SRC)scene:\
-			$(SRC)scene/camera:\
-			$(SRC)scene/light:\
-			$(SRC)scene/figure:\
-			$(SRC)scene/figure/types/cylinder:\
-			$(SRC)scene/figure/types/plane:\
-			$(SRC)scene/figure/types/sphere:\
 			$(SRC)render:\
-			$(SRC)render/starter:\
+			$(SRC)render/scene:\
+			$(SRC)render/scene/camera:\
+			$(SRC)render/scene/light:\
+			$(SRC)render/scene/light/utils:\
+			$(SRC)render/scene/light/ambient_light:\
+			$(SRC)render/scene/figure:\
+			$(SRC)render/scene/figure/types/cylinder:\
+			$(SRC)render/scene/figure/types/plane:\
+			$(SRC)render/scene/figure/types/sphere:\
+			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\
-			$(SRC)render/loader/helpers:\
+			$(SRC)render/ray:\
+			$(SRC)render/ray/helpers:\
+			$(SRC)render/loader/helpers/loader_helper:\
+			$(SRC)render/loader/helpers/bar_helper:\
 			$(SRC)render/loader/thread:\
-			$(SRC)render/loader/thread/helpers:\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
-			$(SRC)shared/color:\
-			$(SRC)shared/coordinates:\
-			$(SRC)shared/size/:\
+			$(SRC)render/utils/color:\
+			$(SRC)render/utils/coordinates:\
+			$(SRC)utils/size/:\
 			$(SRC)utils:\
+
+
+#----SHARED----#
+SRCS = miniRT.c \
+	scene.c \
+	errors.c \
+	file_utils.c \
+	light.c \
+	color.c \
+	camera.c \
+	coordinates.c \
+	figure.c \
+	cylinder.c \
+	plane.c \
+	sphere.c \
+	render.c \
+	window.c \
+	renderer.c \
+	vector.c \
+	render_helper.c \
+	window_helper.c \
+	loader.c \
+	loader_helper.c \
+	size.c \
+	images.c \
+	loader_thread.c \
+	bar_helper.c \
+	ray_helper.c \
+	ray.c \
+	light_utils.c \
+	ambient_light.c
+
+OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
+DEPS = $(OBJS:%.o=%.d)
+
 
 
 #----- R U L E S -----#
@@ -175,9 +184,9 @@ $(BIN_DIR)%.o: %.c Makefile
 
 clean: libft_clean
 	@rm -rf $(BIN_DIR)
-	@echo "$(RED)Binaries deleted$(DEF_COLOR)"
+	@echo "$(RED)Binaries deleted$(DEF_COLOR)\n"
 
-fclean: libft_fclean mlx_fclean clean
+fclean: clean libft_fclean mlx_fclean
 	@rm -rf $(NAME)
 	@echo "$(RED)Executable deleted$(DEF_COLOR)\n"
 

@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "ft_strncmp.h"
 
 void	jump_spaces(char **str)
 {

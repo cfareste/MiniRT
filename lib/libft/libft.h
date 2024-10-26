@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/17 14:00:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:03:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int			ft_stroccurrences(char *str, char c);
 
 int			ft_stroccurrences_set(char *str, char *set);
 
-int			ft_normalize(int value, int min, int max);
+int			ft_clamp(int value, int min, int max);
 
 long		ft_closest_multiple(long n, long x);
 

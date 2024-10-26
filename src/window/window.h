@@ -9,28 +9,24 @@
 # define ICON_PATH "assets/images/icon.png"
 
 # include "MLX42.h"
-# include "scene/scene.h"
-# include "render/starter/starter_bonus.h"
-# include "shared/size/size.h"
+# include "render/render.h"
+# include "utils/size/size.h"
 
 typedef struct s_resize
 {
 	t_size	size;
-	double			last_resize;
+	double	last_resize;
 }	t_resize;
 
 typedef struct s_window
 {
-	t_size	size;
-	mlx_image_t		*image;
-	pthread_mutex_t	image_mutex;
+	t_size			size;
 	mlx_texture_t	*icon;
 	mlx_t			*mlx;
-	t_scene			scene;
 	t_render		render;
 	t_resize		resize;
 }	t_window;
 
-void	start_window(t_window *window);
+void	init_window(t_window *window);
 
 #endif
