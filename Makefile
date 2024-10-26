@@ -115,6 +115,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/sphere:\
+			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\
@@ -159,7 +160,8 @@ SRCS = miniRT.c \
 	ray_helper.c \
 	ray.c \
 	light_utils.c \
-	ambient_light.c
+	ambient_light.c \
+	cone.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

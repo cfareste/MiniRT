@@ -4,6 +4,7 @@
 # include "types/sphere/sphere.h"
 # include "types/plane/plane.h"
 # include "types/cylinder/cylinder.h"
+# include "types/cone/cone.h"
 # include "render/utils/coordinates/coordinates.h"
 # include "render/utils/color/color.h"
 # include "render/ray/ray.h"
@@ -24,6 +25,7 @@ typedef struct s_figure
 		t_sphere_attrs		*sp_attrs;
 		t_plane_attrs		*pl_attrs;
 		t_cylinder_attrs	*cy_attrs;
+		t_cone_attrs		*co_attrs;
 	};
 	t_figure		*next;
 }	t_figure;

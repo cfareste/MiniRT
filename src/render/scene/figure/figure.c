@@ -26,6 +26,8 @@ int	push_figure(char **parts, t_figure **figure)
 		new = new_plane(parts);
 	else if (ft_strcmp(parts[0], SPHERE_ID) == EQUAL_STRINGS)
 		new = new_sphere(parts);
+	else if (ft_strcmp(parts[0], CONE_ID) == EQUAL_STRINGS)
+		new = new_cone(parts);
 	else
 		return (0);
 	if (!*figure)
