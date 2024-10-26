@@ -58,3 +58,10 @@ t_figure	*new_plane(char **parts)
 	plane->normal = normal;
 	return (plane);
 }
+
+void	set_plane(t_figure *plane, t_coordinates *position, t_plane_attrs *attrs)
+{
+	plane->hit = hit;
+	plane->pl_attrs = attrs;
+	plane->position = *position;
+}

@@ -4,7 +4,7 @@
 
 typedef struct s_sphere_attrs
 {
-	double	diameter;
+	double	radius;
 }	t_sphere_attrs;
 
 typedef struct s_figure	t_figure;

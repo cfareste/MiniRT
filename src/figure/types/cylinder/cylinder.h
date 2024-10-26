@@ -6,7 +6,7 @@
 
 typedef struct s_cylinder_attrs
 {
-	double			diameter;
+	double			radius;
 	double			height;
 	t_coordinates	orientation;
 }	t_cylinder_attrs;
