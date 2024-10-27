@@ -4,6 +4,7 @@
 
 #include "render/utils/color/color.h"
 #include "render/scene/figure/figure.h"
+#include "render/utils/point/point.h"
 #include "render/ray/ray.h"
 
 typedef struct s_cylinder_attrs

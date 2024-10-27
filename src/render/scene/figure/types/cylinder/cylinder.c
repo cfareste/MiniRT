@@ -18,49 +18,6 @@ static void	print_attrs(void *param)
 		attrs->radius, attrs->height);
 }
 
-void	print_vector(char *name, t_vector *vec)
-{
-	printf("%s: (%.10f, %.10f, %.10f)\n", name, vec->x, vec->y, vec->z);
-}
-
-void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
-	t_vector *rotated)
-{
-	t_vector	aux;
-	float		dot_product;
-	float		cosine;
-	float		sine;
-
-	cross(axis, vec, &aux);
-	cosine = cos(angle);
-	sine = sin(angle);
-	dot_product = dot(vec, axis);
-	rotated->x = (vec->x * cosine) + (aux.x * sine)
-		+ (dot_product * axis->x * (1 - cosine));
-	rotated->y = (vec->y * cosine) + (aux.y * sine)
-		+ (dot_product * axis->y * (1 - cosine));
-	rotated->z = (vec->z * cosine) + (aux.z * sine)
-		+ (dot_product * axis->z * (1 - cosine));
-}
-
-void	rotate_reference_system(t_vector *vec, t_point *point,
-	t_point *cy_center, t_vector *normal)
-{
-	t_vector	ideal;
-	t_vector	axis;
-	float		angle;
-
-	get_axis(&ideal, BACK);
-	cross(normal, &ideal, &axis);
-	if (axis.x == 0.0 && axis.y == 0.0 && axis.z == 0.0)
-		return ;
-	normalize(&axis);
-	angle = acos(dot(normal, &ideal));
-	rotate_vector(vec, &axis, angle, vec);
-	rotate_vector(point, &axis, angle, point);
-	rotate_vector(cy_center, &axis, angle, cy_center);
-}
-
 float	get_height(t_point *point, t_point *center, float base)
 {
 	t_vector	center_to_point;
@@ -175,7 +132,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	get_vector(&ray->origin, &figure->position, &refsys.ray.origin);
 	refsys.ray.direction = ray->direction;
 	ft_bzero(&refsys.center, sizeof(t_point));
-	rotate_reference_system(&refsys.ray.direction, &refsys.ray.origin, &refsys.center, &figure->cy_attrs->orientation);
+	rotate_reference_system(&figure->cy_attrs->orientation, &refsys.ray.direction, &refsys.ray.origin, &refsys.center);
 	hitted = hit_base(&refsys, figure->cy_attrs->height / 2.0, figure->cy_attrs->radius, distance);
 	hitted |= hit_body(&refsys, figure, ray, distance);
 	hitted |= hit_base(&refsys, -figure->cy_attrs->height / 2.0, figure->cy_attrs->radius, distance);

@@ -2,6 +2,26 @@
 #include "render/utils/vector/vector.h"
 #include <math.h>
 
+void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
+	t_vector *rotated)
+{
+	t_vector	aux;
+	float		dot_product;
+	float		cosine;
+	float		sine;
+
+	cross(axis, vec, &aux);
+	cosine = cos(angle);
+	sine = sin(angle);
+	dot_product = dot(vec, axis);
+	rotated->x = (vec->x * cosine) + (aux.x * sine)
+		+ (dot_product * axis->x * (1 - cosine));
+	rotated->y = (vec->y * cosine) + (aux.y * sine)
+		+ (dot_product * axis->y * (1 - cosine));
+	rotated->z = (vec->z * cosine) + (aux.z * sine)
+		+ (dot_product * axis->z * (1 - cosine));
+}
+
 void	get_vector(t_coordinates *final, t_coordinates *start, t_vector *vec)
 {
 	vec->x = final->x - start->x;

@@ -6,6 +6,7 @@
 # include "types/sphere/sphere.h"
 # include "types/cylinder/cylinder.h"
 # include "render/utils/color/color.h"
+# include "render/utils/point/point.h"
 # include "render/utils/vector/vector.h"
 # include "render/utils/coordinates/coordinates.h"
 

@@ -3,8 +3,8 @@
 #define CAMERA_ID 'C'
 
 #include "utils/size/size.h"
+#include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_viewport
 {

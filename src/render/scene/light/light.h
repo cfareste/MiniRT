@@ -3,6 +3,7 @@
 
 # include "float.h"
 # include "render/utils/color/color.h"
+# include "render/utils/point/point.h"
 # include "render/utils/coordinates/coordinates.h"
 
 typedef enum e_light_types

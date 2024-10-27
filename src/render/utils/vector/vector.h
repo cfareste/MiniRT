@@ -18,6 +18,9 @@ void	cross(t_vector *vec1, t_vector *vec2, t_vector *res);
 
 float	dot(t_vector *vec1, t_vector *vec2);
 
+void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
+			t_vector *rotated);
+
 void	get_vector(t_coordinates *final, t_coordinates *start, t_vector *vec);
 
 void	get_axis(t_vector *axis, t_pointing direction);
