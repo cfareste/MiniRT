@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/26 15:03:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/27 16:26:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "ft_strncmp.h"
+# define SPACES_CHARS " \t\n\v\f\r"
 
 int			ft_isalpha(int c);
 

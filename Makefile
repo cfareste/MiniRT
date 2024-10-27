@@ -218,7 +218,7 @@ $(MLX_DIR):
 	curl -sOL $(MLX_URL)
 	tar -xpf v$(MLX_VERSION).tar.gz
 	rm -rf v$(MLX_VERSION).tar.gz
-	mv -f MLX42-$(MLX_VERSION) lib/mlx
+	mv -f MLX42-$(MLX_VERSION) $(MLX_DIR)
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
 $(MLX_LIB): | $(MLX_DIR)

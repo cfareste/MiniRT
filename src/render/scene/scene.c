@@ -7,10 +7,12 @@ void	set_scene_from_str(char *line, t_scene *scene)
 {
 	char	**scene_args;
 
-	scene_args = ft_split(line, ' ');
+	scene_args = ft_split_set(line, SPACES_CHARS);
 	if (!scene_args)
 		throw_sys_error("ft_split");
-	if (*scene_args[0] == AMBIENT_LIGHT_ID)
+	else if (!scene_args[0])
+		(void) NULL;
+	else if (*scene_args[0] == AMBIENT_LIGHT_ID)
 		set_ambient_light(scene_args, &scene->ambient_light);
 	else if (*scene_args[0] == CAMERA_ID)
 		set_camera(scene_args, &scene->camera);
@@ -25,7 +27,7 @@ void	set_scene_from_str(char *line, t_scene *scene)
 	free_matrix(scene_args);
 }
 
-void	set_scene_fd(int fd, t_scene *scene)
+void	set_scene_from_fd(int fd, t_scene *scene)
 {
 	char	*line;
 
@@ -101,7 +103,7 @@ void	set_scene_from_filename(t_scene *scene, char *filename)
 	scene->name = get_file_name(filename, SCENE_FILE_EXTENSION);
 	if (!scene->name)
 		throw_sys_error("trying to allocate scene name");
-	set_scene_fd(fd, scene);
+	set_scene_from_fd(fd, scene);
 	close(fd);
 	check_scene(scene);
 	print_scene(scene);
