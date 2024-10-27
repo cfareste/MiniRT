@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:58:57 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/24 23:27:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:24:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,39 @@ static int	is_negative(char *str)
 	return (neg);
 }
 
-static double	exec_ft_atod(char *str, void (*crash)(char *), char *param)
+static void	sum_decimals(char *str, double *num, int is_negative)
 {
-	char		**str_parts;
-	double		num;
 	long long	mod;
 	int			i;
-	int			neg;
+
+	i = -1;
+	mod = 1;
+	while (str[++i])
+		mod *= 10;
+	if (is_negative)
+		*num -= (double) ft_atoll(str) / mod;
+	else
+		*num += (double) ft_atoll(str) / mod;
+}
+
+static double	exec_ft_atod(char *str, void (*crash)(char *), char *param)
+{
+	char	**str_parts;
+	double	num;
+	int		neg;
 
 	str_parts = ft_split(str, '.');
 	if (!str_parts)
 		return (crash(param), 0);
-	i = -1;
 	neg = is_negative(str_parts[0]);
-	num = (double) ft_atoll(str_parts[0]);
+	num = 0.0;
 	if (str_parts[1] && *str_parts[1])
 	{
-		i = -1;
-		mod = 1;
-		while (str_parts[1][++i])
-			mod *= 10;
-		if (neg)
-			num -= (double) ft_atoll(str_parts[1]) / mod;
-		else
-			num += (double) ft_atoll(str_parts[1]) / mod;
+		num = (double) ft_atoll(str_parts[0]);
+		sum_decimals(str_parts[1], &num, neg);
 	}
+	else if (str_parts[0] && *str_parts[0])
+		sum_decimals(str_parts[0], &num, neg);
 	free_matrix(str_parts);
 	return (num);
 }
