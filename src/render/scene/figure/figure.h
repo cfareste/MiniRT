@@ -11,13 +11,13 @@
 
 typedef struct s_figure
 {
-	char	*type;
-	t_point	position;
-	t_color	color;
-	int		(*hit)(t_figure *figure, t_ray *ray, float *distance);
-	void	(*normal)(t_figure *figure, t_point *point, t_vector *res);
-	void	(*print_attrs)(void *attrs);
-	void	(*free)(t_figure *figure);
+	char		*type;
+	t_point		position;
+	t_color		color;
+	int			(*hit)(t_figure *figure, t_ray *ray, float *distance);
+	void		(*normal)(t_figure *figure, t_point *point, t_vector *res);
+	void		(*print_attrs)(void *attrs);
+	void		(*free)(t_figure *figure);
 	union
 	{
 		void				*attrs;
@@ -25,7 +25,7 @@ typedef struct s_figure
 		t_plane_attrs		*pl_attrs;
 		t_cylinder_attrs	*cy_attrs;
 	};
-	t_figure		*next;
+	t_figure	*next;
 }	t_figure;
 
 int			push_figure(char **parts, t_figure **figure);

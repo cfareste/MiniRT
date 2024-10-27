@@ -6,4 +6,4 @@
 typedef t_coordinates	t_point;
 
 void	translate_point(t_point *point, t_vector *direction, float scalar,
-	t_point *res);
+			t_point *res);
