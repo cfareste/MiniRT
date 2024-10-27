@@ -18,6 +18,8 @@ void	cross(t_vector *vec1, t_vector *vec2, t_vector *res);
 
 float	dot(t_vector *vec1, t_vector *vec2);
 
+void	multiply_vector_scalar(t_vector *vec, float scalar, t_vector *res);
+
 void	rotate_vector(t_vector *vec, t_vector *axis, float angle,
 			t_vector *rotated);
 

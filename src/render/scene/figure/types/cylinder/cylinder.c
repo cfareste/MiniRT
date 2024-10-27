@@ -150,11 +150,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	if (is_base == 1)
 		*res = figure->cy_attrs->orientation;
 	else if (is_base == -1)
-	{
-		res->x = -figure->cy_attrs->orientation.x;
-		res->y = -figure->cy_attrs->orientation.y;
-		res->z = -figure->cy_attrs->orientation.z;
-	}
+		multiply_vector_scalar(&figure->cy_attrs->orientation, -1, res);
 	else
 	{
 		get_vector(point, &figure->position, &center_to_point);

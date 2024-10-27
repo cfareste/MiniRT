@@ -150,7 +150,7 @@ SRCS = miniRT.c \
 	window.c \
 	renderer.c \
 	vector.c \
-	product.c \
+	operation.c \
 	point.c \
 	render_helper.c \
 	window_helper.c \

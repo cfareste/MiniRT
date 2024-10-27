@@ -11,3 +11,10 @@ float	dot(t_vector *vec1, t_vector *vec2)
 {
 	return ((vec1->x * vec2->x) + (vec1->y * vec2->y) + (vec1->z * vec2->z));
 }
+
+void	multiply_vector_scalar(t_vector *vec, float scalar, t_vector *res)
+{
+	res->x = vec->x * scalar;
+	res->y = vec->y * scalar;
+	res->z = vec->z * scalar;
+}
