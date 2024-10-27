@@ -113,6 +113,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/light/ambient_light:\
 			$(SRC)render/scene/figure:\
 			$(SRC)render/scene/figure/types/cylinder:\
+			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/renderer:\
@@ -129,6 +130,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
 			$(SRC)render/utils/point:\
+			$(SRC)render/utils/reference_system:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
@@ -144,6 +146,7 @@ SRCS = miniRT.c \
 	coordinates.c \
 	figure.c \
 	cylinder.c \
+	cylinder_helpers.c \
 	plane.c \
 	sphere.c \
 	render.c \
@@ -152,6 +155,7 @@ SRCS = miniRT.c \
 	vector.c \
 	operation.c \
 	point.c \
+	reference_system.c \
 	render_helper.c \
 	window_helper.c \
 	loader.c \

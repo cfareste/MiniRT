@@ -14,10 +14,4 @@ typedef struct s_cylinder_attrs
 	t_vector	orientation;
 }	t_cylinder_attrs;
 
-typedef struct s_reference_system
-{
-	t_ray	ray;
-	t_point	center;
-}	t_reference_system;
-
 t_figure	*new_cylinder(char **parts);
