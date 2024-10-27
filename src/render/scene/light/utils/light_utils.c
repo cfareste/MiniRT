@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/10/27 20:55:33 by cfidalgo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "render/render.h"
 #include "render/ray/ray.h"
 #include "render/utils/vector/vector.h"

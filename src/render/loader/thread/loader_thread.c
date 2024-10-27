@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loader_thread.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/27 20:53:02 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/10/27 20:53:02 by cfidalgo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../helpers/bar_helper/bar_helper.h"
 #include "../helpers/loader_helper/loader_helper.h"
 #include "utils/utils.h"
