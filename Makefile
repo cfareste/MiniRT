@@ -112,6 +112,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/light/utils:\
 			$(SRC)render/scene/light/ambient_light:\
 			$(SRC)render/scene/figure:\
+			$(SRC)render/scene/figure/helpers:\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
@@ -145,6 +146,7 @@ SRCS = miniRT.c \
 	camera.c \
 	coordinates.c \
 	figure.c \
+	figure_helpers.c \
 	cylinder.c \
 	cylinder_helpers.c \
 	plane.c \

@@ -1,5 +1,6 @@
 #include "libft.h"
 #include "utils/utils.h"
+#include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cylinder/helpers/cylinder_helpers.h"
 #include <math.h>
 
