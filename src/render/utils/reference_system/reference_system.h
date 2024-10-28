@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:12 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:48:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ typedef struct s_reference_system
 	t_point	center;
 }	t_reference_system;
 
-void	rotate_reference_system(t_vector *normal, t_vector *vec,
-			t_point *point, t_point *center);
+float	rotate_reference_system(t_vector *normal, t_vector *vec,
+			t_point *point);
