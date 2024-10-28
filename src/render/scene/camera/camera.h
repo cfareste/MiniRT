@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 13:06:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:08:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define CAMERA_ID 67
+#define CAMERA_ID "C"
 #include "utils/size/size.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"

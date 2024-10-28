@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:16:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@
 void	set_scene_from_str(char *line, t_scene *scene)
 {
 	char	**scene_args;
+	int		is_char;
 
 	scene_args = ft_split(line, ' ');
 	if (!scene_args)
 		throw_sys_error("ft_split");
-	if (*scene_args[0] == AMBIENT_LIGHT_ID)
+	is_char = ft_strlen(scene_args[0]) == 1;
+	if (is_char && *scene_args[0] == AMBIENT_LIGHT_ID)
 		set_ambient_light(scene_args, &scene->ambient_light);
-	else if (*scene_args[0] == CAMERA_ID)
+	else if (is_char && *scene_args[0] == CAMERA_ID[0])
 		set_camera(scene_args, &scene->camera);
-	else if (*scene_args[0] == LIGHT_ID_MANDATORY || *scene_args[0] == LIGHT_ID)
+	else if (is_char && (*scene_args[0] == LIGHT_ID_MANDATORY
+			|| *scene_args[0] == LIGHT_ID))
 		push_light(scene_args, &scene->lights);
 	else if (!push_figure(scene_args, &scene->figures) && *scene_args[0] != '#')
 	{
