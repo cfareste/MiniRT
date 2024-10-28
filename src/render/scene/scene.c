@@ -15,7 +15,7 @@
 #include "scene.h"
 #include <fcntl.h>
 
-void	set_scene_attr(char *line, t_scene *scene)
+void	set_scene_from_str(char *line, t_scene *scene)
 {
 	char	**scene_args;
 
@@ -37,7 +37,7 @@ void	set_scene_attr(char *line, t_scene *scene)
 	free_matrix(scene_args);
 }
 
-void	set_scene(int fd, t_scene *scene)
+void	set_scene_fd(int fd, t_scene *scene)
 {
 	char	*line;
 
@@ -45,7 +45,7 @@ void	set_scene(int fd, t_scene *scene)
 	while (line != NULL)
 	{
 		if (*line)
-			set_scene_attr(line, scene);
+			set_scene_from_str(line, scene);
 		free(line);
 		line = get_next_line(fd, 0);
 	}
@@ -100,7 +100,7 @@ void	print_scene(t_scene *scene)
 	}
 }
 
-void	set_scene_from_file(t_scene *scene, char *filename)
+void	set_scene_from_filename(t_scene *scene, char *filename)
 {
 	int	fd;
 
@@ -113,7 +113,7 @@ void	set_scene_from_file(t_scene *scene, char *filename)
 	scene->name = get_file_name(filename, SCENE_FILE_EXTENSION);
 	if (!scene->name)
 		throw_sys_error("trying to allocate scene name");
-	set_scene(fd, scene);
+	set_scene_fd(fd, scene);
 	close(fd);
 	check_scene(scene);
 	print_scene(scene);

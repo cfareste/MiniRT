@@ -1,0 +1,35 @@
+name: miniRT CI
+
+on: [push, pull_request]
+
+jobs:
+  norminette_job:
+    runs-on: ubuntu-latest
+    name: norminette
+    steps:
+    - uses: actions/checkout@v2
+    - uses: alexandregv/norminette-action@v3
+      with:
+        flags: '.'
+#   linux-tests:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: build
+#       run: make
+#     - name: amethyst-test
+#       run: bash tests/amethyst-test.sh
+#     - name: blank-test
+#       run: make test
+#   macos-tests:
+#     runs-on: macos-latest
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: build
+#       run: make
+#     - name: amethyst-test
+#       run: bash tests/amethyst-test.sh
+#     - name: blank-test
+#       run: make test
+#     - name: mpanic-test
+#       run: make clean mpanic

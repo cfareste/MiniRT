@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 -g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
 
 
 #----DIRS----#
@@ -78,14 +78,18 @@ MLX_COMP_FLAGS = -DDEBUG=1 -DGLFW_FETCH=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 INCLUDES += -I$(MLX_DIR)/include/MLX42
 LIBRARIES += -L$(MLX_BUILD_DIR)
-LIBRARIES_DEPS += -ldl -lm -lpthread -lglfw3 -lmlx42
+LIBRARIES_DEPS += -ldl -lm -lpthread -lmlx42
 ifeq ($(UNAME_S), Darwin)
+	LIBRARIES_DEPS += -lglfw3
 	ifeq ($(shell test -f $(HOMEBREW_PREFIX)/lib/libglfw3.a || echo "not_installed"), not_installed)
 		LIBRARIES += -L$(MLX_BUILD_DIR)/_deps/glfw-build/src
 	else
 		LIBRARIES += -L$(HOMEBREW_PREFIX)/lib
 	endif
 	LIBRARIES_DEPS += -framework Cocoa -framework OpenGL -framework IOKit
+endif
+ifeq ($(UNAME_S), Linux)
+	LIBRARIES_DEPS += -lglfw
 endif
 
 
@@ -117,6 +121,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/sphere:\
+			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\
@@ -169,7 +174,8 @@ SRCS = miniRT.c \
 	ray_helper.c \
 	ray.c \
 	light_utils.c \
-	ambient_light.c
+	ambient_light.c \
+	cone.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -231,7 +237,7 @@ $(MLX_DIR):
 
 $(MLX_LIB): | $(MLX_DIR)
 	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -B build/ &>/dev/null && make --no-print-directory -C build > /dev/null
+	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:
