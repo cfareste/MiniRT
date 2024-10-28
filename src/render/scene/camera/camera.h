@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:59:05 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
 #define CAMERA_ID 'C'
-
 #include "utils/size/size.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
