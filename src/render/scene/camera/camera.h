@@ -6,16 +6,15 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 13:02:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:06:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-# define CAMERA_H
-# define CAMERA_ID 'C'
-# include "utils/size/size.h"
-# include "render/utils/point/point.h"
-# include "render/utils/vector/vector.h"
+#pragma once
+#define CAMERA_ID 67
+#include "utils/size/size.h"
+#include "render/utils/point/point.h"
+#include "render/utils/vector/vector.h"
 
 typedef struct s_viewport
 {
@@ -42,5 +41,3 @@ void	set_camera(char **parts, t_camera **camera);
 void	print_camera(t_camera *camera);
 
 void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size);
-
-#endif
