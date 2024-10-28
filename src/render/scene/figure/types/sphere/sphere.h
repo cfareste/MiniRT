@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 12:55:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:57:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_sphere_attrs
 	double	radius;
 }	t_sphere_attrs;
 
-typedef struct s_figure t_figure;
+typedef struct s_figure	t_figure;
 
 t_figure	*new_sphere(char **parts);
 
