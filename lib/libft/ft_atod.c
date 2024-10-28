@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:58:57 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/27 17:24:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:36:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,15 @@ static void	sum_decimals(char *str, double *num, int is_negative)
 		*num += (double) ft_atoll(str) / mod;
 }
 
-static double	exec_ft_atod(char *str, void (*crash)(char *), char *param)
+double	ft_atod(char *str)
 {
-	char	**str_parts;
 	double	num;
-	int		neg;
+	int		point_index;
 
-	str_parts = ft_split(str, '.');
-	if (!str_parts)
-		return (crash(param), 0);
-	neg = is_negative(str_parts[0]);
-	num = 0.0;
-	if (str_parts[1] && *str_parts[1])
-	{
-		num = (double) ft_atoll(str_parts[0]);
-		sum_decimals(str_parts[1], &num, neg);
-	}
-	else if (str_parts[0] && *str_parts[0])
-		sum_decimals(str_parts[0], &num, neg);
-	free_matrix(str_parts);
+	point_index = ft_index('.', str);
+	if (point_index == -1)
+		return ((double) ft_atoll(str));
+	num = (double) ft_atoll(str);
+	sum_decimals(str + point_index + 1, &num, is_negative(str));
 	return (num);
-}
-
-double	ft_atod(char *str, void (*crash_fun)(char *), char *param)
-{
-	if (ft_stroccurrences(str, '.'))
-		return (exec_ft_atod(str, crash_fun, param));
-	else
-		return ((double) ft_atol(str));
 }

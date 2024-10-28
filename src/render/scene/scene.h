@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:33:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_scene
 	char		*name;
 }	t_scene;
 
-void	set_scene_from_filename(t_scene *scene, char *filename);
+void	parse_scene_from_file(t_scene *scene, char *filename);
+
+void	check_scene(t_scene *scene);
+
+void	print_scene(t_scene *scene);
 
 #endif

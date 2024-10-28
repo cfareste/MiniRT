@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:38 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:57:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils.h"
+#include "../../parser/figure_parser.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 
@@ -49,17 +50,17 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	*res = figure->pl_attrs->orientation;
 }
 
-t_figure	*new_plane(char **parts)
+t_figure	*parse_plane(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*plane;
 
 	if (!parts[1] || !parts[2] || !parts[3])
-		throw_error("Missing some plane parameter");
-	plane = new_figure(parts[0], parts[1], parts[3]);
+		throw_parse_err(ctx, "Missing some plane parameter");
+	plane = parse_figure(ctx, parts[0], parts[1], parts[3]);
 	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));
 	if (!plane->pl_attrs)
 		throw_sys_error("trying to allocate plane attributes");
-	set_coordinates(parts[2], &plane->pl_attrs->orientation);
+	parse_coordinates(ctx, parts[2], &plane->pl_attrs->orientation);
 	normalize(&plane->pl_attrs->orientation);
 	plane->print_attrs = print_attrs;
 	plane->hit = hit;

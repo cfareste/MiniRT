@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:54 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:07:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_color
 	float	alpha;
 }	t_color;
 
-void	set_color(char *params, t_color *color);
+void	parse_color(t_parser_ctx *ctx, char *params, t_color *color);
 
 int		get_color_value(t_color *color);
 

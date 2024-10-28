@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:57:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils.h"
+#include "../../parser/figure_parser.h"
 #include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cylinder/helpers/cylinder_helpers.h"
 #include <math.h>
@@ -74,20 +75,19 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	}
 }
 
-t_figure	*new_cylinder(char **parts)
+t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cylinder;
 
 	if (!parts[1] || !parts[2] || !parts[3] || !parts[4] || !parts[5])
-		throw_error("Missing some cylinder parameter");
-	cylinder = new_figure(parts[0], parts[1], parts[5]);
+		throw_parse_err(ctx, "Missing some cylinder parameter");
+	cylinder = parse_figure(ctx, parts[0], parts[1], parts[5]);
 	cylinder->cy_attrs = ft_calloc(1, sizeof(t_cylinder_attrs));
 	if (!cylinder->cy_attrs)
 		throw_sys_error("trying to allocate cylinder attributes");
-	set_coordinates(parts[2], &cylinder->cy_attrs->orientation);
-	cylinder->cy_attrs->radius = ft_atod(parts[3],
-			throw_sys_error, "ft_atod") / 2.0f;
-	cylinder->cy_attrs->height = ft_atod(parts[4], throw_sys_error, "ft_atod");
+	parse_coordinates(ctx, parts[2], &cylinder->cy_attrs->orientation);
+	cylinder->cy_attrs->radius = parse_double(ctx, parts[3]) / 2.0f;
+	cylinder->cy_attrs->height = parse_double(ctx, parts[4]);
 	normalize(&cylinder->cy_attrs->orientation);
 	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;

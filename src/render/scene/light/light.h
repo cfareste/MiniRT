@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:43:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ typedef struct s_light
 	t_color			color;
 }	t_light;
 
-int		set_ambient_light(char **parts, t_light **light);
-
-void	push_light(char **parts, t_light **lights);
+t_light	*new_light(t_light **lights);
 
 void	free_lights(t_light *lights);
 

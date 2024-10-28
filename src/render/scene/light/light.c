@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:37 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:43:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils/utils.h"
 #include "light.h"
 
-static t_light	*new_light(t_light **lights)
+t_light	*new_light(t_light **lights)
 {
 	t_light	*new;
 	t_light	*aux;
@@ -33,21 +33,6 @@ static t_light	*new_light(t_light **lights)
 		aux->next = new;
 	}
 	return (new);
-}
-
-void	push_light(char **parts, t_light **lights)
-{
-	t_light	*light;
-
-	if (!parts[1] || !parts[2] || !parts[3])
-		throw_error("Missing light params");
-	light = new_light(lights);
-	light->type = *parts[0];
-	set_coordinates(parts[1], &light->position);
-	light->brightness = ft_atod(parts[2], throw_sys_error, "ft_atod");
-	set_color(parts[3], &light->color);
-	if (light->brightness < 0 || light->brightness > 1.0)
-		throw_error("Light brightness must be [0.0,1.0]");
 }
 
 void	free_lights(t_light *lights)

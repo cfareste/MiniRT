@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
@@ -111,17 +111,22 @@ endif
 vpath %.c	$(SRC):\
 			$(SRC)render:\
 			$(SRC)render/scene:\
+			$(SRC)render/scene/parser:\
 			$(SRC)render/scene/camera:\
+			$(SRC)render/scene/camera/parser:\
 			$(SRC)render/scene/light:\
+			$(SRC)render/scene/light/parser:\
 			$(SRC)render/scene/light/utils:\
 			$(SRC)render/scene/light/ambient_light:\
 			$(SRC)render/scene/figure:\
+			$(SRC)render/scene/figure/parser:\
 			$(SRC)render/scene/figure/helpers:\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/cone:\
+			$(SRC)parser:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\
@@ -175,7 +180,12 @@ SRCS = miniRT.c \
 	ray.c \
 	light_utils.c \
 	ambient_light.c \
-	cone.c
+	cone.c \
+	parser.c \
+	camera_parser.c \
+	light_parser.c \
+	scene_parser.c \
+	figure_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

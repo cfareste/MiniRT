@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:54:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math.h"
 #include "libft.h"
+#include "../../parser/figure_parser.h"
 #include "utils/utils.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
@@ -57,18 +58,17 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	normalize(res);
 }
 
-t_figure	*new_sphere(char **parts)
+t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*sphere;
 
 	if (!parts[1] || !parts[2] || !parts[3])
 		throw_error("Missing some sphere parameter");
-	sphere = new_figure(parts[0], parts[1], parts[3]);
+	sphere = parse_figure(ctx, parts[0], parts[1], parts[3]);
 	sphere->sp_attrs = ft_calloc(1, sizeof(t_sphere_attrs));
 	if (!sphere->sp_attrs)
 		throw_sys_error("trying to allocate sphere attributes");
-	sphere->sp_attrs->radius = ft_atod(parts[2],
-			throw_sys_error, "ft_atod") / 2.0;
+	sphere->sp_attrs->radius = parse_double(ctx, parts[2]) / 2.0;
 	sphere->print_attrs = print_attrs;
 	sphere->hit = hit;
 	sphere->normal = normal;

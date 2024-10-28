@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:20:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils/utils.h"
 #include "render/utils/vector/vector.h"
 
-void	set_color(char *params, t_color *color)
+void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 {
 	char	**color_parts;
 
@@ -23,12 +23,12 @@ void	set_color(char *params, t_color *color)
 	if (!color_parts)
 		throw_sys_error("ft_split");
 	if (!color_parts[0] || !color_parts[1] || !color_parts[2])
-		throw_error("Missing color params");
-	color->red = ft_atoi(color_parts[0]) / (float) 255;
-	color->green = ft_atoi(color_parts[1]) / (float) 255;
-	color->blue = ft_atoi(color_parts[2]) / (float) 255;
+		throw_parse_err(ctx, "Missing color params");
+	color->red = parse_int(ctx, color_parts[0]) / (float) 255;
+	color->green = parse_int(ctx, color_parts[1]) / (float) 255;
+	color->blue = parse_int(ctx, color_parts[2]) / (float) 255;
 	if (color->red > 1.0 || color->green > 1.0 || color->blue > 1.0)
-		throw_error("Color params must be [0,255]");
+		throw_parse_err(ctx, "Color params must be part of range [0,255]");
 	free_matrix(color_parts);
 }
 

@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:07:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils.h"
+#include "parser/parser.h"
 #include "../light.h"
 
-int	set_ambient_light(char **parts, t_light **light)
+void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
 {
 	if (*light)
-		throw_error("Multiple ambient lights are not allowed");
+		throw_parse_err(ctx, "Multiple ambient lights are not allowed");
 	if (!parts[1] || !parts[2])
-		throw_error("Missing ambient light params");
+		throw_parse_err(ctx, "Missing ambient light params");
 	*light = ft_calloc(1, sizeof(t_light));
 	if (!*light)
 		throw_sys_error("trying to allocate ambient light");
 	(*light)->type = AMBIENT_LIGHT_ID;
-	(*light)->brightness = ft_atod(parts[1], throw_sys_error, "ft_atod");
-	set_color(parts[2], &(*light)->color);
+	(*light)->brightness = parse_double(ctx, parts[1]);
+	parse_color(ctx, parts[2], &(*light)->color);
 	if ((*light)->brightness > 1.0 || (*light)->brightness < 0.0)
-		throw_error("Invalid brightness param for ambient light");
-	return (1);
+		throw_parse_err(ctx, "Invalid brightness param for ambient light");
 }
 
 int	get_sky_color(t_light *ambient_light)

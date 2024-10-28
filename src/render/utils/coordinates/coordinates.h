@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   coordinates.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:59 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:55:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/28 20:40:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "parser/parser.h"
 
 typedef struct s_coordinates
 {
@@ -19,4 +20,5 @@ typedef struct s_coordinates
 	double	z;
 }	t_coordinates;
 
-void	set_coordinates(char *str, t_coordinates *coordinates);
+void	parse_coordinates(t_parser_ctx *ctx, char *str,
+			t_coordinates *coordinates);

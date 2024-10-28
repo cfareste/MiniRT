@@ -6,12 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 12:57:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:57:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils.h"
+#include "../../parser/figure_parser.h"
 #include "render/scene/figure/figure.h"
 
 static void	print_attrs(void *param)
@@ -54,24 +55,22 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	res->z = figure->co_attrs->orientation.z;
 }
 
-t_figure	*new_cone(char **parts)
+t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
 
 	if (!parts[1] || !parts[2] || !parts[3])
 		throw_error("Missing some cone parameter");
-	cone = new_figure(parts[0], parts[1], parts[5]);
+	cone = parse_figure(ctx, parts[0], parts[1], parts[5]);
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));
 	if (!cone->co_attrs)
 		throw_sys_error("trying to allocate cone attributes");
 	cone->print_attrs = print_attrs;
 	cone->hit = hit;
 	cone->normal = normal;
-	set_coordinates(parts[2], &cone->co_attrs->orientation);
-	cone->co_attrs->radius = ft_atod(parts[3], throw_sys_error,
-			"allocating ft_atod in cone radius") / 2.0;
-	cone->co_attrs->height = ft_atod(parts[4], throw_sys_error,
-			"allocating ft_atod in cone height");
+	parse_coordinates(ctx, parts[2], &cone->co_attrs->orientation);
+	cone->co_attrs->radius = parse_double(ctx, parts[3]) / 2.0;
+	cone->co_attrs->height = parse_double(ctx, parts[4]);
 	normalize(&cone->co_attrs->orientation);
 	return (cone);
 }

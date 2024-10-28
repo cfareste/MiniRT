@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   strings.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:54:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 18:20:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/10/28 19:48:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# define SPHERE_ID "sp"
+#include "libft.h"
+#include "ft_strncmp.h"
 
-typedef struct s_sphere_attrs
+void	ft_jump_spaces(char **str)
 {
-	double	radius;
-}	t_sphere_attrs;
-
-typedef struct s_figure	t_figure;
-
-t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts);
-
-#endif
+	while (str && *str && **str && ft_stroccurrences(SPACES_CHARS, **str))
+		(*str)++;
+}

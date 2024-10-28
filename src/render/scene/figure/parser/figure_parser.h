@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings.c                                          :+:      :+:    :+:   */
+/*   figure_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:51 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/28 20:41:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strncmp.h"
+#pragma once
+#include "parser/parser.h"
+#include "../figure.h"
 
-void	jump_spaces(char **str)
-{
-	while (ft_strcmp(**str, ' ') == EQUAL_STRINGS)
-		(*str)++;
-}
+int			try_parse_figure(t_parser_ctx *ctx,
+				char **parts, t_figure **figure);
+
+t_figure	*parse_figure(t_parser_ctx *ctx, char *type,
+				char *coord_str, char *color_str);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 13:08:08 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:39:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "utils/size/size.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
+#include "parser/parser.h"
 
 typedef struct s_viewport
 {
@@ -35,8 +36,6 @@ typedef struct s_camera
 	t_viewport	viewport;
 	int			fov;
 }	t_camera;
-
-void	set_camera(char **parts, t_camera **camera);
 
 void	print_camera(t_camera *camera);
 
