@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:11 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:39:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	get_height(t_point *point, t_point *center, float base)
 
 	get_vector(point, center, &center_to_point);
 	hypotenuse = dot(&center_to_point, &center_to_point);
-	point_height = sqrt(hypotenuse - base * base);
+	point_height = sqrt(fabs(hypotenuse - base * base));
 	return (point_height);
 }
 
