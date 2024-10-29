@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 10:12:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:31:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,18 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 	return (1);
 }
 
-t_figure	*parse_figure(t_parser_ctx *ctx, char *type,
-				char *coord_str, char *color_str)
+t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 {
-	t_figure	*new;
+	t_figure	*figure;
 
-	(void) ctx;
-	new = ft_calloc(1, sizeof(t_figure));
-	if (!new)
+	figure = ft_calloc(1, sizeof(t_figure));
+	if (!figure)
 		throw_sys_error("trying to allocate new figure");
-	new->type = ft_strdup(type);
-	parse_coordinates(ctx, coord_str, &new->position);
-	parse_color(ctx, color_str, &new->color);
-	return (new);
+	figure->type = ft_strdup(parts[0]);
+	parse_coordinates(ctx, parts[1], &figure->position);
+	figure->glosiness = parse_double(ctx, parts[2]);
+	parse_color(ctx, parts[color_i], &figure->color);
+	if (figure->glosiness < 0)
+		throw_parse_err(ctx, "Glosiness must have a positive value");
+	return (figure);
 }

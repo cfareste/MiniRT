@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 10:16:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:08:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 
 	color_parts = ft_split(params, ',');
 	if (!color_parts)
-		throw_sys_error("ft_split color");
+		throw_parse_err(ctx, "ft_split color");
 	if (!color_parts[0] || !color_parts[1] || !color_parts[2])
 		throw_parse_err(ctx, "Missing color params");
 	color->red = parse_int(ctx, color_parts[0]) / (float) 255;

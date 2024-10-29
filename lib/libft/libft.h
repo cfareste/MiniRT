@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 19:51:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:13:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,7 @@ char		*ft_override_val(char *old, char *new);
 int			ft_index(char c, char *str);
 
 void		ft_jump_spaces(char **str);
+
+int			ft_matrix_len(char **matrix);
 
 #endif

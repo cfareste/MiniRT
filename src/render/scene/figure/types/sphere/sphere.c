@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 11:19:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:32:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*sphere;
 
-	if (!parts[1] || !parts[2] || !parts[3])
+	if (ft_matrix_len(parts) != FIG_ATT_LEN + 1)
 		throw_error("Missing some sphere parameter");
-	sphere = parse_figure(ctx, parts[0], parts[1], parts[3]);
+	sphere = parse_figure(ctx, parts, FIG_LAST_ATT + 2);
 	sphere->sp_attrs = ft_calloc(1, sizeof(t_sphere_attrs));
 	if (!sphere->sp_attrs)
 		throw_sys_error("trying to allocate sphere attributes");
-	sphere->sp_attrs->radius = parse_double(ctx, parts[2]) / 2.0;
+	sphere->sp_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 1]) / 2.0;
 	sphere->print_attrs = print_attrs;
 	sphere->hit = hit;
 	sphere->normal = normal;

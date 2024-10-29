@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 11:14:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:33:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *cylinder)
 	check_ori_vector_parsing(ctx, &cylinder->cy_attrs->orientation);
 	if (cylinder->cy_attrs->radius <= 0)
 		throw_parse_err(ctx, "Cylinder diameter must be a positive value");
-	else if (cylinder->cy_attrs->height <= 0)
+	else if (cylinder->cy_attrs->height < 0)
 		throw_parse_err(ctx, "Cylinder height must be a positive value");
 }
 
@@ -89,15 +89,17 @@ t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cylinder;
 
-	if (!parts[1] || !parts[2] || !parts[3] || !parts[4] || !parts[5])
+	if (ft_matrix_len(parts) != FIG_ATT_LEN + 3)
 		throw_parse_err(ctx, "Missing some cylinder parameter");
-	cylinder = parse_figure(ctx, parts[0], parts[1], parts[5]);
+	cylinder = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
 	cylinder->cy_attrs = ft_calloc(1, sizeof(t_cylinder_attrs));
 	if (!cylinder->cy_attrs)
 		throw_sys_error("trying to allocate cylinder attributes");
-	parse_coordinates(ctx, parts[2], &cylinder->cy_attrs->orientation);
-	cylinder->cy_attrs->radius = parse_double(ctx, parts[3]) / 2.0f;
-	cylinder->cy_attrs->height = parse_double(ctx, parts[4]);
+	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
+		&cylinder->cy_attrs->orientation);
+	cylinder->cy_attrs->radius = parse_double(ctx,
+			parts[FIG_LAST_ATT + 2]) / 2.0f;
+	cylinder->cy_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	normalize(&cylinder->cy_attrs->orientation);
 	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;
