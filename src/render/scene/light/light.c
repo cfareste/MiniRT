@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:37 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:43:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "light.h"
 
 t_light	*new_light(t_light **lights)

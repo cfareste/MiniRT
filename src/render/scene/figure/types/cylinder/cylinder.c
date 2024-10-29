@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 12:33:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "../../parser/figure_parser.h"
 #include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cylinder/helpers/cylinder_helpers.h"

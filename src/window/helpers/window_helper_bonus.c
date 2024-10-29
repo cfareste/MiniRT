@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   window_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "MLX42.h"
-#include "render/renderer/renderer.h"
+#include "render/renderer/renderer_bonus.h"
 
 void	window_resized(int32_t width, int32_t height, t_window *window)
 {

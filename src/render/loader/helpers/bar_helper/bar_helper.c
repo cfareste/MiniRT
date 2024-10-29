@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   bar_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:52:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:00:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../../loader.h"
+#include "../../loader_bonus.h"
 
 int	get_bar_total_width(int window_width)
 {

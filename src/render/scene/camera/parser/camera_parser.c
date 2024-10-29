@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 16:04:05 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../camera.h"
 #include "parser/parser.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
 {

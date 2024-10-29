@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader_thread.c                                    :+:      :+:    :+:   */
+/*   loader_thread_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:10:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../helpers/bar_helper/bar_helper.h"
-#include "../helpers/loader_helper/loader_helper.h"
-#include "utils/utils.h"
+#include "../helpers/loader_helper/loader_helper_bonus.h"
+#include "utils/utils_bonus.h"
 
 void	update_progress_bar(t_loader *loader, int bar_width, t_size size)
 {

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:26 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 17:01:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "MLX42.h"
-#include "loader/loader.h"
+#include "loader/loader_bonus.h"
 #include "render/scene/scene.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"

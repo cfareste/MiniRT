@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 18:17:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "figure.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 
 void	free_figures(t_figure *figures)
 {

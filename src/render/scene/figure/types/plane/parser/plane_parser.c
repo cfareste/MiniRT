@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 13:19:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "plane_parser.h"
 #include "render/utils/vector/parser/vector_parser.h"
 #include "../../../parser/figure_parser.h"

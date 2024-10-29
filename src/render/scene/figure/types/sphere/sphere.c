@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 16:04:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math.h"
 #include "libft.h"
 #include "../../parser/figure_parser.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"

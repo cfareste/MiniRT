@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 12:08:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "color.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "render/utils/vector/vector.h"
 
 void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)

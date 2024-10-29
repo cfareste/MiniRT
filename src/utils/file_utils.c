@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils.h"
+#include "utils_bonus.h"
 
 int	correct_file_extension(char *filename, char *extension)
 {

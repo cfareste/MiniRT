@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 10:12:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "coordinates.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"

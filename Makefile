@@ -163,20 +163,20 @@ SRCS = miniRT.c \
 	cylinder_helpers.c \
 	plane.c \
 	sphere.c \
-	render.c \
+	render_bonus.c \
 	window.c \
-	renderer.c \
+	renderer_bonus.c \
 	vector.c \
 	operation.c \
 	point.c \
 	reference_system.c \
-	render_helper.c \
-	window_helper.c \
-	loader.c \
-	loader_helper.c \
+	render_helper_bonus.c \
+	window_helper_bonus.c \
+	loader_bonus.c \
+	loader_helper_bonus.c \
 	size.c \
-	images.c \
-	loader_thread.c \
+	images_bonus.c \
+	loader_thread_bonus.c \
 	bar_helper.c \
 	ray_helper.c \
 	ray.c \

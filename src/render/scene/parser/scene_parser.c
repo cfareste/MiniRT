@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 16:04:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "scene_parser.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "render/scene/figure/parser/figure_parser.h"
 #include "render/scene/camera/parser/camera_parser.h"
 #include "render/scene/light/ambient_light/ambient_light.h"

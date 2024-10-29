@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer.c                                         :+:      :+:    :+:   */
+/*   renderer_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:11:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "window/window.h"
-#include "window/helpers/window_helper.h"
-#include "render/render.h"
-#include "render/helpers/render_helper.h"
-#include "render/loader/helpers/loader_helper/loader_helper.h"
+#include "window/helpers/window_helper_bonus.h"
+#include "render/render_bonus.h"
+#include "render/helpers/render_helper_bonus.h"
+#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
 #include <pthread.h>
 
 void	stop_render(t_render *render)

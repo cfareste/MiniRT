@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader.c                                           :+:      :+:    :+:   */
+/*   loader_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:30 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:11:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils.h"
-#include "window/helpers/window_helper.h"
-#include "thread/loader_thread.h"
+#include "utils/utils_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
+#include "thread/loader_thread_bonus.h"
 
 void	destroy_loader(t_loader *loader)
 {
