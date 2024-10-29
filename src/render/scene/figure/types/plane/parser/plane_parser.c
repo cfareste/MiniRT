@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 12:32:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:19:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_figure	*parse_plane(t_parser_ctx *ctx, char **parts)
 	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));
 	if (!plane->pl_attrs)
 		throw_sys_error("trying to allocate plane attributes");
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1], &plane->pl_attrs->orientation);
+	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
+		&plane->pl_attrs->orientation);
 	normalize(&plane->pl_attrs->orientation);
 	set_plane(plane, &plane->position, plane->pl_attrs);
 	check_parsing(ctx, plane);
