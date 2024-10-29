@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 12:31:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:50:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 	return (1);
 }
 
+static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
+{
+	if (figure->glosiness < 0)
+		throw_parse_err(ctx, "Glosiness must be a positive value");
+	else if (figure->diffuse <= 0)
+		throw_parse_err(ctx, "Diffuse Strength must be a positive value");
+	else if (figure->specular <= 0)
+		throw_parse_err(ctx, "Specular Strength must be a positive value");
+}
+
 t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 {
 	t_figure	*figure;
@@ -52,8 +62,9 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->type = ft_strdup(parts[0]);
 	parse_coordinates(ctx, parts[1], &figure->position);
 	figure->glosiness = parse_double(ctx, parts[2]);
+	figure->diffuse = parse_double(ctx, parts[3]);
+	figure->specular = parse_double(ctx, parts[4]);
 	parse_color(ctx, parts[color_i], &figure->color);
-	if (figure->glosiness < 0)
-		throw_parse_err(ctx, "Glosiness must have a positive value");
+	check_parsing(ctx, figure);
 	return (figure);
 }
