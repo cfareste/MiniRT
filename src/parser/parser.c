@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 20:39:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:14:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 
 void	throw_parse_err(t_parser_ctx *ctx, char *error_msg)
 {
-	ft_printff(STDERR_FILENO, "Error\n%s:%d -> %s\n",
-		ctx->filename, ctx->line, error_msg);
+	if (ctx->line)
+		ft_printff(STDERR_FILENO, "Error\n%s:%d -> %s\n",
+			ctx->filename, ctx->line, error_msg);
+	else
+		ft_printff(STDERR_FILENO, "Error\n%s -> %s\n",
+			ctx->filename, error_msg);
 	exit(EXIT_FAILURE);
 }
 

@@ -6,13 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 19:57:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:21:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils.h"
 #include "../../parser/figure_parser.h"
+#include "render/utils/vector/parser/vector_parser.h"
 #include "render/scene/figure/figure.h"
 
 static void	print_attrs(void *param)
@@ -55,6 +56,15 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	res->z = figure->co_attrs->orientation.z;
 }
 
+static void	check_parsing(t_parser_ctx *ctx, t_figure *cone)
+{
+	check_ori_vector_parsing(ctx, &cone->co_attrs->orientation);
+	if (cone->co_attrs->radius <= 0)
+		throw_parse_err(ctx, "Cone diameter must be a positive value");
+	else if (cone->co_attrs->height <= 0)
+		throw_parse_err(ctx, "Cone height must be a positive value");
+}
+
 t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
@@ -72,5 +82,6 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	cone->co_attrs->radius = parse_double(ctx, parts[3]) / 2.0;
 	cone->co_attrs->height = parse_double(ctx, parts[4]);
 	normalize(&cone->co_attrs->orientation);
+	check_parsing(ctx, cone);
 	return (cone);
 }

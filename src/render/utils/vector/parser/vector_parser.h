@@ -1,32 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   vector_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 11:17:23 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/29 09:20:07 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 09:25:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# define SCENE_FILE_EXTENSION ".rt"
+#pragma once
+#include "parser/parser.h"
+#include "../vector.h"
 
-# include "light/light.h"
-# include "figure/figure.h"
-# include "camera/camera.h"
-
-typedef struct s_scene
-{
-	t_light		*ambient_light;
-	t_camera	*camera;
-	t_light		*lights;
-	t_figure	*figures;
-	char		*name;
-}	t_scene;
-
-void	print_scene(t_scene *scene);
-
-#endif
+void	check_ori_vector_parsing(t_parser_ctx *ctx, t_vector *vector);

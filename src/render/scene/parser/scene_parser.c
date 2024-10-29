@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 20:40:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:16:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,28 @@ void	parse_scene_from_fd(t_parser_ctx *ctx, int fd, t_scene *scene)
 	}
 }
 
+void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
+{
+	t_light	*lights;
+	int		mandatory_lights;
+
+	ctx->line = 0;
+	if (!scene->camera)
+		throw_parse_err(ctx, "No camera provided for scene");
+	lights = scene->lights;
+	mandatory_lights = 0;
+	while (lights && mandatory_lights < 2)
+	{
+		if (lights->type == LIGHT_ID_MANDATORY)
+			mandatory_lights++;
+		lights = lights->next;
+	}
+	if (!scene->ambient_light || !mandatory_lights)
+		throw_parse_err(ctx, "A mandatory light is missing!");
+	else if (mandatory_lights > 1)
+		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
+}
+
 void	parse_scene_from_file(t_scene *scene, char *filename)
 {
 	int				fd;
@@ -80,6 +102,6 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	ctx.filename = filename;
 	parse_scene_from_fd(&ctx, fd, scene);
 	close(fd);
-	check_scene(scene);
+	check_parsing(&ctx, scene);
 	print_scene(scene);
 }

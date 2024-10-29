@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 20:42:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:19:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,22 @@
 #include "parser/parser.h"
 #include "utils/utils.h"
 
+static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
+{
+	if (camera->front.x < -1.0 || camera->front.x > 1.0
+		|| camera->front.y < -1.0 || camera->front.y > 1.0
+		|| camera->front.z < -1.0 || camera->front.z > 1.0)
+		throw_parse_err(ctx,
+			"Camera orientation vector components must be in range [-1,1]");
+	else if (camera->fov < 0 || camera->fov > 180)
+		throw_parse_err(ctx,
+			"Camera field of view (fov) must be in range [0,180]");
+}
+
 void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 {
 	t_vector	world_axis;
 
-	(void) ctx;
 	if (*camera)
 		throw_error("Multiple cameras are not allowed");
 	else if (!parts[1] || !parts[2] || !parts[3])
@@ -40,4 +51,5 @@ void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 	normalize(&(*camera)->right);
 	cross(&(*camera)->right, &(*camera)->front, &(*camera)->up);
 	normalize(&(*camera)->up);
+	check_parsing(ctx, *camera);
 }

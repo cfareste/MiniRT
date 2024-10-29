@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:57:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:14:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../parser/figure_parser.h"
 #include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cylinder/helpers/cylinder_helpers.h"
+#include "render/utils/vector/parser/vector_parser.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -75,6 +76,15 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	}
 }
 
+static void	check_parsing(t_parser_ctx *ctx, t_figure *cylinder)
+{
+	check_ori_vector_parsing(ctx, &cylinder->cy_attrs->orientation);
+	if (cylinder->cy_attrs->radius <= 0)
+		throw_parse_err(ctx, "Cylinder diameter must be a positive value");
+	else if (cylinder->cy_attrs->height <= 0)
+		throw_parse_err(ctx, "Cylinder height must be a positive value");
+}
+
 t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cylinder;
@@ -92,5 +102,6 @@ t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;
 	cylinder->normal = normal;
+	check_parsing(ctx, cylinder);
 	return (cylinder);
 }

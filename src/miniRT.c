@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:39:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:17:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "MLX42.h"
 #include "window/window.h"
 #include "render/renderer/renderer.h"
+#include "render/scene/parser/scene_parser.h"
 #include "parser/parser.h"
 
 void	destroy(t_window *window)

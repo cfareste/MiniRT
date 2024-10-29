@@ -124,6 +124,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
+			$(SRC)render/scene/figure/types/plane/parser:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)parser:\
@@ -140,6 +141,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
+			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)utils/size/:\
@@ -185,7 +187,9 @@ SRCS = miniRT.c \
 	camera_parser.c \
 	light_parser.c \
 	scene_parser.c \
-	figure_parser.c
+	figure_parser.c \
+	vector_parser.c \
+	plane_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

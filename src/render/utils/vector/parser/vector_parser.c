@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   vector_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 11:17:23 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/29 09:20:13 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 09:25:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# define SCENE_FILE_EXTENSION ".rt"
+#include "vector_parser.h"
 
-# include "light/light.h"
-# include "figure/figure.h"
-# include "camera/camera.h"
-
-typedef struct s_scene
+void	check_ori_vector_parsing(t_parser_ctx *ctx, t_vector *vector)
 {
-	t_light		*ambient_light;
-	t_camera	*camera;
-	t_light		*lights;
-	t_figure	*figures;
-	char		*name;
-}	t_scene;
-
-void	print_scene(t_scene *scene);
-
-#endif
+	if (vector->x > 1.0 || vector->x < -1.0
+		|| vector->y > 1.0 || vector->y < -1.0
+		|| vector->z > 1.0 || vector->z < -1.0)
+		throw_parse_err(ctx, "Orientation vector must be in range [-1.0,1.0]");
+}

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:55:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:10:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 #include "utils/utils.h"
 #include "scene.h"
 #include "parser/parser.h"
-
-void	check_scene(t_scene *scene)
-{
-	t_light	*lights;
-	int		mandatory_lights;
-
-	if (!scene->camera)
-		throw_error("A camera is needed to start rendering!");
-	lights = scene->lights;
-	mandatory_lights = 0;
-	while (lights && mandatory_lights < 2)
-	{
-		if (lights->type == LIGHT_ID_MANDATORY)
-			mandatory_lights++;
-		lights = lights->next;
-	}
-	if (!scene->ambient_light || !mandatory_lights)
-		throw_error("Some mandatory light is missing!");
-	else if (mandatory_lights > 1)
-		throw_error("Multiple lights for mandatory are not allowed");
-}
 
 void	print_scene(t_scene *scene)
 {

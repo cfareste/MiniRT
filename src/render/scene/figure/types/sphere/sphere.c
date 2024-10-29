@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:54:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:19:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	normalize(res);
 }
 
+static void	check_parsing(t_parser_ctx *ctx, t_figure *sphere)
+{
+	if (sphere->sp_attrs->radius <= 0)
+		throw_parse_err(ctx, "Sphere diameter must be a positive value");
+}
+
 t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*sphere;
@@ -72,5 +78,6 @@ t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 	sphere->print_attrs = print_attrs;
 	sphere->hit = hit;
 	sphere->normal = normal;
+	check_parsing(ctx, sphere);
 	return (sphere);
 }

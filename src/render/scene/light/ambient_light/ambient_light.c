@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 20:07:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:18:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
 	(*light)->brightness = parse_double(ctx, parts[1]);
 	parse_color(ctx, parts[2], &(*light)->color);
 	if ((*light)->brightness > 1.0 || (*light)->brightness < 0.0)
-		throw_parse_err(ctx, "Invalid brightness param for ambient light");
+		throw_parse_err(ctx,
+			"Brightness param for ambient light must be in range [0.0,1.0]");
 }
 
 int	get_sky_color(t_light *ambient_light)
