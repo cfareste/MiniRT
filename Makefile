@@ -251,7 +251,7 @@ $(MLX_DIR):
 
 $(MLX_LIB): | $(MLX_DIR)
 	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
+	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -Wsupress -Wno-dev -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:
