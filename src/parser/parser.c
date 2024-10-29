@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 11:14:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:19:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,26 @@ double	parse_double(t_parser_ctx *ctx, char *str)
 	char	*aux;
 	int		symbols_count;
 	int		points_count;
+	int		nums_count;
 
 	aux = str;
 	symbols_count = 0;
 	points_count = 0;
+	nums_count = 0;
 	ft_jump_spaces(&str);
+	while (str && *str && symbols_count < 1
+		&& !(ft_isdigit(*str) || *str == '.'))
+		symbols_count += ft_stroccurrences("+-", *(str++));
 	while (str && *str && symbols_count <= 1 && points_count <= 1
-		&& (ft_isdigit(*str) || ft_stroccurrences(".+-", *str)))
+		&& (ft_isdigit(*str) || *str == '.'))
 	{
-		symbols_count += ft_stroccurrences("+-", *str) * (points_count + 1);
 		points_count += *str == '.';
+		nums_count += ft_isdigit(*str);
 		str++;
 	}
-	if (*str || symbols_count > 1 || points_count > 1)
-		throw_parse_err(ctx, "Invalid floating point number");
+	if (*str || symbols_count > 1 || points_count > 1 || nums_count < 1)
+		throw_parse_err(ctx,
+			ft_strjoin("Invalid floating point number: ", aux));
 	return (ft_atod(aux));
 }
 
