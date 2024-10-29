@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 20:37:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 22:36:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static int	hit_body(t_figure *cone, t_ray *ray, t_point *center, float *distance
 		return (0);
 	params.square_root = sqrt(params.discriminant);
 	params.roots.close = (-params.b - params.square_root) / (2.0 * params.a);
-	
 	translate_point(&ray->origin, &ray->direction, params.roots.close, &point);
 	point_height = fabs(point.z - cone->co_attrs->height / 2.0);
 	if (is_invalid_root(params.roots.close, &ray->bounds, point_height, cone))
@@ -109,7 +108,7 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->co_attrs->orientation, figure->co_attrs->height);
 	if (is_base == 1)
-	{	
+	{
 		*res = figure->co_attrs->orientation;
 		return ;
 	}
