@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:04:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "../../parser/figure_parser.h"
 #include "render/utils/vector/parser/vector_parser.h"
 #include "render/scene/figure/figure.h"
+#include "render/utils/quadratic/quadratic.h"
+#include "render/scene/figure/helpers/figure_helpers.h"
+#include "render/scene/figure/types/cone/helpers/cone_helpers.h"
+#include <math.h>
 
 static void	print_attrs(void *param)
 {
@@ -28,32 +32,44 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	t_coordinates	cone_to_ray;
-	float			n_dot_pltoray;
-	float			n_dot_rdir;
-	float			root;
+	t_reference_system	refsys;
+	float				cone_height;
+	int					hit;
 
-	n_dot_rdir = dot(&figure->co_attrs->orientation, &ray->direction);
-	if (n_dot_rdir == 0.0)
-		return (0);
-	cone_to_ray.x = ray->origin.x - figure->position.x;
-	cone_to_ray.y = ray->origin.y - figure->position.y;
-	cone_to_ray.z = ray->origin.z - figure->position.z;
-	n_dot_pltoray = -1 * dot(&figure->co_attrs->orientation, &cone_to_ray);
-	root = n_dot_pltoray / n_dot_rdir;
-	if (root <= ray->bounds.min || root >= ray->bounds.max)
-		return (0);
-	*distance = root;
-	return (1);
+	refsys.ray.bounds.min = ray->bounds.min;
+	refsys.ray.bounds.max = ray->bounds.max;
+	get_vector(&ray->origin, &figure->position, &refsys.ray.origin);
+	refsys.ray.direction = ray->direction;
+	ft_bzero(&refsys.center, sizeof(t_point));
+	rotate_reference_system(&figure->co_attrs->orientation,
+		&refsys.ray.direction, &refsys.ray.origin);
+	cone_height = figure->co_attrs->height;
+	hit = hit_base(&refsys, cone_height, figure->co_attrs->radius, distance);
+	hit |= hit_body_cone(figure, &refsys.ray, &refsys.center, distance);
+	return (hit);
 }
 
 static void	normal(t_figure *figure, t_coordinates *point, \
 						t_coordinates *res)
 {
-	(void) point;
-	res->x = figure->co_attrs->orientation.x;
-	res->y = figure->co_attrs->orientation.y;
-	res->z = figure->co_attrs->orientation.z;
+	t_vector	ideal;
+	t_vector	axis;
+	float		refsys_angle;
+
+	if (belongs_to_base(point, &figure->position,
+			&figure->co_attrs->orientation, figure->co_attrs->height))
+	{
+		*res = figure->co_attrs->orientation;
+		return ;
+	}
+	calculate_ideal_normal(point, figure, &refsys_angle, res);
+	get_axis(&ideal, BACK);
+	if (dot(&figure->co_attrs->orientation, &ideal) == -1.0)
+		get_axis(&axis, UP);
+	else
+		cross(&figure->co_attrs->orientation, &ideal, &axis);
+	normalize(&axis);
+	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
 static void	check_parsing(t_parser_ctx *ctx, t_figure *cone)
@@ -83,6 +99,8 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	cone->co_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
 	cone->co_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	normalize(&cone->co_attrs->orientation);
+	translate_point(&cone->position, &cone->co_attrs->orientation,
+		-cone->co_attrs->height / 2.0, &cone->position);
 	check_parsing(ctx, cone);
 	return (cone);
 }

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reference_system.h                                 :+:      :+:    :+:   */
+/*   cone_helpers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:12 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 19:48:18 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/10/30 21:31:29 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/10/30 21:39:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "render/ray/ray.h"
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
+#include "render/scene/figure/figure.h"
 
-typedef struct s_reference_system
-{
-	t_ray	ray;
-	t_point	center;
-}	t_reference_system;
+int		hit_body_cone(t_figure *cone, t_ray *ray, t_point *center,
+			float *distance);
 
-float	rotate_reference_system(t_vector *normal, t_vector *vec,
-			t_point *point);
+void	calculate_ideal_normal(t_point *point, t_figure *cone,
+			float *refsys_angle, t_vector *res);

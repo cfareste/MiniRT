@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:11 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:41:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	get_height(t_point *point, t_point *center, float base)
 
 	get_vector(point, center, &center_to_point);
 	hypotenuse = dot(&center_to_point, &center_to_point);
-	point_height = sqrt(hypotenuse - base * base);
+	point_height = sqrt(fabs(hypotenuse - base * base));
 	return (point_height);
 }
 
@@ -36,13 +36,13 @@ int	belongs_to_base(t_point *point, t_point *center, t_vector *normal,
 	float		dot_top;
 	float		dot_bottom;
 
-	top_to_point.x = point->x - (center->x + (height / 2.0) * normal->x);
-	top_to_point.y = point->y - (center->y + (height / 2.0) * normal->y);
-	top_to_point.z = point->z - (center->z + (height / 2.0) * normal->z);
+	top_to_point.x = point->x - (center->x + height * normal->x);
+	top_to_point.y = point->y - (center->y + height * normal->y);
+	top_to_point.z = point->z - (center->z + height * normal->z);
 	normalize(&top_to_point);
-	bottom_to_point.x = point->x - (center->x - (height / 2.0) * normal->x);
-	bottom_to_point.y = point->y - (center->y - (height / 2.0) * normal->y);
-	bottom_to_point.z = point->z - (center->z - (height / 2.0) * normal->z);
+	bottom_to_point.x = point->x - (center->x - height * normal->x);
+	bottom_to_point.y = point->y - (center->y - height * normal->y);
+	bottom_to_point.z = point->z - (center->z - height * normal->z);
 	normalize(&bottom_to_point);
 	dot_top = dot(normal, &top_to_point);
 	dot_bottom = dot(normal, &bottom_to_point);

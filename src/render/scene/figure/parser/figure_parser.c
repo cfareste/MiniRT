@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:10:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
 {
 	if (figure->glosiness < 0)
 		throw_parse_err(ctx, "Glosiness must be a positive value");
-	else if (figure->diffuse <= 0)
-		throw_parse_err(ctx, "Diffuse Strength must be a positive value");
-	else if (figure->specular <= 0)
-		throw_parse_err(ctx, "Specular Strength must be a positive value");
+	else if (figure->diffuse < 0 || figure->diffuse > 1)
+		throw_parse_err(ctx, "Diffuse Strength must be in range [0, 1]");
+	else if (figure->specular < 0 || figure->specular > 1)
+		throw_parse_err(ctx, "Specular Strength must be in range [0, 1]");
 }
 
 t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)

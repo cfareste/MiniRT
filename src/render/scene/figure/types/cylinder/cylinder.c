@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:06:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ static void	print_attrs(void *param)
 		attrs->radius, attrs->height);
 }
 
+// TODO: Refactor refsys (delete XD)
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
 	t_reference_system	refsys;
-	int					hitted;
+	int					hit;
 	float				half_height;
 
 	half_height = figure->cy_attrs->height / 2.0;
@@ -41,12 +42,12 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	refsys.ray.direction = ray->direction;
 	ft_bzero(&refsys.center, sizeof(t_point));
 	rotate_reference_system(&figure->cy_attrs->orientation,
-		&refsys.ray.direction, &refsys.ray.origin, &refsys.center);
-	hitted = hit_base(&refsys, half_height, figure->cy_attrs->radius, distance);
-	hitted |= hit_body(&refsys, figure, ray, distance);
-	hitted |= hit_base(&refsys, -half_height, figure->cy_attrs->radius,
+		&refsys.ray.direction, &refsys.ray.origin);
+	hit = hit_base(&refsys, half_height, figure->cy_attrs->radius, distance);
+	hit |= hit_body(&refsys, figure, ray, distance);
+	hit |= hit_base(&refsys, -half_height, figure->cy_attrs->radius,
 			distance);
-	return (hitted);
+	return (hit);
 }
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
@@ -57,7 +58,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	t_vector	center_to_point;
 
 	is_base = belongs_to_base(point, &figure->position,
-			&figure->cy_attrs->orientation, figure->cy_attrs->height);
+			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
 	if (is_base == 1)
 		*res = figure->cy_attrs->orientation;
 	else if (is_base == -1)

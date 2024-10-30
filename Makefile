@@ -128,6 +128,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)parser:\
+			$(SRC)render/scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\
@@ -183,6 +184,7 @@ SRCS = miniRT.c \
 	light_utils.c \
 	ambient_light.c \
 	cone.c \
+	cone_helpers.c \
 	parser.c \
 	camera_parser.c \
 	light_parser.c \
