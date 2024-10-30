@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:07:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:52:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/scene/parser/scene_parser.h"
 #include "parser/parser.h"
 
+// TODO: Join thingss??
 void	destroy(t_window *window)
 {
 	destroy_loader(&window->render.loader);

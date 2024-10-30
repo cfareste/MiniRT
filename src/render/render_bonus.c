@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:11:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:54:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,38 +82,36 @@ int	process_lighting(t_scene *scene, t_hit_record *hit_record)
 	return (get_color_value(&final_color));
 }
 
-void	render_scene(t_render *render, t_scene *scene, t_size size)
+void	*render_part(t_render_part *part)
 {
 	unsigned int	i;
 	unsigned int	j;
 	int				color;
 	t_hit_record	hit_record;
 
-	set_viewport(scene->camera, &scene->camera->viewport, size);
-	i = 0;
-	while (!is_render_finished(render) && i < size.width)
+	set_viewport(part->render->scene.camera,
+		&part->render->scene.camera->viewport, part->img_size);
+	j = 0;
+	while (!is_render_finished(part->render) && j < part->img_size.height)
 	{
-		j = 0;
-		while (!is_render_finished(render) && j < size.height)
+		i = part->min_size.height;
+		while (!is_render_finished(part->render) && i < part->img_size.width)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
-			check_collisions(scene, &hit_record, i, j);
-			color = process_lighting(scene, &hit_record);
-			pthread_mutex_lock(&render->image_mutex);
-			if (!is_render_finished(render) && render->image
-				&& i < render->image->width && j < render->image->height)
-				mlx_put_pixel(render->image, i, j, color);
-			pthread_mutex_unlock(&render->image_mutex);
-			add_loader_progress(&render->loader);
-			j++;
+			check_collisions(&part->render->scene, &hit_record, i, j);
+			color = process_lighting(&part->render->scene, &hit_record);
+			mlx_put_pixel(part->render->image, i, j, color);
+			add_loader_progress(&part->render->loader);
+			i += part->render->parts_amount;
 		}
-		i++;
+		j++;
 	}
+	return (NULL);
 }
 
 void	init_render(t_render *render, mlx_t *mlx)
 {
-	pthread_mutex_init(&render->render_mutex, NULL);
+	pthread_mutex_init(&render->mutex, NULL);
 	pthread_mutex_init(&render->image_mutex, NULL);
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);

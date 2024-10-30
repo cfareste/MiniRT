@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:40 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 16:59:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:50:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ int	is_render_finished(t_render *render)
 {
 	int	finished;
 
-	pthread_mutex_lock(&render->render_mutex);
+	pthread_mutex_lock(&render->mutex);
 	finished = render->finished;
-	pthread_mutex_unlock(&render->render_mutex);
+	pthread_mutex_unlock(&render->mutex);
 	return (finished);
-	return (0);
 }
 
 void	set_render_finish(t_render *render, int value)
 {
-	pthread_mutex_lock(&render->render_mutex);
+	pthread_mutex_lock(&render->mutex);
 	render->finished = value;
-	pthread_mutex_unlock(&render->render_mutex);
+	pthread_mutex_unlock(&render->mutex);
 }

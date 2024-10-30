@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:10:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:39:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	*loader_routine(t_loader *loader)
 		current_prev = current;
 		current = get_bar_width(
 				get_image_size(loader->image, &loader->image_mutex).width,
-				get_loader_progress(loader), get_loader_total(loader));
+				loader->progress, get_loader_total(loader));
 		if (enabled != enabled_prev
 			|| (current == 0 && current != current_prev))
 			paint_black_image(loader->image, &loader->image_mutex);
-		else if (enabled && current != current_prev)
+		else if (enabled && current > current_prev)
 			update_progress_bar(loader, current,
 				get_image_size(loader->image, &loader->image_mutex));
 	}

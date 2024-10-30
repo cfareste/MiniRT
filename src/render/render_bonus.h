@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:01:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:54:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,19 @@ typedef struct s_render
 	pthread_t		thread;
 	t_loader		loader;
 	int				finished;
-	pthread_mutex_t	render_mutex;
+	pthread_mutex_t	mutex;
+	double			start_time;
+	int				parts_amount;
 }	t_render;
+
+typedef struct s_render_part
+{
+	pthread_t	thread;
+	t_size		img_size;
+	t_size		min_size;
+	t_size		max_size;
+	t_render	*render;
+}	t_render_part;
 
 typedef struct s_hit_record
 {
@@ -36,6 +47,6 @@ typedef struct s_hit_record
 	t_vector		normal;
 }	t_hit_record;
 
-void	render_scene(t_render *render, t_scene *scene, t_size size);
+void	*render_part(t_render_part *part);
 
 void	init_render(t_render *render, mlx_t *mlx);
