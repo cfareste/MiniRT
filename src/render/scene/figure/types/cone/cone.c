@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 21:38:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:41:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	float		refsys_angle;
 
 	if (belongs_to_base(point, &figure->position,
-			&figure->co_attrs->orientation, figure->co_attrs->height * 2))
+			&figure->co_attrs->orientation, figure->co_attrs->height))
 	{
 		*res = figure->co_attrs->orientation;
 		return ;

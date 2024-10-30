@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 20:38:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/30 21:41:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	t_vector	center_to_point;
 
 	is_base = belongs_to_base(point, &figure->position,
-			&figure->cy_attrs->orientation, figure->cy_attrs->height);
+			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
 	if (is_base == 1)
 		*res = figure->cy_attrs->orientation;
 	else if (is_base == -1)
