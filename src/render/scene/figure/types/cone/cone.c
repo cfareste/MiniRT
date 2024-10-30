@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 22:36:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:10:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	hit_body(t_figure *cone, t_ray *ray, t_point *center, float *distance
 	float				hr_ratio;
 
 	hr_ratio = cone->co_attrs->height / cone->co_attrs->radius;
-	get_vector(&cone->position, &ray->origin, &ray_to_cone);
+	get_vector(center, &ray->origin, &ray_to_cone);
 	params.a = ((hr_ratio * hr_ratio) * ((ray->direction.x * ray->direction.x) + (ray->direction.y * ray->direction.y))) - (ray->direction.z * ray->direction.z);
 	params.b = 2.0 * (hr_ratio * ((hr_ratio * ray->origin.x * ray->direction.x) + (ray->direction.x * center->x)
 		+ (hr_ratio * ray->origin.y * ray->direction.y) + (ray->direction.y * center->y)) - (ray->origin.z * ray->direction.z) - (ray->direction.z * center->z));
@@ -74,16 +74,11 @@ static int	hit_body(t_figure *cone, t_ray *ray, t_point *center, float *distance
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
 	t_reference_system	refsys;
-	t_point				co_center;
 	int					hit;
-	float				half_height;
 
-	half_height = figure->co_attrs->height / 2.0;
 	refsys.ray.bounds.min = ray->bounds.min;
 	refsys.ray.bounds.max = ray->bounds.max;
-	translate_point(&figure->position, &figure->co_attrs->orientation,
-		-half_height, &co_center);
-	get_vector(&ray->origin, &co_center, &refsys.ray.origin);
+	get_vector(&ray->origin, &figure->position, &refsys.ray.origin);
 	refsys.ray.direction = ray->direction;
 	ft_bzero(&refsys.center, sizeof(t_point));
 	rotate_reference_system(&figure->co_attrs->orientation,
@@ -100,35 +95,35 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	t_vector	axis;
 	t_vector	point_to_center;
 	t_vector	projected;
-	t_point		co_center;
 	float		refsys_angle;
 	float		angle;
 	int			is_base;
 
 	is_base = belongs_to_base(point, &figure->position,
-			&figure->co_attrs->orientation, figure->co_attrs->height);
+		&figure->co_attrs->orientation, figure->co_attrs->height * 2);
 	if (is_base == 1)
 	{
 		*res = figure->co_attrs->orientation;
 		return ;
 	}
-	translate_point(&figure->position, &figure->co_attrs->orientation,
-		-figure->co_attrs->height / 2.0, &co_center);
-	get_vector(point, &co_center, &point_to_center);
+	get_vector(point, &figure->position, &point_to_center);
 	refsys_angle = rotate_reference_system(&figure->co_attrs->orientation, NULL, &point_to_center);
 	projected = point_to_center;
 	projected.z = 0;
 	normalize(&projected);
-	cross(&projected, &point_to_center, &axis);
+	cross(&point_to_center, &projected, &axis);
 	normalize(&axis);
 	angle = sin(figure->co_attrs->radius
 		/ hypot(figure->co_attrs->radius, figure->co_attrs->height));
 	rotate_vector(&projected, &axis, angle, res);
 	normalize(res);
 	get_axis(&ideal, BACK);
-	cross(&figure->co_attrs->orientation, &ideal, &axis);
+	if (dot(&figure->co_attrs->orientation, &ideal) == -1.0)
+		get_axis(&axis, UP);
+	else
+		cross(&figure->co_attrs->orientation, &ideal, &axis);
 	normalize(&axis);
-	rotate_vector(res, &axis, -angle, res);
+	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
 t_figure	*new_cone(char **parts)
@@ -150,5 +145,7 @@ t_figure	*new_cone(char **parts)
 	cone->co_attrs->height = ft_atod(parts[4], throw_sys_error,
 			"allocating ft_atod in cone height");
 	normalize(&cone->co_attrs->orientation);
+	translate_point(&cone->position, &cone->co_attrs->orientation,
+		-cone->co_attrs->height / 2.0, &cone->position);
 	return (cone);
 }
