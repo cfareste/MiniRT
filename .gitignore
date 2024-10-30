@@ -4,6 +4,7 @@ bin/
 a.out
 
 *.a
+lib/web
 lib/mlx
 
 .vscode

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   miniRT_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:07:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 02:45:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "render/renderer/renderer_bonus.h"
 #include "render/scene/parser/scene_parser.h"
 #include "parser/parser.h"
+#include <emscripten/html5.h>
+#include <emscripten/emscripten.h>
 
 void	destroy(t_window *window)
 {
@@ -29,6 +31,11 @@ void	destroy(t_window *window)
 	free_figures(window->render.scene.figures);
 }
 
+void emscripten_main_loop(mlx_t *mlx)
+{
+    mlx_loop(mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	t_window	window;
@@ -40,6 +47,8 @@ int	main(int argc, char **argv)
 	init_window(&window);
 	init_render(&window.render, window.mlx);
 	render(&window.render, window.mlx);
+	emscripten_set_main_loop_arg((void (*)(void *)) emscripten_main_loop,
+		window.mlx, 30, true);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }

@@ -15,37 +15,37 @@ CYAN = \033[1;36m
 
 #----OS COMPATIBILITY----#
 ifeq ($(OS),Windows_NT)
-    CCFLAGS += -D WIN32
-    ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
-        CCFLAGS += -D AMD64
-    else
-        ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-            CCFLAGS += -D AMD64
-        endif
-        ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-            CCFLAGS += -D IA32
-        endif
-    endif
+    # CCFLAGS += -D WIN32
+    # ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
+    #     CCFLAGS += -D AMD64
+    # else
+    #     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+    #         CCFLAGS += -D AMD64
+    #     endif
+    #     ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+    #         CCFLAGS += -D IA32
+    #     endif
+    # endif
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        CCFLAGS += -D LINUX=1
+        DEFINES += -D LINUX=1
 		export LINUX=1
     endif
     ifeq ($(UNAME_S),Darwin)
-        CCFLAGS += -D DARWIN=1
+        DEFINES += -D DARWIN=1
 		export DARWIN=1
     endif
-    UNAME_P := $(shell uname -p)
-    ifeq ($(UNAME_P),x86_64)
-        CCFLAGS += -D AMD64
-    endif
-    ifneq ($(filter %86,$(UNAME_P)),)
-        CCFLAGS += -D IA32
-    endif
-    ifneq ($(filter arm%,$(UNAME_P)),)
-        CCFLAGS += -D ARM
-    endif
+    # UNAME_P := $(shell uname -p)
+    # ifeq ($(UNAME_P),x86_64)
+    #     CCFLAGS += -D AMD64
+    # endif
+    # ifneq ($(filter %86,$(UNAME_P)),)
+    #     CCFLAGS += -D IA32
+    # endif
+    # ifneq ($(filter arm%,$(UNAME_P)),)
+    #     CCFLAGS += -D ARM
+    # endif
 endif
 
 
@@ -61,10 +61,10 @@ INCLUDES = -I$(SRC)
 
 
 #----LIBS----#
-
+LIB_DIR = lib
 
 #----LIBFT----#
-LIBFT_DIR = lib/libft/
+LIBFT_DIR = $(LIB_DIR)/libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
 INCLUDES += -I$(LIBFT_DIR)
 
@@ -72,7 +72,7 @@ INCLUDES += -I$(LIBFT_DIR)
 #----MLX----#
 MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
-MLX_DIR = lib/mlx
+MLX_DIR = $(LIB_DIR)/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
 MLX_COMP_FLAGS = -DDEBUG=1 -DGLFW_FETCH=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
@@ -92,18 +92,22 @@ ifeq ($(UNAME_S), Linux)
 	LIBRARIES_DEPS += -lglfw
 endif
 
+#----WEB----#
+WEB_URL = https://github.com/emscripten-core/emsdk/archive/refs/heads/main.zip
+WEB_ROOT = $(LIB_DIR)/web
+
 
 #----MACROS----#
 export GNL_BUFFER_SIZE := 50000
 ifeq ($(UNAME_S), Darwin)
 	WINDOW_WIDTH := $(shell system_profiler -json SPDisplaysDataType 2>/dev/null | grep _spdisplays_resolution | awk 'NR==1{print substr($$3, 2, length($$3)) - 70}')
 	WINDOW_HEIGHT := $(shell system_profiler -json SPDisplaysDataType 2>/dev/null | grep _spdisplays_resolution | awk 'NR==1{print $$5 - 70}')
-	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
+	DEFINES += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
 endif
 ifeq ($(UNAME_S), Linux)
 	WINDOW_WIDTH := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 1 | xargs)
 	WINDOW_HEIGHT := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 2 | cut -d' ' -f 1)
-	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
+	DEFINES += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
 endif
 
 
@@ -149,7 +153,7 @@ vpath %.c	$(SRC):\
 
 
 #----SHARED----#
-SRCS = miniRT.c \
+SRCS = miniRT_bonus.c \
 	scene.c \
 	errors.c \
 	file_utils.c \
@@ -204,13 +208,13 @@ all:
 
 $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 	@printf "$(BLUE)Linking objects and creating program...$(DEF_COLOR)\n"
-	$(CC) $(CCFLAGS) $(OBJS) $(LIBFT_LIB) $(LIBRARIES) $(LIBRARIES_DEPS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(DEFINES) $(OBJS) $(LIBFT_LIB) $(LIBRARIES) $(LIBRARIES_DEPS) -o $(NAME)
 	@echo "$(GREEN)[✓] $(PINK)$(NAME)$(GREEN) created!!!$(DEF_COLOR)"
 
 $(BIN_DIR)%.o: %.c Makefile
 	@printf "$(CYAN)Compiling: $(PINK)$(notdir $<)...$(DEF_COLOR)\n"
 	@mkdir -p $(BIN_DIR)
-	@$(CC) $(CCFLAGS) $(INCLUDES) -MMD -c $< -o $@
+	@$(CC) $(CCFLAGS) $(DEFINES) $(INCLUDES) -MMD -c $< -o $@
 
 clean: libft_clean
 	@rm -rf $(BIN_DIR)
@@ -257,6 +261,25 @@ $(MLX_LIB): | $(MLX_DIR)
 mlx_fclean:
 	rm -rf $(MLX_DIR)
 
+download_web_deps:
+	rm -rf $(WEB_ROOT)
+	curl -sOL https://github.com/emscripten-core/emsdk/archive/refs/heads/main.zip
+	mv main.zip $(LIB_DIR)
+	cd $(LIB_DIR) && unzip main.zip
+	rm -f $(LIB_DIR)/main.zip
+	mv $(LIB_DIR)/emsdk-main $(WEB_ROOT)
+	# source ./emsdk_env.sh
+
+web: download_web_deps
+	echo $(INCLUDES)
+	mkdir -p web
+	emcc -O3 $(INCLUDES) -pthread $(SRCS) \
+    -o ./web/miniRT.js \
+    ./build/libmlx42.a \
+    -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s WASM=1 \
+    -s NO_EXIT_RUNTIME=1 -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' \
+    -s ALLOW_MEMORY_GROWTH
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -269,7 +292,8 @@ mlx_fclean:
 		libft_clean \
 		libft_fclean \
 		make_mlx \
-		mlx_fclean
+		mlx_fclean \
+		web 
 
 -include $(DEPS)
 -include $(MDEPS)

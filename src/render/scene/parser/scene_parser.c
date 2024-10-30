@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:21:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	int				fd;
 	t_parser_ctx	ctx;
 
-	if (!correct_file_extension(filename, SCENE_FILE_EXTENSION))
+	if (!valid_file_extension(filename, SCENE_FILE_EXTENSION))
 		throw_parse_err(&ctx, "Only .rt files are allowed");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)

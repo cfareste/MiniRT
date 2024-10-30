@@ -6,11 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 16:10:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/30 01:31:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "miniRT_bonus.h"
 #include "libft.h"
 #include <string.h>
 #include <errno.h>
