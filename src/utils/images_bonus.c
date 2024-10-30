@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:49 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:01:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "MLX42.h"
 #include "utils/size/size.h"
-#include "render/loader/loader.h"
+#include "render/loader/loader_bonus.h"
 #include <pthread.h>
 
 t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex)

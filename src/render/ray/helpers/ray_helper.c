@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "render/ray/ray.h"
 #include "render/scene/camera/camera.h"
 #include "render/utils/vector/vector.h"

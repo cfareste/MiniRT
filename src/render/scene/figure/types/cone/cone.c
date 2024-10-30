@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 21:41:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/30 22:04:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
+#include "../../parser/figure_parser.h"
+#include "render/utils/vector/parser/vector_parser.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "render/scene/figure/helpers/figure_helpers.h"
@@ -70,26 +72,35 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
-t_figure	*new_cone(char **parts)
+static void	check_parsing(t_parser_ctx *ctx, t_figure *cone)
+{
+	check_ori_vector_parsing(ctx, &cone->co_attrs->orientation);
+	if (cone->co_attrs->radius <= 0)
+		throw_parse_err(ctx, "Cone diameter must be a positive value");
+	else if (cone->co_attrs->height < 0)
+		throw_parse_err(ctx, "Cone height must be a positive value");
+}
+
+t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
 
-	if (!parts[1] || !parts[2] || !parts[3])
-		throw_error("Missing some cone parameter");
-	cone = new_figure(parts[0], parts[1], parts[5]);
+	if (ft_matrix_len(parts) != FIG_ATT_LEN + 3)
+		throw_parse_err(ctx, "Missing some cone parameter");
+	cone = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));
 	if (!cone->co_attrs)
 		throw_sys_error("trying to allocate cone attributes");
 	cone->print_attrs = print_attrs;
 	cone->hit = hit;
 	cone->normal = normal;
-	set_coordinates(parts[2], &cone->co_attrs->orientation);
-	cone->co_attrs->radius = ft_atod(parts[3], throw_sys_error,
-			"allocating ft_atod in cone radius") / 2.0;
-	cone->co_attrs->height = ft_atod(parts[4], throw_sys_error,
-			"allocating ft_atod in cone height");
+	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
+		&cone->co_attrs->orientation);
+	cone->co_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
+	cone->co_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	normalize(&cone->co_attrs->orientation);
 	translate_point(&cone->position, &cone->co_attrs->orientation,
 		-cone->co_attrs->height / 2.0, &cone->position);
+	check_parsing(ctx, cone);
 	return (cone);
 }

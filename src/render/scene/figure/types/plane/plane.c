@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:38 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
+#include "../../parser/figure_parser.h"
 #include "render/scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 
@@ -49,26 +50,10 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	*res = figure->pl_attrs->orientation;
 }
 
-t_figure	*new_plane(char **parts)
-{
-	t_figure	*plane;
-
-	if (!parts[1] || !parts[2] || !parts[3])
-		throw_error("Missing some plane parameter");
-	plane = new_figure(parts[0], parts[1], parts[3]);
-	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));
-	if (!plane->pl_attrs)
-		throw_sys_error("trying to allocate plane attributes");
-	set_coordinates(parts[2], &plane->pl_attrs->orientation);
-	normalize(&plane->pl_attrs->orientation);
-	plane->print_attrs = print_attrs;
-	plane->hit = hit;
-	plane->normal = normal;
-	return (plane);
-}
-
 void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
+	plane->print_attrs = print_attrs;
+	plane->normal = normal;
 	plane->hit = hit;
 	plane->pl_attrs = attrs;
 	plane->position = *position;

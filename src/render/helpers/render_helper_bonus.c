@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper.c                                    :+:      :+:    :+:   */
+/*   render_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:40 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 12:44:30 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:59:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_helper.h"
+#include "render_helper_bonus.h"
 #include "render/utils/point/point.h"
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)

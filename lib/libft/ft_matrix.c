@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   ft_matrix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:54:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 18:20:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/29 12:11:16 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 13:19:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# define SPHERE_ID "sp"
+#include "libft.h"
 
-typedef struct s_sphere_attrs
+void	free_matrix(char **space)
 {
-	double	radius;
-}	t_sphere_attrs;
+	int	i;
 
-typedef struct s_figure	t_figure;
+	if (!space)
+		return ;
+	i = 0;
+	while (*(space + i) != NULL)
+	{
+		free(*(space + i));
+		i++;
+	}
+	free(space);
+}
 
-t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts);
+int	ft_matrix_len(char **matrix)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (matrix && matrix[i])
+		i++;
+	return (i);
+}

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:57:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:11:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window.h"
-#include "helpers/window_helper.h"
-#include "render/renderer/renderer.h"
+#include "helpers/window_helper_bonus.h"
+#include "render/renderer/renderer_bonus.h"
 #include "miniRT.h"
 
 static void	global_hook(t_window *window)

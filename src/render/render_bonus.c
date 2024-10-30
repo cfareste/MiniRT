@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:11:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "helpers/render_helper.h"
-#include "loader/helpers/loader_helper/loader_helper.h"
-#include "window/helpers/window_helper.h"
+#include "helpers/render_helper_bonus.h"
+#include "loader/helpers/loader_helper/loader_helper_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "render/scene/light/utils/light_utils.h"
 #include "render/scene/light/ambient_light/ambient_light.h"

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 12:57:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:14:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/scene/figure/figure.h"
 #include "render/utils/point/point.h"
 #include "render/ray/ray.h"
+#include "parser/parser.h"
 
 typedef struct s_cylinder_attrs
 {
@@ -28,4 +29,4 @@ typedef struct s_cylinder_attrs
 
 typedef struct s_figure	t_figure;
 
-t_figure	*new_cylinder(char **parts);
+t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts);

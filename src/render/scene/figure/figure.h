@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 12:44:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:46:32 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct s_figure
 {
 	char		*type;
 	t_point		position;
+	double		glosiness;
+	double		diffuse;
+	double		specular;
 	t_color		color;
 	int			(*hit)(t_figure *figure, t_ray *ray, float *distance);
 	void		(*normal)(t_figure *figure, t_point *point, t_vector *res);
@@ -43,11 +46,7 @@ typedef struct s_figure
 	t_figure	*next;
 }	t_figure;
 
-int			push_figure(char **parts, t_figure **figure);
-
 void		free_figures(t_figure *figures);
-
-t_figure	*new_figure(char *type, char *coord_str, char *color_str);
 
 void		print_figure(t_figure *figure);
 

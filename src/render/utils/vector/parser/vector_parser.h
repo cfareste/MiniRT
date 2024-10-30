@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings.c                                          :+:      :+:    :+:   */
+/*   vector_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:51 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/10/29 09:20:07 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 09:25:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_strncmp.h"
+#pragma once
+#include "parser/parser.h"
+#include "../vector.h"
 
-void	jump_spaces(char **str)
-{
-	while (ft_strcmp(**str, ' ') == EQUAL_STRINGS)
-		(*str)++;
-}
+void	check_ori_vector_parsing(t_parser_ctx *ctx, t_vector *vector);

@@ -111,17 +111,23 @@ endif
 vpath %.c	$(SRC):\
 			$(SRC)render:\
 			$(SRC)render/scene:\
+			$(SRC)render/scene/parser:\
 			$(SRC)render/scene/camera:\
+			$(SRC)render/scene/camera/parser:\
 			$(SRC)render/scene/light:\
+			$(SRC)render/scene/light/parser:\
 			$(SRC)render/scene/light/utils:\
 			$(SRC)render/scene/light/ambient_light:\
 			$(SRC)render/scene/figure:\
+			$(SRC)render/scene/figure/parser:\
 			$(SRC)render/scene/figure/helpers:\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/plane:\
+			$(SRC)render/scene/figure/types/plane/parser:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/cone:\
+			$(SRC)parser:\
 			$(SRC)render/scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
@@ -136,6 +142,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
+			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)utils/size/:\
@@ -157,27 +164,34 @@ SRCS = miniRT.c \
 	cylinder_helpers.c \
 	plane.c \
 	sphere.c \
-	render.c \
+	render_bonus.c \
 	window.c \
-	renderer.c \
+	renderer_bonus.c \
 	vector.c \
 	operation.c \
 	point.c \
 	reference_system.c \
-	render_helper.c \
-	window_helper.c \
-	loader.c \
-	loader_helper.c \
+	render_helper_bonus.c \
+	window_helper_bonus.c \
+	loader_bonus.c \
+	loader_helper_bonus.c \
 	size.c \
-	images.c \
-	loader_thread.c \
+	images_bonus.c \
+	loader_thread_bonus.c \
 	bar_helper.c \
 	ray_helper.c \
 	ray.c \
 	light_utils.c \
 	ambient_light.c \
 	cone.c \
-	cone_helpers.c
+	cone_helpers.c \
+	parser.c \
+	camera_parser.c \
+	light_parser.c \
+	scene_parser.c \
+	figure_parser.c \
+	vector_parser.c \
+	plane_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -239,7 +253,7 @@ $(MLX_DIR):
 
 $(MLX_LIB): | $(MLX_DIR)
 	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
+	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -Wsupress -Wno-dev -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
 
 mlx_fclean:

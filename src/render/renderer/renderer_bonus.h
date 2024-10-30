@@ -1,44 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
+/*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
 /*   Updated: 2024/10/29 16:57:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
-# ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 1422
-# endif
-# ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 800
-# endif
-# define ICON_PATH "assets/images/icon.png"
+#pragma once
 
-# include "MLX42.h"
-# include "render/render_bonus.h"
-# include "utils/size/size.h"
+#include "window/window.h"
+#include "render/render_bonus.h"
+#include <pthread.h>
 
-typedef struct s_resize
-{
-	t_size	size;
-	double	last_resize;
-}	t_resize;
+void	render(t_render *render, mlx_t *mlx);
 
-typedef struct s_window
-{
-	t_size			size;
-	mlx_texture_t	*icon;
-	mlx_t			*mlx;
-	t_render		render;
-	t_resize		resize;
-}	t_window;
-
-void	init_window(t_window *window);
-
-#endif
+void	stop_render(t_render *render);

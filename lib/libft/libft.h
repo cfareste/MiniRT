@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/27 16:26:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:13:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			is_allowed_char(char c);
 
 int			ft_atoi(const char *str);
 
-double		ft_atod(char *str, void (*crash)(char *), char *param);
+double		ft_atod(char *str);
 
 long		ft_atol(const char *str);
 
@@ -173,5 +173,11 @@ char		**safe_ft_split_set(char const *s, char const *set, void (*f)(int));
 char		**safe_ft_split(char const *s, char c, void (*f)(int));
 
 char		*ft_override_val(char *old, char *new);
+
+int			ft_index(char c, char *str);
+
+void		ft_jump_spaces(char **str);
+
+int			ft_matrix_len(char **matrix);
 
 #endif

@@ -6,27 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:18:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/07/06 19:09:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:11:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <errno.h>
-
-void	free_matrix(char **space)
-{
-	int	i;
-
-	if (!space)
-		return ;
-	i = 0;
-	while (*(space + i) != NULL)
-	{
-		free(*(space + i));
-		i++;
-	}
-	free(space);
-}
 
 static char	**add_new_str(char **str, char *new_str)
 {

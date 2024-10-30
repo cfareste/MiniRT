@@ -3,45 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "camera.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include <math.h>
-
-void	set_camera(char **parts, t_camera **camera)
-{
-	t_vector	world_axis;
-
-	if (*camera)
-		throw_error("Multiple cameras are not allowed");
-	else if (!parts[1] || !parts[2] || !parts[3])
-		throw_error("Missing camera params");
-	*camera = ft_calloc(1, sizeof(t_camera));
-	if (!*camera)
-		throw_sys_error("trying to allocate t_camera");
-	set_coordinates(parts[1], &(*camera)->position);
-	set_coordinates(parts[2], &(*camera)->front);
-	(*camera)->fov = ft_atoi(parts[3]);
-	normalize(&(*camera)->front);
-	get_axis(&world_axis, UP);
-	if (dot(&(*camera)->front, &world_axis) == 1.0)
-		get_axis(&world_axis, BACK);
-	else if (dot(&(*camera)->front, &world_axis) == -1.0)
-		get_axis(&world_axis, FRONT);
-	cross(&(*camera)->front, &world_axis, &(*camera)->right);
-	normalize(&(*camera)->right);
-	cross(&(*camera)->right, &(*camera)->front, &(*camera)->up);
-	normalize(&(*camera)->up);
-}
 
 void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 {

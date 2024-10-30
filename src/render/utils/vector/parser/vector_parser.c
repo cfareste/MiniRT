@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   vector_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:54:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 18:20:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/29 09:20:13 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 09:25:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# define SPHERE_ID "sp"
+#include "vector_parser.h"
 
-typedef struct s_sphere_attrs
+void	check_ori_vector_parsing(t_parser_ctx *ctx, t_vector *vector)
 {
-	double	radius;
-}	t_sphere_attrs;
-
-typedef struct s_figure	t_figure;
-
-t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts);
-
-#endif
+	if (vector->x > 1.0 || vector->x < -1.0
+		|| vector->y > 1.0 || vector->y < -1.0
+		|| vector->z > 1.0 || vector->z < -1.0)
+		throw_parse_err(ctx, "Orientation vector must be in range [-1.0,1.0]");
+}

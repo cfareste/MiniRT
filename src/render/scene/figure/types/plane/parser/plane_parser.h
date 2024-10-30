@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer.h                                         :+:      :+:    :+:   */
+/*   plane_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:58 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/10/29 09:11:35 by arcanava          #+#    #+#             */
+/*   Updated: 2024/10/29 09:11:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "render/scene/figure/figure.h"
 
-#include "window/window.h"
-#include "render/render.h"
-#include <pthread.h>
-
-void	render(t_render *render, mlx_t *mlx);
-
-void	stop_render(t_render *render);
+t_figure	*parse_plane(t_parser_ctx *ctx, char **parts);

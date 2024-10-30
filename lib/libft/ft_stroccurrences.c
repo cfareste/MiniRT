@@ -6,9 +6,21 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 11:32:35 by arcanava          #+#    #+#             */
-/*   Updated: 2024/06/19 04:41:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:26:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	ft_index(char c, char *str)
+{
+	int	index;
+
+	index = 0;
+	while (str && str[index] && str[index] != c)
+		index++;
+	if (str[index] != c)
+		return (-1);
+	return (index);
+}
 
 int	ft_stroccurrences(char *str, char c)
 {
