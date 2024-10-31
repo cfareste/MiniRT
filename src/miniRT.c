@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 11:56:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 13:29:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&window, sizeof(t_window));
 	parse_scene_from_file(&window.render.scene, argv[1]);
 	init_window(&window);
+	render(&window.render, window.mlx);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }
