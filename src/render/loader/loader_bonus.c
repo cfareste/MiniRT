@@ -28,9 +28,6 @@ void	set_loader_visibility(t_loader *loader, bool visible)
 	if (loader && loader->image && loader->image->count)
 		loader->image->instances[0].enabled = visible;
 	pthread_mutex_unlock(&loader->image_mutex);
-	pthread_mutex_lock(&loader->progress_mutex);
-	loader->progress = 0;
-	pthread_mutex_unlock(&loader->progress_mutex);
 }
 
 void	init_loader(t_loader *loader, mlx_t *mlx)

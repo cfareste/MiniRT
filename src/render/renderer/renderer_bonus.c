@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:56:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:01:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	*render_routine(t_render *render)
 	pthread_mutex_lock(&render->image_mutex);
 	render->image->instances[0].enabled = true;
 	pthread_mutex_unlock(&render->image_mutex);
+	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, false);
 	pthread_mutex_lock(&render->mutex);
 	printf("FINISHED RENDER: %f\n\n", mlx_get_time() - render->start_time);
@@ -86,6 +87,7 @@ void	render(t_render *render, mlx_t *mlx)
 	pthread_mutex_lock(&render->loader.image_mutex);
 	mlx_resize_image(render->loader.image, mlx->width, mlx->height);
 	pthread_mutex_unlock(&render->loader.image_mutex);
+	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, true);
 	pthread_mutex_lock(&render->image_mutex);
 	render->image->instances[0].enabled = false;

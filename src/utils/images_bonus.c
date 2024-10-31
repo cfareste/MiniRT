@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.c                                           :+:      :+:    :+:   */
+/*   images_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:49 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:01:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:23:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "MLX42.h"
 #include "utils/size/size.h"
 #include "render/loader/loader_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include <pthread.h>
 
 t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex)
@@ -87,6 +88,7 @@ void	paint_black_image(mlx_image_t *image, pthread_mutex_t *mutex)
 	curr_size.width = 0;
 	while (curr_size.width < size.width)
 	{
+		size = get_image_size(image, mutex);
 		curr_size.height = 0;
 		while (curr_size.height < size.height)
 		{
