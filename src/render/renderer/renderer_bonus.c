@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 10:01:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:07:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	stop_render(t_render *render)
 	set_loader_visibility(&render->loader, false);
 }
 
-static void	create_renderers(t_render *render)
+static void	render_parts(t_render *render)
 {
 	int				i;
 	t_size			img_size;
@@ -42,6 +42,7 @@ static void	create_renderers(t_render *render)
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
+		add_loader_progress(&render->loader);
 		parts[i].render = render;
 		parts[i].img_size = img_size;
 		parts[i].min_size.height = i;
@@ -66,7 +67,7 @@ void	*render_routine(t_render *render)
 	size = get_image_size(render->image, &render->image_mutex);
 	set_loader_total(&render->loader,
 		size.width * size.height);
-	create_renderers(render);
+	render_parts(render);
 	if (is_render_finished(render))
 		return (NULL);
 	pthread_mutex_lock(&render->image_mutex);

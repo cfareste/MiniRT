@@ -6,10 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:11:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:53:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "window.h"
 #include "helpers/window_helper_bonus.h"
 #include "render/renderer/renderer_bonus.h"
@@ -44,21 +45,15 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 
 void	init_window(t_window *window)
 {
-	int	width;
-	int	height;
-
-	mlx_get_monitor_size(0, &width, &height);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
-	if (width > 0)
-		window->size.width = width;
-	if (height > 0)
-		window->size.height = height;
+	mlx_set_setting(MLX_MAXIMIZED, 1);
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			window->render.scene.name, true);
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
+	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
 	mlx_resize_hook(window->mlx,

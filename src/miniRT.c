@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:52:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:56:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "render/scene/parser/scene_parser.h"
 #include "parser/parser.h"
 
-// TODO: Join thingss??
 void	destroy(t_window *window)
 {
 	destroy_loader(&window->render.loader);
@@ -39,8 +38,6 @@ int	main(int argc, char **argv)
 	ft_bzero(&window, sizeof(t_window));
 	parse_scene_from_file(&window.render.scene, argv[1]);
 	init_window(&window);
-	init_render(&window.render, window.mlx);
-	render(&window.render, window.mlx);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }
