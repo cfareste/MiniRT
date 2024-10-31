@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:54:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:07:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 		if (!figure)
 		{
 			compute_diffuse(&shadow_ray, hit_record, light, color);
-			compute_specular(scene, get_reflection(&shadow_ray, hit_record),
-				light, color);
+			sum_colors(color, compute_specular(scene, get_reflection(
+						&shadow_ray, hit_record), light, hit_record), color);
 		}
 		light = light->next;
 	}
