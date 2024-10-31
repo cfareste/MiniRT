@@ -15,17 +15,17 @@ CYAN = \033[1;36m
 
 #----OS COMPATIBILITY----#
 ifeq ($(OS),Windows_NT)
-    # CCFLAGS += -D WIN32
-    # ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
-    #     CCFLAGS += -D AMD64
-    # else
-    #     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-    #         CCFLAGS += -D AMD64
-    #     endif
-    #     ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-    #         CCFLAGS += -D IA32
-    #     endif
-    # endif
+    CCFLAGS += -D WIN32
+    ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
+        CCFLAGS += -D AMD64
+    else
+        ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+            CCFLAGS += -D AMD64
+        endif
+        ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+            CCFLAGS += -D IA32
+        endif
+    endif
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
@@ -36,16 +36,16 @@ else
         DEFINES += -D DARWIN=1
 		export DARWIN=1
     endif
-    # UNAME_P := $(shell uname -p)
-    # ifeq ($(UNAME_P),x86_64)
-    #     CCFLAGS += -D AMD64
-    # endif
-    # ifneq ($(filter %86,$(UNAME_P)),)
-    #     CCFLAGS += -D IA32
-    # endif
-    # ifneq ($(filter arm%,$(UNAME_P)),)
-    #     CCFLAGS += -D ARM
-    # endif
+    UNAME_P := $(shell uname -p)
+    ifeq ($(UNAME_P),x86_64)
+        CCFLAGS += -D AMD64
+    endif
+    ifneq ($(filter %86,$(UNAME_P)),)
+        CCFLAGS += -D IA32
+    endif
+    ifneq ($(filter arm%,$(UNAME_P)),)
+        CCFLAGS += -D ARM
+    endif
 endif
 
 
@@ -153,47 +153,47 @@ vpath %.c	$(SRC):\
 
 
 #----SHARED----#
-SRCS = miniRT_bonus.c \
-	scene.c \
-	errors.c \
-	file_utils.c \
-	light.c \
-	color.c \
-	camera.c \
-	coordinates.c \
-	figure.c \
-	figure_helpers.c \
-	cylinder.c \
-	cylinder_helpers.c \
-	plane.c \
-	sphere.c \
-	render_bonus.c \
-	window.c \
-	renderer_bonus.c \
-	vector.c \
-	operation.c \
-	point.c \
-	reference_system.c \
-	render_helper_bonus.c \
-	window_helper_bonus.c \
-	loader_bonus.c \
-	loader_helper_bonus.c \
-	size.c \
-	images_bonus.c \
-	loader_thread_bonus.c \
-	bar_helper.c \
-	ray_helper.c \
-	ray.c \
-	light_utils.c \
-	ambient_light.c \
-	cone.c \
-	parser.c \
-	camera_parser.c \
-	light_parser.c \
-	scene_parser.c \
-	figure_parser.c \
-	vector_parser.c \
-	plane_parser.c
+SRCS = src/miniRT_bonus.c \
+	src/window/window.c \
+	src/window/helpers/window_helper_bonus.c \
+	src/render/render_bonus.c \
+	src/render/helpers/render_helper_bonus.c \
+	src/render/renderer/renderer_bonus.c \
+	src/render/loader/loader_bonus.c \
+	src/render/loader/helpers/loader_helper/loader_helper_bonus.c \
+	src/render/loader/helpers/bar_helper/bar_helper.c \
+	src/render/loader/thread/loader_thread_bonus.c \
+	src/render/scene/scene.c \
+	src/render/scene/parser/scene_parser.c \
+	src/render/scene/camera/camera.c \
+	src/render/scene/camera/parser/camera_parser.c \
+	src/render/scene/figure/figure.c \
+	src/render/scene/figure/parser/figure_parser.c \
+	src/render/scene/figure/helpers/figure_helpers.c \
+	src/render/scene/figure/types/cylinder/cylinder.c \
+	src/render/scene/figure/types/cylinder/helpers/cylinder_helper.c \
+	src/render/scene/figure/types/plane/plane.c \
+	src/render/scene/figure/types/plane/parser/plane_parser.c \
+	src/render/scene/figure/types/sphere/sphere.c \
+	src/render/scene/figure/types/cone/cone.c \
+	src/render/scene/light/light.c \
+	src/render/scene/light/parser/light_parser.c \
+	src/render/scene/light/utils/light_utils.c \
+	src/render/scene/light/ambient_light/ambient_light.c \
+	src/render/ray/ray.c \
+	src/render/ray/helpers/ray_helper.c \
+	src/render/utils/color/color.c \
+	src/render/utils/coordinates/coordinates.c \
+	src/render/utils/vector/vector.c \
+	src/render/utils/vector/parser/vector_parser.c \
+	src/render/utils/vector/operation.c \
+	src/render/utils/point/point.c \
+	src/render/utils/reference_system/reference_system.c \
+	src/utils/size/size.c \
+	src/utils/errors.c \
+	src/utils/file_utils.c \
+	src/utils/images_bonus.c \
+	src/parser/parser.c \
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -271,11 +271,98 @@ download_web_deps:
 	# source ./emsdk_env.sh
 
 web: download_web_deps
-	echo $(INCLUDES)
 	mkdir -p web
 	emcc -O3 $(INCLUDES) -pthread $(SRCS) \
-    -o ./web/miniRT.js \
-    ./build/libmlx42.a \
+    -o ./web/index.html \
+	-I lib/mlx/include \
+    lib/mlx/src/mlx_put_pixel.c \
+	lib/mlx/src/mlx_exit.c \
+	lib/mlx/src/textures/mlx_xpm42.c \
+	lib/mlx/src/textures/mlx_texture.c \
+	lib/mlx/src/textures/mlx_png.c \
+	lib/mlx/src/mlx_init.c \
+	lib/mlx/src/mlx_monitor.c \
+	lib/mlx/src/mlx_loop.c \
+	lib/mlx/src/mlx_cursor.c \
+	lib/mlx/src/utils/mlx_error.c \
+	lib/mlx/src/utils/mlx_utils.c \
+	lib/mlx/src/utils/mlx_list.c \
+	lib/mlx/src/utils/mlx_compare.c \
+	lib/mlx/src/mlx_window.c \
+	lib/mlx/src/mlx_mouse.c \
+	lib/mlx/src/mlx_images.c \
+	lib/mlx/src/mlx_keys.c \
+	lib/mlx/src/font/mlx_font.c \
+	lib/mlx/lib/glad/glad.c \
+	lib/mlx/lib/png/lodepng.c \
+	lib/mlx/build/mlx_vert_shader.c \
+	lib/mlx/build/mlx_frag_shader.c \
+	lib/libft/ft_strnstr.c \
+	lib/libft/ft_strings.c \
+	lib/libft/ft_isdigit.c \
+	lib/libft/ft_putstr_fd.c \
+	lib/libft/ft_lstadd_front_bonus.c \
+	lib/libft/ft_printf_complex_parses.c \
+	lib/libft/ft_lstdelone_bonus.c \
+	lib/libft/ft_closest_multiple.c \
+	lib/libft/ft_lstadd_back_bonus.c \
+	lib/libft/get_next_line_utils.c \
+	lib/libft/ft_strlcpy.c \
+	lib/libft/ft_strlen.c \
+	lib/libft/ft_lstmap_bonus.c \
+	lib/libft/ft_printf_complex_padding_helper.c \
+	lib/libft/ft_memcmp.c \
+	lib/libft/ft_putnbr.c \
+	lib/libft/ft_printf_flags_utils.c \
+	lib/libft/ft_clamp.c \
+	lib/libft/ft_filename.c \
+	lib/libft/ft_putnbr_fd.c \
+	lib/libft/ft_strchr.c \
+	lib/libft/ft_printf.c \
+	lib/libft/ft_striteri.c \
+	lib/libft/ft_bzero.c \
+	lib/libft/ft_strjoin.c \
+	lib/libft/ft_isascii.c \
+	lib/libft/ft_memcpy.c \
+	lib/libft/ft_lstclear_bonus.c \
+	lib/libft/get_next_line.c \
+	lib/libft/ft_isprint.c \
+	lib/libft/number_utils.c \
+	lib/libft/ft_putendl_fd.c \
+	lib/libft/ft_stroccurrences.c \
+	lib/libft/ft_printf_padding_helper.c \
+	lib/libft/ft_toupper.c \
+	lib/libft/ft_lstiter_bonus.c \
+	lib/libft/ft_split.c \
+	lib/libft/ft_putchar.c \
+	lib/libft/ft_printf_parses.c \
+	lib/libft/ft_strrchr.c \
+	lib/libft/ft_lstlast_bonus.c \
+	lib/libft/ft_isalpha.c \
+	lib/libft/ft_memchr.c \
+	lib/libft/ft_putchar_fd.c \
+	lib/libft/ft_memset.c \
+	lib/libft/ft_substr.c \
+	lib/libft/ft_strncmp.c \
+	lib/libft/ft_matrix.c \
+	lib/libft/ft_sort.c \
+	lib/libft/ft_strmapi.c \
+	lib/libft/ft_strtrim.c \
+	lib/libft/ft_lstsize_bonus.c \
+	lib/libft/ft_atod.c \
+	lib/libft/ft_memmove.c \
+	lib/libft/ft_override_val.c \
+	lib/libft/ft_lstnew_bonus.c \
+	lib/libft/ft_split_set.c \
+	lib/libft/ft_putstr.c \
+	lib/libft/ft_strlcat.c \
+	lib/libft/ft_calloc.c \
+	lib/libft/ft_strdup.c \
+	lib/libft/ft_printf_format_helper.c \
+	lib/libft/ft_atoi.c \
+	lib/libft/ft_isalnum.c \
+	lib/libft/ft_itoa.c \
+	lib/libft/ft_tolower.c \
     -s USE_GLFW=3 -s USE_WEBGL2=1 -s FULL_ES3=1 -s WASM=1 \
     -s NO_EXIT_RUNTIME=1 -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' \
     -s ALLOW_MEMORY_GROWTH

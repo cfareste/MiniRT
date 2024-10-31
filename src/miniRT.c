@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT_bonus.c                                     :+:      :+:    :+:   */
+/*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 14:40:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 13:44:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "render/renderer/renderer_bonus.h"
 #include "render/scene/parser/scene_parser.h"
 #include "parser/parser.h"
-#include <emscripten/html5.h>
-#include <emscripten/emscripten.h>
 
 void	destroy(t_window *window)
 {
@@ -31,22 +29,16 @@ void	destroy(t_window *window)
 	free_figures(window->render.scene.figures);
 }
 
-void emscripten_main_loop(mlx_t *mlx)
-{
-    mlx_loop(mlx);
-}
-
 int	main(int argc, char **argv)
 {
 	t_window	window;
 
+	if (argc != 2)
+		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
-	parse_scene_from_file(&window.render.scene, "./multicolored_spheres.rt");
+	parse_scene_from_file(&window.render.scene, argv[1]);
 	init_window(&window);
-	init_render(&window.render, window.mlx);
 	render(&window.render, window.mlx);
-	emscripten_set_main_loop_arg((void (*)(void *)) emscripten_main_loop,
-		window.mlx, 30, true);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }
