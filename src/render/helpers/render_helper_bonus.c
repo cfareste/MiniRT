@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:40 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:50:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:58:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,19 @@ void	set_render_finish(t_render *render, int value)
 	pthread_mutex_lock(&render->mutex);
 	render->finished = value;
 	pthread_mutex_unlock(&render->mutex);
+}
+
+void	check_shadow_hits(t_figure **figure, t_hit_record *hit_record,
+			t_ray *shadow_ray)
+{
+	float	distance;
+
+	distance = FLT_MAX;
+	while (*figure)
+	{
+		if (*figure != hit_record->figure
+			&& (*figure)->hit(*figure, shadow_ray, &distance))
+			break ;
+		*figure = (*figure)->next;
+	}
 }

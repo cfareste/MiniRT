@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 14:07:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/01 23:58:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,13 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 	t_ray		shadow_ray;
 	t_light		*light;
 	t_figure	*figure;
-	float		distance;
 
 	light = scene->lights;
 	while (light)
 	{
 		set_shadow_ray(&shadow_ray, &hit_record->point, &light->position);
 		figure = scene->figures;
-		while (figure)
-		{
-			if (figure != hit_record->figure
-				&& figure->hit(figure, &shadow_ray, &distance))
-				break ;
-			figure = figure->next;
-		}
+		check_shadow_hits(&figure, hit_record, &shadow_ray);
 		if (!figure)
 		{
 			compute_diffuse(&shadow_ray, hit_record, light, color);
