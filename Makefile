@@ -140,6 +140,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
 			$(SRC)render/utils/color:\
+			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
 			$(SRC)render/utils/vector/parser:\
@@ -156,6 +157,7 @@ SRCS = miniRT.c \
 	file_utils.c \
 	light.c \
 	color.c \
+	color_operations.c \
 	camera.c \
 	coordinates.c \
 	figure.c \

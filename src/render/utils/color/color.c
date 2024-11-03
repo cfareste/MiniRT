@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:13:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 	free_matrix(color_parts);
 }
 
+void	clamp_color(t_color *color)
+{
+	color->red = ft_fclamp(color->red, 0.0, 1.0);
+	color->green = ft_fclamp(color->green, 0.0, 1.0);
+	color->blue = ft_fclamp(color->blue, 0.0, 1.0);
+}
+
 int	get_color_value(t_color *color)
 {
-	if (color->red > 1.0)
-		color->red = 1.0;
-	if (color->green > 1.0)
-		color->green = 1.0;
-	if (color->blue > 1.0)
-		color->blue = 1.0;
+	clamp_color(color);
 	return ((int)(color->red * 255) << 24 | (int)(color->green * 255) << 16
 		| (int)(color->blue * 255) << 8 | 0xFF);
 }

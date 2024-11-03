@@ -18,3 +18,12 @@ int	ft_clamp(int value, int min, int max)
 		value = max;
 	return (value);
 }
+
+float	ft_fclamp(float value, float min, float max)
+{
+	if (value < min)
+		value = min;
+	else if (value > max)
+		value = max;
+	return (value);
+}

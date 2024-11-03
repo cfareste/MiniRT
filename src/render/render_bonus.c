@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 13:46:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:30:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "render/scene/light/utils/light_utils.h"
 #include "render/scene/light/ambient_light/ambient_light.h"
+#include "render/utils/color/color_operations/color_operations.h"
 #include <math.h>
 
 void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
@@ -62,16 +63,12 @@ void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 {
 	t_color	light_color;
 
-	light_color.red = 0.0;
-	light_color.green = 0.0;
-	light_color.blue = 0.0;
+	ft_bzero(&light_color, sizeof(t_color));
 	if (!hit_record->figure)
 		return (get_sky_color(scene->ambient_light, final_color));
 	apply_ambient_lighting(scene->ambient_light, &light_color);
 	check_lights(hit_record, scene, &light_color);
-	final_color->red = light_color.red * hit_record->figure->color.red;
-	final_color->green = light_color.green * hit_record->figure->color.green;
-	final_color->blue = light_color.blue * hit_record->figure->color.blue;
+	mix_colors(&light_color, &hit_record->figure->color, final_color);
 	final_color->alpha = 1.0;
 }
 

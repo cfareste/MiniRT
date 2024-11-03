@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_utils.h                                      :+:      :+:    :+:   */
+/*   color_operations.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:55:35 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:10:44 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/03 14:07:24 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/03 14:20:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include "render/ray/ray.h"
-#include "render/render_bonus.h"
 #include "render/utils/color/color.h"
 
-void		compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
-				t_light *light, t_color *color);
+void	sum_colors(t_color *first_color, t_color second_color, t_color *res);
 
-t_color		compute_specular(t_scene *scene, t_vector reflected,
-				t_light *light, t_hit_record *hit_record);
+void	mix_colors(t_color *first_color, t_color *second_color, t_color *res);
 
-t_vector	get_reflection(t_ray *shadow_ray, t_hit_record *hit_record);
-
-void		apply_ambient_lighting(t_light *ambient, t_color *res);
+void	multiply_color_scalar(t_color *color, float scalar, t_color *res);
