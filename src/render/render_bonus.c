@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/01 23:58:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:46:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,29 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 	}
 }
 
-int	process_lighting(t_scene *scene, t_hit_record *hit_record)
+void	process_lighting(t_scene *scene, t_hit_record *hit_record,
+			t_color *final_color)
 {
 	t_color	light_color;
-	t_color	final_color;
 
 	light_color.red = 0.0;
 	light_color.green = 0.0;
 	light_color.blue = 0.0;
 	if (!hit_record->figure)
-		return (get_sky_color(scene->ambient_light));
+		return (get_sky_color(scene->ambient_light, final_color));
 	apply_ambient_lighting(scene->ambient_light, &light_color);
 	check_lights(hit_record, scene, &light_color);
-	final_color.red = light_color.red * hit_record->figure->color.red;
-	final_color.green = light_color.green * hit_record->figure->color.green;
-	final_color.blue = light_color.blue * hit_record->figure->color.blue;
-	return (get_color_value(&final_color));
+	final_color->red = light_color.red * hit_record->figure->color.red;
+	final_color->green = light_color.green * hit_record->figure->color.green;
+	final_color->blue = light_color.blue * hit_record->figure->color.blue;
+	final_color->alpha = 1.0;
 }
 
 void	*render_part(t_render_part *part)
 {
 	unsigned int	i;
 	unsigned int	j;
-	int				color;
+	t_color			color;
 	t_hit_record	hit_record;
 
 	set_viewport(part->render->scene.camera,
@@ -92,8 +92,8 @@ void	*render_part(t_render_part *part)
 		{
 			ft_bzero(&hit_record, sizeof(t_hit_record));
 			check_collisions(&part->render->scene, &hit_record, i, j);
-			color = process_lighting(&part->render->scene, &hit_record);
-			mlx_put_pixel(part->render->image, i, j, color);
+			process_lighting(&part->render->scene, &hit_record, &color);
+			mlx_put_pixel(part->render->image, i, j, get_color_value(&color));
 			add_loader_progress(&part->render->loader);
 			i += part->render->parts_amount;
 		}

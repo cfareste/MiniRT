@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:30 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 20:41:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:25:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,4 @@
 
 void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light);
 
-int		get_sky_color(t_light *ambient_light);
+void	get_sky_color(t_light *ambient_light, t_color *sky_color);
