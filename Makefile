@@ -259,6 +259,12 @@ $(MLX_LIB): | $(MLX_DIR)
 mlx_fclean:
 	rm -rf $(MLX_DIR)
 
+norm:
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(SRC)$(BLUE)...$(DEF_COLOR)\n"
+	norminette $(SRC) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
+	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -271,7 +277,8 @@ mlx_fclean:
 		libft_clean \
 		libft_fclean \
 		make_mlx \
-		mlx_fclean
+		mlx_fclean \
+		norm
 
 -include $(DEPS)
 -include $(MDEPS)
