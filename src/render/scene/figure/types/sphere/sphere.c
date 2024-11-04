@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:46:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*sphere;
 
-	if (ft_matrix_len(parts) != FIG_ATT_LEN + 1)
+	if (ft_matrix_len(parts) < FIG_ATT_LEN + 1)
 		throw_parse_err(ctx, "Missing some sphere parameter");
 	sphere = parse_figure(ctx, parts, FIG_LAST_ATT + 2);
 	sphere->sp_attrs = ft_calloc(1, sizeof(t_sphere_attrs));

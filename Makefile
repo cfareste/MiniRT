@@ -127,6 +127,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/plane/parser:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/cone:\
+			$(SRC)render/scene/figure/texture:\
 			$(SRC)parser:\
 			$(SRC)render/scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
@@ -191,7 +192,8 @@ SRCS = miniRT.c \
 	scene_parser.c \
 	figure_parser.c \
 	vector_parser.c \
-	plane_parser.c
+	plane_parser.c \
+	texture.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

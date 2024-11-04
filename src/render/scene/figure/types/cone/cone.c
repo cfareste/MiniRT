@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 22:04:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:59:56 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
 
-	if (ft_matrix_len(parts) != FIG_ATT_LEN + 3)
+	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
 		throw_parse_err(ctx, "Missing some cone parameter");
 	cone = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));

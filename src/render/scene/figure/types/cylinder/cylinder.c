@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 22:06:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:00:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cylinder;
 
-	if (ft_matrix_len(parts) != FIG_ATT_LEN + 3)
+	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
 		throw_parse_err(ctx, "Missing some cylinder parameter");
 	cylinder = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
 	cylinder->cy_attrs = ft_calloc(1, sizeof(t_cylinder_attrs));
