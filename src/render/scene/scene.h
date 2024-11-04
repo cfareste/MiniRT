@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 11:17:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:26:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 # include "light/light.h"
 # include "figure/figure.h"
 # include "camera/camera.h"
+# include "settings/scene_settings.h"
 
 typedef struct s_scene
 {
-	t_light		*ambient_light;
-	t_camera	*camera;
-	t_light		*lights;
-	t_figure	*figures;
-	char		*name;
+	t_scene_settings	settings;
+	t_light				*ambient_light;
+	t_camera			*camera;
+	t_light				*lights;
+	t_figure			*figures;
 }	t_scene;
 
 void	print_scene(t_scene *scene);

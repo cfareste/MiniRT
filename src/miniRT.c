@@ -22,7 +22,7 @@ void	destroy(t_window *window)
 	destroy_loader(&window->render.loader);
 	mlx_terminate(window->mlx);
 	mlx_delete_texture(window->icon);
-	free(window->render.scene.name);
+	destroy_scene_settings(&window->render.scene.settings);
 	free(window->render.scene.ambient_light);
 	free(window->render.scene.camera);
 	free_lights(window->render.scene.lights);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/04 20:36:27 by arcanava         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "texture.h"
 #include "utils/utils_bonus.h"
@@ -14,7 +26,7 @@ void	print_texture(t_bump_map *texture)
 }
 
 // TODO: add path context!!
-void parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **str)
+void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **str)
 {
 	texture->filename = str[0];
 	if (correct_file_extension(str[0], ".png"))
