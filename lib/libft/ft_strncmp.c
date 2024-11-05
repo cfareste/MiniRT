@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:10:34 by arcanava          #+#    #+#             */
-/*   Updated: 2024/04/10 18:29:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:22:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	ft_strnrcmp(const char *s1, const char *s2, size_t n)
 	if (i == s1_len - 1 - n)
 		return (0);
 	else
-		return (ft_chrcmp(s1[i], s2[i]));
+		return (ft_chrcmp(s1[i], s2[j]));
 }

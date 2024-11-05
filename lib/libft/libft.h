@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 12:13:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:21:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,8 @@ long		get_positive_num(int n);
 
 char		*safe_ft_strdup(const char *s1, void (*f)(int));
 
-char		*safe_ft_strjoin(char const *s1, char const *s2, void (*f)(int));
+char		*safe_ft_strjoin(char const *s1, char const *s2,
+				void (*f)(char *), char *errmsg);
 
 char		*safe_ft_substr(char const *s, unsigned int start,
 				size_t len, void (*f)(int));

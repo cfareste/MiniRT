@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:50:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 int	correct_file_extension(char *filename, char *extension)
 {
 	size_t	extension_len;
+	char	*filename_;
 
+	filename_ = ft_filename(filename);
 	extension_len = ft_strlen(extension);
-	return (ft_strnrcmp(filename, extension, extension_len) == EQUAL_STRINGS
-		&& ft_strlen(filename) > extension_len);
+	return (ft_strnrcmp(filename_, extension, extension_len) == EQUAL_STRINGS
+		&& ft_strlen(filename_) > extension_len);
 }
 
 char	*get_file_name(char *filename, char *extension)

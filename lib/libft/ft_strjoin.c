@@ -6,14 +6,15 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:21:20 by arcanava          #+#    #+#             */
-/*   Updated: 2024/07/06 18:24:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:21:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <errno.h>
 
-char	*safe_ft_strjoin(char const *s1, char const *s2, void (*f)(int))
+char	*safe_ft_strjoin(char const *s1, char const *s2,
+			void (*f)(char *), char *errmsg)
 {
 	char	*res;
 
@@ -21,7 +22,7 @@ char	*safe_ft_strjoin(char const *s1, char const *s2, void (*f)(int))
 		return (NULL);
 	res = ft_strjoin(s1, s2);
 	if (!res)
-		f(ENOMEM);
+		f(errmsg);
 	return (res);
 }
 

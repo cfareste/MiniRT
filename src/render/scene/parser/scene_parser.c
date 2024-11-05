@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 13:26:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:58:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	int				fd;
 	t_parser_ctx	ctx;
 
-	if (!correct_file_extension(filename, SCENE_FILE_EXTENSION))
+	ctx.filename = filename;
+	ctx.line = 0;
+	if (!correct_file_extension(ft_filename(filename), SCENE_FILE_EXTENSION))
 		throw_parse_err(&ctx, "Only .rt files are allowed");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -113,8 +115,8 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	scene->settings.name = get_file_name(filename, SCENE_FILE_EXTENSION);
 	if (!scene->settings.name)
 		throw_sys_error("trying to allocate scene name");
-	ctx.filename = filename;
 	parse_scene_from_fd(&ctx, fd, scene);
 	close(fd);
 	check_parsing(&ctx, scene);
+	print_scene(scene);
 }
