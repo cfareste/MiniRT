@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 01:21:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:45:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,32 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 		throw_parse_err(ctx, "A mandatory light is missing!");
 	else if (mandatory_lights > 1)
 		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
+}
+
+void	parse_scene_from_str(t_scene *scene, char *str)
+{
+	int				i;
+	int				fd;
+	t_parser_ctx	ctx;
+	char			**lines;
+
+	ft_bzero(scene, sizeof(t_scene));
+	scene->name = get_file_name(str, SCENE_FILE_EXTENSION);
+	if (!scene->name)
+		throw_sys_error("trying to allocate scene name");
+	ctx.filename = "String Literal";
+	lines = ft_split(str, '\n');
+	if (!lines)
+		throw_sys_error("trying to split buffer lines");
+	i = 0;
+	while (lines[i])
+	{
+		if (lines[i])
+			parse_scene_elem(&ctx, lines[i], scene);
+		i++;
+	}
+	check_parsing(&ctx, scene);
+	print_scene(scene);
 }
 
 void	parse_scene_from_file(t_scene *scene, char *filename)

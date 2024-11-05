@@ -52,6 +52,7 @@ endif
 #----COMPILER----#
 CC = cc
 CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
+DEFINES += -DCOMPACT=1
 
 
 #----DIRS----#
@@ -153,7 +154,7 @@ vpath %.c	$(SRC):\
 
 
 #----SHARED----#
-SRCS = src/miniRT_bonus.c \
+SRCS = src/miniRT.c \
 	src/window/window.c \
 	src/window/helpers/window_helper_bonus.c \
 	src/render/render_bonus.c \

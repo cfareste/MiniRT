@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 01:31:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 23:04:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	init_window(t_window *window)
 		window->size.width = width;
 	if (height > 0)
 		window->size.height = height;
-	window->icon = mlx_load_png(ICON_PATH);
+	// #ifndef COMPACT_VERSION
+	// window->icon = mlx_load_png(ICON_PATH);
+	// #endif
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			window->render.scene.name, true);
 	if (window->icon)
