@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/04 20:28:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:20:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,16 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 	(void) xdelta;
 	window = (t_window *) param;
-	if (ydelta == window->last_scroll)
+	if (mlx_get_time() - window->last_scroll < 0.2)
 		return ;
-	else if (ydelta < -0.3)
+	stop_render(&window->render);
+	if (ydelta <= -1.0)
 		update_camera_fov(window->render.scene.camera, -1);
-	else if (ydelta > 0.3)
+	else if (ydelta >= 1.0)
 		update_camera_fov(window->render.scene.camera, 1);
 	else
 		return ;
-	window->last_scroll = ydelta;
+	window->last_scroll = mlx_get_time();
 	render(&window->render, window->mlx);
 }
 
@@ -80,6 +81,7 @@ void	init_window(t_window *window)
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			window->render.scene.settings.name, true);
+	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
 	init_render(&window->render, window->mlx);
