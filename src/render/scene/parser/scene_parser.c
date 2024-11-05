@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/04 20:35:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:26:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "render/scene/camera/parser/camera_parser.h"
 #include "render/scene/light/ambient_light/ambient_light.h"
 #include "render/scene/light/parser/light_parser.h"
-#include "../settings/scene_settings.h"
+#include "../settings/parser/scene_settings_parser.h"
 #include <fcntl.h>
 
 static int	try_parse_elems(t_parser_ctx *ctx, char **scene_args,
@@ -33,8 +33,11 @@ static int	try_parse_elems(t_parser_ctx *ctx, char **scene_args,
 	else if (is_char && (*scene_args[0] == LIGHT_ID_MANDATORY
 			|| *scene_args[0] == LIGHT_ID))
 		parse_light(ctx, scene_args, &scene->lights);
-	else if (is_char && *scene_args[0] == *SCENE_SETTINGS_ID)
-		parse_scene_settings(ctx, scene_args, &scene->settings);
+	else if (*scene_args[0] == *SCENE_SETTINGS_ID)
+	{
+		if (!try_parse_scene_setting(ctx, scene_args, &scene->settings))
+			return (0);
+	}
 	else
 		return (0);
 	return (1);
@@ -47,12 +50,13 @@ void	parse_scene_elem(t_parser_ctx *ctx, char *line, t_scene *scene)
 	scene_args = ft_split_set(line, SPACES_CHARS);
 	if (!scene_args)
 		throw_sys_error("ft_split");
-	if (scene_args[0])
-		if (!try_parse_elems(ctx, scene_args, scene))
-			if (!try_parse_figure(ctx, scene_args, &scene->figures)
-				&& *scene_args[0] != '#')
-				throw_parse_err(ctx,
-					ft_strjoin("Unknown scene parameter: ", *scene_args));
+	if (scene_args[0] && !try_parse_elems(ctx, scene_args, scene))
+	{
+		if (!try_parse_figure(ctx, scene_args, &scene->figures)
+			&& *scene_args[0] != '#')
+			throw_parse_err(ctx,
+				ft_strjoin("Unknown scene parameter: ", *scene_args));
+	}
 	free_matrix(scene_args);
 }
 

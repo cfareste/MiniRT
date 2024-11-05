@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/04 20:37:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:12:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	parse_scene_settings(t_parser_ctx *ctx, char **params,
 	if (len > 6)
 		settings->max_depth = (unsigned int) parse_int(ctx, params[6]);
 	check_parsing(ctx, settings);
-	print_scene_settings(settings);
 }
 
 void	print_scene_settings(t_scene_settings *settings)
