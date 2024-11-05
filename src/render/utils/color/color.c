@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:13:07 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:31:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 	if (!color_parts)
 		throw_parse_err(ctx, "ft_split color");
 	if (!color_parts[0] || !color_parts[1] || !color_parts[2])
-		throw_parse_err(ctx, "Missing color params");
+		throw_parse_err(ctx, ft_strjoin("Missing color params: ", params));
 	color->red = parse_int(ctx, color_parts[0]) / (float) 255;
 	color->green = parse_int(ctx, color_parts[1]) / (float) 255;
 	color->blue = parse_int(ctx, color_parts[2]) / (float) 255;

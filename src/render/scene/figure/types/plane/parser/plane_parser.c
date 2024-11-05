@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:00:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_figure	*parse_plane(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*plane;
 
-	if (ft_matrix_len(parts) != FIG_ATT_LEN + 1)
+	if (ft_matrix_len(parts) < FIG_ATT_LEN + 1)
 		throw_parse_err(ctx, "Missing some plane parameter");
 	plane = parse_figure(ctx, parts, FIG_LAST_ATT + 2);
 	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:28:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,13 @@ void	print_camera(t_camera *camera)
 		camera->right.x, camera->right.y, camera->right.z,
 		camera->up.x, camera->up.y, camera->up.z,
 		camera->fov);
+}
+
+void	update_camera_fov(t_camera *camera, int factor)
+{
+	int	new_fov;
+
+	new_fov = camera->fov + factor;
+	if (new_fov <= 180 && new_fov >= 0)
+		camera->fov = new_fov;
 }

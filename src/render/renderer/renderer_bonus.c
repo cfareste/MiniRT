@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:56:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:07:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	stop_render(t_render *render)
 	set_loader_visibility(&render->loader, false);
 }
 
-static void	create_renderers(t_render *render)
+static void	render_parts(t_render *render)
 {
 	int				i;
 	t_size			img_size;
@@ -42,6 +42,7 @@ static void	create_renderers(t_render *render)
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
+		add_loader_progress(&render->loader);
 		parts[i].render = render;
 		parts[i].img_size = img_size;
 		parts[i].min_size.height = i;
@@ -66,13 +67,15 @@ void	*render_routine(t_render *render)
 	size = get_image_size(render->image, &render->image_mutex);
 	set_loader_total(&render->loader,
 		size.width * size.height);
-	create_renderers(render);
+	render_parts(render);
 	if (is_render_finished(render))
 		return (NULL);
 	pthread_mutex_lock(&render->image_mutex);
 	render->image->instances[0].enabled = true;
 	pthread_mutex_unlock(&render->image_mutex);
+	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, false);
+	set_render_finish(render, 1);
 	pthread_mutex_lock(&render->mutex);
 	printf("FINISHED RENDER: %f\n\n", mlx_get_time() - render->start_time);
 	pthread_mutex_unlock(&render->mutex);
@@ -86,6 +89,7 @@ void	render(t_render *render, mlx_t *mlx)
 	pthread_mutex_lock(&render->loader.image_mutex);
 	mlx_resize_image(render->loader.image, mlx->width, mlx->height);
 	pthread_mutex_unlock(&render->loader.image_mutex);
+	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, true);
 	pthread_mutex_lock(&render->image_mutex);
 	render->image->instances[0].enabled = false;

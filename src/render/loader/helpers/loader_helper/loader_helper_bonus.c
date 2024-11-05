@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader_helper.c                                    :+:      :+:    :+:   */
+/*   loader_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:55 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:00:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:02:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ unsigned int	get_loader_progress(t_loader *loader)
 	return (current);
 }
 
-void	set_loader_progress(t_loader *loader, unsigned int current)
+void	set_loader_progress(t_loader *loader, unsigned int progress)
 {
 	pthread_mutex_lock(&loader->progress_mutex);
-	loader->progress = current;
+	loader->progress = progress;
 	pthread_mutex_unlock(&loader->progress_mutex);
 }
 

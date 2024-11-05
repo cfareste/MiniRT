@@ -12,6 +12,7 @@
 
 #include "../helpers/bar_helper/bar_helper.h"
 #include "../helpers/loader_helper/loader_helper_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include "utils/utils_bonus.h"
 
 void	update_progress_bar(t_loader *loader, int bar_width, t_size size)
@@ -56,25 +57,24 @@ static int	is_loader_thread_alive(t_loader *loader)
 void	*loader_routine(t_loader *loader)
 {
 	unsigned int	current;
-	unsigned int	current_prev;
-	int				enabled;
-	int				enabled_prev;
+	unsigned int	current_pre;
+	t_size			img_size;
+	t_size			img_size_pre;
 
 	current = 101;
+	img_size = get_image_size(loader->image, &loader->image_mutex);
 	while (is_loader_thread_alive(loader))
 	{
-		enabled_prev = enabled;
-		enabled = is_image_enabled(loader->image, &loader->image_mutex);
-		current_prev = current;
-		current = get_bar_width(
-				get_image_size(loader->image, &loader->image_mutex).width,
-				loader->progress, get_loader_total(loader));
-		if (enabled != enabled_prev
-			|| (current == 0 && current != current_prev))
+		img_size_pre = img_size;
+		img_size = get_image_size(loader->image, &loader->image_mutex);
+		current_pre = current;
+		current = get_bar_width(img_size.width, get_loader_progress(loader),
+				get_loader_total(loader));
+		if (diff_sizes(&img_size, &img_size_pre)
+			|| (current != current_pre && current == 0))
 			paint_black_image(loader->image, &loader->image_mutex);
-		else if (enabled && current > current_prev)
-			update_progress_bar(loader, current,
-				get_image_size(loader->image, &loader->image_mutex));
+		if (current > current_pre)
+			update_progress_bar(loader, current, img_size);
 	}
 	set_loader_visibility(loader, false);
 	return (NULL);

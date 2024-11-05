@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 21:52:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:26:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,45 @@
 #include "render/scene/camera/parser/camera_parser.h"
 #include "render/scene/light/ambient_light/ambient_light.h"
 #include "render/scene/light/parser/light_parser.h"
+#include "../settings/parser/scene_settings_parser.h"
 #include <fcntl.h>
 
-void	parse_scene_elem(t_parser_ctx *ctx, char *line, t_scene *scene)
+static int	try_parse_elems(t_parser_ctx *ctx, char **scene_args,
+				t_scene *scene)
 {
-	char	**scene_args;
-	int		is_char;
+	int	is_char;
 
-	scene_args = ft_split_set(line, SPACES_CHARS);
-	if (!scene_args)
-		throw_sys_error("ft_split");
 	is_char = ft_strlen(scene_args[0]) == 1;
-	if (!scene_args[0])
-		(void) NULL;
-	else if (is_char && *scene_args[0] == AMBIENT_LIGHT_ID)
+	if (is_char && *scene_args[0] == AMBIENT_LIGHT_ID)
 		parse_ambient_light(ctx, scene_args, &scene->ambient_light);
 	else if (is_char && *scene_args[0] == CAMERA_ID[0])
 		parse_camera(ctx, scene_args, &scene->camera);
 	else if (is_char && (*scene_args[0] == LIGHT_ID_MANDATORY
 			|| *scene_args[0] == LIGHT_ID))
 		parse_light(ctx, scene_args, &scene->lights);
-	else if (!try_parse_figure(ctx, scene_args, &scene->figures)
-		&& *scene_args[0] != '#')
+	else if (*scene_args[0] == *SCENE_SETTINGS_ID)
 	{
-		ft_printff(STDERR_FILENO,
-			"Error\nUnknown scene parameter: %s\n", *scene_args);
-		exit(EXIT_FAILURE);
+		if (!try_parse_scene_setting(ctx, scene_args, &scene->settings))
+			return (0);
+	}
+	else
+		return (0);
+	return (1);
+}
+
+void	parse_scene_elem(t_parser_ctx *ctx, char *line, t_scene *scene)
+{
+	char	**scene_args;
+
+	scene_args = ft_split_set(line, SPACES_CHARS);
+	if (!scene_args)
+		throw_sys_error("ft_split");
+	if (scene_args[0] && !try_parse_elems(ctx, scene_args, scene))
+	{
+		if (!try_parse_figure(ctx, scene_args, &scene->figures)
+			&& *scene_args[0] != '#')
+			throw_parse_err(ctx,
+				ft_strjoin("Unknown scene parameter: ", *scene_args));
 	}
 	free_matrix(scene_args);
 }
@@ -96,8 +109,9 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	if (fd == -1)
 		throw_sys_error(filename);
 	ft_bzero(scene, sizeof(t_scene));
-	scene->name = get_file_name(filename, SCENE_FILE_EXTENSION);
-	if (!scene->name)
+	init_scene_settings(&scene->settings);
+	scene->settings.name = get_file_name(filename, SCENE_FILE_EXTENSION);
+	if (!scene->settings.name)
 		throw_sys_error("trying to allocate scene name");
 	ctx.filename = filename;
 	parse_scene_from_fd(&ctx, fd, scene);

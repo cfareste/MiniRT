@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 16:57:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:55:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_window
 	mlx_t			*mlx;
 	t_render		render;
 	t_resize		resize;
+	double			last_scroll;
 }	t_window;
 
 void	init_window(t_window *window);
