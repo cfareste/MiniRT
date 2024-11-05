@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 22:06:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:26:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 	rotate_reference_system(&figure->cy_attrs->orientation,
 		&refsys.ray.direction, &refsys.ray.origin);
 	hit = hit_base(&refsys, half_height, figure->cy_attrs->radius, distance);
-	hit |= hit_body(&refsys, figure, ray, distance);
+	hit |= hit_body_cylinder(&refsys, figure, ray, distance);
 	hit |= hit_base(&refsys, -half_height, figure->cy_attrs->radius,
 			distance);
 	return (hit);
