@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_settings.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 15:26:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:27:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ typedef struct s_scene_settings
 	char			*name;
 	t_color			sky_color;
 	unsigned int	samples;
-	double			antialiasing_rad;
-	double			bokeh_rad;
+	int				antialiasing;
 	unsigned int	max_depth;
 }	t_scene_settings;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 15:28:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:27:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_camera
 	t_vector	up;
 	t_viewport	viewport;
 	int			fov;
+	double		defocus;
+	double		focus_dist;
+	t_vector	defocus_right;
+	t_vector	defocus_up;
 }	t_camera;
 
 void	print_camera(t_camera *camera);
