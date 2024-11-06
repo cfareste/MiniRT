@@ -1,8 +1,13 @@
+# SETTINGS
+SN Beautiful
+SS 8
+SAA 1
+
 # Ambient light
 A		0.2		255,255,255
 
 # Camera
-C		0,1,-1		-0.1,0,-1	90
+C		0,1,-1		-0.1,0,-1	130    7.0	2.0
 
 # Spot lights
 L		4,5,-4		0.3		255,255,255
