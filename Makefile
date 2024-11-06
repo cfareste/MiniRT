@@ -151,6 +151,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)render/utils/random:\
 			$(SRC)render/utils/iterators:\
+			$(SRC)render/utils/thread:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
@@ -202,7 +203,8 @@ SRCS = miniRT.c \
 	texture.c \
 	scene_settings.c \
 	scene_settings_parser.c \
-	random.c
+	random.c \
+	thread.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

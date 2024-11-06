@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_bonus.h                                   :+:      :+:    :+:   */
+/*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 22:52:29 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/06 22:53:10 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/06 23:47:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include "window/window.h"
-#include "render/render_bonus.h"
+#include <stdint.h>
 #include <pthread.h>
 
-void	render(t_render *render, mlx_t *mlx);
+#ifdef __APPLE__
 
-void	stop_render(t_render *render);
+void	get_thread_id(pthread_t *thread, uint32_t *id)
+{
+	pthread_threadid_np(*thread, (uint64_t *) id);
+}
+
+#else
+
+void	get_thread_id(pthread_t *thread, uint32_t *id)
+{
+	*id = *thread;
+}
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 19:32:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/06 22:54:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "render/scene/light/utils/light_utils.h"
 #include "render/scene/light/ambient_light/ambient_light.h"
+#include "render/utils/thread/thread.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "render/utils/iterators/iterators.h"
 #include <math.h>
@@ -89,8 +90,8 @@ void	*render_part(t_render_part *part)
 
 	set_viewport(part->render->scene.camera,
 		&part->render->scene.camera->viewport, part->img_size);
+	get_thread_id(&part->thread, &seed);
 	iterators.j = 0;
-	seed = part->thread;
 	while (!is_render_finished(part->render)
 		&& iterators.j < part->img_size.height)
 	{
