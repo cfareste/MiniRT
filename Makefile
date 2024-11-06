@@ -150,6 +150,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)render/utils/random:\
+			$(SRC)render/utils/iterators:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
