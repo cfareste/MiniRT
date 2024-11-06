@@ -149,6 +149,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
+			$(SRC)render/utils/random:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 
@@ -199,7 +200,8 @@ SRCS = miniRT.c \
 	plane_parser.c \
 	texture.c \
 	scene_settings.c \
-	scene_settings_parser.c 
+	scene_settings_parser.c \
+	random.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
