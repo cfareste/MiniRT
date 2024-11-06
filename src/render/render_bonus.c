@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:30:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:32:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,18 @@
 #include "render/scene/light/utils/light_utils.h"
 #include "render/scene/light/ambient_light/ambient_light.h"
 #include "render/utils/color/color_operations/color_operations.h"
+#include "render/utils/iterators/iterators.h"
 #include <math.h>
 
-void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
+void	check_collisions(t_scene *scene, t_hit_record *hit_record,
+			t_iterators *iterators, uint32_t *seed)
 {
 	t_ray		ray;
 	t_figure	*figure;
 
 	hit_record->distance = FLT_MAX;
 	figure = scene->figures;
-	set_ray_from_camera(&ray, scene->camera, i, j);
+	set_ray_from_camera(&ray, scene, iterators, seed);
 	while (figure)
 	{
 		if (figure->hit(figure, &ray, &hit_record->distance))
@@ -36,65 +38,71 @@ void	check_collisions(t_scene *scene, t_hit_record *hit_record, int i, int j)
 	}
 }
 
-void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
-{
-	t_ray		shadow_ray;
-	t_light		*light;
-	t_figure	*figure;
-
-	light = scene->lights;
-	while (light)
-	{
-		set_shadow_ray(&shadow_ray, &hit_record->point, &light->position);
-		figure = scene->figures;
-		check_shadow_hits(&figure, hit_record, &shadow_ray);
-		if (!figure)
-		{
-			compute_diffuse(&shadow_ray, hit_record, light, color);
-			sum_colors(color, compute_specular(scene, get_reflection(
-						&shadow_ray, hit_record), light, hit_record), color);
-		}
-		light = light->next;
-	}
-}
-
 void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 			t_color *final_color)
 {
 	t_color	light_color;
+	t_color	sample_color;
 
+	ft_bzero(&sample_color, sizeof(t_color));
 	ft_bzero(&light_color, sizeof(t_color));
 	if (!hit_record->figure)
-		return (get_sky_color(scene->ambient_light, final_color));
+	{
+		get_sky_color(scene->ambient_light, &sample_color);
+		sum_colors(final_color, sample_color, final_color);
+		return ;
+	}
 	apply_ambient_lighting(scene->ambient_light, &light_color);
 	check_lights(hit_record, scene, &light_color);
-	mix_colors(&light_color, &hit_record->figure->color, final_color);
-	final_color->alpha = 1.0;
+	mix_colors(&light_color, &hit_record->figure->color, &sample_color);
+	sum_colors(final_color, sample_color, final_color);
+}
+
+void	render_pixel(t_render_part *part, t_iterators *iterators,
+			uint32_t *seed)
+{
+	unsigned int	k;
+	t_color			pixel_color;
+	t_color			sample_color;
+	t_hit_record	hit_record;
+
+	k = 0;
+	ft_bzero(&pixel_color, sizeof(t_color));
+	ft_bzero(&sample_color, sizeof(t_color));
+	while (k < part->render->scene.settings.samples)
+	{
+		ft_bzero(&hit_record, sizeof(t_hit_record));
+		check_collisions(&part->render->scene, &hit_record, iterators, seed);
+		process_lighting(&part->render->scene, &hit_record, &sample_color);
+		k++;
+	}
+	multiply_color_scalar(&sample_color,
+		1 / (float) part->render->scene.settings.samples, &pixel_color);
+	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
+		get_color_value(&pixel_color));
 }
 
 void	*render_part(t_render_part *part)
 {
-	unsigned int	i;
-	unsigned int	j;
-	t_color			color;
-	t_hit_record	hit_record;
+	uint32_t		seed;
+	t_iterators		iterators;
 
 	set_viewport(part->render->scene.camera,
 		&part->render->scene.camera->viewport, part->img_size);
-	j = 0;
-	while (!is_render_finished(part->render) && j < part->img_size.height)
+	iterators.j = 0;
+	seed = part->thread;
+	while (!is_render_finished(part->render)
+		&& iterators.j < part->img_size.height)
 	{
-		i = part->min_size.height;
-		while (!is_render_finished(part->render) && i < part->img_size.width)
+		iterators.i = part->min_size.height;
+		while (!is_render_finished(part->render)
+			&& iterators.i < part->img_size.width)
 		{
-			ft_bzero(&hit_record, sizeof(t_hit_record));
-			check_collisions(&part->render->scene, &hit_record, i, j);
-			process_lighting(&part->render->scene, &hit_record, &color);
-			mlx_put_pixel(part->render->image, i, j, get_color_value(&color));
+			render_pixel(part, &iterators, &seed);
 			add_loader_progress(&part->render->loader);
-			i += part->render->parts_amount;
+			iterators.i += part->render->parts_amount;
 		}
-		j++;
+		iterators.j++;
 	}
 	return (NULL);
 }
