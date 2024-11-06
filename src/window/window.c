@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 15:20:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:49:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "helpers/window_helper_bonus.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
+#include "export/export.h"
 #include "miniRT.h"
 
 static void	global_hook(t_window *window)
@@ -39,7 +40,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
 	if (keydata.action != MLX_PRESS)
 		return ;
-	if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
+	else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 		close_window(window);
 	else if (keydata.key == MLX_KEY_R || keydata.key == MLX_KEY_F5)
 		render(&window->render, window->mlx);
@@ -53,6 +54,8 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		update_camera_fov(window->render.scene.camera, -1);
 		render(&window->render, window->mlx);
 	}
+	else if (keydata.key == MLX_KEY_E)
+		export_image(&window->render);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)

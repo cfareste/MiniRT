@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   export.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 19:50:09 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/06 18:13:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_strncmp.h"
+#pragma once
+#define EXPORT_BASE_DIR "exports/"
 
-void	ft_jump_spaces(char **str)
-{
-	while (str && *str && **str && ft_stroccurrences(SPACES_CHARS, **str))
-		(*str)++;
-}
+#include "render/render_bonus.h"
 
-int		write_str(char *dst, char *src, int	i)
-{
-	int	j;
-
-	if (!dst || !src || !i)
-		return (-1);
-	j = 0;
-	while (src[j])
-		dst[i++] = src[j++];
-	return (j);
-}
+void	export_image(t_render *render);
