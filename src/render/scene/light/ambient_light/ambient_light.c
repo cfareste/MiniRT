@@ -6,13 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 13:25:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:43:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
 #include "parser/parser.h"
+#include "render/utils/color/color_operations/color_operations.h"
 #include "../light.h"
 
 void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
@@ -32,10 +33,10 @@ void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
 			"Brightness param for ambient light must be in range [0.0,1.0]");
 }
 
-void	get_sky_color(t_light *ambient_light, t_color *sky_color)
+void	get_sky_color(t_light *ambient_light, t_color *scene_sky_color,
+			t_color *sky_color)
 {
-	sky_color->red = (0xD6 / (float)255) * ambient_light->brightness;
-	sky_color->green = (0xEA / (float)255) * ambient_light->brightness;
-	sky_color->blue = (0xF8 / (float)255) * ambient_light->brightness;
+	multiply_color_scalar(scene_sky_color, ambient_light->brightness,
+		sky_color);
 	sky_color->alpha = 1.0;
 }

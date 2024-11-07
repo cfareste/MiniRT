@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 22:54:30 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:36:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 	ft_bzero(&light_color, sizeof(t_color));
 	if (!hit_record->figure)
 	{
-		get_sky_color(scene->ambient_light, &sample_color);
+		get_sky_color(scene->ambient_light, &scene->settings.sky_color,
+			&sample_color);
 		sum_colors(final_color, sample_color, final_color);
 		return ;
 	}
