@@ -21,7 +21,7 @@ static void	print_attrs(void *param)
 	t_plane_attrs	*attrs;
 
 	attrs = (t_plane_attrs *) param;
-	printf("%f, %f, %f ",
+	printf("%f, %f, %f",
 		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
 }
 
