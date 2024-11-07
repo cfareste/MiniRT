@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder_helpers.h                                 :+:      :+:    :+:   */
+/*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:54:25 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 16:28:24 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/06 22:53:10 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/07 11:45:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include <stdint.h>
+#include <pthread.h>
 
-#include "render/scene/figure/figure.h"
-#include "render/utils/reference_system/reference_system.h"
+#ifdef DARWIN
 
-int		hit_body_cylinder(t_reference_system *refsys, t_figure *cylinder,
-			t_ray *ray, float *distance);
+void	get_thread_id(pthread_t *thread, uint32_t *id)
+{
+	pthread_threadid_np(*thread, (uint64_t *) id);
+}
+
+#else
+
+void	get_thread_id(pthread_t *thread, uint32_t *id)
+{
+	*id = *thread;
+}
+
+#endif

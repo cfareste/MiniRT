@@ -143,11 +143,15 @@ vpath %.c	$(SRC):\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
 			$(SRC)render/utils/color:\
+			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/vector:\
 			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
+			$(SRC)render/utils/random:\
+			$(SRC)render/utils/iterators:\
+			$(SRC)render/utils/thread:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 			$(SRC)exporter:\
@@ -162,6 +166,7 @@ SRCS = miniRT.c \
 	file_utils.c \
 	light.c \
 	color.c \
+	color_operations.c \
 	camera.c \
 	coordinates.c \
 	figure.c \
@@ -203,7 +208,9 @@ SRCS = miniRT.c \
 	scene_settings_parser.c \
 	exporter_bonus.c \
 	image_bonus.c \
-	exporter_helper_bonus.c
+	exporter_helper_bonus.c\
+	random.c \
+	thread.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -271,6 +278,12 @@ $(MLX_LIB): | $(MLX_DIR)
 mlx_fclean:
 	rm -rf $(MLX_DIR)
 
+norm:
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(SRC)$(BLUE)...$(DEF_COLOR)\n"
+	norminette $(SRC) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
+	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -283,7 +296,8 @@ mlx_fclean:
 		libft_clean \
 		libft_fclean \
 		make_mlx \
-		mlx_fclean
+		mlx_fclean \
+		norm
 
 -include $(DEPS)
 -include $(MDEPS)

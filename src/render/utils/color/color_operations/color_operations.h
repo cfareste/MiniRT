@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder_helpers.h                                 :+:      :+:    :+:   */
+/*   color_operations.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:54:25 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 16:28:24 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/03 14:07:24 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/03 14:20:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "render/utils/color/color.h"
 
-#include "render/scene/figure/figure.h"
-#include "render/utils/reference_system/reference_system.h"
+void	sum_colors(t_color *first_color, t_color second_color, t_color *res);
 
-int		hit_body_cylinder(t_reference_system *refsys, t_figure *cylinder,
-			t_ray *ray, float *distance);
+void	mix_colors(t_color *first_color, t_color *second_color, t_color *res);
+
+void	multiply_color_scalar(t_color *color, float scalar, t_color *res);

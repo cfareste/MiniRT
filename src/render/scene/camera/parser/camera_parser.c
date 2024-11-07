@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:40:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../camera.h"
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
+#include <math.h>
 
 static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
 {
@@ -27,10 +28,36 @@ static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
 			"Camera field of view (fov) must be in range [0,180]");
 }
 
-void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
+static void	calculate_defocus_components(t_camera *camera)
+{
+	float	defocus_radius;
+
+	defocus_radius = tan(camera->defocus * 0.5 * M_PI / 180.0)
+		* camera->focus_dist;
+	multiply_vector_scalar(&camera->right, defocus_radius,
+		&camera->defocus_right);
+	multiply_vector_scalar(&camera->up, defocus_radius,
+		&camera->defocus_up);
+}
+
+static void	set_camera_vectors(t_camera *camera)
 {
 	t_vector	world_axis;
 
+	normalize(&camera->front);
+	get_axis(&world_axis, UP);
+	if (dot(&camera->front, &world_axis) == 1.0)
+		get_axis(&world_axis, BACK);
+	else if (dot(&camera->front, &world_axis) == -1.0)
+		get_axis(&world_axis, FRONT);
+	cross(&camera->front, &world_axis, &camera->right);
+	normalize(&camera->right);
+	cross(&camera->right, &camera->front, &camera->up);
+	normalize(&camera->up);
+}
+
+void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
+{
 	if (*camera)
 		throw_parse_err(ctx, "Multiple cameras are not allowed");
 	else if (!parts[1] || !parts[2] || !parts[3])
@@ -40,16 +67,14 @@ void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 		throw_sys_error("trying to allocate t_camera");
 	parse_coordinates(ctx, parts[1], &(*camera)->position);
 	parse_coordinates(ctx, parts[2], &(*camera)->front);
-	normalize(&(*camera)->front);
 	(*camera)->fov = parse_int(ctx, parts[3]);
-	get_axis(&world_axis, UP);
-	if (dot(&(*camera)->front, &world_axis) == 1.0)
-		get_axis(&world_axis, BACK);
-	else if (dot(&(*camera)->front, &world_axis) == -1.0)
-		get_axis(&world_axis, FRONT);
-	cross(&(*camera)->front, &world_axis, &(*camera)->right);
-	normalize(&(*camera)->right);
-	cross(&(*camera)->right, &(*camera)->front, &(*camera)->up);
-	normalize(&(*camera)->up);
+	set_camera_vectors(*camera);
+	(*camera)->defocus = 0;
+	(*camera)->focus_dist = 1;
+	if (parts[4])
+		(*camera)->defocus = parse_double(ctx, parts[4]);
+	if (parts[4] && parts[5])
+		(*camera)->focus_dist = parse_double(ctx, parts[5]);
+	calculate_defocus_components(*camera);
 	check_parsing(ctx, *camera);
 }

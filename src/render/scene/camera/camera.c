@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 15:28:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:43:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 {
-	float	focal_distance;
+	float	viewport_fov;
 
-	vp->height = 2.0;
-	vp->width = (w_size.width * vp->height) / w_size.height;
-	vp->x_unit = vp->width / w_size.width;
-	vp->y_unit = vp->height / w_size.height;
-	focal_distance = tan((camera->fov * 0.5) * M_PI / 180);
-	translate_point(&camera->position, &camera->front, focal_distance,
+	viewport_fov = tan((camera->fov * 0.5) * M_PI / 180);
+	vp->width = 2.0 * viewport_fov * camera->focus_dist;
+	vp->height = vp->width / (w_size.width / (float) w_size.height);
+	vp->x_unit = vp->width / (float) w_size.width;
+	vp->y_unit = vp->height / (float) w_size.height;
+	translate_point(&camera->position, &camera->front, camera->focus_dist,
 		&vp->center);
 	vp->start.x = vp->center.x - (vp->width * camera->right.x / 2.0) + \
 		(vp->height * camera->up.x / 2.0);

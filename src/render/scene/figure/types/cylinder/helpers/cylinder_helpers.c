@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:54:23 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:26:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	is_invalid_root(float solution, t_bounds *bounds,
 		|| point_height > cylinder->cy_attrs->height / 2.0);
 }
 
-int	hit_body(t_reference_system *refsys, t_figure *cy, t_ray *ray,
+int	hit_body_cylinder(t_reference_system *refsys, t_figure *cy, t_ray *ray,
 	float *distance)
 {
 	t_quadratic_params	params;
