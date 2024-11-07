@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:44:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ double	parse_double(t_parser_ctx *ctx, char *str)
 int	parse_int(t_parser_ctx *ctx, char *str)
 {
 	if (!ft_isnum(str))
-		throw_parse_err(ctx, "Invalid integer number");
+		throw_parse_err(ctx, ft_strjoin("Invalid integer number: ", str));
 	return (ft_atoi(str));
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:11:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:47:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		render(&window->render, window->mlx);
 	else if (keydata.key == MLX_KEY_I)
 	{
-		update_camera_fov(window->render.scene.camera, 1);
+		update_camera_fov(window->render.scene.camera, -1);
 		render(&window->render, window->mlx);
 	}
 	else if (keydata.key == MLX_KEY_O)
 	{
-		update_camera_fov(window->render.scene.camera, -1);
+		update_camera_fov(window->render.scene.camera, 1);
 		render(&window->render, window->mlx);
 	}
 	else if (keydata.key == MLX_KEY_E)
@@ -68,9 +68,9 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 		return ;
 	stop_render(&window->render);
 	if (ydelta <= -1.0)
-		update_camera_fov(window->render.scene.camera, -1);
-	else if (ydelta >= 1.0)
 		update_camera_fov(window->render.scene.camera, 1);
+	else if (ydelta >= 1.0)
+		update_camera_fov(window->render.scene.camera, -1);
 	else
 		return ;
 	window->last_scroll = mlx_get_time();
