@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:14:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:30:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
 #include "texture/texture.h"
+#include "pattern/pattern.h"
 
 typedef struct s_figure
 {
@@ -40,6 +41,7 @@ typedef struct s_figure
 	};
 	t_color		color;
 	t_bump_map	texture;
+	t_pattern	pattern;
 	int			(*hit)(t_figure *figure, t_ray *ray, float *distance);
 	void		(*normal)(t_figure *figure, t_point *point, t_vector *res);
 	void		(*get_color)(t_figure *figure, t_point *point, t_color *res);

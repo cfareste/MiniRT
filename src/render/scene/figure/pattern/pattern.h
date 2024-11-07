@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_parser.h                                    :+:      :+:    :+:   */
+/*   pattern.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 17:16:02 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/07 17:31:09 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/07 17:38:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define FIG_LAST_ATT 4
-#define FIG_ATT_LEN 6
-#define OPT_BM "bm"
-#define OPT_CD "cd"
-#include "parser/parser.h"
-#include "../figure.h"
+#include "render/utils/color/color.h"
 
-int			try_parse_figure(t_parser_ctx *ctx,
-				char **parts, t_figure **figure);
+typedef struct s_pattern
+{
+	t_color	colors[2];
+	double	dimension;
+}	t_pattern;
 
-t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i);
+void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str);

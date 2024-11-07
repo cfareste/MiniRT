@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:21:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:05:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ char		*safe_ft_strtrim(char const *s1, char const *set, void (*f)(int));
 
 char		**safe_ft_split_set(char const *s, char const *set, void (*f)(int));
 
-char		**safe_ft_split(char const *s, char c, void (*f)(int));
+char		**safe_ft_split(char const *s, char c, void (*f)(char *),
+				char *err_msg);
 
 char		*ft_override_val(char *old, char *new);
 

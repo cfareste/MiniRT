@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 17:49:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:51:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_texture(t_bump_map *texture)
 		format_str = "OpenGL";
 	else
 		format_str = "DirectX";
-	ft_printf("TEXTURE (%s): %p\n", format_str, texture->texture);
+	printf("TEXTURE (%s): %p\n", format_str, texture->texture);
 }
 
 static void	check_file(t_parser_ctx *ctx, char *path)
@@ -51,21 +51,23 @@ static void	check_file(t_parser_ctx *ctx, char *path)
 // TODO: add path context!!
 void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **params)
 {
-	check_file(ctx, params[0]);
-	if (correct_file_extension(params[0], ".png"))
+	if (!params[1])
+		throw_parse_err(ctx, "Missing texture params");
+	check_file(ctx, params[1]);
+	if (correct_file_extension(params[1], ".png"))
 	{
-		texture->texture = mlx_load_png(params[0]);
+		texture->texture = mlx_load_png(params[1]);
 		if (!texture->texture)
-			throw_mlx_error(params[0], mlx_strerror(mlx_errno));
+			throw_mlx_error(params[1], mlx_strerror(mlx_errno));
 	}
-	else if (correct_file_extension(params[0], ".xpm42"))
+	else if (correct_file_extension(params[1], ".xpm42"))
 	{
-		texture->xpm = mlx_load_xpm42(params[0]);
+		texture->xpm = mlx_load_xpm42(params[1]);
 		if (!texture->xpm)
-			throw_mlx_error(params[0], mlx_strerror(mlx_errno));
+			throw_mlx_error(params[1], mlx_strerror(mlx_errno));
 		texture->texture = &texture->xpm->texture;
 	}
 	texture->format = OPENGL;
-	if (params[1] && ft_strcmp(params[1], "directx") == EQUAL_STRINGS)
+	if (params[2] && ft_strcmp(params[2], "directx") == EQUAL_STRINGS)
 		texture->format = DIRECTX;
 }

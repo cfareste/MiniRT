@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 16:24:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:55:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,30 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
 		throw_parse_err(ctx, "Specular Strength must be in range [0, 1]");
 }
 
+static void	parse_optionals(char **params, int i, t_figure *figure,
+				t_parser_ctx *ctx)
+{
+	char	**sub_params;
+
+	while (params && params[i])
+	{
+		sub_params = safe_ft_split(params[i], ':',
+				throw_sys_error, "error parsing figure optional params");
+		if (!sub_params[0])
+			(void) NULL;
+		else if (ft_strcmp(sub_params[0], OPT_BM) == EQUAL_STRINGS)
+			parse_texture(ctx, &figure->texture, sub_params);
+		else if (ft_strcmp(sub_params[0], OPT_CD) == EQUAL_STRINGS)
+			parse_pattern(ctx, &figure->pattern, sub_params);
+		else
+			throw_parse_err(ctx, safe_ft_strjoin(
+					"Unknown figure optional param identifier: ", sub_params[0],
+					throw_sys_error, "error"));
+		free_matrix(sub_params);
+		i++;
+	}
+}
+
 t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 {
 	t_figure	*figure;
@@ -68,8 +92,7 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->specular = parse_double(ctx, parts[4]);
 	parse_color(ctx, parts[color_i], &figure->color);
 	figure->get_color = get_figure_color;
-	if (ft_matrix_len(parts + color_i) > 1)
-		parse_texture(ctx, &figure->texture, parts + color_i + 1);
+	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);
 	return (figure);
 }

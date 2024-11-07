@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_parser.h                                    :+:      :+:    :+:   */
+/*   pattern.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 17:16:02 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/07 17:31:06 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/07 17:54:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#define FIG_LAST_ATT 4
-#define FIG_ATT_LEN 6
-#define OPT_BM "bm"
-#define OPT_CD "cd"
-#include "parser/parser.h"
-#include "../figure.h"
+#include "pattern.h"
 
-int			try_parse_figure(t_parser_ctx *ctx,
-				char **parts, t_figure **figure);
-
-t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i);
+void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str)
+{
+	if (!str[1] || !str[2] || !str[3])
+		throw_parse_err(ctx, "Missing parameters for color disruption");
+	parse_color(ctx, str[1], pattern->colors);
+	parse_color(ctx, str[2], pattern->colors + 1);
+	pattern->dimension = parse_double(ctx, str[3]);
+}
