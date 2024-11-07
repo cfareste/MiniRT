@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   exporter_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 09:55:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/07 13:10:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_strncmp.h"
+#pragma once
+#define EXPORT_BASE_DIR "exports/"
+#include "render/render_bonus.h"
 
-void	ft_jump_spaces(char **str)
+typedef struct s_exporter
 {
-	while (str && *str && **str && ft_stroccurrences(SPACES_CHARS, **str))
-		(*str)++;
-}
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
+	int				active;
+	t_render		*render;
+}	t_exporter;
 
-void	write_str(char *dst, char *src, int	*i)
-{
-	int	j;
+void	export_image(t_exporter *exporter);
 
-	if (!dst || !src || !i)
-		return ;
-	j = 0;
-	while (src[j])
-		dst[(*i)++] = src[j++];
-}
+void	init_exporter(t_exporter *exporter, t_render *render);

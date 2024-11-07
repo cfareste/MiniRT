@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   exporter_helper_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 09:55:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/07 13:09:07 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/07 13:09:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_strncmp.h"
+#pragma once
+#include "../exporter_bonus.h"
 
-void	ft_jump_spaces(char **str)
-{
-	while (str && *str && **str && ft_stroccurrences(SPACES_CHARS, **str))
-		(*str)++;
-}
+int		is_exporter_active(t_exporter *exporter);
 
-void	write_str(char *dst, char *src, int	*i)
-{
-	int	j;
-
-	if (!dst || !src || !i)
-		return ;
-	j = 0;
-	while (src[j])
-		dst[(*i)++] = src[j++];
-}
+void	set_exporter_active(t_exporter *exporter, int active);

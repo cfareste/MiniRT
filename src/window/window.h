@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 14:55:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:35:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "MLX42.h"
 # include "render/render_bonus.h"
 # include "utils/size/size.h"
+# include "exporter/exporter_bonus.h"
 
 typedef struct s_resize
 {
@@ -38,6 +39,7 @@ typedef struct s_window
 	t_render		render;
 	t_resize		resize;
 	double			last_scroll;
+	t_exporter		exporter;
 }	t_window;
 
 void	init_window(t_window *window);

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strings.c                                       :+:      :+:    :+:   */
+/*   image_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 09:55:16 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/07 13:09:33 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/07 13:09:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_strncmp.h"
+#pragma once
 
-void	ft_jump_spaces(char **str)
+#include "MLX42.h"
+#include "utils/size/size.h"
+#include <stdint.h>
+#include <pthread.h>
+
+typedef struct s_image
 {
-	while (str && *str && **str && ft_stroccurrences(SPACES_CHARS, **str))
-		(*str)++;
-}
+	t_size	size;
+	uint8_t	*pixels;
+	char	*name;
+}	t_image;
 
-void	write_str(char *dst, char *src, int	*i)
-{
-	int	j;
+t_image	*image_dup(mlx_image_t *image, pthread_mutex_t *mutex);
 
-	if (!dst || !src || !i)
-		return ;
-	j = 0;
-	while (src[j])
-		dst[(*i)++] = src[j++];
-}
+void	destroy_image(t_image *image);

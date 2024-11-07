@@ -150,7 +150,9 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
-			$(SRC)export:\
+			$(SRC)exporter:\
+			$(SRC)exporter/image:\
+			$(SRC)exporter/helpers:\
 
 
 #----SHARED----#
@@ -199,7 +201,9 @@ SRCS = miniRT.c \
 	texture.c \
 	scene_settings.c \
 	scene_settings_parser.c \
-	export.c
+	exporter_bonus.c \
+	image_bonus.c \
+	exporter_helper_bonus.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

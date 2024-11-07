@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.h                                           :+:      :+:    :+:   */
+/*   exporter_helper_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/06 18:13:07 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/07 13:09:24 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/07 13:09:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#define EXPORT_BASE_DIR "exports/"
+#include "exporter_helper_bonus.h"
 
-#include "render/render_bonus.h"
+int	is_exporter_active(t_exporter *exporter)
+{
+	int	active;
 
-void	export_image(t_render *render);
+	pthread_mutex_lock(&exporter->mutex);
+	active = exporter->active;
+	pthread_mutex_unlock(&exporter->mutex);
+	return (active);
+}
+
+void	set_exporter_active(t_exporter *exporter, int active)
+{
+	pthread_mutex_lock(&exporter->mutex);
+	exporter->active = active;
+	pthread_mutex_unlock(&exporter->mutex);
+}

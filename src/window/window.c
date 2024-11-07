@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 17:49:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:11:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "helpers/window_helper_bonus.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
-#include "export/export.h"
+#include "exporter/exporter_bonus.h"
 #include "miniRT.h"
 
 static void	global_hook(t_window *window)
@@ -55,7 +55,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		render(&window->render, window->mlx);
 	}
 	else if (keydata.key == MLX_KEY_E)
-		export_image(&window->render);
+		export_image(&window->exporter);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)
@@ -87,6 +87,7 @@ void	init_window(t_window *window)
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
+	init_exporter(&window->exporter, &window->render);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);

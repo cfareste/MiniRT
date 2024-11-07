@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 13:29:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:06:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	destroy(t_window *window)
 	free(window->render.scene.camera);
 	free_lights(window->render.scene.lights);
 	free_figures(window->render.scene.figures);
+	pthread_join(window->exporter.thread, NULL);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 15:58:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:13:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,4 @@ void	parse_scene_from_file(t_scene *scene, char *filename)
 	parse_scene_from_fd(&ctx, fd, scene);
 	close(fd);
 	check_parsing(&ctx, scene);
-	print_scene(scene);
 }

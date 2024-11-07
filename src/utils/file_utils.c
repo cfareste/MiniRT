@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 16:50:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:11:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,25 @@ char	*get_file_name(char *filename, char *extension)
 		throw_sys_error("ft_substr");
 	free_matrix(parts);
 	return (name);
+}
+
+char	*set_file_name(char *filename, char *extension, char *path)
+{
+	char	*aux;
+	char	*new;
+	char	*unique_tok;
+
+	unique_tok = ft_ltoa(mlx_get_time() * mlx_get_time());
+	if (!unique_tok)
+		throw_sys_error("error creating unique token");
+	aux = safe_ft_strjoin(filename,
+			unique_tok, throw_sys_error, "dynamic memory is broken!");
+	free(unique_tok);
+	filename = safe_ft_strjoin(aux, extension,
+			throw_sys_error, "dynamic memory is broken!");
+	free(aux);
+	new = safe_ft_strjoin(path, filename,
+			throw_sys_error, "dynamic memory is broken!");
+	free(filename);
+	return (new);
 }
