@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/06 17:30:07 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:44:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define SCENE_SETT_NAME "SN"
 #define SCENE_SETT_SKY_COLOR "SSC"
 #define SCENE_SETT_SAMPLES "SS"
-#define SCENE_SETT_ANTIALIASING "SAA"
+#define SCENE_SETT_ANTIALIASING "SA"
 #define SCENE_SETT_MAX_DEPTH "SMD"
 
 #include "parser/parser.h"
