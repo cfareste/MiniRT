@@ -58,6 +58,7 @@ CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
 BIN_DIR = bin/
 SRC = src/
 INCLUDES = -I$(SRC)
+EXPORTS = exports/
 
 
 #----LIBS----#
@@ -220,6 +221,7 @@ DEPS = $(OBJS:%.o=%.d)
 #----- R U L E S -----#
 
 all:
+	mkdir -p $(EXPORTS)
 	@$(MAKE) --no-print-directory make_libft
 	@$(MAKE) --no-print-directory $(NAME)
 
