@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:49 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 10:23:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:18:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	paint_background_pixel(mlx_image_t *image, pthread_mutex_t *mutex,
 	if (curr_size.width >= min_size.width && curr_size.width < max_size.width
 		&& curr_size.height >= min_size.height
 		&& curr_size.height < max_size.height)
-		color = 0;
+		color = 0x404040ff;
 	if (mutex)
 		pthread_mutex_lock(mutex);
 	if (!mutex || (curr_size.width < image->width
