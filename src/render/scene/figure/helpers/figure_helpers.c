@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 16:24:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:18:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int	hit_base(t_reference_system *refsys, float base_center_distance,
 
 void	get_figure_color(t_figure *figure, t_point *point, t_color *res)
 {
-	(void) point;
-	*res = figure->color;
+	if (figure->pattern.dimension == 0)
+		*res = figure->color;
+	else
+		figure->get_color(figure, point, res);
 }

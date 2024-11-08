@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 17:55:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:17:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "figure_parser.h"
 #include "../types/plane/parser/plane_parser.h"
 #include "../texture/texture.h"
-#include "render/scene/figure/helpers/figure_helpers.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -91,7 +90,6 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->diffuse = parse_double(ctx, parts[3]);
 	figure->specular = parse_double(ctx, parts[4]);
 	parse_color(ctx, parts[color_i], &figure->color);
-	figure->get_color = get_figure_color;
 	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);
 	return (figure);
