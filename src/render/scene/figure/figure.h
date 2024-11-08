@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 17:30:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:37:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ typedef struct s_figure
 	t_pattern	pattern;
 	int			(*hit)(t_figure *figure, t_ray *ray, float *distance);
 	void		(*normal)(t_figure *figure, t_point *point, t_vector *res);
-	void		(*get_color)(t_figure *figure, t_point *point, t_color *res);
+	void		(*get_color_pattern)(t_figure *figure, t_point *point,
+			t_color *res);
 	void		(*print_attrs)(void *attrs);
 	void		(*free)(t_figure *figure);
 	t_figure	*next;

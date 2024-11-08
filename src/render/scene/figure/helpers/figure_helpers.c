@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/08 14:18:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:35:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ void	get_figure_color(t_figure *figure, t_point *point, t_color *res)
 	if (figure->pattern.dimension == 0)
 		*res = figure->color;
 	else
-		figure->get_color(figure, point, res);
+		figure->get_color_pattern(figure, point, res);
 }
