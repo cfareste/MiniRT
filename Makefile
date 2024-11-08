@@ -124,6 +124,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/helpers:\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
+			$(SRC)render/scene/figure/types/cylinder/parser:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/plane/parser:\
 			$(SRC)render/scene/figure/types/sphere:\
@@ -176,6 +177,7 @@ SRCS = miniRT.c \
 	figure_helpers.c \
 	cylinder.c \
 	cylinder_helpers.c \
+	cylinder_parser.c \
 	plane.c \
 	sphere.c \
 	render_bonus.c \

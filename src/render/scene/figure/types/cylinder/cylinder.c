@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 16:30:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:12:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cylinder/helpers/cylinder_helpers.h"
 #include "render/utils/vector/parser/vector_parser.h"
+#include "render/scene/figure/types/cylinder/parser/cylinder_parser.h"
+#include "render/scene/figure/pattern/helpers/pattern_helpers.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -28,7 +30,6 @@ static void	print_attrs(void *param)
 		attrs->radius, attrs->height);
 }
 
-// TODO: Refactor refsys (delete XD)
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
 	t_reference_system	refsys;
@@ -77,13 +78,27 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	}
 }
 
-static void	check_parsing(t_parser_ctx *ctx, t_figure *cylinder)
+// static void	cylinder_body_pattern(t_figure *figure, t_point *point,
+//	t_color *res)
+// {
+// 	float	height;
+
+// 	get_height()
+// }
+
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	check_ori_vector_parsing(ctx, &cylinder->cy_attrs->orientation);
-	if (cylinder->cy_attrs->radius <= 0)
-		throw_parse_err(ctx, "Cylinder diameter must be a positive value");
-	else if (cylinder->cy_attrs->height < 0)
-		throw_parse_err(ctx, "Cylinder height must be a positive value");
+	t_point	rotated_point;
+	int		is_base;
+
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->pl_attrs->orientation, NULL,
+		&rotated_point);
+	is_base = belongs_to_base(point, &figure->position,
+			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
+	*res = figure->color;
+	if (is_base)
+		get_plane_pattern(figure, point, res);
 }
 
 t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
@@ -105,6 +120,7 @@ t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;
 	cylinder->normal = normal;
-	check_parsing(ctx, cylinder);
+	cylinder->get_color_pattern = get_color;
+	check_cylinder_parsing(ctx, cylinder);
 	return (cylinder);
 }
