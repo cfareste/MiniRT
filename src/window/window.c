@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 14:47:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:38:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 void	init_window(t_window *window)
 {
+	pthread_mutex_init(&window->ready, NULL);
+	pthread_mutex_lock(&window->ready);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
-			window->render.scene.settings.name, true);
+			"Loading...", true);
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
@@ -96,4 +98,5 @@ void	init_window(t_window *window)
 	mlx_loop_hook(window->mlx, (void (*)(void *)) global_hook, window);
 	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
 	mlx_scroll_hook(window->mlx, scroll_hook, window);
+	pthread_mutex_unlock(&window->ready);
 }

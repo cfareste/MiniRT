@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   parser_thread_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/08 19:33:10 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/08 19:45:14 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/08 19:45:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# define SCENE_FILE_EXTENSION ".rt"
+#include "parser_thread_bonus.h"
 
-# include "light/light.h"
-# include "figure/figure.h"
-# include "camera/camera.h"
-# include "settings/scene_settings.h"
-
-typedef struct s_scene
+void	parse(t_scene *scene, char *filename)
 {
-	char				*filename;
-	t_scene_settings	settings;
-	t_light				*ambient_light;
-	t_camera			*camera;
-	t_light				*lights;
-	t_figure			*figures;
-}	t_scene;
+	scene->filename = filename;
 
-void	print_scene(t_scene *scene);
-
-#endif
+}

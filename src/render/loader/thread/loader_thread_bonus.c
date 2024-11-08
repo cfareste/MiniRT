@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/30 21:39:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:25:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 #include "window/helpers/window_helper_bonus.h"
 #include "utils/utils_bonus.h"
 
-void	update_progress_bar(t_loader *loader, int bar_width, t_size size)
+void	update_progress_bar(t_loader *loader, int bar_width, t_size img_size)
 {
 	t_size			bar;
 	unsigned int	i;
 	unsigned int	j;
 	int				loading;
 
-	bar.width = get_bar_total_width(size.width);
-	bar.height = get_bar_height(size.height);
+	bar.width = get_bar_total_width(img_size.width);
+	bar.height = get_bar_height(img_size.height);
 	loading = is_image_enabled(loader->image, &loader->image_mutex);
-	i = size.width / 2 - bar.width / 2;
+	i = img_size.width / 2 - bar.width / 2;
 	while (loading
-		&& i < (size.width / 2 - bar.width / 2) + bar_width)
+		&& i < (img_size.width / 2 - bar.width / 2) + bar_width)
 	{
-		j = (size.height / 2 - bar.height / 2);
-		while (loading && j < (size.height / 2 - bar.height / 2) + bar.height)
+		j = (img_size.height / 2 - bar.height / 2);
+		while (loading && j < (img_size.height / 2 - bar.height / 2) + bar.height)
 		{
 			pthread_mutex_lock(&loader->image_mutex);
 			loading = is_image_enabled(loader->image, NULL);

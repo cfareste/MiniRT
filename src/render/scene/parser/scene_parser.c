@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:13:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:29:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,20 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
 }
 
-void	parse_scene_from_file(t_scene *scene, char *filename)
+void	parse_scene(t_scene *scene)
 {
 	int				fd;
 	t_parser_ctx	ctx;
 
-	ctx.filename = filename;
+	ctx.filename = scene->filename;
 	ctx.line = 0;
-	if (!correct_file_extension(ft_filename(filename), SCENE_FILE_EXTENSION))
+	if (!correct_file_extension(scene->filename, SCENE_FILE_EXTENSION))
 		throw_parse_err(&ctx, "Only .rt files are allowed");
-	fd = open(filename, O_RDONLY);
+	fd = open(scene->filename, O_RDONLY);
 	if (fd == -1)
-		throw_sys_error(filename);
-	ft_bzero(scene, sizeof(t_scene));
+		throw_sys_error(scene->filename);
 	init_scene_settings(&scene->settings);
-	scene->settings.name = get_file_name(filename, SCENE_FILE_EXTENSION);
+	scene->settings.name = get_file_name(scene->filename, SCENE_FILE_EXTENSION);
 	if (!scene->settings.name)
 		throw_sys_error("trying to allocate scene name");
 	parse_scene_from_fd(&ctx, fd, scene);

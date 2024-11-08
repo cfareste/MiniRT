@@ -6,11 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 20:40:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:46:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../scene.h"
 
-void	parse_scene_from_file(t_scene *scene, char *filename);
+void	parse_scene(t_scene *scene);

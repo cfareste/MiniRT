@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:10:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:18:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/helpers/render_helper_bonus.h"
 #include "image/image_bonus.h"
 #include "helpers/exporter_helper_bonus.h"
+#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
 #include <fcntl.h>
 #include <limits.h>
 
@@ -72,6 +73,9 @@ void	*export_routine(t_exporter *exporter)
 	char	*path;
 	double	start_time;
 
+	set_loader_progress(&exporter->render->loader, 0);
+	set_loader_total(&exporter->render->loader, 100);
+	set_loader_visibility(&exporter->render->loader, 1);
 	set_exporter_active(exporter, 1);
 	start_time = mlx_get_time();
 	path = set_file_name(exporter->render->scene.settings.name,
@@ -81,12 +85,17 @@ void	*export_routine(t_exporter *exporter)
 	fd = open(path, O_CREAT | O_WRONLY, 0644);
 	if (fd == -1)
 		throw_sys_error(path);
+	set_loader_progress(&exporter->render->loader, 25);
 	file_from_image(fd, image_dup(exporter->render->image,
 			&exporter->render->image_mutex));
+	set_loader_progress(&exporter->render->loader, 90);
 	close(fd);
 	printf("FINSHED EXPORTING %s: %f\n\n", path, mlx_get_time() - start_time);
 	free(path);
 	set_exporter_active(exporter, 0);
+	set_loader_visibility(&exporter->render->loader, false);
+	set_loader_progress(&exporter->render->loader, 0);
+
 	return (NULL);
 }
 

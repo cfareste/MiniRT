@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:06:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/08 23:28:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "window/window.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/scene/parser/scene_parser.h"
-#include "parser/parser.h"
+#include "parser/thread/parser_thread_bonus.h"
+#include "loader/multi_loader_bonus.h"
 
 void	destroy(t_window *window)
 {
@@ -32,14 +33,16 @@ void	destroy(t_window *window)
 
 int	main(int argc, char **argv)
 {
-	t_window	window;
+	t_window		window;
+	t_multi_loader	loader;
 
 	if (argc != 2)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
-	parse_scene_from_file(&window.render.scene, argv[1]);
 	init_window(&window);
-	render(&window.render, window.mlx);
+	loader_show_animation(&loader, 1, window.size, window.mlx);
+	parse(&window.render.scene, argv[1]);
+	// render(&window.render, window.mlx);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);
 }

@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
@@ -131,7 +131,6 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/texture:\
 			$(SRC)render/scene/settings:\
 			$(SRC)render/scene/settings/parser:\
-			$(SRC)parser:\
 			$(SRC)render/scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
@@ -155,9 +154,12 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/thread:\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
+			$(SRC)parser:\
+			$(SRC)parser/thread:\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
+			$(SRC)loader:\
 
 
 #----SHARED----#
@@ -211,7 +213,9 @@ SRCS = miniRT.c \
 	image_bonus.c \
 	exporter_helper_bonus.c\
 	random.c \
-	thread.c
+	thread.c \
+	parser_thread_bonus.c \
+	multi_loader_bonus.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
