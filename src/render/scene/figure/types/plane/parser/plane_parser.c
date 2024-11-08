@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/08 15:49:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:06:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "render/utils/reference_system/reference_system.h"
 #include "../../../parser/figure_parser.h"
 #include "../plane.h"
-#include <math.h>
+#include "render/scene/figure/pattern/helpers/pattern_helpers.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_figure *plane)
 {
@@ -26,18 +26,12 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *plane)
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	int	x_index_square;
-	int	y_index_square;
-	int	pattern_index;
+	t_point	rotated_point;
 
-	x_index_square = (int)(fabs(point->x) / figure->pattern.dimension);
-	y_index_square = (int)(fabs(point->y) / figure->pattern.dimension);
-	if (point->x < 0.0)
-		x_index_square++;
-	if (point->y < 0.0)
-		y_index_square++;
-	pattern_index = ((x_index_square % 2) + (y_index_square % 2)) % 2;
-	*res = figure->pattern.colors[pattern_index];
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->pl_attrs->orientation, NULL,
+		&rotated_point);
+	get_plane_pattern(figure, &rotated_point, res);
 }
 
 t_figure	*parse_plane(t_parser_ctx *ctx, char **parts)
