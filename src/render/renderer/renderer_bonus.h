@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 22:52:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:01:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 #include "render/render_bonus.h"
 #include <pthread.h>
 
-void	render(t_render *render, mlx_t *mlx);
+void	render(t_render *render);
 
 void	stop_render(t_render *render);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/30 21:54:17 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:08:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_render
 	pthread_mutex_t	mutex;
 	double			start_time;
 	int				parts_amount;
+	pthread_mutex_t	trigger;
+	mlx_t			*mlx;
 }	t_render;
 
 typedef struct s_render_part

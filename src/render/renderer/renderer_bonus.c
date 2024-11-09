@@ -6,10 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/31 15:07:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:08:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "miniRT.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
 #include "window/window.h"
@@ -82,18 +83,22 @@ void	*render_routine(t_render *render)
 	return (NULL);
 }
 
-void	render(t_render *render, mlx_t *mlx)
+void	render(t_render *render_)
 {
+	t_render	*render;
+
+	render = (t_render *) render_;
 	ft_printf("RENDERING\n");
 	stop_render(render);
 	pthread_mutex_lock(&render->loader.image_mutex);
-	mlx_resize_image(render->loader.image, mlx->width, mlx->height);
+	mlx_resize_image(render->loader.image, render->loader.image->width,
+		render->loader.image->height);
 	pthread_mutex_unlock(&render->loader.image_mutex);
 	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, true);
 	pthread_mutex_lock(&render->image_mutex);
 	render->image->instances[0].enabled = false;
-	mlx_resize_image(render->image, mlx->width, mlx->height);
+	mlx_resize_image(render->image, render->mlx->width, render->mlx->height);
 	pthread_mutex_unlock(&render->image_mutex);
 	pthread_mutex_lock(&render->mutex);
 	render->start_time = mlx_get_time();

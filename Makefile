@@ -155,7 +155,6 @@ vpath %.c	$(SRC):\
 			$(SRC)utils/size/:\
 			$(SRC)utils:\
 			$(SRC)parser:\
-			$(SRC)parser/thread:\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
@@ -214,7 +213,6 @@ SRCS = miniRT.c \
 	exporter_helper_bonus.c\
 	random.c \
 	thread.c \
-	parser_thread_bonus.c \
 	multi_loader_bonus.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)

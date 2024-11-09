@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/08 19:17:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:57:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_multi_loader
 }	t_multi_loader;
 
 void	loader_show_animation(t_multi_loader *loader, int background,
-			t_size size, mlx_t *mlx);
+			t_size size);
 
 void	loader_hide(t_multi_loader *loader);
+
+void	init_multi_loader(t_multi_loader *loader, mlx_t *mlx);

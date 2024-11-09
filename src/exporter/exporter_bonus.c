@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 19:18:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:07:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	*export_routine(t_exporter *exporter)
 	fd = open(path, O_CREAT | O_WRONLY, 0644);
 	if (fd == -1)
 		throw_sys_error(path);
-	set_loader_progress(&exporter->render->loader, 25);
 	file_from_image(fd, image_dup(exporter->render->image,
 			&exporter->render->image_mutex));
 	set_loader_progress(&exporter->render->loader, 90);
@@ -93,9 +92,6 @@ void	*export_routine(t_exporter *exporter)
 	printf("FINSHED EXPORTING %s: %f\n\n", path, mlx_get_time() - start_time);
 	free(path);
 	set_exporter_active(exporter, 0);
-	set_loader_visibility(&exporter->render->loader, false);
-	set_loader_progress(&exporter->render->loader, 0);
-
 	return (NULL);
 }
 

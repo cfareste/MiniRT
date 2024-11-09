@@ -6,13 +6,15 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/08 23:38:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:07:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "window.h"
+#include "utils/utils_bonus.h"
 #include "helpers/window_helper_bonus.h"
+#include "render/scene/settings/scene_settings.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "exporter/exporter_bonus.h"
@@ -26,7 +28,7 @@ static void	global_hook(t_window *window)
 		stop_render(&window->render);
 		window->resize.last_resize = 0;
 		window->size = window->resize.size;
-		render(&window->render, window->mlx);
+		render(&window->render);
 	}
 }
 
@@ -43,16 +45,16 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 	else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 		close_window(window);
 	else if (keydata.key == MLX_KEY_R || keydata.key == MLX_KEY_F5)
-		render(&window->render, window->mlx);
+		render(&window->render);
 	else if (keydata.key == MLX_KEY_I)
 	{
 		update_camera_fov(window->render.scene.camera, -1);
-		render(&window->render, window->mlx);
+		render(&window->render);
 	}
 	else if (keydata.key == MLX_KEY_O)
 	{
 		update_camera_fov(window->render.scene.camera, 1);
-		render(&window->render, window->mlx);
+		render(&window->render);
 	}
 	else if (keydata.key == MLX_KEY_E)
 		export_image(&window->exporter);
@@ -74,21 +76,25 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	else
 		return ;
 	window->last_scroll = mlx_get_time();
-	render(&window->render, window->mlx);
+	render(&window->render);
 }
 
-void	init_window(t_window *window)
+void	init_window(t_window *window, char *filename)
 {
+	window->render.scene.filename = filename;
 	pthread_mutex_init(&window->ready, NULL);
 	pthread_mutex_lock(&window->ready);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
-			"Loading...", true);
+			safe_ft_strjoin(ft_filename(window->render.scene.filename),
+				PROGRAM_NAME_SUFF,
+				throw_sys_error, "concating window title"), true);
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
+	init_multi_loader(&window->loader, window->mlx);
 	init_exporter(&window->exporter, &window->render);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
