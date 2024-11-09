@@ -128,6 +128,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/plane/parser:\
 			$(SRC)render/scene/figure/types/sphere:\
+			$(SRC)render/scene/figure/types/sphere/parser:\
 			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)render/scene/figure/types/cone/parser:\
 			$(SRC)render/scene/figure/texture:\
@@ -219,7 +220,8 @@ SRCS = miniRT.c \
 	thread.c \
 	pattern.c \
 	pattern_helpers.c \
-	cone_parser.c
+	cone_parser.c \
+	sphere_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
