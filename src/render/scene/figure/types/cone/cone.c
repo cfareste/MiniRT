@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/09 16:30:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 00:27:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "render/scene/figure/helpers/figure_helpers.h"
 #include "render/scene/figure/types/cone/parser/cone_parser.h"
 #include "render/scene/figure/types/cone/helpers/cone_helpers.h"
+#include "render/scene/figure/pattern/helpers/pattern_helpers.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -73,6 +74,22 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
+{
+	int		is_base;
+	t_point	rotated_point;
+
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->co_attrs->orientation, NULL,
+		&rotated_point);
+	is_base = belongs_to_base(point, &figure->position,
+			&figure->co_attrs->orientation, figure->co_attrs->height);
+	if (is_base)
+		get_plane_pattern(figure, &rotated_point, res);
+	else
+		get_cone_body_pattern(figure, &rotated_point, res);
+}
+
 t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
@@ -93,6 +110,7 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	normalize(&cone->co_attrs->orientation);
 	translate_point(&cone->position, &cone->co_attrs->orientation,
 		-cone->co_attrs->height / 2.0, &cone->position);
+	cone->get_color_pattern = get_color;
 	check_cone_parsing(ctx, cone);
 	return (cone);
 }
