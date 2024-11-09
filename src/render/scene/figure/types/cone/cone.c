@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/04 18:59:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 16:30:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "render/scene/figure/helpers/figure_helpers.h"
+#include "render/scene/figure/types/cone/parser/cone_parser.h"
 #include "render/scene/figure/types/cone/helpers/cone_helpers.h"
 #include <math.h>
 
@@ -72,15 +73,6 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
-static void	check_parsing(t_parser_ctx *ctx, t_figure *cone)
-{
-	check_ori_vector_parsing(ctx, &cone->co_attrs->orientation);
-	if (cone->co_attrs->radius <= 0)
-		throw_parse_err(ctx, "Cone diameter must be a positive value");
-	else if (cone->co_attrs->height < 0)
-		throw_parse_err(ctx, "Cone height must be a positive value");
-}
-
 t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*cone;
@@ -101,6 +93,6 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	normalize(&cone->co_attrs->orientation);
 	translate_point(&cone->position, &cone->co_attrs->orientation,
 		-cone->co_attrs->height / 2.0, &cone->position);
-	check_parsing(ctx, cone);
+	check_cone_parsing(ctx, cone);
 	return (cone);
 }
