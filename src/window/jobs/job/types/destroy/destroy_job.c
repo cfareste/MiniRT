@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   job.h                                              :+:      :+:    :+:   */
+/*   destroy_job.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 17:34:00 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 17:16:20 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 19:49:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "libft.h"
+#include "miniRT.h"
+#include "destroy_job.h"
+#include "window/window.h"
+#include <stdlib.h>
 
-#include "MLX42.h"
-
-typedef enum job_type
+void static	run(t_job *job, t_window *window)
 {
-	ANON_JOB,
-	TITLE_JOB,
-	DESTROY_JOB,
-}	t_job_type;
+	(void) job;
+	destroy(window);
+	exit(EXIT_FAILURE);
+}
 
-typedef struct s_window	t_window;
-
-typedef struct s_job	t_job;
-
-typedef struct s_job
+t_job	*init_destroy_job(t_job *job)
 {
-	t_job_type	type;
-	void		*mlx;
-	void		*arg;
-	int			required;
-	void		(*run)(t_job *, t_window *);
-	void		(*free)(t_job *);
-	t_job		*next;
-}	t_job;
-
-t_job	*new_job(void);
+	job->type = DESTROY_JOB;
+	job->run = run;
+	job->required = 1;
+	return (job);
+}

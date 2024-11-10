@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 15:20:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:17:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,8 @@ t_job	*new_job(void)
 	job = ft_calloc(1, sizeof(t_job));
 	if (!job)
 		throw_sys_error("Mem doesn't like job allocating :( ");
-	job->type = UNKNOWN_JOB;
+	job->type = ANON_JOB;
 	job->required = 0;
 	job->free = free_job;
 	return (job);
-}
-
-void	exec_job(t_job *job, mlx_t *mlx)
-{
-	(void) mlx;
-	printf("Executing %p requ: %d\n", job, job->required);
 }

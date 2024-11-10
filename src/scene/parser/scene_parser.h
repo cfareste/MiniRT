@@ -6,11 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/08 19:46:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:40:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../scene.h"
+#include "window/jobs/jobs.h"
+#include "window/textures/textures.h"
 
-void	parse_scene(t_scene *scene);
+void	parse_scene(t_scene *scene, t_textures *textures);

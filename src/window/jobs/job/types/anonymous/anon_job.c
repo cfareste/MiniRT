@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   job.h                                              :+:      :+:    :+:   */
+/*   anon_job.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 17:34:00 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 16:05:35 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 17:28:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "anon_job.h"
 
-#include "MLX42.h"
-
-typedef enum job_type
+t_job	*init_anon_job(t_job *job, void (*run)(t_job *, t_window *), void *arg)
 {
-	ANON_JOB,
-	TITLE_JOB,
-	DESTROY_JOB,
-}	t_job_type;
-
-typedef struct s_window	t_window;
-
-typedef struct s_job	t_job;
-
-typedef struct s_job
-{
-	t_job_type	type;
-	void		*mlx;
-	void		*arg;
-	int			required;
-	void		(*run)(t_job *, t_window *);
-	void		(*free)(t_job *);
-	t_job		*next;
-}	t_job;
-
-t_job	*new_job(void);
+	job->type = ANON_JOB;
+	job->arg = arg;
+	job->run = run;
+	return (job);
+}

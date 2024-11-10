@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 15:29:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:25:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 #include <stdlib.h>
 
 #include "libft.h"
+
+void	print_jobs(t_jobs *jobs)
+{
+	t_job	*job;
+
+	ft_printf("Jobs:\n");
+	job = jobs->job;
+	while (job)
+	{
+		ft_printf("%p - %d\n", job, job->required);
+		job = job->next;
+	}
+	ft_printf("total: %d\n\n", jobs->amount);
+}
 
 void	push_job(t_jobs *jobs, t_job *job)
 {
@@ -34,14 +48,13 @@ int	remove_job(t_jobs *jobs, t_job	*job)
 
 	old = jobs->job;
 	prev = NULL;
-	if (!old)
-		return (0);
-	while (old->next)
+	while (old && old != job)
 	{
 		prev = old;
 		old = old->next;
 	}
-	ft_printf("Removing: %p / %d\n", job, jobs->amount);
+	if (!old)
+		return (0);
 	jobs->amount -= 1;
 	if (prev)
 		prev->next = old->next;

@@ -145,6 +145,10 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs:\
 			$(SRC)window/jobs/job:\
 			$(SRC)window/jobs/job/types/title:\
+			$(SRC)window/jobs/job/types/destroy:\
+			$(SRC)window/jobs/job/types/anonymous:\
+			$(SRC)window/textures:\
+			$(SRC)window/textures/texture:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -208,7 +212,7 @@ SRCS = miniRT.c \
 	figure_parser.c \
 	vector_parser.c \
 	plane_parser.c \
-	texture.c \
+	bump_map.c \
 	scene_settings.c \
 	scene_settings_parser.c \
 	exporter_bonus.c \
@@ -219,7 +223,10 @@ SRCS = miniRT.c \
 	multi_loader_bonus.c \
 	jobs.c \
 	job.c \
-	title_job.c
+	title_job.c \
+	destroy_job.c \
+	anon_job.c \
+	textures.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

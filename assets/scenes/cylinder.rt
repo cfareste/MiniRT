@@ -8,5 +8,20 @@ C   0,2,4 0,-0.5,-1 90
 # cy   0,1,-3		-1,1,1   2    2   200,20,50
 # pl   0,-1,0		0,1,0   200,200,50
 
-cy   0,1,-3     256 0.5 0.5    -1,1,1   2    2   200,20,50
-pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50
+cy   0,1,-3     a256 0.5 0.5    -1,1,1   2    2   200,20,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png
+pl   0,-1,0     256 0.5 0.5	   0,1,0   200,200,50 assets/textures/yellow.png

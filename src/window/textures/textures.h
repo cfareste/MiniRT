@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   job.h                                              :+:      :+:    :+:   */
+/*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 17:34:00 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 18:28:21 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 19:53:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "texture/texture.h"
+#include "loader/multi_loader_bonus.h"
+#include "window/jobs/jobs.h"
 
-#include "MLX42.h"
-
-typedef enum job_type
+typedef struct s_textures
 {
-	ANON_JOB,
-	TITLE_JOB,
-	DESTROY_JOB,
-}	t_job_type;
+	int			amount;
+	t_texture	*texture;
+}	t_textures;
 
-typedef struct s_window	t_window;
+t_texture	*get_texture(t_textures *textures, char *path);
 
-typedef struct s_job	t_job;
+void		free_textures(t_textures *textures);
 
-typedef struct s_job
-{
-	t_job_type	type;
-	void		*mlx;
-	void		*arg;
-	int			required;
-	void		(*run)(t_job *, t_window *);
-	void		(*free)(t_job *);
-	t_job		*next;
-}	t_job;
-
-t_job	*new_job(void);
+void		load_textures(t_multi_loader *loader, t_textures *textures,
+				t_jobs *jobs);

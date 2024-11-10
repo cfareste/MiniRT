@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/04 18:19:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:00:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils/utils_bonus.h"
 #include "figure_parser.h"
 #include "../types/plane/parser/plane_parser.h"
-#include "../texture/texture.h"
+#include "../texture/bump_map.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -67,7 +67,7 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->specular = parse_double(ctx, parts[4]);
 	parse_color(ctx, parts[color_i], &figure->color);
 	if (ft_matrix_len(parts + color_i) > 1)
-		parse_texture(ctx, &figure->texture, parts + color_i + 1);
+		parse_texture(ctx, &figure->bump_map, parts + color_i + 1);
 	check_parsing(ctx, figure);
 	return (figure);
 }

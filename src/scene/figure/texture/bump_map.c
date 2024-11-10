@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   bump_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 17:49:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:32:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "texture.h"
+#include "bump_map.h"
 #include "utils/utils_bonus.h"
+#include "window/textures/textures.h"
 #include <string.h>
 #include <errno.h>
 
@@ -48,24 +49,11 @@ static void	check_file(t_parser_ctx *ctx, char *path)
 	free(err_pref);
 }
 
-// TODO: add path context!!
-void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **params)
+void	parse_texture(t_parser_ctx *ctx, t_bump_map *bump_map, char **params)
 {
 	check_file(ctx, params[0]);
-	if (correct_file_extension(params[0], ".png"))
-	{
-		texture->texture = mlx_load_png(params[0]);
-		if (!texture->texture)
-			throw_mlx_error(params[0], mlx_strerror(mlx_errno));
-	}
-	else if (correct_file_extension(params[0], ".xpm42"))
-	{
-		texture->xpm = mlx_load_xpm42(params[0]);
-		if (!texture->xpm)
-			throw_mlx_error(params[0], mlx_strerror(mlx_errno));
-		texture->texture = &texture->xpm->texture;
-	}
-	texture->format = OPENGL;
+	bump_map->texture = get_texture(ctx->textures, params[0]);
+	bump_map->format = OPENGL;
 	if (params[1] && ft_strcmp(params[1], "directx") == EQUAL_STRINGS)
-		texture->format = DIRECTX;
+		bump_map->format = DIRECTX;
 }

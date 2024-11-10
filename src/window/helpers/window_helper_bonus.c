@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_helper.c                                    :+:      :+:    :+:   */
+/*   window_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:48:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ void	put_image(mlx_image_t *image, mlx_t *mlx, pthread_mutex_t *mutex)
 {
 	if (mutex)
 		pthread_mutex_lock(mutex);
-	if (image->count == 0 && mlx_image_to_window(mlx, image, 0, 0) == -1)
-		throw_mlx_error("trying to put image to the window",
-			mlx_strerror(mlx_errno));
+	if (image->count == 0)
+		mlx_image_to_window(mlx, image, 0, 0);
 	else
 		mlx_resize_image(image, mlx->width, mlx->height);
 	if (mutex)

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/09 22:07:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:48:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static void	*loader_routine(t_multi_loader *loader)
 {
-	paint_black_image(loader->image, NULL);
+	if (loader->background)
+		paint_black_image(loader->image, NULL);
 	return (NULL);
 }
 
@@ -41,7 +42,5 @@ void	init_multi_loader(t_multi_loader *loader, mlx_t *mlx)
 	pthread_mutex_init(&loader->mutex, NULL);
 	loader->mlx = mlx;
 	loader->image = mlx_new_image(mlx, mlx->width, mlx->height);
-	if (mlx_image_to_window(mlx, loader->image, 0, 0) == -1)
-		throw_mlx_error("trying to put loader image to the window",
-			mlx_strerror(mlx_errno));
+	mlx_image_to_window(mlx, loader->image, 0, 0);
 }

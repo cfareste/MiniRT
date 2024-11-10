@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 14:45:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:27:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,8 @@ void	*render_routine(t_window *window)
 	return (NULL);
 }
 
-void	render(t_window *window_)
+static void	prepare_render(t_window *window)
 {
-	t_window	*window;
-
-	window = (t_window *) window_;
-	ft_printf("RENDERING\n");
 	stop_render(&window->render);
 	pthread_mutex_lock(&window->render.loader.image_mutex);
 	mlx_resize_image(window->render.loader.image, window->mlx->width,
@@ -103,6 +99,21 @@ void	render(t_window *window_)
 	mlx_resize_image(window->render.image,
 		window->mlx->width, window->mlx->height);
 	pthread_mutex_unlock(&window->render.image_mutex);
+}
+
+void	render(t_window *window_)
+{
+	t_window	*window;
+	int			scene_ready;
+
+	window = (t_window *) window_;
+	prepare_render(window);
+	pthread_mutex_lock(&window->render.scene.mutex);
+	scene_ready = window->render.scene.ready;
+	pthread_mutex_unlock(&window->render.scene.mutex);
+	if (!scene_ready)
+		return ;
+	ft_printf("RENDERING\n");
 	pthread_mutex_lock(&window->render.mutex);
 	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
 				ft_filename(window->render.scene.filename),

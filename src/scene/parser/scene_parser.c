@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 13:11:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:59:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,13 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
 }
 
-void	parse_scene(t_scene *scene)
+void	parse_scene(t_scene *scene, t_textures *textures)
 {
 	int				fd;
 	t_parser_ctx	ctx;
 
+	pthread_mutex_init(&scene->mutex, NULL);
+	ctx.textures = textures;
 	ctx.filename = scene->filename;
 	ctx.line = 0;
 	if (!correct_file_extension(scene->filename, SCENE_FILE_EXTENSION))
