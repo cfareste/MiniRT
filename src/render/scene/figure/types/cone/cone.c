@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 00:27:30 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:57:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,18 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
 	int		is_base;
+	t_point	translated_point;
 	t_point	rotated_point;
 
-	get_vector(point, &figure->position, &rotated_point);
+	translate_point(point, &figure->co_attrs->orientation,
+		-figure->co_attrs->height / 2.0, &translated_point);
+	get_vector(&translated_point, &figure->position, &rotated_point);
 	rotate_reference_system(&figure->co_attrs->orientation, NULL,
 		&rotated_point);
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->co_attrs->orientation, figure->co_attrs->height);
 	if (is_base)
-		get_plane_pattern(figure, &rotated_point, res);
+		get_base_pattern(figure, &rotated_point, figure->co_attrs->radius, res);
 	else
 		get_cone_body_pattern(figure, &rotated_point, res);
 }

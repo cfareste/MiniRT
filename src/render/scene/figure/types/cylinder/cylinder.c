@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 15:39:43 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:28:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
 	if (is_base)
-		get_plane_pattern(figure, &rotated_point, res);
+		get_base_pattern(figure, &rotated_point, figure->cy_attrs->radius, res);
 	else
 		get_cylinder_body_pattern(figure, &rotated_point, res);
 }
