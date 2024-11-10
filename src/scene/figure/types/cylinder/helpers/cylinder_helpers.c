@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 13:26:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "render/scene/figure/figure.h"
+#include "scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
-#include "render/scene/figure/helpers/figure_helpers.h"
+#include "scene/figure/helpers/figure_helpers.h"
 #include <math.h>
 
 static int	calculate_intersections(t_quadratic_params *params,

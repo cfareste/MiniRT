@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   cone.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
+/*   Created: 2024/10/28 12:57:16 by arcanava          #+#    #+#             */
 /*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#define CONE_ID "co"
+
+#include "render/utils/coordinates/coordinates.h"
 #include "scene/figure/figure.h"
-#include "render/render_bonus.h"
 
-void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure);
+typedef struct s_cone_attrs
+{
+	double			radius;
+	double			height;
+	t_coordinates	orientation;
+}	t_cone_attrs;
 
-int		is_render_finished(t_render *render);
+t_figure	*parse_cone(t_parser_ctx *ctx, char **parts);
 
-void	set_render_finish(t_render *render, int value);
-
-void	check_shadow_hits(t_figure **figure, t_hit_record *hit_record,
-			t_ray *shadow_ray);
-
-void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color);
+void		set_cone(t_figure *cone, double radius, double height,
+				t_cone_attrs *attrs);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 21:12:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include "loader/helpers/loader_helper/loader_helper_bonus.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "render/ray/helpers/ray_helper.h"
-#include "render/scene/light/utils/light_utils.h"
-#include "render/scene/light/ambient_light/ambient_light.h"
+#include "scene/light/utils/light_utils.h"
+#include "scene/light/ambient_light/ambient_light.h"
 #include "render/utils/thread/thread.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "render/utils/iterators/iterators.h"

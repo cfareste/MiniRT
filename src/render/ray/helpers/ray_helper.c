@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 19:33:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
 #include "render/ray/ray.h"
-#include "render/scene/scene.h"
-#include "render/scene/camera/camera.h"
+#include "scene/scene.h"
+#include "scene/camera/camera.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/random/random.h"
 #include "render/utils/iterators/iterators.h"

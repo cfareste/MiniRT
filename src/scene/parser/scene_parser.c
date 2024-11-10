@@ -6,17 +6,17 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/09 20:45:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:11:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "scene_parser.h"
 #include "utils/utils_bonus.h"
-#include "render/scene/figure/parser/figure_parser.h"
-#include "render/scene/camera/parser/camera_parser.h"
-#include "render/scene/light/ambient_light/ambient_light.h"
-#include "render/scene/light/parser/light_parser.h"
+#include "scene/figure/parser/figure_parser.h"
+#include "scene/camera/parser/camera_parser.h"
+#include "scene/light/ambient_light/ambient_light.h"
+#include "scene/light/parser/light_parser.h"
 #include "../settings/parser/scene_settings_parser.h"
 #include <fcntl.h>
 
@@ -117,5 +117,4 @@ void	parse_scene(t_scene *scene)
 	parse_scene_from_fd(&ctx, fd, scene);
 	close(fd);
 	check_parsing(&ctx, scene);
-	print_scene(scene);
 }

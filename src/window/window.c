@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 22:07:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:15:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "window.h"
 #include "utils/utils_bonus.h"
 #include "helpers/window_helper_bonus.h"
-#include "render/scene/settings/scene_settings.h"
+#include "scene/settings/scene_settings.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "exporter/exporter_bonus.h"

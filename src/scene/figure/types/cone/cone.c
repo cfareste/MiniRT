@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/04 18:59:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "utils/utils_bonus.h"
 #include "../../parser/figure_parser.h"
 #include "render/utils/vector/parser/vector_parser.h"
-#include "render/scene/figure/figure.h"
+#include "scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
-#include "render/scene/figure/helpers/figure_helpers.h"
-#include "render/scene/figure/types/cone/helpers/cone_helpers.h"
+#include "scene/figure/helpers/figure_helpers.h"
+#include "scene/figure/types/cone/helpers/cone_helpers.h"
 #include <math.h>
 
 static void	print_attrs(void *param)

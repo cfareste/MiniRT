@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane_parser.h                                     :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 09:11:35 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 09:11:38 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/27 20:54:31 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "render/scene/figure/figure.h"
+#define CYLINDER_H
+#define CYLINDER_ID "cy"
 
-t_figure	*parse_plane(t_parser_ctx *ctx, char **parts);
+#include "render/utils/color/color.h"
+#include "scene/figure/figure.h"
+#include "render/utils/point/point.h"
+#include "render/ray/ray.h"
+#include "parser/parser.h"
+
+typedef struct s_cylinder_attrs
+{
+	double		radius;
+	double		height;
+	t_vector	orientation;
+}	t_cylinder_attrs;
+
+typedef struct s_figure	t_figure;
+
+t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts);

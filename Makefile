@@ -111,27 +111,27 @@ endif
 #----VPATH----#
 vpath %.c	$(SRC):\
 			$(SRC)render:\
-			$(SRC)render/scene:\
-			$(SRC)render/scene/parser:\
-			$(SRC)render/scene/camera:\
-			$(SRC)render/scene/camera/parser:\
-			$(SRC)render/scene/light:\
-			$(SRC)render/scene/light/parser:\
-			$(SRC)render/scene/light/utils:\
-			$(SRC)render/scene/light/ambient_light:\
-			$(SRC)render/scene/figure:\
-			$(SRC)render/scene/figure/parser:\
-			$(SRC)render/scene/figure/helpers:\
-			$(SRC)render/scene/figure/types/cylinder:\
-			$(SRC)render/scene/figure/types/cylinder/helpers:\
-			$(SRC)render/scene/figure/types/plane:\
-			$(SRC)render/scene/figure/types/plane/parser:\
-			$(SRC)render/scene/figure/types/sphere:\
-			$(SRC)render/scene/figure/types/cone:\
-			$(SRC)render/scene/figure/texture:\
-			$(SRC)render/scene/settings:\
-			$(SRC)render/scene/settings/parser:\
-			$(SRC)render/scene/figure/types/cone/helpers:\
+			$(SRC)scene:\
+			$(SRC)scene/parser:\
+			$(SRC)scene/camera:\
+			$(SRC)scene/camera/parser:\
+			$(SRC)scene/light:\
+			$(SRC)scene/light/parser:\
+			$(SRC)scene/light/utils:\
+			$(SRC)scene/light/ambient_light:\
+			$(SRC)scene/figure:\
+			$(SRC)scene/figure/parser:\
+			$(SRC)scene/figure/helpers:\
+			$(SRC)scene/figure/types/cylinder:\
+			$(SRC)scene/figure/types/cylinder/helpers:\
+			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/plane/parser:\
+			$(SRC)scene/figure/types/sphere:\
+			$(SRC)scene/figure/types/cone:\
+			$(SRC)scene/figure/texture:\
+			$(SRC)scene/settings:\
+			$(SRC)scene/settings/parser:\
+			$(SRC)scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
 			$(SRC)render/loader:\

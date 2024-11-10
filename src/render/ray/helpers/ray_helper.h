@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:41 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 18:32:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../ray.h"
-#include "render/scene/camera/camera.h"
+#include "scene/camera/camera.h"
 #include "render/utils/iterators/iterators.h"
 
 void	set_ray_from_camera(t_ray *ray, t_scene *scene, t_iterators *iterators,

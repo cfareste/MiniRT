@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/04 17:46:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "../../parser/figure_parser.h"
 #include "utils/utils_bonus.h"
-#include "render/scene/figure/figure.h"
+#include "scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
 
