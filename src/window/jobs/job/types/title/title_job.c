@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   title_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:31:26 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 13:59:03 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 14:39:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "miniRT.h"
+#include "title_job.h"
+#include "window/window.h"
+#include "utils/utils_bonus.h"
 
-#include "job/job.h"
-
-typedef struct s_jobs
+static void	run(t_job *job, t_window *window)
 {
-	int		amount;
-	int		req_len;
-	t_job	*job;
-}	t_jobs;
+	mlx_set_window_title(window->mlx, job->arg);
+}
 
-void	push_job(t_jobs *jobs, t_job *job);
-
-int		remove_job(t_jobs *jobs, t_job *job);
-
-void	exec_jobs(t_jobs *jobs, t_window *window);
+t_job	*init_title_job(t_job *job, char *arg)
+{
+	job->type = TITLE_JOB;
+	job->arg = arg;
+	job->run = run;
+	return (job);
+}

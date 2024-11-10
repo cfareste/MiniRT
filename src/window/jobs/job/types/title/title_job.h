@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   title_job.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:31:26 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 13:58:57 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 14:38:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "job/job.h"
+#include "../../job.h"
 
-typedef struct s_jobs
+typedef struct s_title_job_param
 {
-	int		amount;
-	int		req_len;
-	t_job	*job;
-}	t_jobs;
+	char	*new_title;
+}	t_title_job_param;
 
-void	push_job(t_jobs *jobs, t_job *job);
-
-int		remove_job(t_jobs *jobs, t_job *job);
-
-void	exec_jobs(t_jobs *jobs, t_window *window);
+t_job	*init_title_job(t_job *job, char *param);

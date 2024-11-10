@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 13:15:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:42:56 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	remove_job(t_jobs *jobs, t_job	*job)
 		jobs->req_len -= 1;
 	if (old->prev == old || old->next == old)
 	{
-		free(jobs->job);
+		jobs->job->free(jobs->job);
 		jobs->job = NULL;
 	}
 	else
@@ -69,7 +69,7 @@ void	free_jobs(t_jobs *jobs)
 		free(jobs->job++);
 }
 
-void	exec_jobs(t_jobs *jobs, mlx_t *mlx)
+void	exec_jobs(t_jobs *jobs, t_window *window)
 {
 	int		i;
 	int		jobs_executed;
@@ -84,7 +84,7 @@ void	exec_jobs(t_jobs *jobs, mlx_t *mlx)
 			|| (!jobs_executed && i == jobs->amount - 1))
 		{
 			jobs_executed++;
-			exec_job(job, mlx);
+			job->run(job, window);
 			if (remove_job(jobs, jobs->job))
 			{
 				job = jobs->job;

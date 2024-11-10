@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 14:17:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:45:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/render_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
+#include "window/jobs/job/types/title/title_job.h"
 #include <pthread.h>
 
 void	stop_render(t_render *render)
@@ -103,6 +104,9 @@ void	render(t_window *window_)
 		window->mlx->width, window->mlx->height);
 	pthread_mutex_unlock(&window->render.image_mutex);
 	pthread_mutex_lock(&window->render.mutex);
+	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
+				ft_filename(window->render.scene.filename),
+				PROGRAM_NAME_SUFF, throw_sys_error, "concating window title")));
 	window->render.start_time = mlx_get_time();
 	pthread_mutex_unlock(&window->render.mutex);
 	if (pthread_create(&window->render.thread, NULL,
