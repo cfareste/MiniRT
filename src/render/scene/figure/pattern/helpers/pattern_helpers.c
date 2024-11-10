@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:05:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 21:02:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:07:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	get_base_pattern(t_figure *figure, t_point *point, float radius,
 	params.point_radius = sqrt(dot(&point_to_base, &point_to_base));
 	params.point_base_height = radius - params.point_radius;
 	normalize(&point_to_base);
-	point_to_base.y = ft_fclamp(point_to_base.y, -1.0, 1.0);
 	params.point_pattern_dim = params.point_radius
 		* (figure->pattern.dimension / radius);
+	point_to_base.y = ft_fclamp(point_to_base.y, -1.0, 1.0);
 	pattern_x_index = (int)(fabs(acos(point_to_base.y) * params.point_radius)
 			/ params.point_pattern_dim);
 	pattern_y_index = (int)(fabs(params.point_base_height)

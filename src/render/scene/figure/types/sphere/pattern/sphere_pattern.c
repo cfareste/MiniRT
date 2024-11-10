@@ -6,11 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:35:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:49:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:11:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere_pattern.h"
+#include "libft.h"
 #include <math.h>
 
 static void	get_polar_coordinates(t_point *point, t_figure *sphere,
@@ -25,9 +26,11 @@ static void	get_polar_coordinates(t_point *point, t_figure *sphere,
 	latitude_normal.y = 0.0;
 	normalize(&latitude_normal);
 	projected_radius = sqrt(pow(point->x, 2) + pow(point->z, 2));
-	coords->longitude = acos(dot(&point_normal, &latitude_normal))
+	coords->longitude = acos(ft_fclamp(dot(&point_normal, &latitude_normal),
+			-1.0, 1.0))
 		* sphere->sp_attrs->radius;
-	coords->latitude = acos(-latitude_normal.z) * projected_radius;
+	coords->latitude = acos(ft_fclamp(-latitude_normal.z, -1.0, 1.0))
+		* projected_radius;
 }
 
 void	get_sphere_pattern(t_figure *figure, t_point *point, t_color *res)

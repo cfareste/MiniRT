@@ -6,11 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:00:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 21:01:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:09:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/scene/figure/figure.h"
+#include "libft.h"
 #include <math.h>
 
 void	get_cylinder_body_pattern(t_figure *figure, t_point *point,
@@ -25,6 +26,7 @@ void	get_cylinder_body_pattern(t_figure *figure, t_point *point,
 	point_arc_vector = *point;
 	point_arc_vector.z = 0.0f;
 	normalize(&point_arc_vector);
+	point_arc_vector.y = ft_fclamp(point_arc_vector.y, -1.0, 1.0);
 	angle = acos(point_arc_vector.y);
 	x_index_square = (int)(fabs(angle * figure->cy_attrs->radius)
 			/ figure->pattern.dimension);
