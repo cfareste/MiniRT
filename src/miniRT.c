@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:33:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 void	destroy(t_window *window)
 {
 	destroy_loader(&window->render.loader);
-	mlx_terminate(window->mlx);
 	mlx_delete_texture(window->icon);
+	pthread_join(window->exporter.thread, NULL);
+	mlx_terminate(window->mlx);
 	destroy_scene_settings(&window->render.scene.settings);
 	free(window->render.scene.ambient_light);
 	free(window->render.scene.camera);
 	free_lights(window->render.scene.lights);
 	free_figures(window->render.scene.figures);
-	pthread_join(window->exporter.thread, NULL);
 }
 
 static void	*start_routine(void *window_)

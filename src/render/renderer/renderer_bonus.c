@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 22:08:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:40:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	render(t_render *render_)
 	ft_printf("RENDERING\n");
 	stop_render(render);
 	pthread_mutex_lock(&render->loader.image_mutex);
-	mlx_resize_image(render->loader.image, render->loader.image->width,
-		render->loader.image->height);
+	mlx_resize_image(render->loader.image, render->mlx->width,
+		render->mlx->height);
 	pthread_mutex_unlock(&render->loader.image_mutex);
 	set_loader_progress(&render->loader, 0);
 	set_loader_visibility(&render->loader, true);
