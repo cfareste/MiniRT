@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 20:25:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:28:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,4 @@ void	load_textures(t_multi_loader *loader, t_textures *textures,
 		}
 		texture = texture->next;
 	}
-	print_textures(textures);
 }

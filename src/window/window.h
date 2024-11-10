@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 18:39:30 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:53:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ typedef struct s_window
 	t_textures		textures;
 }	t_window;
 
-void	init_window(t_window *window, char *filename);
+void	init_window(t_window *window);
 
 #endif

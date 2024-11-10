@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:13:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:53:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	main(int argc, char **argv)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments! " \
 			"usage: ./miniRT assets/scenes/scene.rt\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
-	init_window(&window, argv[1]);
-	parse_scene(&window.render.scene, &window.textures);
+	parse_scene(&window.render.scene, &window.textures, argv[1]);
+	init_window(&window);
 	pthread_create(&thread, NULL, start_routine, &window);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);

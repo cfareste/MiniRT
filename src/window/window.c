@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:01:30 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:53:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	render(window);
 }
 
-void	init_window(t_window *window, char *filename)
+void	init_window(t_window *window)
 {
-	window->render.scene.filename = filename;
 	pthread_mutex_init(&window->ready, NULL);
 	pthread_mutex_lock(&window->ready);
 	window->size.width = WINDOW_WIDTH;
