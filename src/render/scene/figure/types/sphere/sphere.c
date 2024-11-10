@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 00:42:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:45:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "render/scene/figure/types/sphere/parser/sphere_parser.h"
+#include "render/scene/figure/types/sphere/pattern/sphere_pattern.h"
 
 static void	print_attrs(void *param)
 {
@@ -61,10 +62,10 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	(void) figure;
-	(void) point;
-	(void) *res;
-	*res = figure->color;
+	t_point	translated_point;
+
+	get_vector(point, &figure->position, &translated_point);
+	get_sphere_pattern(figure, &translated_point, res);
 }
 
 t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
