@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/09 22:07:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:41:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "image/image_bonus.h"
 #include "helpers/exporter_helper_bonus.h"
 #include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
+#include "window/jobs/job/types/export/export_job.h"
 #include <fcntl.h>
 #include <limits.h>
 
@@ -80,6 +81,7 @@ void	*export_routine(t_exporter *exporter)
 	start_time = mlx_get_time();
 	path = set_file_name(exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR);
+	ft_printf("Exporting %s\n", path);
 	if (!is_render_finished(exporter->render))
 		return (NULL);
 	fd = open(path, O_CREAT | O_WRONLY, 0644);
@@ -95,12 +97,16 @@ void	*export_routine(t_exporter *exporter)
 	return (NULL);
 }
 
-void	export_image(t_exporter *exporter)
+void	export_image(t_exporter *exporter, t_jobs *jobs, int is_job)
 {
-	if (!is_exporter_active(exporter) && is_render_finished(exporter->render)
+	if (!is_render_finished(exporter->render))
+		return ;
+	if (!is_exporter_active(exporter)
 		&& pthread_create(&exporter->thread, NULL,
 			(void *(*)(void *)) export_routine, exporter) == -1)
 		throw_sys_error("creating loader thread");
+	else if (!is_job && is_exporter_active(exporter))
+		push_job(jobs, init_export_job(new_job(), exporter));
 }
 
 void	init_exporter(t_exporter *exporter, t_render *render)

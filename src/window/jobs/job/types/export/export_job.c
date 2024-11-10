@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_job.c                                      :+:      :+:    :+:   */
+/*   export_job.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 17:16:20 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 21:08:03 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/10 21:44:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "miniRT.h"
-#include "destroy_job.h"
+#include "export_job.h"
 #include "window/window.h"
+#include "exporter/helpers/exporter_helper_bonus.h"
 #include <stdlib.h>
 
-static int run(t_job *job, t_window *window)
+#include "libft.h"
+
+static	void	free_job(t_job *job)
 {
-	(void) job;
-	destroy(window);
-	exit(EXIT_FAILURE);
-	return (0);
+	ft_printf("FREEEING\n");
+	free(job);
 }
 
-t_job	*init_destroy_job(t_job *job)
+
+static int	run(t_job *job, t_window *window)
 {
-	job->type = DESTROY_JOB;
-	job->run = run;
+	if (is_exporter_active(job->arg))
+		return (0);
+	export_image(job->arg, &window->jobs, 1);
+	return (1);
+}
+
+t_job	*init_export_job(t_job *job, t_exporter *exporter)
+{
+	job->type = EXPORT_JOB;
+	job->arg = exporter;
 	job->required = 1;
+	job->run = run;
+	job->free = free_job;
 	return (job);
 }

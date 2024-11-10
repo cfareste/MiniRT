@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:10:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:41:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_exporter
 	t_render		*render;
 }	t_exporter;
 
-void	export_image(t_exporter *exporter);
+void	export_image(t_exporter *exporter, t_jobs *jobs, int is_job);
 
 void	init_exporter(t_exporter *exporter, t_render *render);

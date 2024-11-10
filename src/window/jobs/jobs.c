@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 20:25:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:29:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,18 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 	job = jobs->job;
 	i = 0;
 	jobs_executed = 0;
-	while (i < jobs->amount)
+	while (job && i < jobs->amount)
 	{
 		if (job->required
 			|| (!jobs_executed && i == jobs->amount - 1))
 		{
 			jobs_executed++;
-			job->run(job, window);
-			if (remove_job(jobs, jobs->job))
-			{
-				job = jobs->job;
-				continue ;
-			}
+			if (job->run(job, window))
+				if (remove_job(jobs, jobs->job))
+				{
+					job = jobs->job;
+					continue ;
+				}
 		}
 		i++;
 		job = job->next;

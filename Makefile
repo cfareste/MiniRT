@@ -75,7 +75,7 @@ MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
-MLX_COMP_FLAGS = -DDEBUG=1 -DGLFW_FETCH=1
+MLX_COMP_FLAGS = -DGLFW_FETCH=1 #-DDEBUG=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 INCLUDES += -I$(MLX_DIR)/include/MLX42
 LIBRARIES += -L$(MLX_BUILD_DIR)
@@ -147,6 +147,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/title:\
 			$(SRC)window/jobs/job/types/destroy:\
 			$(SRC)window/jobs/job/types/anonymous:\
+			$(SRC)window/jobs/job/types/export:\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
 			$(SRC)render/utils/color:\
@@ -226,7 +227,8 @@ SRCS = miniRT.c \
 	title_job.c \
 	destroy_job.c \
 	anon_job.c \
-	textures.c
+	textures.c \
+	export_job.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
