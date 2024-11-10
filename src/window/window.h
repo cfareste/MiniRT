@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 21:37:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:37:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "utils/size/size.h"
 # include "exporter/exporter_bonus.h"
 # include "loader/multi_loader_bonus.h"
+# include "jobs/jobs.h"
 
 typedef struct s_resize
 {
@@ -43,6 +44,7 @@ typedef struct s_window
 	t_exporter		exporter;
 	pthread_mutex_t	ready;
 	t_multi_loader	loader;
+	t_jobs			jobs;
 }	t_window;
 
 void	init_window(t_window *window, char *filename);

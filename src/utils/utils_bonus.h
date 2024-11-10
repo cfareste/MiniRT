@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 12:39:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/09 23:39:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 int		correct_file_extension(char *filename, char *extension);
 
 void	throw_sys_error(char *msg);
+
+void	throw_error(char *msg);
 
 char	*get_file_name(char *filename, char *extension);
 

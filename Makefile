@@ -142,6 +142,8 @@ vpath %.c	$(SRC):\
 			$(SRC)render/loader/thread:\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
+			$(SRC)window/jobs:\
+			$(SRC)window/jobs/job:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -213,7 +215,9 @@ SRCS = miniRT.c \
 	exporter_helper_bonus.c\
 	random.c \
 	thread.c \
-	multi_loader_bonus.c
+	multi_loader_bonus.c \
+	jobs.c \
+	job.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

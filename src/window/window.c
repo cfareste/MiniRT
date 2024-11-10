@@ -18,10 +18,14 @@
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "exporter/exporter_bonus.h"
+#include "jobs/job/job.h"
 #include "miniRT.h"
 
-static void	global_hook(t_window *window)
+static void	main_loop(void *window_)
 {
+	t_window	*window;
+
+	window = (t_window *) window_;
 	if (window->resize.last_resize
 		&& diff_sizes(&window->size, &window->resize.size))
 	{
@@ -30,6 +34,7 @@ static void	global_hook(t_window *window)
 		window->size = window->resize.size;
 		render(&window->render);
 	}
+	exec_jobs(&window->jobs, window->mlx);
 }
 
 static void	close_window(t_window *window)
@@ -101,7 +106,7 @@ void	init_window(t_window *window, char *filename)
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
 	mlx_resize_hook(window->mlx,
 		(void (*)(int, int, void *)) window_resized, window);
-	mlx_loop_hook(window->mlx, (void (*)(void *)) global_hook, window);
+	mlx_loop_hook(window->mlx, main_loop, window);
 	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
 	mlx_scroll_hook(window->mlx, scroll_hook, window);
 	pthread_mutex_unlock(&window->ready);

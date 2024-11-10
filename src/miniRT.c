@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 22:02:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "window/window.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "render/renderer/renderer_bonus.h"
-#include "render/scene/parser/scene_parser.h"
+#include "scene/parser/scene_parser.h"
 #include "loader/multi_loader_bonus.h"
 
 void	destroy(t_window *window)
@@ -35,10 +35,8 @@ static void	*start_routine(void *window_)
 {
 	t_window	*window;
 
-	ft_printf("Starting routine\n");
 	window = (t_window *) window_;
 	loader_show_animation(&window->loader, 1, window->size);
-	ft_printf("Starting parsing \n");
 	parse_scene(&window->render.scene);
 	loader_hide(&window->loader);
 	render(&window->render);
@@ -50,7 +48,6 @@ int	main(int argc, char **argv)
 	t_window		window;
 	pthread_t		thread;
 
-	ft_printf("Starting program \n");
 	if (argc != 2)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments!\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
