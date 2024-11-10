@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 13:15:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 14:18:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	main_loop(void *window_)
 		stop_render(&window->render);
 		window->resize.last_resize = 0;
 		window->size = window->resize.size;
-		render(&window->render);
+		render(window);
 	}
 	exec_jobs(&window->jobs, window->mlx);
 }
@@ -50,16 +50,16 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 	else if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 		close_window(window);
 	else if (keydata.key == MLX_KEY_R || keydata.key == MLX_KEY_F5)
-		render(&window->render);
+		render(window);
 	else if (keydata.key == MLX_KEY_I)
 	{
 		update_camera_fov(window->render.scene.camera, -1);
-		render(&window->render);
+		render(window);
 	}
 	else if (keydata.key == MLX_KEY_O)
 	{
 		update_camera_fov(window->render.scene.camera, 1);
-		render(&window->render);
+		render(window);
 	}
 	else if (keydata.key == MLX_KEY_E)
 		export_image(&window->exporter);
@@ -67,7 +67,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 
 void	scroll_hook(double xdelta, double ydelta, void *param)
 {
-	t_window	*window;
+	t_window		*window;
 
 	(void) xdelta;
 	window = (t_window *) param;
@@ -81,7 +81,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	else
 		return ;
 	window->last_scroll = mlx_get_time();
-	render(&window->render);
+	render(window);
 }
 
 void	init_window(t_window *window, char *filename)
@@ -93,9 +93,7 @@ void	init_window(t_window *window, char *filename)
 	window->size.height = WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
-			safe_ft_strjoin(ft_filename(window->render.scene.filename),
-				PROGRAM_NAME_SUFF,
-				throw_sys_error, "concating window title"), true);
+			PROGRAM_NAME, true);
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
