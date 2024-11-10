@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:45:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:30:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_job
 	int			required;
 	void		(*run)(t_job *, t_window *);
 	void		(*free)(t_job *);
-	t_job		*prev;
 	t_job		*next;
 }	t_job;
 

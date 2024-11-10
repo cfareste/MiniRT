@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:31:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:22:05 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 typedef struct s_jobs
 {
 	int		amount;
-	int		req_len;
 	t_job	*job;
 }	t_jobs;
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:41:57 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:20:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_job	*new_job(void)
 		throw_sys_error("Mem doesn't like job allocating :( ");
 	job->type = UNKNOWN_JOB;
 	job->required = 0;
-	job->prev = job;
-	job->next = job;
 	job->free = free_job;
 	return (job);
 }
