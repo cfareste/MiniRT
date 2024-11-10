@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 17:28:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:01:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/utils/vector/parser/vector_parser.h"
 #include "render/scene/figure/types/cylinder/parser/cylinder_parser.h"
 #include "render/scene/figure/pattern/helpers/pattern_helpers.h"
+#include "render/scene/figure/types/cylinder/pattern/cylinder_pattern.h"
 #include <math.h>
 
 static void	print_attrs(void *param)

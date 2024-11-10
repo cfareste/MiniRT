@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pattern_helpers.h                                  :+:      :+:    :+:   */
+/*   plane_pattern.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 16:05:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 21:04:29 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/10 20:55:08 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/10 20:55:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,4 @@
 
 #include "render/scene/figure/figure.h"
 
-typedef struct s_point_params
-{
-	float		point_base_height;
-	float		point_pattern_dim;
-	float		point_radius;
-}	t_point_params;
-
-void	get_base_pattern(t_figure *figure, t_point *point, float radius,
-			t_color *res);
+void	get_plane_pattern(t_figure *figure, t_point *point, t_color *res);

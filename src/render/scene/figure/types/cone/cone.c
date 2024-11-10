@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 17:57:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:04:54 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "render/scene/figure/types/cone/parser/cone_parser.h"
 #include "render/scene/figure/types/cone/helpers/cone_helpers.h"
 #include "render/scene/figure/pattern/helpers/pattern_helpers.h"
+#include "render/scene/figure/types/cone/pattern/cone_pattern.h"
 #include <math.h>
 
 static void	print_attrs(void *param)

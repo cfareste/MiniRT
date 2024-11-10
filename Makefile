@@ -125,13 +125,16 @@ vpath %.c	$(SRC):\
 			$(SRC)render/scene/figure/types/cylinder:\
 			$(SRC)render/scene/figure/types/cylinder/helpers:\
 			$(SRC)render/scene/figure/types/cylinder/parser:\
+			$(SRC)render/scene/figure/types/cylinder/pattern:\
 			$(SRC)render/scene/figure/types/plane:\
 			$(SRC)render/scene/figure/types/plane/parser:\
+			$(SRC)render/scene/figure/types/plane/pattern:\
 			$(SRC)render/scene/figure/types/sphere:\
 			$(SRC)render/scene/figure/types/sphere/parser:\
 			$(SRC)render/scene/figure/types/sphere/pattern:\
 			$(SRC)render/scene/figure/types/cone:\
 			$(SRC)render/scene/figure/types/cone/parser:\
+			$(SRC)render/scene/figure/types/cone/pattern:\
 			$(SRC)render/scene/figure/texture:\
 			$(SRC)render/scene/figure/pattern:\
 			$(SRC)render/scene/figure/pattern/helpers:\
@@ -223,7 +226,10 @@ SRCS = miniRT.c \
 	pattern_helpers.c \
 	cone_parser.c \
 	sphere_parser.c \
-	sphere_pattern.c
+	sphere_pattern.c \
+	plane_pattern.c \
+	cylinder_pattern.c \
+	cone_pattern.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

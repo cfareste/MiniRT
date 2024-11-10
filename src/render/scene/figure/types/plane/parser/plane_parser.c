@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/08 16:06:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:56:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "render/utils/reference_system/reference_system.h"
 #include "../../../parser/figure_parser.h"
 #include "../plane.h"
-#include "render/scene/figure/pattern/helpers/pattern_helpers.h"
+#include "render/scene/figure/types/plane/pattern/plane_pattern.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_figure *plane)
 {
