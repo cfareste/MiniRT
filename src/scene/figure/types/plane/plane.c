@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:14:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "../../parser/figure_parser.h"
 #include "scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
+#include "scene/figure/types/plane/pattern/plane_pattern.h"
+#include "render/utils/reference_system/reference_system.h"
 
 static void	print_attrs(void *param)
 {
@@ -50,6 +52,16 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	*res = figure->pl_attrs->orientation;
 }
 
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
+{
+	t_point	rotated_point;
+
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->pl_attrs->orientation, NULL,
+		&rotated_point);
+	get_plane_pattern(figure, &rotated_point, res);
+}
+
 void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
 	plane->print_attrs = print_attrs;
@@ -57,4 +69,5 @@ void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 	plane->hit = hit;
 	plane->pl_attrs = attrs;
 	plane->position = *position;
+	plane->get_color_pattern = get_color;
 }
