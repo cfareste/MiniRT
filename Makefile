@@ -124,11 +124,20 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/types/cylinder:\
 			$(SRC)scene/figure/types/cylinder/helpers:\
+			$(SRC)scene/figure/types/cylinder/parser:\
+			$(SRC)scene/figure/types/cylinder/pattern:\
 			$(SRC)scene/figure/types/plane:\
 			$(SRC)scene/figure/types/plane/parser:\
+			$(SRC)scene/figure/types/plane/pattern:\
 			$(SRC)scene/figure/types/sphere:\
+			$(SRC)scene/figure/types/sphere/parser:\
+			$(SRC)scene/figure/types/sphere/pattern:\
 			$(SRC)scene/figure/types/cone:\
+			$(SRC)scene/figure/types/cone/parser:\
+			$(SRC)scene/figure/types/cone/pattern:\
 			$(SRC)scene/figure/texture:\
+			$(SRC)scene/figure/pattern:\
+			$(SRC)scene/figure/pattern/helpers:\
 			$(SRC)scene/settings:\
 			$(SRC)scene/settings/parser:\
 			$(SRC)scene/figure/types/cone/helpers:\
@@ -183,6 +192,7 @@ SRCS = miniRT.c \
 	figure_helpers.c \
 	cylinder.c \
 	cylinder_helpers.c \
+	cylinder_parser.c \
 	plane.c \
 	sphere.c \
 	render_bonus.c \
@@ -221,6 +231,14 @@ SRCS = miniRT.c \
 	exporter_helper_bonus.c\
 	random.c \
 	thread.c \
+	pattern.c \
+	pattern_helpers.c \
+	cone_parser.c \
+	sphere_parser.c \
+	sphere_pattern.c \
+	plane_pattern.c \
+	cylinder_pattern.c \
+	cone_pattern.c \
 	multi_loader_bonus.c \
 	jobs.c \
 	job.c \

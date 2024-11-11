@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 21:29:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:54:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,11 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 			|| (!jobs_executed && i == jobs->amount - 1))
 		{
 			jobs_executed++;
-			if (job->run(job, window))
-				if (remove_job(jobs, jobs->job))
-				{
-					job = jobs->job;
-					continue ;
-				}
+			if (job->run(job, window) && remove_job(jobs, jobs->job))
+			{
+				job = jobs->job;
+				continue ;
+			}
 		}
 		i++;
 		job = job->next;

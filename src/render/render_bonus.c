@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 14:10:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:52:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "render/utils/thread/thread.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "render/utils/iterators/iterators.h"
+#include "scene/figure/helpers/figure_helpers.h"
 #include <math.h>
 
 void	check_collisions(t_scene *scene, t_hit_record *hit_record,
@@ -44,6 +45,7 @@ void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 {
 	t_color	light_color;
 	t_color	sample_color;
+	t_color	figure_color;
 
 	ft_bzero(&sample_color, sizeof(t_color));
 	ft_bzero(&light_color, sizeof(t_color));
@@ -55,8 +57,9 @@ void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 		return ;
 	}
 	apply_ambient_lighting(scene->ambient_light, &light_color);
+	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
 	check_lights(hit_record, scene, &light_color);
-	mix_colors(&light_color, &hit_record->figure->color, &sample_color);
+	mix_colors(&light_color, &figure_color, &sample_color);
 	sum_colors(final_color, sample_color, final_color);
 }
 

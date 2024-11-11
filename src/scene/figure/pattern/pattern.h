@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_job.c                                      :+:      :+:    :+:   */
+/*   pattern.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 17:16:20 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:54:36 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/07 17:31:09 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/07 17:38:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "miniRT.h"
-#include "destroy_job.h"
-#include "window/window.h"
-#include <stdlib.h>
+#pragma once
+#include "render/utils/color/color.h"
 
-static int	run(t_job *job, t_window *window)
+typedef struct s_pattern
 {
-	(void) job;
-	destroy(window);
-	exit(EXIT_FAILURE);
-	return (0);
-}
+	t_color	colors[2];
+	double	dimension;
+}	t_pattern;
 
-t_job	*init_destroy_job(t_job *job)
-{
-	job->type = DESTROY_JOB;
-	job->run = run;
-	job->required = 1;
-	return (job);
-}
+void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str);

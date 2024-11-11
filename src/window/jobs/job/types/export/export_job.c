@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_job.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 21:44:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:54:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static	void	free_job(t_job *job)
 	ft_printf("FREEEING\n");
 	free(job);
 }
-
 
 static int	run(t_job *job, t_window *window)
 {

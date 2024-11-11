@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 19:00:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:52:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,30 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
 		throw_parse_err(ctx, "Specular Strength must be in range [0, 1]");
 }
 
+static void	parse_optionals(char **params, int i, t_figure *figure,
+				t_parser_ctx *ctx)
+{
+	char	**sub_params;
+
+	while (params && params[i])
+	{
+		sub_params = safe_ft_split(params[i], ':',
+				throw_sys_error, "error parsing figure optional params");
+		if (!sub_params[0])
+			(void) NULL;
+		else if (ft_strcmp(sub_params[0], OPT_BM) == EQUAL_STRINGS)
+			parse_texture(ctx, &figure->bump_map, sub_params);
+		else if (ft_strcmp(sub_params[0], OPT_CD) == EQUAL_STRINGS)
+			parse_pattern(ctx, &figure->pattern, sub_params);
+		else
+			throw_parse_err(ctx, safe_ft_strjoin(
+					"Unknown figure optional param identifier: ", sub_params[0],
+					throw_sys_error, "error"));
+		free_matrix(sub_params);
+		i++;
+	}
+}
+
 t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 {
 	t_figure	*figure;
@@ -66,8 +90,7 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->diffuse = parse_double(ctx, parts[3]);
 	figure->specular = parse_double(ctx, parts[4]);
 	parse_color(ctx, parts[color_i], &figure->color);
-	if (ft_matrix_len(parts + color_i) > 1)
-		parse_texture(ctx, &figure->bump_map, parts + color_i + 1);
+	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);
 	return (figure);
 }

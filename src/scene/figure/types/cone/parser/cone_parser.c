@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bump_map.h                                         :+:      :+:    :+:   */
+/*   cone_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 20:35:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:46:56 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/09 16:22:22 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/11 00:52:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include "MLX42.h"
 #include "parser/parser.h"
+#include "scene/figure/figure.h"
+#include "render/utils/vector/parser/vector_parser.h"
 
-typedef enum e_bump_map_format
+void	check_cone_parsing(t_parser_ctx *ctx, t_figure *cone)
 {
-	OPENGL,
-	DIRECTX
-}	t_bump_map_format;
-
-typedef struct s_bump_map
-{
-	t_bump_map_format	format;
-	t_texture			*texture;
-}	t_bump_map;
-
-void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **str);
-
-void	print_texture(t_bump_map *texture);
+	check_ori_vector_parsing(ctx, &cone->co_attrs->orientation);
+	if (cone->co_attrs->radius <= 0)
+		throw_parse_err(ctx, "Cone diameter must be a positive value");
+	else if (cone->co_attrs->height < 0)
+		throw_parse_err(ctx, "Cone height must be a positive value");
+}

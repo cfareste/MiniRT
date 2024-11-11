@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:18:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 12:11:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:04:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ char	**ft_split(char const *s, char c)
 	return (strings);
 }
 
-char	**safe_ft_split(char const *s, char c, void (*f)(int))
+char	**safe_ft_split(char const *s, char c, void (*f)(char *),
+			char *err_msg)
 {
 	char	**res;
 
@@ -100,6 +101,6 @@ char	**safe_ft_split(char const *s, char c, void (*f)(int))
 		return (NULL);
 	res = ft_split(s, c);
 	if (!res)
-		f(ENOMEM);
+		f(err_msg);
 	return (res);
 }

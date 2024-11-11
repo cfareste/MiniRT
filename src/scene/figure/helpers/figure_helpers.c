@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:46:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,12 @@ int	hit_base(t_reference_system *refsys, float base_center_distance,
 		return (0);
 	*distance = base_distance;
 	return (1);
+}
+
+void	get_figure_color(t_figure *figure, t_point *point, t_color *res)
+{
+	if (figure->pattern.dimension == 0)
+		*res = figure->color;
+	else
+		figure->get_color_pattern(figure, point, res);
 }

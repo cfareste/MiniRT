@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_job.c                                      :+:      :+:    :+:   */
+/*   pattern.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 17:16:20 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:54:36 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/07 17:31:06 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/07 17:54:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "miniRT.h"
-#include "destroy_job.h"
-#include "window/window.h"
-#include <stdlib.h>
+#include "pattern.h"
 
-static int	run(t_job *job, t_window *window)
+void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str)
 {
-	(void) job;
-	destroy(window);
-	exit(EXIT_FAILURE);
-	return (0);
-}
-
-t_job	*init_destroy_job(t_job *job)
-{
-	job->type = DESTROY_JOB;
-	job->run = run;
-	job->required = 1;
-	return (job);
+	if (!str[1] || !str[2] || !str[3])
+		throw_parse_err(ctx, "Missing parameters for color disruption");
+	parse_color(ctx, str[1], pattern->colors);
+	parse_color(ctx, str[2], pattern->colors + 1);
+	pattern->dimension = parse_double(ctx, str[3]);
 }

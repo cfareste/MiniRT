@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 19:00:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:46:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
 #include "texture/bump_map.h"
+#include "pattern/pattern.h"
 
 typedef struct s_figure
 {
@@ -39,9 +40,12 @@ typedef struct s_figure
 		t_cone_attrs		*co_attrs;
 	};
 	t_color		color;
+	t_pattern	pattern;
 	t_bump_map	bump_map;
 	int			(*hit)(t_figure *figure, t_ray *ray, float *distance);
 	void		(*normal)(t_figure *figure, t_point *point, t_vector *res);
+	void		(*get_color_pattern)(t_figure *figure, t_point *point,
+			t_color *res);
 	void		(*print_attrs)(void *attrs);
 	void		(*free)(t_figure *figure);
 	t_figure	*next;

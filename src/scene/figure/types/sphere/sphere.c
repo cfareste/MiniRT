@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:52:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "scene/figure/figure.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
+#include "scene/figure/types/sphere/parser/sphere_parser.h"
+#include "scene/figure/types/sphere/pattern/sphere_pattern.h"
 
 static void	print_attrs(void *param)
 {
@@ -58,10 +60,12 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	normalize(res);
 }
 
-static void	check_parsing(t_parser_ctx *ctx, t_figure *sphere)
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	if (sphere->sp_attrs->radius <= 0)
-		throw_parse_err(ctx, "Sphere diameter must be a positive value");
+	t_point	translated_point;
+
+	get_vector(point, &figure->position, &translated_point);
+	get_sphere_pattern(figure, &translated_point, res);
 }
 
 t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
@@ -78,6 +82,7 @@ t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts)
 	sphere->print_attrs = print_attrs;
 	sphere->hit = hit;
 	sphere->normal = normal;
-	check_parsing(ctx, sphere);
+	sphere->get_color_pattern = get_color;
+	check_sphere_parsing(ctx, sphere);
 	return (sphere);
 }

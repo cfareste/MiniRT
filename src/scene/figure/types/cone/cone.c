@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:47:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 #include "scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "scene/figure/helpers/figure_helpers.h"
+#include "scene/figure/types/cone/parser/cone_parser.h"
 #include "scene/figure/types/cone/helpers/cone_helpers.h"
+#include "scene/figure/pattern/helpers/pattern_helpers.h"
+#include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -72,13 +75,23 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	rotate_vector(res, &axis, -refsys_angle, res);
 }
 
-static void	check_parsing(t_parser_ctx *ctx, t_figure *cone)
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	check_ori_vector_parsing(ctx, &cone->co_attrs->orientation);
-	if (cone->co_attrs->radius <= 0)
-		throw_parse_err(ctx, "Cone diameter must be a positive value");
-	else if (cone->co_attrs->height < 0)
-		throw_parse_err(ctx, "Cone height must be a positive value");
+	int		is_base;
+	t_point	translated_point;
+	t_point	rotated_point;
+
+	translate_point(point, &figure->co_attrs->orientation,
+		-figure->co_attrs->height / 2.0, &translated_point);
+	get_vector(&translated_point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->co_attrs->orientation, NULL,
+		&rotated_point);
+	is_base = belongs_to_base(point, &figure->position,
+			&figure->co_attrs->orientation, figure->co_attrs->height);
+	if (is_base)
+		get_base_pattern(figure, &rotated_point, figure->co_attrs->radius, res);
+	else
+		get_cone_body_pattern(figure, &rotated_point, res);
 }
 
 t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
@@ -101,6 +114,7 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	normalize(&cone->co_attrs->orientation);
 	translate_point(&cone->position, &cone->co_attrs->orientation,
 		-cone->co_attrs->height / 2.0, &cone->position);
-	check_parsing(ctx, cone);
+	cone->get_color_pattern = get_color;
+	check_cone_parsing(ctx, cone);
 	return (cone);
 }

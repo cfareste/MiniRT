@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   figure_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 16:52:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:16:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #define FIG_LAST_ATT 4
 #define FIG_ATT_LEN 6
+#define OPT_BM "bm"
+#define OPT_CD "cd"
 #include "parser/parser.h"
 #include "../figure.h"
 

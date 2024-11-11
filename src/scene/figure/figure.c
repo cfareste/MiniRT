@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   figure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 19:23:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/11 00:51:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "figure.h"
 #include "utils/utils_bonus.h"
+#include "texture/bump_map.h"
 
 void	free_figures(t_figure *figures)
 {
@@ -33,7 +34,7 @@ void	print_figure(t_figure *figure)
 	printf("%s (%p): %f, %f, %f | ", figure->type, figure,
 		figure->position.x, figure->position.y, figure->position.z);
 	figure->print_attrs(figure->attrs);
-	printf(" | %f, %f, %f | %p\n",
-		figure->color.red, figure->color.green, figure->color.blue,
-		figure->bump_map.texture);
+	printf(" | %f, %f, %f | ",
+		figure->color.red, figure->color.green, figure->color.blue);
+	print_texture(&figure->bump_map);
 }
