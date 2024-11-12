@@ -129,6 +129,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/plane:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
+			$(SRC)scene/figure/types/plane/texture:\
 			$(SRC)scene/figure/types/sphere:\
 			$(SRC)scene/figure/types/sphere/parser:\
 			$(SRC)scene/figure/types/sphere/pattern:\
@@ -136,6 +137,9 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cone/parser:\
 			$(SRC)scene/figure/types/cone/pattern:\
 			$(SRC)scene/figure/texture:\
+			$(SRC)scene/figure/texture/bump_map:\
+			$(SRC)scene/figure/texture/bump_map/helpers:\
+			$(SRC)scene/figure/texture/texel:\
 			$(SRC)scene/figure/pattern:\
 			$(SRC)scene/figure/pattern/helpers:\
 			$(SRC)scene/settings:\
@@ -246,7 +250,9 @@ SRCS = miniRT.c \
 	destroy_job.c \
 	anon_job.c \
 	textures.c \
-	export_job.c
+	export_job.c \
+	bump_map_helpers.c \
+	bump_map_plane.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:52:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 01:59:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utils/utils_bonus.h"
 #include "figure_parser.h"
 #include "../types/plane/parser/plane_parser.h"
-#include "../texture/bump_map.h"
+#include "../texture/bump_map/bump_map.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {

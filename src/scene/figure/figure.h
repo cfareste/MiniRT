@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:46:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 01:56:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
-#include "texture/bump_map.h"
+#include "texture/bump_map/bump_map.h"
 #include "pattern/pattern.h"
 
 typedef struct s_figure

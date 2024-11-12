@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 13:14:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 02:09:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/utils/vector/vector.h"
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
+#include "scene/figure/types/plane/texture/bump_map_plane.h"
 
 static void	print_attrs(void *param)
 {
@@ -48,8 +49,9 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	(void) point;
 	*res = figure->pl_attrs->orientation;
+	if (figure->bump_map.texture)
+		get_plane_bump_normal(figure, point, res);
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)

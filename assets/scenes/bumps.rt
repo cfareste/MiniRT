@@ -1,10 +1,10 @@
 # SETTINGS
-SN Checkerboard
+SN Bumps
 SS 1
 SSC	194,231,255
 
 # Ambient
-A			0.5			255,255,255
+A			0.2			255,255,255
 
 # Camera
 # Cylinder cameras:
@@ -37,4 +37,4 @@ L	2,3,0		1		255,255,255
 # co	4,1,-2	256	0.5	0.5		0,0,1	1	2	255,0,255
 
 # Floor (plane)
-pl		0,-1,0		256 0.5 0.5		0,1,0		255,255,255		bm:assets/textures/metallic_rack.png
+pl		2,-1,-2		256 0.5 0.5		0,1,0		200,200,200		bm:assets/textures/pillow.png

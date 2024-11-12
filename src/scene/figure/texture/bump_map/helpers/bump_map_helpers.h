@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reference_system.h                                 :+:      :+:    :+:   */
+/*   bump_map_helpers.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:56:12 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 01:53:17 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/12 01:47:43 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/12 01:50:27 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/ray/ray.h"
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
+#include "../bump_map.h"
+#include "render/utils/color/color.h"
 
-typedef struct s_reference_system
-{
-	t_ray	ray;
-	t_point	center;
-}	t_reference_system;
-
-float	rotate_reference_system(t_vector *normal, t_vector *vec,
-			t_point *point);
-
-void	rotate_by_angle(t_vector *normal, float angle, t_vector *res);
+void	get_pixel_normal(uint8_t *pixel, t_bump_map_format format,
+			t_vector *res);
