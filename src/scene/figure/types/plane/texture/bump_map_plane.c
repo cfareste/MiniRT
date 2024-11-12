@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:49:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 02:05:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:08:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	get_texture_normal(t_figure *figure, t_point *point,
 	uint8_t		*pixel;
 	t_texel		texel;
 
-	texture_dims.x = 2;
-	texture_dims.y = 2
+	texture_dims.x = figure->bump_map.width_dim;
+	texture_dims.y = figure->bump_map.width_dim
 		* (texture->mlx->height / (float) texture->mlx->width);
 	remove_point_texture_offset(point, &texture_dims);
 	texel.x = point->x * (texture->mlx->width / texture_dims.x);

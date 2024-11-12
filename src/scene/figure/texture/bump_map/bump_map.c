@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 01:01:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:20:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	print_texture(t_bump_map *texture)
 		format_str = "OpenGL";
 	else
 		format_str = "DirectX";
-	printf("TEXTURE (%s): %p\n", format_str, texture->texture);
+	printf("TEXTURE (%s): %p | Dimension: %f\n",
+		format_str, texture->texture, texture->width_dim);
 }
 
 static void	check_file(t_parser_ctx *ctx, char *path)
@@ -51,11 +52,12 @@ static void	check_file(t_parser_ctx *ctx, char *path)
 
 void	parse_texture(t_parser_ctx *ctx, t_bump_map *bump_map, char **params)
 {
-	if (!params[1])
+	if (!params[1] || !params[2])
 		throw_parse_err(ctx, "Missing texture params");
 	check_file(ctx, params[1]);
 	bump_map->texture = get_texture(ctx->textures, params[1]);
+	bump_map->width_dim = parse_double(ctx, params[2]);
 	bump_map->format = OPENGL;
-	if (params[2] && ft_strcmp(params[2], "directx") == EQUAL_STRINGS)
+	if (params[3] && ft_strcmp(params[3], "directx") == EQUAL_STRINGS)
 		bump_map->format = DIRECTX;
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:46:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:06:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum e_bump_map_format
 typedef struct s_bump_map
 {
 	t_bump_map_format	format;
+	float				width_dim;
 	t_texture			*texture;
 }	t_bump_map;
 
