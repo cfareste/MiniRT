@@ -122,6 +122,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/helpers:\
+			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
 			$(SRC)scene/figure/types/cylinder/helpers:\
 			$(SRC)scene/figure/types/cylinder/parser:\

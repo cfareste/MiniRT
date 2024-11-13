@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:24:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 21:56:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 00:37:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ static void	get_body_texture_normal(t_figure *figure, t_point *point,
 	t_vector	texture_dims;
 	uint8_t		*pixel;
 	t_texel		texel;
-	float		angle;
 	float		arc;
-	
 	float		point_radius;
 
 	point_radius = point->z
@@ -84,8 +82,7 @@ static void	get_body_texture_normal(t_figure *figure, t_point *point,
 		* (point_radius / figure->co_attrs->radius);
 	texture_dims.y = figure->bump_map.width_dim
 		* (texture->mlx->height / (float) texture->mlx->width);
-	angle = get_point_angle(point);
-	arc = angle * point_radius;
+	arc = get_point_angle(point) * point_radius;
 	remove_point_texture_offset(point, &arc, &texture_dims);
 	texel.x = arc * (texture->mlx->width / texture_dims.x);
 	texel.y = point->z * (texture->mlx->height / texture_dims.y);
