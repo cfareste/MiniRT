@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:19 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 02:45:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 19:21:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@
 #include "libft.h"
 #include <math.h>
 
-#include <stdio.h>
-#include "scene/figure/helpers/figure_helpers.h"
+static void	rotate_texture_normal(t_point *point, t_vector *res)
+{
+	t_vector	point_normal;
+
+	point_normal = *point;
+	point_normal.z = 0;
+	normalize(&point_normal);
+	rotate_bump_to_point_position(&point_normal, res);
+}
 
 static void	remove_point_texture_offset(t_point *point, float *arc,
 	t_vector *texture_dims)
@@ -27,24 +34,16 @@ static void	remove_point_texture_offset(t_point *point, float *arc,
 	if (point->x < 0.0)
 		*arc = -*arc + texture_dims->x
 			+ (texture_dims->x * (int)(*arc / texture_dims->x));
-	if (point->z > 0.0)
-		point->z = point->z - texture_dims->y
-			- (texture_dims->y * (int)(point->z / texture_dims->y));
-	if (*arc > texture_dims->x)
+	if (point->z < 0.0)
+		point->z = point->z + texture_dims->y
+			+ (texture_dims->y * (int)(fabs(point->z) / texture_dims->y));
+	if (*arc >= texture_dims->x)
 		*arc = *arc
 			- (texture_dims->x * (int)(*arc / texture_dims->x));
-	if (fabs(point->z) > texture_dims->y)
+	if (point->z >= texture_dims->y)
 		point->z = point->z
-			+ (texture_dims->y * (int)(fabs(point->z) / texture_dims->y));
+			- (texture_dims->y * (int)(point->z / texture_dims->y));
 }
-
-// static void	rotate_by_angle_by_axis(float angle, t_pointing axis_direction,
-// 	t_vector *res)
-// {
-// 	t_vector	axis;
-// 	get_axis(&axis, axis_direction);
-// 	rotate_vector(res, &axis, angle, res);
-// }
 
 static float	get_point_angle(t_point *point)
 {
@@ -75,27 +74,24 @@ static void	get_body_texture_normal(t_figure *figure, t_point *point,
 	arc = angle * figure->cy_attrs->radius;
 	remove_point_texture_offset(point, &arc, &texture_dims);
 	texel.x = arc * (texture->mlx->width / texture_dims.x);
-	texel.y = fabs(point->z) * (texture->mlx->height / texture_dims.y);
+	texel.y = point->z * (texture->mlx->height / texture_dims.y);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	get_pixel_normal(pixel, figure->bump_map.format, res);
-	rotate_bump_to_point_position(point, res);
+	rotate_texture_normal(point, res);
 }
-
-// rotate_by_angle_by_axis(M_PI_2, LEFT, res);
-// if (point->x > 0.0)
-// 	rotate_by_angle_by_axis(angle, FRONT, res);
-// else
-// 	rotate_by_angle_by_axis(-angle, FRONT, res);
 
 void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 	t_vector *res)
 {
 	t_point		rotated_point;
+	t_vector	cylinder_reverse_normal;
 	float		angle;
 
 	get_vector(point, &figure->position, &rotated_point);
-	angle = rotate_reference_system(&figure->cy_attrs->orientation, NULL,
+	multiply_vector_scalar(&figure->cy_attrs->orientation, -1,
+		&cylinder_reverse_normal);
+	angle = rotate_reference_system(&cylinder_reverse_normal, NULL,
 			&rotated_point);
 	if (!is_base)
 		get_body_texture_normal(figure, &rotated_point,
@@ -104,5 +100,5 @@ void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 		*res = figure->cy_attrs->orientation;
 	else if (is_base == -1)
 		multiply_vector_scalar(&figure->cy_attrs->orientation, -1, res);
-	rotate_by_angle(&figure->pl_attrs->orientation, -angle, res);
+	rotate_by_angle(&cylinder_reverse_normal, -angle, res);
 }

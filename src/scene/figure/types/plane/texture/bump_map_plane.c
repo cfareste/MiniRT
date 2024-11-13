@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:49:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 13:08:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 19:08:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	remove_point_texture_offset(t_point *point, t_vector *texture_dims)
 	if (point->y > 0.0)
 		point->y = point->y - texture_dims->y
 			- (texture_dims->y * (int)(point->y / texture_dims->y));
-	if (point->x > texture_dims->x)
+	if (point->x >= texture_dims->x)
 		point->x = point->x
 			- (texture_dims->x * (int)(point->x / texture_dims->x));
-	if (fabs(point->y) > texture_dims->y)
+	if (fabs(point->y) >= texture_dims->y)
 		point->y = point->y
 			+ (texture_dims->y * (int)(fabs(point->y) / texture_dims->y));
 }
