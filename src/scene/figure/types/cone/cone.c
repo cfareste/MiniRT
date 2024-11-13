@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:47:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:12:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "scene/figure/types/cone/helpers/cone_helpers.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
+#include "scene/figure/types/cone/texture/bump_map_cone.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -57,33 +58,37 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 {
 	t_vector	ideal;
 	t_vector	axis;
+	int			is_base;
 	float		refsys_angle;
 
-	if (belongs_to_base(point, &figure->position,
-			&figure->co_attrs->orientation, figure->co_attrs->height))
-	{
+	is_base = belongs_to_base(point, &figure->position,
+			&figure->co_attrs->orientation, figure->co_attrs->height);
+	if (figure->bump_map.texture)
+		get_cone_bump_normal(figure, point, is_base, res);
+	else if (is_base)
 		*res = figure->co_attrs->orientation;
-		return ;
-	}
-	calculate_ideal_normal(point, figure, &refsys_angle, res);
-	get_axis(&ideal, BACK);
-	if (dot(&figure->co_attrs->orientation, &ideal) == -1.0)
-		get_axis(&axis, UP);
 	else
-		cross(&figure->co_attrs->orientation, &ideal, &axis);
-	normalize(&axis);
-	rotate_vector(res, &axis, -refsys_angle, res);
+	{
+		calculate_ideal_normal(point, figure, &refsys_angle, res);
+		get_axis(&ideal, BACK);
+		if (dot(&figure->co_attrs->orientation, &ideal) == -1.0)
+			get_axis(&axis, UP);
+		else
+			cross(&figure->co_attrs->orientation, &ideal, &axis);
+		normalize(&axis);
+		rotate_vector(res, &axis, -refsys_angle, res);
+	}
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
 	int		is_base;
-	t_point	translated_point;
+	t_point	translated_center;
 	t_point	rotated_point;
 
-	translate_point(point, &figure->co_attrs->orientation,
-		-figure->co_attrs->height / 2.0, &translated_point);
-	get_vector(&translated_point, &figure->position, &rotated_point);
+	translate_point(&figure->position, &figure->co_attrs->orientation,
+		-figure->co_attrs->height / 2.0, &translated_center);
+	get_vector(point, &translated_center, &rotated_point);
 	rotate_reference_system(&figure->co_attrs->orientation, NULL,
 		&rotated_point);
 	is_base = belongs_to_base(point, &figure->position,
