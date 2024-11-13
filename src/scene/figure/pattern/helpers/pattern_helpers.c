@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:05:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 21:43:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 00:28:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_base_pattern(t_figure *figure, t_point *point, t_base_attrs *attrs,
 	point_to_base.y = ft_fclamp(point_to_base.y, -1.0, 1.0);
 	pattern_x_index = (int)(fabs(acos(point_to_base.y) * params.point_radius)
 			/ params.point_pattern_dim);
-	pattern_y_index = (int)(fabs(params.point_base_height
+	pattern_y_index = (int)((fabs(params.point_base_height)
 				+ attrs->base_distance) / figure->pattern.dimension);
 	if (point->x > 0.0)
 		pattern_x_index++;
