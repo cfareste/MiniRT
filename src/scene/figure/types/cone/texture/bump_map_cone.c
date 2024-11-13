@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:24:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 21:05:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:56:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ void	get_cone_bump_normal(t_figure *figure, t_point *point, int is_base,
 	t_point		rotated_point;
 	float		angle;
 
+	translate_point(point, &figure->co_attrs->orientation,
+		-figure->co_attrs->height / 2.0, &rotated_point);
 	translate_point(&figure->position, &figure->co_attrs->orientation,
 		-figure->co_attrs->height / 2.0, &translated_center);
-	get_vector(point, &translated_center, &rotated_point);
+	get_vector(&rotated_point, &translated_center, &rotated_point);
 	angle = rotate_reference_system(&figure->co_attrs->orientation, NULL,
 			&rotated_point);
 	if (!is_base)

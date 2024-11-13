@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/13 20:12:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:50:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,24 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	int		is_base;
-	t_point	translated_center;
-	t_point	rotated_point;
+	int				is_base;
+	t_point			translated_center;
+	t_point			rotated_point;
+	t_base_attrs	base_attrs;
 
+	base_attrs.radius = figure->co_attrs->radius;
+	base_attrs.base_distance = figure->co_attrs->height;
+	translate_point(point, &figure->co_attrs->orientation,
+		-figure->co_attrs->height / 2.0, &rotated_point);
 	translate_point(&figure->position, &figure->co_attrs->orientation,
 		-figure->co_attrs->height / 2.0, &translated_center);
-	get_vector(point, &translated_center, &rotated_point);
+	get_vector(&rotated_point, &translated_center, &rotated_point);
 	rotate_reference_system(&figure->co_attrs->orientation, NULL,
 		&rotated_point);
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->co_attrs->orientation, figure->co_attrs->height);
 	if (is_base)
-		get_base_pattern(figure, &rotated_point, figure->co_attrs->radius, res);
+		get_base_pattern(figure, &rotated_point, &base_attrs, res);
 	else
 		get_cone_body_pattern(figure, &rotated_point, res);
 }

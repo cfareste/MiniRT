@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 17:29:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:41:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,19 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	t_point	rotated_point;
-	int		is_base;
+	t_base_attrs	base_attrs;
+	t_point			rotated_point;
+	int				is_base;
 
+	base_attrs.radius = figure->cy_attrs->radius;
+	base_attrs.base_distance = figure->cy_attrs->height / 2.0;
 	get_vector(point, &figure->position, &rotated_point);
 	rotate_reference_system(&figure->cy_attrs->orientation, NULL,
 		&rotated_point);
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
 	if (is_base)
-		get_base_pattern(figure, &rotated_point, figure->cy_attrs->radius, res);
+		get_base_pattern(figure, &rotated_point, &base_attrs, res);
 	else
 		get_cylinder_body_pattern(figure, &rotated_point, res);
 }
