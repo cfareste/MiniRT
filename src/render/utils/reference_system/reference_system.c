@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 01:54:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/13 02:38:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,18 @@ void	rotate_by_angle(t_vector *normal, float angle, t_vector *res)
 	if (axis.x == 0.0 && axis.y == 0.0 && axis.z == 0.0)
 		return ;
 	normalize(&axis);
+	rotate_vector(res, &axis, angle, res);
+}
+
+void	rotate_by_ideal(t_vector *normal, t_vector *ideal, t_vector *res)
+{
+	t_vector	axis;
+	float		angle;
+
+	cross(normal, ideal, &axis);
+	if (axis.x == 0.0 && axis.y == 0.0 && axis.z == 0.0)
+		return ;
+	normalize(&axis);
+	angle = acos(dot(normal, ideal));
 	rotate_vector(res, &axis, angle, res);
 }

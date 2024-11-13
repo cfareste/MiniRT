@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bump_map_helpers.h                                 :+:      :+:    :+:   */
+/*   bump_map_cylinder.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 01:47:43 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 23:44:00 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/12 16:59:48 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/12 17:29:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "../bump_map.h"
-#include "render/utils/point/point.h"
-#include "render/utils/color/color.h"
+#include "scene/figure/figure.h"
 
-void	get_pixel_normal(uint8_t *pixel, t_bump_map_format format,
+void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 			t_vector *res);
-
-void	rotate_bump_to_point_position(t_point *point, t_vector *res);

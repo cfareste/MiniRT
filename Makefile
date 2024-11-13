@@ -126,6 +126,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cylinder/helpers:\
 			$(SRC)scene/figure/types/cylinder/parser:\
 			$(SRC)scene/figure/types/cylinder/pattern:\
+			$(SRC)scene/figure/types/cylinder/texture:\
 			$(SRC)scene/figure/types/plane:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
@@ -252,7 +253,8 @@ SRCS = miniRT.c \
 	textures.c \
 	export_job.c \
 	bump_map_helpers.c \
-	bump_map_plane.c
+	bump_map_plane.c \
+	bump_map_cylinder.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:49:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:29:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "scene/figure/types/cylinder/parser/cylinder_parser.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cylinder/pattern/cylinder_pattern.h"
+#include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
 #include <math.h>
 
 static void	print_attrs(void *param)
@@ -61,7 +62,9 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 
 	is_base = belongs_to_base(point, &figure->position,
 			&figure->cy_attrs->orientation, figure->cy_attrs->height / 2.0);
-	if (is_base == 1)
+	if (figure->bump_map.texture)
+		get_cylinder_bump_normal(figure, point, is_base, res);
+	else if (is_base == 1)
 		*res = figure->cy_attrs->orientation;
 	else if (is_base == -1)
 		multiply_vector_scalar(&figure->cy_attrs->orientation, -1, res);
