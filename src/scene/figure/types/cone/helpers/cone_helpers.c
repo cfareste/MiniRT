@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 21:27:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 17:05:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:21:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static int	is_invalid_root(float solution, t_bounds *bounds,
 	return (solution <= bounds->min || solution >= bounds->max
 		|| fabs(point_height) > cone->co_attrs->height || point_height < 0.0);
 }
-
-#include <stdio.h>
 
 int	hit_body_cone(t_figure *cone, t_ray *ray, t_point *center, float *distance)
 {

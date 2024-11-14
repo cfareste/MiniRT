@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:52:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:01:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "render/utils/quadratic/quadratic.h"
 #include "scene/figure/types/sphere/parser/sphere_parser.h"
 #include "scene/figure/types/sphere/pattern/sphere_pattern.h"
+#include "scene/figure/types/sphere/texture/bump_map_sphere.h"
 
 static void	print_attrs(void *param)
 {
@@ -56,6 +57,8 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
+	if (figure->bump_map.texture)
+		return (get_sphere_bump_normal(figure, point, res));
 	get_vector(point, &figure->position, res);
 	normalize(res);
 }

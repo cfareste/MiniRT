@@ -135,6 +135,8 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/sphere:\
 			$(SRC)scene/figure/types/sphere/parser:\
 			$(SRC)scene/figure/types/sphere/pattern:\
+			$(SRC)scene/figure/types/sphere/texture:\
+			$(SRC)scene/figure/types/sphere/helpers:\
 			$(SRC)scene/figure/types/cone:\
 			$(SRC)scene/figure/types/cone/parser:\
 			$(SRC)scene/figure/types/cone/pattern:\
@@ -256,7 +258,8 @@ SRCS = miniRT.c \
 	bump_map_helpers.c \
 	bump_map_plane.c \
 	bump_map_cylinder.c \
-	bump_map_cone.c
+	bump_map_cone.c \
+	bump_map_sphere.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -6,11 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:35:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:54:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:09:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere_pattern.h"
+#include "scene/figure/types/sphere/helpers/polar_coordinates.h"
 #include "libft.h"
 #include <math.h>
 
@@ -25,6 +26,7 @@ static void	get_polar_coordinates(t_point *point, t_figure *sphere,
 	latitude_normal = *point;
 	latitude_normal.y = 0.0;
 	normalize(&latitude_normal);
+	normalize(&point_normal);
 	projected_radius = sqrt(pow(point->x, 2) + pow(point->z, 2));
 	coords->longitude = acos(ft_fclamp(dot(&point_normal, &latitude_normal),
 				-1.0, 1.0))
