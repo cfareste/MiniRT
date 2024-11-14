@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 21:27:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:05:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,27 +50,25 @@ static int	is_invalid_root(float solution, t_bounds *bounds,
 	float point_height, t_figure *cone)
 {
 	return (solution <= bounds->min || solution >= bounds->max
-		|| point_height > cone->co_attrs->height / 2.0);
+		|| fabs(point_height) > cone->co_attrs->height || point_height < 0.0);
 }
+
+#include <stdio.h>
 
 int	hit_body_cone(t_figure *cone, t_ray *ray, t_point *center, float *distance)
 {
 	t_quadratic_params	params;
 	t_point				point;
-	float				point_height;
 
 	if (!calculate_root(&params, cone, ray, center))
 		return (0);
 	translate_point(&ray->origin, &ray->direction, params.roots.close, &point);
-	point_height = fabs(point.z - cone->co_attrs->height / 2.0);
-	if (is_invalid_root(params.roots.close, &ray->bounds, point_height, cone))
+	if (is_invalid_root(params.roots.close, &ray->bounds, point.z, cone))
 	{
 		params.roots.far = (-params.b + params.square_root) / (2.0 * params.a);
 		translate_point(&ray->origin, &ray->direction,
 			params.roots.far, &point);
-		point_height = fabs(point.z - cone->co_attrs->height / 2.0);
-		if (is_invalid_root(params.roots.close, &ray->bounds,
-				point_height, cone))
+		if (is_invalid_root(params.roots.far, &ray->bounds, point.z, cone))
 			return (0);
 		params.roots.close = params.roots.far;
 	}

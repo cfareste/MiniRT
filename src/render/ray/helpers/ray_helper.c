@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:07:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void	set_shadow_ray(t_ray *shadow_ray, t_point *origin, t_point *light_pos)
 	get_vector(light_pos, &shadow_ray->origin, &shadow_ray->direction);
 	shadow_ray->bounds.max = sqrt(dot(&shadow_ray->direction,
 				&shadow_ray->direction));
-	shadow_ray->bounds.min = 0.01;
+	shadow_ray->bounds.min = 0.0001;
 	normalize(&shadow_ray->direction);
 }

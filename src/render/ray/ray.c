@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:43 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:07:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	set_ray(t_ray *ray, t_point *origin, t_vector *direction)
 {
-	ray->bounds.min = 0.01;
+	ray->bounds.min = 0.0001;
 	ray->bounds.max = FLT_MAX;
 	ray->origin = *origin;
 	ray->direction = *direction;

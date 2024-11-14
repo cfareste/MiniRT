@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:52:40 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:11:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,14 @@ void	set_render_finish(t_render *render, int value)
 	pthread_mutex_unlock(&render->mutex);
 }
 
-void	check_shadow_hits(t_figure **figure, t_hit_record *hit_record,
-			t_ray *shadow_ray)
+static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 {
 	float	distance;
 
 	distance = FLT_MAX;
 	while (*figure)
 	{
-		if (*figure != hit_record->figure
-			&& (*figure)->hit(*figure, shadow_ray, &distance))
+		if ((*figure)->hit(*figure, shadow_ray, &distance))
 			break ;
 		*figure = (*figure)->next;
 	}
@@ -71,7 +69,7 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 	{
 		set_shadow_ray(&shadow_ray, &hit_record->point, &light->position);
 		figure = scene->figures;
-		check_shadow_hits(&figure, hit_record, &shadow_ray);
+		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
 			compute_diffuse(&shadow_ray, hit_record, light, color);
