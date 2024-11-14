@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:19 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 19:21:10 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 01:54:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,13 @@ static void	get_body_texture_normal(t_figure *figure, t_point *point,
 void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 	t_vector *res)
 {
-	t_point		rotated_point;
-	t_vector	cylinder_reverse_normal;
-	float		angle;
+	t_base_attrs	base_attrs;
+	t_point			rotated_point;
+	t_vector		cylinder_reverse_normal;
+	float			angle;
 
+	base_attrs.radius = figure->cy_attrs->radius;
+	base_attrs.base_distance = -figure->cy_attrs->height / 2.0 * is_base;
 	get_vector(point, &figure->position, &rotated_point);
 	multiply_vector_scalar(&figure->cy_attrs->orientation, -1,
 		&cylinder_reverse_normal);
@@ -96,9 +99,7 @@ void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 	if (!is_base)
 		get_body_texture_normal(figure, &rotated_point,
 			figure->bump_map.texture, res);
-	else if (is_base == 1)
-		*res = figure->cy_attrs->orientation;
-	else if (is_base == -1)
-		multiply_vector_scalar(&figure->cy_attrs->orientation, -1, res);
+	else
+		get_base_bump_normal(figure, &rotated_point, &base_attrs, res);
 	rotate_by_angle(&cylinder_reverse_normal, -angle, res);
 }

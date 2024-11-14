@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:24:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 00:37:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 01:48:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,13 @@ static void	get_body_texture_normal(t_figure *figure, t_point *point,
 void	get_cone_bump_normal(t_figure *figure, t_point *point, int is_base,
 	t_vector *res)
 {
-	t_point		translated_center;
-	t_point		rotated_point;
-	float		angle;
+	t_base_attrs	base_attrs;
+	t_point			translated_center;
+	t_point			rotated_point;
+	float			angle;
 
+	base_attrs.radius = figure->co_attrs->radius;
+	base_attrs.base_distance = figure->co_attrs->height;
 	translate_point(point, &figure->co_attrs->orientation,
 		-figure->co_attrs->height / 2.0, &rotated_point);
 	translate_point(&figure->position, &figure->co_attrs->orientation,
@@ -110,6 +113,6 @@ void	get_cone_bump_normal(t_figure *figure, t_point *point, int is_base,
 		get_body_texture_normal(figure, &rotated_point,
 			figure->bump_map.texture, res);
 	else if (is_base == 1)
-		*res = figure->co_attrs->orientation;
+		get_base_bump_normal(figure, &rotated_point, &base_attrs, res);
 	rotate_by_angle(&figure->co_attrs->orientation, -angle, res);
 }
