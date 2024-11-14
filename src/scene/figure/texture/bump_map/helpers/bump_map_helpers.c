@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 01:44:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:06:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static void	set_base_point_attrs(t_point *point,
 
 	base_to_point = *point;
 	base_to_point.z = 0.0;
+	point_ctx->point_radius = sqrt(dot(&base_to_point, &base_to_point));
 	normalize(&base_to_point);
 	base_to_point.y = ft_fclamp(base_to_point.y, -1.0, 1.0);
-	point_ctx->point_radius = sqrt(dot(&base_to_point, &base_to_point));
 	point_ctx->point_arc = acos(base_to_point.y) * point_ctx->point_radius;
 	point_ctx->point_base_height = radius - point_ctx->point_radius;
 }
