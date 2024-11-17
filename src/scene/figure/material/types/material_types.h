@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   metallic.h                                         :+:      :+:    :+:   */
+/*   material_types.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 18:43:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 22:34:35 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/17 20:59:03 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/17 21:00:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define METALLIC_ID "metallic"
-
-typedef struct s_metallic_attrs
-{
-	float	roughness;
-}	t_metallic_attrs;
+#include "scene/figure/material/types/glass/glass.h"
+#include "scene/figure/material/types/diffuse/diffuse.h"
+#include "scene/figure/material/types/plastic/plastic.h"
+#include "scene/figure/material/types/emissive/emissive.h"
+#include "scene/figure/material/types/metallic/metallic.h"

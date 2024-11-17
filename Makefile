@@ -123,6 +123,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/material:\
+			$(SRC)scene/figure/material/types:\
 			$(SRC)scene/figure/material/types/diffuse:\
 			$(SRC)scene/figure/material/types/emissive:\
 			$(SRC)scene/figure/material/types/glass:\

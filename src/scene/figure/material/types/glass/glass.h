@@ -6,11 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:39:30 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 18:41:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/17 21:03:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#define GLASS_ID "glass"
 
 typedef struct s_glass_attrs
 {
