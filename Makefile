@@ -122,6 +122,12 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/helpers:\
+			$(SRC)scene/figure/material:\
+			$(SRC)scene/figure/material/types/diffuse:\
+			$(SRC)scene/figure/material/types/emissive:\
+			$(SRC)scene/figure/material/types/glass:\
+			$(SRC)scene/figure/material/types/metallic:\
+			$(SRC)scene/figure/material/types/plastic:\
 			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
 			$(SRC)scene/figure/types/cylinder/helpers:\
@@ -170,6 +176,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
+			$(SRC)render/utils/hit_record:\
 			$(SRC)render/utils/vector:\
 			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\

@@ -6,23 +6,19 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 01:56:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:01:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/ray/ray.h"
 #include "types/plane/plane.h"
 #include "types/sphere/sphere.h"
 #include "types/cylinder/cylinder.h"
 #include "types/cone/cone.h"
-#include "render/utils/color/color.h"
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 #include "texture/bump_map/bump_map.h"
 #include "pattern/pattern.h"
+#include "material/material.h"
 
 typedef struct s_figure
 {
@@ -31,6 +27,7 @@ typedef struct s_figure
 	double		glosiness;
 	double		diffuse;
 	double		specular;
+	t_material	material;
 	union
 	{
 		void				*attrs;
