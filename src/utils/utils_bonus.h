@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 17:57:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:36:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ int		is_image_enabled(mlx_image_t *image, pthread_mutex_t *mutex);
 
 void	paint_black_image(mlx_image_t *image, pthread_mutex_t *mutex);
 
-char	*set_file_name(char *filename, char *extension, char *path, int version);
+char	*set_file_name(char *filename, char *extension,
+			char *path, int version);

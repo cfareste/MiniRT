@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 20:28:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:36:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 t_export	*new_export(t_exporter *exporter)
 {
 	t_export	*export;
+
 	export = ft_calloc(1, sizeof(t_export));
 	if (!export)
 		throw_sys_error("Allocating new export");
 	export->exporter = exporter;
-	export->image = image_dup(exporter->render->image, &exporter->render->image_mutex);
+	export->image = image_dup(exporter->render->image,
+			&exporter->render->image_mutex);
 	return (export);
 }
 
