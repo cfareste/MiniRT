@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 19:07:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:22:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ void	push_job(t_jobs *jobs, t_job *job)
 {
 	t_job	*aux;
 
-	if (!job)
-		throw_error("push_job: job is NULL");
-	jobs->amount += 1;
+	pthread_mutex_lock(&jobs->mutex);
+	jobs->amount++;
 	aux = jobs->job;
 	while (aux && aux->next)
 		aux = aux->next;
@@ -44,9 +43,11 @@ void	push_job(t_jobs *jobs, t_job *job)
 		jobs->job = job;
 	else
 		aux->next = job;
+	pthread_mutex_unlock(&jobs->mutex);
+	printf("jobs amount: %d, last_job: %p\n", jobs->amount, job);
 }
 
-int	remove_job(t_jobs *jobs, t_job	*job)
+int	remove_job(t_jobs *jobs, t_job *job)
 {
 	t_job	*old;
 	t_job	*prev;
@@ -60,11 +61,11 @@ int	remove_job(t_jobs *jobs, t_job	*job)
 	}
 	if (!old)
 		return (0);
-	jobs->amount -= 1;
 	if (prev)
 		prev->next = old->next;
 	else
 		jobs->job = old->next;
+	jobs->amount--;
 	old->free(old);
 	return (1);
 }
@@ -84,6 +85,7 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 	job = jobs->job;
 	i = 0;
 	jobs_executed = 0;
+	pthread_mutex_lock(&jobs->mutex);
 	while (job && i < jobs->amount)
 	{
 		if (job->required
@@ -99,4 +101,5 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 		i++;
 		job = job->next;
 	}
+	pthread_mutex_unlock(&jobs->mutex);
 }

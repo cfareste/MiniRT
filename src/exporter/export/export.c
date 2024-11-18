@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 19:15:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:28:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ t_export	*new_export(t_exporter *exporter)
 	return (export);
 }
 
-static int	fill_buffer(char *file_buff, t_image *image, t_loader *loader)
+static int	fill_buffer(char *file_buff, int px_amount, t_image *image,
+				t_loader *loader)
 {
 	int		iter[3];
 	char	*num_str;
-	int		px_amount;
 
 	ft_bzero(iter, sizeof(int) * 3);
-	px_amount = image->size.width * image->size.height * 4;
 	set_loader_total(loader, px_amount);
 	while (iter[0] < px_amount)
 	{
@@ -52,7 +51,8 @@ static int	fill_buffer(char *file_buff, t_image *image, t_loader *loader)
 			num_str = ft_itoa(image->pixels[iter[0]]);
 			write_str(file_buff, num_str, iter + 1);
 			free(num_str);
-			write_str(file_buff, " ", iter + 1);
+			if (iter[2] < 2)
+				write_str(file_buff, " ", iter + 1);
 			iter[2]++;
 		}
 		add_loader_progress(loader);
@@ -67,14 +67,16 @@ static void	file_from_image(int fd, t_image *image, t_loader *loader)
 	char	*file_buff;
 	int		j;
 
+	printf("Image: %p\n", image);
 	ft_printff(fd, "P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
 		image->size.width, image->size.height, 255);
 	px_amount = image->size.width * image->size.height;
-	file_buff = ft_calloc(1, sizeof(char) * (1 + (px_amount * (4 * 3))));
+	file_buff = ft_calloc(1, sizeof(char) * (px_amount * 12));
 	if (!file_buff)
 		throw_sys_error("Dynamic memory is so funny today :( ");
+	printf("Allocated: %lu\n", sizeof(char) * (px_amount * 12));
 	px_amount *= 4;
-	j = fill_buffer(file_buff, image, loader);
+	j = fill_buffer(file_buff, px_amount, image, loader);
 	write(fd, file_buff, j);
 	free(file_buff);
 	destroy_image(image);

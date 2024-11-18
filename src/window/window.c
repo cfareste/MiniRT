@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:38:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:21:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 void	init_window(t_window *window)
 {
 	pthread_mutex_init(&window->ready, NULL);
+	pthread_mutex_init(&window->jobs.mutex, NULL);
 	pthread_mutex_lock(&window->ready);
 	window->size.width = WINDOW_WIDTH;
 	window->size.height = WINDOW_HEIGHT;
