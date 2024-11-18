@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/06 17:27:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:44:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_scene_settings
 	unsigned int	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
+	int				raytracing;
 }	t_scene_settings;
 
 void	print_scene_settings(t_scene_settings *settings);

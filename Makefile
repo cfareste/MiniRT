@@ -174,6 +174,10 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/export:\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
+			$(SRC)render/modes:\
+			$(SRC)render/modes/shared:\
+			$(SRC)render/modes/raytracing:\
+			$(SRC)render/modes/pathtracing:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -272,7 +276,10 @@ SRCS = miniRT.c \
 	metallic.c \
 	plastic.c \
 	glass.c \
-	emissive.c
+	emissive.c \
+	raytracing.c \
+	pathtracing.c \
+	modes_shared.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
