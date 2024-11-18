@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 21:28:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:34:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ static void	render_parts(t_render *render, t_size img_size)
 		parts[i].render = render;
 		parts[i].img_size = img_size;
 		parts[i].min_size.height = i;
-		pthread_create(&parts[i].thread, NULL,
-			(void *(*)(void *)) render_part, parts + i);
+		if (pthread_create(&parts[i].thread, NULL,
+			(void *(*)(void *)) render_part, parts + i) == -1)
+			throw_sys_error("creating render part thread");
 		i++;
 	}
 	i = -1;
