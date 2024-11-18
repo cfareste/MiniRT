@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:35:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:28:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	stop_render(t_render *render)
 	set_loader_visibility(&render->loader, false);
 }
 
-static void	render_parts(t_render *render)
+static void	render_parts(t_render *render, t_size img_size)
 {
 	int				i;
-	t_size			img_size;
 	t_render_part	*parts;
 
-	img_size = get_image_size(render->image, &render->image_mutex);
 	render->parts_amount = 10;
 	parts = ft_calloc(render->parts_amount, sizeof(t_render_part));
 	if (!parts)
@@ -61,15 +59,18 @@ static void	render_parts(t_render *render)
 
 void	*render_routine(t_window *window)
 {
-	t_size	size;
+	t_size	img_size;
 
 	set_render_finish(&window->render, 0);
 	if (is_render_finished(&window->render) || !window->render.image)
 		return (NULL);
-	size = get_image_size(window->render.image, &window->render.image_mutex);
+	img_size = get_image_size(window->render.image,
+			&window->render.image_mutex);
 	set_loader_total(&window->render.loader,
-		size.width * size.height);
-	render_parts(&window->render);
+		img_size.width * img_size.height);
+	set_viewport(window->render.scene.camera,
+		&window->render.scene.camera->viewport, img_size);
+	render_parts(&window->render, img_size);
 	if (is_render_finished(&window->render))
 		return (NULL);
 	pthread_mutex_lock(&window->render.image_mutex);
