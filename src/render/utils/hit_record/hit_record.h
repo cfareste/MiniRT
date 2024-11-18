@@ -6,14 +6,15 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 20:08:59 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 20:12:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:19:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "scene/figure/figure.h"
 #include "render/utils/point/point.h"
+
+typedef struct s_figure	t_figure;
 
 typedef struct s_hit_record
 {

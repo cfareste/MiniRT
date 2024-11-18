@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 20:08:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:22:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "render/ray/ray.h"
 #include "render/utils/hit_record/hit_record.h"
 #include "scene/figure/material/types/glass/glass.h"
+#include "scene/figure/material/types/diffuse/diffuse.h"
 #include "scene/figure/material/types/plastic/plastic.h"
 #include "scene/figure/material/types/metallic/metallic.h"
 #include "scene/figure/material/types/emissive/emissive.h"

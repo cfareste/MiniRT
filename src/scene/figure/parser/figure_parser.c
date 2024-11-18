@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/17 22:35:11 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:10:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "figure_parser.h"
 #include "../types/plane/parser/plane_parser.h"
 #include "../texture/bump_map/bump_map.h"
-#include "scene/figure/material/types/material_types.h"
+#include "scene/figure/material/material.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -57,15 +57,15 @@ static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
 	parts = safe_ft_split(str, ':',
 			throw_sys_error, "error parsing figure's material");
 	if (ft_strcmp(parts[0], DIFFUSE_ID) == EQUAL_STRINGS)
-		(void) material;
+		parse_diffuse(material);
 	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
-		(void) material;
+		parse_metallic(ctx, parts[1], material);
 	else if (ft_strcmp(parts[0], PLASTIC_ID) == EQUAL_STRINGS)
-		(void) material;
+		parse_plastic(ctx, parts[1], material);
 	else if (ft_strcmp(parts[0], GLASS_ID) == EQUAL_STRINGS)
-		(void) material;
+		parse_glass(ctx, parts + 1, material);
 	else if (ft_strcmp(parts[0], EMISSIVE_ID) == EQUAL_STRINGS)
-		(void) material;
+		parse_emissive(ctx, parts[1], material);
 	else
 		throw_parse_err(ctx, safe_ft_strjoin(
 				"Unknown material type: ", parts[0], throw_sys_error, "error"));

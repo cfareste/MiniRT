@@ -267,7 +267,12 @@ SRCS = miniRT.c \
 	bump_map_plane.c \
 	bump_map_cylinder.c \
 	bump_map_cone.c \
-	bump_map_sphere.c
+	bump_map_sphere.c \
+	diffuse.c \
+	metallic.c \
+	plastic.c \
+	glass.c \
+	emissive.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

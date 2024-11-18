@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material_types.h                                   :+:      :+:    :+:   */
+/*   diffuse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 20:59:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 21:00:35 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/18 12:35:39 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/18 12:47:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/material/material.h"
 
-#include "scene/figure/material/types/glass/glass.h"
-#include "scene/figure/material/types/diffuse/diffuse.h"
-#include "scene/figure/material/types/plastic/plastic.h"
-#include "scene/figure/material/types/emissive/emissive.h"
-#include "scene/figure/material/types/metallic/metallic.h"
+static void	scatter(t_ray *ray, t_hit_record *hit_record, uint32_t *seed)
+{
+	(void) ray;
+	(void) hit_record;
+	(void) seed;
+}
+
+void	parse_diffuse(t_material *material)
+{
+	material->type = DIFFUSE;
+	material->material_attrs = NULL;
+	material->scatter = scatter;
+}
