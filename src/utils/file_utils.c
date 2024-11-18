@@ -6,12 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:11:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:07:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils_bonus.h"
+#include "utils/random/random.h"
+#include <limits.h>
 
 int	correct_file_extension(char *filename, char *extension)
 {
@@ -42,23 +44,31 @@ char	*get_file_name(char *filename, char *extension)
 	return (name);
 }
 
-char	*set_file_name(char *filename, char *extension, char *path)
+char	*set_file_name(char *filename, char *extension, char *path, int version)
 {
-	char	*aux;
-	char	*new;
-	char	*unique_tok;
+	char		*aux;
+	char		*new;
+	char		*name;
+	char		*unique_tok;
 
-	unique_tok = ft_ltoa(mlx_get_time() * mlx_get_time());
-	if (!unique_tok)
-		throw_sys_error("error creating unique token");
+	if (version > 0)
+	{
+		unique_tok = ft_ltoa(version);
+		if (!unique_tok)
+			throw_sys_error("error creating unique token");
+	}
+	else
+		unique_tok = ft_strdup("");
 	aux = safe_ft_strjoin(filename,
 			unique_tok, throw_sys_error, "dynamic memory is broken!");
 	free(unique_tok);
-	filename = safe_ft_strjoin(aux, extension,
+	name = safe_ft_strjoin(aux, extension,
 			throw_sys_error, "dynamic memory is broken!");
 	free(aux);
-	new = safe_ft_strjoin(path, filename,
+	new = safe_ft_strjoin(path, name,
 			throw_sys_error, "dynamic memory is broken!");
-	free(filename);
+	free(name);
+	if (access(new, F_OK) == 0)
+		new = set_file_name(filename, extension, path, version + 1);
 	return (new);
 }

@@ -174,15 +174,16 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
-			$(SRC)render/utils/random:\
 			$(SRC)render/utils/iterators:\
 			$(SRC)render/utils/thread:\
-			$(SRC)utils/size/:\
 			$(SRC)utils:\
+			$(SRC)utils/size:\
+			$(SRC)utils/random:\
 			$(SRC)parser:\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
+			$(SRC)exporter/export:\
 			$(SRC)loader:\
 
 
@@ -259,7 +260,8 @@ SRCS = miniRT.c \
 	bump_map_plane.c \
 	bump_map_cylinder.c \
 	bump_map_cone.c \
-	bump_map_sphere.c
+	bump_map_sphere.c \
+	export.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

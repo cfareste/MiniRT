@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_job.h                                       :+:      :+:    :+:   */
+/*   export.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 21:06:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 13:31:25 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/18 13:13:18 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/18 13:40:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../../job.h"
-#include "exporter/export/export.h"
+#include "MLX42.h"
+#include "../image/image_bonus.h"
+#include "../exporter_bonus.h"
 
-t_job	*init_export_job(t_job *job, t_export *exporter);
+typedef struct s_export
+{
+	t_exporter	*exporter;
+	t_image		*image;
+}	t_export;
+
+t_export	*new_export(t_exporter *exporter);
+
+void		*export_routine(t_export *export);
+
+void		exec_export(t_export *export);

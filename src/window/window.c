@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 21:41:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:38:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		render(window);
 	}
 	else if (keydata.key == MLX_KEY_E)
-		export_image(&window->exporter, &window->jobs, 0);
+		export_image(&window->exporter, &window->jobs);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)
@@ -97,7 +97,7 @@ void	init_window(t_window *window)
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
 	init_multi_loader(&window->loader, window->mlx);
-	init_exporter(&window->exporter, &window->render);
+	init_exporter(&window->exporter, &window->render, &window->jobs);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);

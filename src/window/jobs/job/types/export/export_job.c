@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   export_job.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:54:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:14:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "export_job.h"
 #include "window/window.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
+#include "exporter/exporter_bonus.h"
 #include <stdlib.h>
 
 #include "libft.h"
 
 static	void	free_job(t_job *job)
 {
-	ft_printf("FREEEING\n");
+	// ft_printf("FREEEING\n");
 	free(job);
 }
 
 static int	run(t_job *job, t_window *window)
 {
-	if (is_exporter_active(job->arg))
+	if (is_exporter_active(&window->exporter))
 		return (0);
-	export_image(job->arg, &window->jobs, 1);
+	exec_export(job->arg);
 	return (1);
 }
 
-t_job	*init_export_job(t_job *job, t_exporter *exporter)
+t_job	*init_export_job(t_job *job, t_export *export)
 {
 	job->type = EXPORT_JOB;
-	job->arg = exporter;
+	job->arg = export;
 	job->required = 1;
 	job->run = run;
 	job->free = free_job;
