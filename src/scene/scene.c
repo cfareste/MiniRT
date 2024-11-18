@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/04 21:12:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:24:56 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_scene(t_scene *scene)
 
 	if (scene->ambient_light)
 	{
-		ft_printf("Ambient ");
+		printf("Ambient ");
 		print_light(scene->ambient_light);
 	}
 	if (scene->camera)

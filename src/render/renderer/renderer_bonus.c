@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:27:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:35:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	render(t_window *window_)
 	pthread_mutex_unlock(&window->render.scene.mutex);
 	if (!scene_ready)
 		return ;
-	ft_printf("RENDERING\n");
+	printf("RENDERING\n");
 	pthread_mutex_lock(&window->render.mutex);
 	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
 				ft_filename(window->render.scene.filename),

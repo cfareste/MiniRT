@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 13:40:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:56:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	export_image(t_exporter *exporter, t_jobs *jobs)
 		return ;
 	if (!is_exporter_active(exporter))
 		exec_export(new_export(exporter));
-	else if (is_exporter_active(exporter))
+	else
 		push_job(jobs, init_export_job(new_job(), new_export(exporter)));
 }
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 18:25:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:15:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	fill_buffer(char *file_buff, t_image *image, t_loader *loader)
 		add_loader_progress(loader);
 		iter[0]++;
 	}
-	return (iter[2]);
+	return (iter[1]);
 }
 
 static void	file_from_image(int fd, t_image *image, t_loader *loader)
@@ -105,14 +105,12 @@ void	*export_routine(t_export *export)
 	free(path);
 	set_loader_visibility(&export->exporter->render->loader, 0);
 	set_exporter_active(export->exporter, 0);
-	free(export);
 	return (NULL);
 }
 
 void	exec_export(t_export *export)
 {
-	if (!is_exporter_active(export->exporter)
-		&& pthread_create(&export->exporter->thread, NULL,
+	if (pthread_create(&export->exporter->thread, NULL,
 			(void *(*)(void *)) export_routine, export) == -1)
-		throw_sys_error("creating loader thread");
+		throw_sys_error("creating export thread");
 }

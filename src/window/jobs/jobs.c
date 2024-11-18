@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 00:54:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:07:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,18 @@ void	print_jobs(t_jobs *jobs)
 
 void	push_job(t_jobs *jobs, t_job *job)
 {
+	t_job	*aux;
+
 	if (!job)
 		throw_error("push_job: job is NULL");
 	jobs->amount += 1;
-	if (!jobs->job)
+	aux = jobs->job;
+	while (aux && aux->next)
+		aux = aux->next;
+	if (!aux)
 		jobs->job = job;
 	else
-		jobs->job->next = job;
+		aux->next = job;
 }
 
 int	remove_job(t_jobs *jobs, t_job	*job)
