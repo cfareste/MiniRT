@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:40 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 09:10:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:13:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #define PLANE_ID "pl"
 
-#include "render/utils/coordinates/coordinates.h"
-#include "parser/parser.h"
+#include "render/utils/point/point.h"
 
 typedef struct s_plane_attrs
 {

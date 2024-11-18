@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:29:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/17 21:06:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
 	if (strength < 0.0)
 		strength = 0.0;
 	ft_bzero(&aux, sizeof(t_color));
-	material_diffuse = hit_record->figure->diffuse;
+	material_diffuse = 0.5;
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_diffuse, &aux);
 	sum_colors(color, aux, color);
@@ -52,7 +52,7 @@ t_color	compute_specular(t_scene *scene, t_vector reflected,
 	strength = dot(&scene->camera->front, &reflected);
 	if (strength < 0.0)
 		strength = 0.0;
-	material_specular = hit_record->figure->specular;
+	material_specular = 0.5;
 	strength = pow(strength, hit_record->figure->glosiness);
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_specular, &color);

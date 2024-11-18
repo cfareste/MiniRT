@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   diffuse.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:07:45 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/17 20:59:42 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/18 12:38:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#define DIFFUSE_ID "diffuse"
 
-int		is_render_finished(t_render *render);
+typedef struct s_material	t_material;
 
-void	set_render_finish(t_render *render, int value);
+void	parse_diffuse(t_material *material);

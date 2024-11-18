@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   metallic.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:07:45 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/17 18:43:53 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/18 12:48:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#define METALLIC_ID "metallic"
 
-int		is_render_finished(t_render *render);
+#include "parser/parser.h"
 
-void	set_render_finish(t_render *render, int value);
+typedef struct s_metallic_attrs
+{
+	float	roughness;
+}	t_metallic_attrs;
+
+typedef struct s_material	t_material;
+
+void	parse_metallic(t_parser_ctx *ctx, char *attrs_str,
+			t_material *material);

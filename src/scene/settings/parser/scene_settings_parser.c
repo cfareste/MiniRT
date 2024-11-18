@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:49 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/06 17:30:54 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:45:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void	parse_scene_settings(t_parser_ctx *ctx, char **params,
 		settings->name = ft_strdup(params[1]);
 	}
 	if (len > 2)
-		parse_color(ctx, params[2], &settings->sky_color);
+		settings->raytracing = parse_int(ctx, params[2]);
 	if (len > 3)
-		settings->samples = (unsigned int) parse_int(ctx, params[3]);
+		parse_color(ctx, params[3], &settings->sky_color);
 	if (len > 4)
-		settings->antialiasing = parse_int(ctx, params[4]);
+		settings->samples = (unsigned int) parse_int(ctx, params[4]);
 	if (len > 5)
-		settings->max_depth = (unsigned int) parse_int(ctx, params[5]);
+		settings->antialiasing = parse_int(ctx, params[5]);
+	if (len > 6)
+		settings->max_depth = (unsigned int) parse_int(ctx, params[6]);
 }
 
 int	try_parse_scene_setting(t_parser_ctx *ctx, char **params,
@@ -54,6 +56,8 @@ int	try_parse_scene_setting(t_parser_ctx *ctx, char **params,
 		settings->antialiasing = parse_int(ctx, params[1]);
 	else if (ft_strcmp(params[0], SCENE_SETT_MAX_DEPTH) == EQUAL_STRINGS)
 		settings->max_depth = (unsigned int) parse_int(ctx, params[1]);
+	else if (ft_strcmp(params[0], SCENE_SETT_RAYTRACING) == EQUAL_STRINGS)
+		settings->raytracing = parse_int(ctx, params[1]);
 	else
 		return (0);
 	return (1);

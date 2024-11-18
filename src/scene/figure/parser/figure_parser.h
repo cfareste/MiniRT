@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 17:16:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/17 21:09:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define FIG_LAST_ATT 4
-#define FIG_ATT_LEN 6
+#define FIG_LAST_ATT 3
+#define FIG_ATT_LEN 5
 #define OPT_BM "bm"
 #define OPT_CD "cd"
 #include "parser/parser.h"

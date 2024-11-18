@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:44:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:45:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define SCENE_SETT_SAMPLES "SS"
 #define SCENE_SETT_ANTIALIASING "SA"
 #define SCENE_SETT_MAX_DEPTH "SMD"
+#define SCENE_SETT_RAYTRACING "SRT"
 
 #include "parser/parser.h"
 #include "../scene_settings.h"

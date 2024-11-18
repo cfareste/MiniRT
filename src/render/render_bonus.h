@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 14:09:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/17 20:08:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ typedef struct s_render_part
 	t_size		max_size;
 	t_render	*render;
 }	t_render_part;
-
-typedef struct s_hit_record
-{
-	t_figure		*figure;
-	float			distance;
-	t_point			point;
-	t_vector		normal;
-}	t_hit_record;
 
 void	*render_part(t_render_part *part);
 

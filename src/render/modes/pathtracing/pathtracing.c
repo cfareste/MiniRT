@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   pathtracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:07:45 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/18 18:32:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/scene.h"
 
-#include "render/render_bonus.h"
-
-int		is_render_finished(t_render *render);
-
-void	set_render_finish(t_render *render, int value);
+void	compute_pathtracing(t_scene *scene, t_ray *ray, t_color *sample_color,
+	uint32_t *seed)
+{
+	(void) scene;
+	(void) ray;
+	(void) sample_color;
+	(void) seed;
+}

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/12 01:57:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:44:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_figures(t_figure *figures)
 	{
 		figure = figures;
 		figures = figures->next;
+		free(figure->material.material_attrs);
 		free(figure->attrs);
 		free(figure->type);
 		free(figure);

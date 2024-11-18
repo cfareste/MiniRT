@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/12 01:59:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:10:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "figure_parser.h"
 #include "../types/plane/parser/plane_parser.h"
 #include "../texture/bump_map/bump_map.h"
+#include "scene/figure/material/material.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -47,10 +48,28 @@ static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
 {
 	if (figure->glosiness < 0)
 		throw_parse_err(ctx, "Glosiness must be a positive value");
-	else if (figure->diffuse < 0 || figure->diffuse > 1)
-		throw_parse_err(ctx, "Diffuse Strength must be in range [0, 1]");
-	else if (figure->specular < 0 || figure->specular > 1)
-		throw_parse_err(ctx, "Specular Strength must be in range [0, 1]");
+}
+
+static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
+{
+	char	**parts;
+
+	parts = safe_ft_split(str, ':',
+			throw_sys_error, "error parsing figure's material");
+	if (ft_strcmp(parts[0], DIFFUSE_ID) == EQUAL_STRINGS)
+		parse_diffuse(material);
+	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
+		parse_metallic(ctx, parts[1], material);
+	else if (ft_strcmp(parts[0], PLASTIC_ID) == EQUAL_STRINGS)
+		parse_plastic(ctx, parts[1], material);
+	else if (ft_strcmp(parts[0], GLASS_ID) == EQUAL_STRINGS)
+		parse_glass(ctx, parts + 1, material);
+	else if (ft_strcmp(parts[0], EMISSIVE_ID) == EQUAL_STRINGS)
+		parse_emissive(ctx, parts[1], material);
+	else
+		throw_parse_err(ctx, safe_ft_strjoin(
+				"Unknown material type: ", parts[0], throw_sys_error, "error"));
+	free_matrix(parts);
 }
 
 static void	parse_optionals(char **params, int i, t_figure *figure,
@@ -87,8 +106,7 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	figure->type = ft_strdup(parts[0]);
 	parse_coordinates(ctx, parts[1], &figure->position);
 	figure->glosiness = parse_double(ctx, parts[2]);
-	figure->diffuse = parse_double(ctx, parts[3]);
-	figure->specular = parse_double(ctx, parts[4]);
+	parse_material(ctx, parts[3], &figure->material);
 	parse_color(ctx, parts[color_i], &figure->color);
 	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);

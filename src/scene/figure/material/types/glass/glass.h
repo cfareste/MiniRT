@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   glass.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:07:45 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/17 18:39:30 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/18 13:46:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#define GLASS_ID "glass"
 
-int		is_render_finished(t_render *render);
+typedef struct s_glass_attrs
+{
+	float	refractive_index;
+	float	transparency;
+}	t_glass_attrs;
 
-void	set_render_finish(t_render *render, int value);
+typedef struct s_material	t_material;
+
+void	parse_glass(t_parser_ctx *ctx, char **attrs, t_material *material);
