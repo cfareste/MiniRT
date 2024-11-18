@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:55:33 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:57:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "render/utils/thread/thread.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "render/utils/iterators/iterators.h"
-#include "render/modes/modes.h"
+#include "render/strategies/strategies.h"
 #include <math.h>
 
 static void	render_pixel(t_render_part *part, t_iterators *iterators,

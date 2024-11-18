@@ -174,10 +174,10 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/export:\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
-			$(SRC)render/modes:\
-			$(SRC)render/modes/shared:\
-			$(SRC)render/modes/raytracing:\
-			$(SRC)render/modes/pathtracing:\
+			$(SRC)render/strategies:\
+			$(SRC)render/strategies/shared:\
+			$(SRC)render/strategies/raytracing:\
+			$(SRC)render/strategies/pathtracing:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -281,7 +281,8 @@ SRCS = miniRT.c \
 	emissive.c \
 	raytracing.c \
 	pathtracing.c \
-	modes_shared.c
+	strategies_shared.c \
+	hit_record.c 
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

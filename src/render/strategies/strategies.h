@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modes.h                                            :+:      :+:    :+:   */
+/*   strategies.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 18:12:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:15:16 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/18 20:57:18 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/18 20:57:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/modes/raytracing/raytracing.h"
-#include "render/modes/pathtracing/pathtracing.h"
+#include "render/strategies/raytracing/raytracing.h"
+#include "render/strategies/pathtracing/pathtracing.h"

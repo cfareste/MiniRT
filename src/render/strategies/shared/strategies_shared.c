@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modes_shared.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:32:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:42:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "render/utils/color/color_operations/color_operations.h"
-
-void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
-{
-	if (hit_record->distance >= ray->bounds.max)
-		return ;
-	ray->bounds.max = hit_record->distance;
-	hit_record->figure = figure;
-	translate_point(&ray->origin, &ray->direction, hit_record->distance,
-		&hit_record->point);
-	figure->normal(figure, &hit_record->point, &hit_record->normal);
-}
 
 static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 {
