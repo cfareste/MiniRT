@@ -176,9 +176,9 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)render/utils/iterators:\
 			$(SRC)render/utils/thread:\
+			$(SRC)render/utils/random:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
-			$(SRC)utils/random:\
 			$(SRC)parser:\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
