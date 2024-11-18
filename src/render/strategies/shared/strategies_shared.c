@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modes_shared.c                                     :+:      :+:    :+:   */
+/*   strategies_shared.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 20:42:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:53:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 	}
 }
 
-void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
+void	sample_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 {
 	t_ray		shadow_ray;
 	t_light		*light;

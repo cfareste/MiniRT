@@ -282,7 +282,7 @@ SRCS = miniRT.c \
 	raytracing.c \
 	pathtracing.c \
 	strategies_shared.c \
-	hit_record.c 
+	hit_record.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
