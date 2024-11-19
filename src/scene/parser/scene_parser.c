@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 00:42:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:39:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,17 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 	if (!scene->camera)
 		throw_parse_err(ctx, "No camera provided for scene");
 	lights = scene->lights;
-	if (MANDATORY_LIGHT_REQUIRED)
+	if (!scene->ambient_light)
+			throw_parse_err(ctx, "Ambient light is missing!");
+	mandatory_lights = 0;
+	while (lights && mandatory_lights < 2)
 	{
-		mandatory_lights = 0;
-		while (lights && mandatory_lights < 2)
-		{
-			if (lights->type == LIGHT_ID_MANDATORY)
-				mandatory_lights++;
-			lights = lights->next;
-		}
-		if (!scene->ambient_light || !mandatory_lights)
-			throw_parse_err(ctx, "A mandatory light is missing!");
-		else if (mandatory_lights > 1)
-			throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
+		if (lights->type == LIGHT_ID_MANDATORY)
+			mandatory_lights++;
+		lights = lights->next;
 	}
+	if (mandatory_lights > 1)
+		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
 }
 
 void	parse_scene(t_scene *scene, t_textures *textures, char *filename)
