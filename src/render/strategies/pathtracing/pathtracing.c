@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:51:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 22:13:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ static void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 		return ;
 	}
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
-	sample_lights(scene, hit_record, &light_color);
+	if (hit_record->figure->material.type == EMISSIVE)
+		multiply_color_scalar(&figure_color,
+			hit_record->figure->material.emissive_attrs->intensity,
+			&figure_color);
+	else
+		sample_lights(scene, hit_record, &light_color);
 	sum_colors(&figure_color, &light_color, &bounce_color);
 	mix_colors(final_color, &bounce_color, final_color);
 }
@@ -55,7 +60,7 @@ void	compute_pathtracing(t_scene *scene, t_ray *ray, t_color *sample_color,
 		ft_bzero(&hit_record, sizeof(t_hit_record));
 		check_collisions(scene, ray, &hit_record);
 		process_lighting(scene, &hit_record, &depth_color);
-		if (!hit_record.figure)
+		if (!hit_record.figure || hit_record.figure->material.type == EMISSIVE)
 			break ;
 		hit_record.figure->material.scatter(ray, &hit_record, seed);
 		i++;
