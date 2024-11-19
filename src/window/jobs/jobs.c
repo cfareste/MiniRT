@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 16:33:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:30:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,15 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 
 void	destroy_jobs(t_jobs *jobs)
 {
-	while (jobs->amount)
-		remove_job(jobs, jobs->job);
+	t_job	*job;
+	t_job	*aux;
+
+	job = jobs->job;
+	while (job)
+	{
+		aux = job;
+		job = job->next;
+		aux->destroy(aux);
+	}
+	pthread_mutex_unlock(&jobs->mutex);
 }
