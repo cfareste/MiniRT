@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 22:12:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:45:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	destroy(t_window *window)
 	destroy_loader(&window->render.loader);
 	mlx_delete_texture(window->icon);
 	mlx_terminate(window->mlx);
+	destroy_jobs(&window->jobs);
 	destroy_scene_settings(&window->render.scene.settings);
 	free_textures(&window->textures);
 	free(window->render.scene.ambient_light);

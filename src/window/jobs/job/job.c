@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 17:17:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:39:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "utils/utils_bonus.h"
 #include "libft.h"
 #include <pthread.h>
+
+static void	destroy(t_job *job)
+{
+	job->free(job);
+}
 
 static void	free_job(t_job *job)
 {
@@ -31,5 +36,6 @@ t_job	*new_job(void)
 	job->type = ANON_JOB;
 	job->required = 0;
 	job->free = free_job;
+	job->destroy = destroy;
 	return (job);
 }

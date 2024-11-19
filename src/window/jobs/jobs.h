@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 20:21:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:46:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@ void	push_job(t_jobs *jobs, t_job *job);
 int		remove_job(t_jobs *jobs, t_job *job);
 
 void	exec_jobs(t_jobs *jobs, t_window *window);
+
+void	destroy_jobs(t_jobs *jobs);

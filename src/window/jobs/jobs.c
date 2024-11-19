@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 20:22:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:33:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,6 @@
 #include <stdlib.h>
 
 #include "libft.h"
-
-void	print_jobs(t_jobs *jobs)
-{
-	t_job	*job;
-
-	ft_printf("Jobs:\n");
-	job = jobs->job;
-	while (job)
-	{
-		ft_printf("%p - %d\n", job, job->required);
-		job = job->next;
-	}
-	ft_printf("total: %d\n\n", jobs->amount);
-}
 
 void	push_job(t_jobs *jobs, t_job *job)
 {
@@ -44,7 +30,6 @@ void	push_job(t_jobs *jobs, t_job *job)
 	else
 		aux->next = job;
 	pthread_mutex_unlock(&jobs->mutex);
-	printf("jobs amount: %d, last_job: %p\n", jobs->amount, job);
 }
 
 int	remove_job(t_jobs *jobs, t_job *job)
@@ -92,7 +77,7 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 			|| (!jobs_executed && i == jobs->amount - 1))
 		{
 			jobs_executed++;
-			if (job->run(job, window) && remove_job(jobs, jobs->job))
+			if (job->run(job, window) && remove_job(jobs, job))
 			{
 				job = jobs->job;
 				continue ;
@@ -102,4 +87,10 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 		job = job->next;
 	}
 	pthread_mutex_unlock(&jobs->mutex);
+}
+
+void	destroy_jobs(t_jobs *jobs)
+{
+	while (jobs->amount)
+		remove_job(jobs, jobs->job);
 }

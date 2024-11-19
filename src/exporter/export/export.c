@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 20:36:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:33:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,12 @@ static void	file_from_image(int fd, t_image *image, t_loader *loader)
 	char	*file_buff;
 	int		j;
 
-	printf("Image: %p\n", image);
 	ft_printff(fd, "P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
 		image->size.width, image->size.height, 255);
 	px_amount = image->size.width * image->size.height;
 	file_buff = ft_calloc(1, sizeof(char) * (px_amount * 12));
 	if (!file_buff)
 		throw_sys_error("Dynamic memory is so funny today :( ");
-	printf("Allocated: %lu\n", sizeof(char) * (px_amount * 12));
 	px_amount *= 4;
 	j = fill_buffer(file_buff, px_amount, image, loader);
 	write(fd, file_buff, j);
@@ -109,6 +107,7 @@ void	*export_routine(t_export *export)
 	free(path);
 	set_loader_visibility(&export->exporter->render->loader, 0);
 	set_exporter_active(export->exporter, 0);
+	free(export);
 	return (NULL);
 }
 
