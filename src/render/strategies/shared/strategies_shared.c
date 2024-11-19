@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 22:53:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:49:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 
 void	sample_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 {
-	t_ray		shadow_ray;
-	t_light		*light;
-	t_figure	*figure;
+	t_ray				shadow_ray;
+	t_light				*light;
+	t_figure			*figure;
+	t_specular_params	params;
 
 	light = scene->lights;
 	while (light)
@@ -43,9 +44,9 @@ void	sample_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
+			set_specular_params(scene, &shadow_ray, hit_record, &params);
 			compute_diffuse(&shadow_ray, hit_record, light, color);
-			sum_colors(color, compute_specular(scene, get_reflection(
-						&shadow_ray, hit_record), light, hit_record), color);
+			compute_specular(&params, light, color);
 		}
 		light = light->next;
 	}

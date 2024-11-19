@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/17 21:06:26 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:41:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "libft.h"
+#include "light_utils.h"
 #include <math.h>
 
 void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
@@ -31,32 +32,32 @@ void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
 	material_diffuse = 0.5;
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_diffuse, &aux);
-	sum_colors(color, aux, color);
+	sum_colors(color, &aux, color);
 }
 
-t_vector	get_reflection(t_ray *shadow_ray, t_hit_record *hit_record)
+void	set_specular_params(t_scene *scene, t_ray *ray,
+	t_hit_record *hit_record, t_specular_params *params)
 {
-	t_vector	reflected;
-
-	reflect(&shadow_ray->direction, &hit_record->normal, &reflected);
-	return (reflected);
+	params->camera_vector = scene->camera->front;
+	reflect(&ray->direction, &hit_record->normal, &params->ray_dir_reflected);
+	params->material_glosiness = hit_record->figure->glosiness;
 }
 
-t_color	compute_specular(t_scene *scene, t_vector reflected,
-			t_light *light, t_hit_record *hit_record)
+void	compute_specular(t_specular_params *params, t_light *light,
+	t_color *color)
 {
 	float	strength;
 	float	material_specular;
-	t_color	color;
+	t_color	aux;
 
-	strength = dot(&scene->camera->front, &reflected);
+	strength = dot(&params->camera_vector, &params->ray_dir_reflected);
 	if (strength < 0.0)
 		strength = 0.0;
 	material_specular = 0.5;
-	strength = pow(strength, hit_record->figure->glosiness);
+	strength = pow(strength, params->material_glosiness);
 	multiply_color_scalar(&light->color,
-		strength * light->brightness * material_specular, &color);
-	return (color);
+		strength * light->brightness * material_specular, &aux);
+	sum_colors(color, &aux, color);
 }
 
 void	apply_ambient_lighting(t_light *ambient, t_color *res)
