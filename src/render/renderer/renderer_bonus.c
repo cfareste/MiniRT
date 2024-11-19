@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 21:52:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:01:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,6 @@ void	render(t_window *window_)
 		return ;
 	printf("RENDERING\n");
 	pthread_mutex_lock(&window->render.mutex);
-	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
-				ft_filename(window->render.scene.filename),
-				PROGRAM_NAME_SUFF, throw_sys_error, "concating window title")));
 	window->render.start_time = mlx_get_time();
 	pthread_mutex_unlock(&window->render.mutex);
 	if (pthread_create(&window->render.thread, NULL,

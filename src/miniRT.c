@@ -6,14 +6,17 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 19:50:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:03:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "MLX42.h"
+#include "miniRT.h"
 #include "window/window.h"
 #include "window/helpers/window_helper_bonus.h"
+#include "window/jobs/jobs.h"
+#include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/parser/scene_parser.h"
 #include "loader/multi_loader_bonus.h"
@@ -46,6 +49,9 @@ static void	*start_routine(void *window_)
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);
+	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
+				ft_filename(window->render.scene.filename),
+				PROGRAM_NAME_SUFF, throw_sys_error, "concating window title")));
 	render(window);
 	return (NULL);
 }
