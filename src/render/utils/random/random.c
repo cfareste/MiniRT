@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:35:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 18:35:18 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:02:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/vector/vector.h"
+#include "render/utils/point/point.h"
 #include <stdint.h>
 #include <math.h>
 
@@ -38,4 +38,16 @@ void	get_random_point_in_square(uint32_t *seed, t_vector *vec)
 {
 	vec->x = get_random_float(seed) - 0.5;
 	vec->y = get_random_float(seed) - 0.5;
+}
+
+void	get_random_point_in_sphere(uint32_t *seed, t_point *point)
+{
+	while (42)
+	{
+		point->x = (get_random_float(seed) * 2.0) - 1.0;
+		point->y = (get_random_float(seed) * 2.0) - 1.0;
+		point->z = (get_random_float(seed) * 2.0) - 1.0;
+		if (sqrt(dot(point, point)) < 1.0)
+			return ;
+	}
 }
