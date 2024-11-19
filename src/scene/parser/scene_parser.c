@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 12:39:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:41:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 		throw_parse_err(ctx, "No camera provided for scene");
 	lights = scene->lights;
 	if (!scene->ambient_light)
-			throw_parse_err(ctx, "Ambient light is missing!");
+		throw_parse_err(ctx, "Ambient light is missing!");
 	mandatory_lights = 0;
 	while (lights && mandatory_lights < 2)
 	{
