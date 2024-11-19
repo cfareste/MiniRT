@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 12:07:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:10:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,5 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	parse_color(ctx, parts[color_i], &figure->color);
 	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);
-	if (figure->material.type == EMISSIVE)
-		multiply_color_scalar(&figure->color,
-			figure->material.emissive_attrs->intensity, &figure->color);
 	return (figure);
 }
