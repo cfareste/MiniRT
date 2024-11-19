@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 20:57:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:24:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	*render_part(t_render_part *part)
 	uint32_t		seed;
 	t_iterators		iterators;
 
-	set_viewport(part->render->scene.camera,
-		&part->render->scene.camera->viewport, part->img_size);
 	get_thread_id(&part->thread, &seed);
 	iterators.j = 0;
 	while (!is_render_finished(part->render)

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:53:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/18 22:12:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int	main(int argc, char **argv)
 	init_window(&window);
 	pthread_create(&thread, NULL, start_routine, &window);
 	mlx_loop(window.mlx);
+	pthread_join(thread, NULL);
 	return (destroy(&window), EXIT_SUCCESS);
 }

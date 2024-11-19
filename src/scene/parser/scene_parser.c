@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 20:52:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:41:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 	if (!scene->camera)
 		throw_parse_err(ctx, "No camera provided for scene");
 	lights = scene->lights;
+	if (!scene->ambient_light)
+		throw_parse_err(ctx, "Ambient light is missing!");
 	mandatory_lights = 0;
 	while (lights && mandatory_lights < 2)
 	{
@@ -92,9 +94,7 @@ void	check_parsing(t_parser_ctx *ctx, t_scene *scene)
 			mandatory_lights++;
 		lights = lights->next;
 	}
-	if (!scene->ambient_light || !mandatory_lights)
-		throw_parse_err(ctx, "A mandatory light is missing!");
-	else if (mandatory_lights > 1)
+	if (mandatory_lights > 1)
 		throw_parse_err(ctx, "Only 1 mandatory light (L) is allowed");
 }
 
