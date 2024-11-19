@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:35:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 23:42:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ int	try_parse_scene_elems(t_parser_ctx *ctx, char **args,
 		return (0);
 	return (1);
 }
-

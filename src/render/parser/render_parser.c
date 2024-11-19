@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 22:14:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 00:07:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,34 @@
 #include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
 
-static void	try_parse_err(t_parser_ctx *ctx, char *arg,
+static int	ensure_params_amount(t_parser_ctx *ctx, char **args, int amount)
+{
+	if (ft_matrix_len(args + 1) < amount)
+		throw_parse_err(ctx, safe_ft_strjoin("Missing params: ", args[0],
+				throw_sys_error, "splitting error message"));
+	return (1);
+}
+
+static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 				t_render *render)
 {
 	char	**args;
 
 	args = safe_ft_split(arg, ':',
-				throw_sys_error, "trying to split render elem params");
-	ft_printf("args: %s\n", args[0]);
-	// TODO: parse render opts
+			throw_sys_error, "trying to split render elem params");
+	if (ft_strcmp(args[0], SAMPLES_KEY) == EQUAL_STRINGS
+		&& ensure_params_amount(ctx, args, 1))
+		render->samples = (unsigned int) parse_int(ctx, args[1]);
+	else if (ft_strcmp(args[0], ANTIALIASING_KEY) == EQUAL_STRINGS)
+		render->antialiasing = 1;
+	else if (ft_strcmp(args[0], MAX_DEPTH_KEY) == EQUAL_STRINGS
+		&& ensure_params_amount(ctx, args, 1))
+		render->max_depth = (unsigned int) parse_int(ctx, args[1]);
+	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
+		render->raytracing = 1;
+	else
+		return (0);
+	return (1);
 }
 
 int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
@@ -31,9 +50,6 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 {
 	int	i;
 
-	(void) ctx;
-	(void) args;
-	(void) render;
 	if (ft_strncmp(RENDER_PARSE_ID, args[0],
 			ft_strlen(RENDER_PARSE_ID)) != EQUAL_STRINGS)
 		return (0);
@@ -42,8 +58,8 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 	{
 		if (!try_parse_render_elem(ctx, args[i], render))
 			throw_parse_err(ctx, ft_strjoin("Unknown render option: ",
-				args[i]));
+					args[i]));
 		i++;
 	}
-	return (0);
+	return (1);
 }

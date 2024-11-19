@@ -1,9 +1,10 @@
 # SETTINGS
 SN Bumps
+R raytracing samples:500 antialiasing
 # SA 1
-SS 1
+# SS 1
 SSC	194,231,255
-SRT 1
+# SRT 1
 
 # Ambient
 A			0.2			255,255,255

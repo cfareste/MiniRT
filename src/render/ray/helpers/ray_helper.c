@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 22:07:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 23:45:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static void	randomize_ray_origin(t_point *origin, t_camera *camera,
 		- camera->defocus_up.z * offset.y;
 }
 
-void	set_ray_from_camera(t_ray *ray, t_render *render, t_iterators *iterators,
-			uint32_t *seed)
+void	set_ray_from_camera(t_ray *ray, t_render *render,
+			t_iterators *iterators, uint32_t *seed)
 {
 	t_coordinates	vp_coords;
 	t_vector		direction;

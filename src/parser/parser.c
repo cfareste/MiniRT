@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 22:13:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 23:44:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	check_parsing(t_parser_ctx *ctx, t_window *window)
 
 void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 {
-
 	char	**args;
 
 	args = ft_split_set(line, SPACES_CHARS);
@@ -37,7 +36,7 @@ void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 	{
 		if (!try_parse_scene_elems(ctx, args, &window->render.scene))
 			if (!try_parse_render_elems(ctx, args, &window->render))
-			throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
+				throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
 	}
 	free_matrix(args);
 }
@@ -74,7 +73,8 @@ void	parse(t_window *window, char *filename)
 	if (fd == -1)
 		throw_sys_error(window->filename);
 	init_render_opts(&window->render);
-	window->render.scene.settings.name = get_file_name(window->filename, SCENE_FILE_EXTENSION);
+	window->render.scene.settings.name = get_file_name(window->filename,
+			SCENE_FILE_EXTENSION);
 	if (!window->render.scene.settings.name)
 		throw_sys_error("trying to allocate scene name");
 	parse_from_fd(&ctx, fd, window);
