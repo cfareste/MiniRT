@@ -58,7 +58,7 @@ CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 BIN_DIR = bin/
 SRC = src/
 INCLUDES = -I$(SRC)
-EXPORTS = exports/
+EXPORTS = assets/exports/
 
 
 #----LIBS----#
