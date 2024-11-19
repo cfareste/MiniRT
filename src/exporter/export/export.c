@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 16:33:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:48:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_export	*new_export(t_exporter *exporter)
 	return (export);
 }
 
-static int	fill_buffer(char *file_buff, int px_amount, t_image *image,
+static int	fill_buffer(char *file_buff, int px_amount, t_export *export,
 				t_loader *loader)
 {
 	int		iter[3];
@@ -41,7 +41,7 @@ static int	fill_buffer(char *file_buff, int px_amount, t_image *image,
 
 	ft_bzero(iter, sizeof(int) * 3);
 	set_loader_total(loader, px_amount);
-	while (iter[0] < px_amount)
+	while (iter[0] < px_amount && is_exporter_active(export->exporter))
 	{
 		if (iter[2] == 3)
 		{
@@ -50,7 +50,7 @@ static int	fill_buffer(char *file_buff, int px_amount, t_image *image,
 		}
 		else if (iter[2] < 3)
 		{
-			num_str = ft_itoa(image->pixels[iter[0]]);
+			num_str = ft_itoa(export->image->pixels[iter[0]]);
 			write_str(file_buff, num_str, iter + 1);
 			free(num_str);
 			if (iter[2] < 2)
@@ -63,23 +63,24 @@ static int	fill_buffer(char *file_buff, int px_amount, t_image *image,
 	return (iter[1]);
 }
 
-static void	file_from_image(int fd, t_image *image, t_loader *loader)
+static void	file_from_export(int fd, t_export *export)
 {
 	int		px_amount;
 	char	*file_buff;
 	int		j;
 
 	ft_printff(fd, "P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
-		image->size.width, image->size.height, 255);
-	px_amount = image->size.width * image->size.height;
+		export->image->size.width, export->image->size.height, 255);
+	px_amount = export->image->size.width * export->image->size.height;
 	file_buff = ft_calloc(1, sizeof(char) * (px_amount * 12));
 	if (!file_buff)
 		throw_sys_error("Dynamic memory is so funny today :( ");
 	px_amount *= 4;
-	j = fill_buffer(file_buff, px_amount, image, loader);
+	j = fill_buffer(file_buff, px_amount, export,
+			&export->exporter->render->loader);
 	write(fd, file_buff, j);
 	free(file_buff);
-	destroy_image(image);
+	destroy_image(export->image);
 }
 
 void	*export_routine(t_export *export)
@@ -92,8 +93,6 @@ void	*export_routine(t_export *export)
 	set_loader_progress(&export->exporter->render->loader, 0);
 	set_loader_total(&export->exporter->render->loader, 100);
 	set_loader_visibility(&export->exporter->render->loader, 1);
-	if (!is_render_finished(export->exporter->render))
-		return (NULL);
 	start_time = mlx_get_time();
 	path = set_file_name(export->exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR, 0);
@@ -101,7 +100,7 @@ void	*export_routine(t_export *export)
 	fd = open(path, O_CREAT | O_WRONLY, 0644);
 	if (fd == -1)
 		throw_sys_error(path);
-	file_from_image(fd, export->image, &export->exporter->render->loader);
+	file_from_export(fd, export);
 	close(fd);
 	printf("FINSHED EXPORTING %s: %f\n", path, mlx_get_time() - start_time);
 	free(path);
@@ -113,6 +112,7 @@ void	*export_routine(t_export *export)
 
 void	exec_export(t_export *export)
 {
+	pthread_join(export->exporter->thread, NULL);
 	if (pthread_create(&export->exporter->thread, NULL,
 			(void *(*)(void *)) export_routine, export) == -1)
 		throw_sys_error("creating export thread");
