@@ -6,11 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:20:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/29 09:25:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:25:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_parser.h"
+#include "parser/helpers/parser_helper.h"
 
 void	check_ori_vector_parsing(t_parser_ctx *ctx, t_vector *vector)
 {

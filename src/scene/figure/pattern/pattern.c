@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pattern.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:31:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 17:54:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:26:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pattern.h"
+#include "parser/helpers/parser_helper.h"
 
 void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str)
 {

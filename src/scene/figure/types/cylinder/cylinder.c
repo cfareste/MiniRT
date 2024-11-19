@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 21:41:38 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:23:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cylinder/pattern/cylinder_pattern.h"
 #include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
+#include "parser/helpers/parser_helper.h"
 #include <math.h>
 
 static void	print_attrs(void *param)

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   emissive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:41:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:34:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:27:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
+#include "parser/helpers/parser_helper.h"
 #include "scene/figure/material/material.h"
 
 static void	scatter(t_ray *ray, t_hit_record *hit_record, uint32_t *seed)

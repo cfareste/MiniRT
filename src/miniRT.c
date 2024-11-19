@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 20:03:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:08:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	*start_routine(void *window_)
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);
 	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
-				ft_filename(window->render.scene.filename),
+				ft_filename(window->filename),
 				PROGRAM_NAME_SUFF, throw_sys_error, "concating window title")));
 	render(window);
 	return (NULL);
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments! " \
 			"usage: ./miniRT assets/scenes/scene.rt\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
-	parse_scene(&window.render.scene, &window.textures, argv[1]);
+	parse(&window, argv[1]);
 	init_window(&window);
 	pthread_create(&thread, NULL, start_routine, &window);
 	mlx_loop(window.mlx);

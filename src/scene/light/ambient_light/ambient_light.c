@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:43:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:23:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parser/parser.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "../light.h"
+#include "parser/helpers/parser_helper.h"
 
 void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
 {

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 21:24:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 22:12:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	scene = &part->render->scene;
 	ft_bzero(&pixel_color, sizeof(t_color));
 	ft_bzero(&sample_color, sizeof(t_color));
-	while (k < scene->settings.samples)
+	while (k < part->render->samples)
 	{
-		set_ray_from_camera(&ray, scene, iterators, seed);
-		if (scene->settings.raytracing)
+		set_ray_from_camera(&ray, part->render, iterators, seed);
+		if (part->render->raytracing)
 			compute_raytracing(scene, &ray, &sample_color);
 		else
 			compute_pathtracing(scene, &ray, &sample_color, seed);
 		k++;
 	}
 	multiply_color_scalar(&sample_color,
-		1 / (float) scene->settings.samples, &pixel_color);
+		1 / (float) part->render->samples, &pixel_color);
 	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
 		get_color_value(&pixel_color));
 }
@@ -70,6 +70,14 @@ void	*render_part(t_render_part *part)
 		iterators.j++;
 	}
 	return (NULL);
+}
+
+void	init_render_opts(t_render *render)
+{
+	render->samples = 1;
+	render->antialiasing = 0;
+	render->raytracing = 0;
+	render->max_depth = 1;
 }
 
 void	init_render(t_render *render, mlx_t *mlx)

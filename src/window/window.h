@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:53:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:45:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_resize
 
 typedef struct s_window
 {
+	char			*filename;
 	t_size			size;
 	mlx_texture_t	*icon;
 	mlx_t			*mlx;

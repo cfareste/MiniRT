@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 19:59:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:46:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef struct s_scene
 {
-	char				*filename;
 	t_scene_settings	settings;
 	t_light				*ambient_light;
 	t_camera			*camera;

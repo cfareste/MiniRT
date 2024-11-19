@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/17 20:08:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 22:12:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_render
 	double			start_time;
 	int				parts_amount;
 	pthread_mutex_t	trigger;
+	unsigned int	samples;
+	int				antialiasing;
+	unsigned int	max_depth;
+	int				raytracing;
 }	t_render;
 
 typedef struct s_render_part
@@ -43,3 +47,5 @@ typedef struct s_render_part
 void	*render_part(t_render_part *part);
 
 void	init_render(t_render *render, mlx_t *mlx);
+
+void	init_render_opts(t_render *render);

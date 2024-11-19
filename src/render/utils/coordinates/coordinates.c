@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/29 17:09:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:23:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include "parser/parser.h"
+#include "parser/helpers/parser_helper.h"
 #include <math.h>
 
 void	parse_coordinates(t_parser_ctx *ctx, char *str,

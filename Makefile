@@ -189,9 +189,11 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/iterators:\
 			$(SRC)render/utils/thread:\
 			$(SRC)render/utils/random:\
+			$(SRC)render/parser:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
+			$(SRC)parser/helpers:\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
@@ -282,7 +284,9 @@ SRCS = miniRT.c \
 	raytracing.c \
 	pathtracing.c \
 	strategies_shared.c \
-	hit_record.c 
+	hit_record.c \
+	parser_helper.c \
+	render_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

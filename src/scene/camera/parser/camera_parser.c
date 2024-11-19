@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/06 17:40:26 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:25:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../camera.h"
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
+#include "parser/helpers/parser_helper.h"
 #include <math.h>
 
 static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)

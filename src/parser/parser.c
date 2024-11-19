@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 22:13:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,70 @@
 #include "utils/utils_bonus.h"
 #include "parser.h"
 #include "scene/scene.h"
+#include "window/window.h"
+#include "scene/parser/scene_parser.h"
+#include "parser/helpers/parser_helper.h"
+#include "render/parser/render_parser.h"
+#include <fcntl.h>
 
-void	throw_parse_err(t_parser_ctx *ctx, char *error_msg)
+static void	check_parsing(t_parser_ctx *ctx, t_window *window)
 {
-	if (ctx->line)
-		ft_printff(STDERR_FILENO, "Error\n%s:%d -> %s\n",
-			ctx->filename, ctx->line, error_msg);
-	else
-		ft_printff(STDERR_FILENO, "Error\n%s -> %s\n",
-			ctx->filename, error_msg);
-	exit(EXIT_FAILURE);
+	check_scene_parsing(ctx, &window->render.scene);
 }
 
-double	parse_double(t_parser_ctx *ctx, char *str)
+void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 {
-	char	*aux;
-	int		symbols_count;
-	int		points_count;
-	int		nums_count;
 
-	aux = str;
-	symbols_count = 0;
-	points_count = 0;
-	nums_count = 0;
-	ft_jump_spaces(&str);
-	while (str && *str && symbols_count < 1
-		&& !(ft_isdigit(*str) || *str == '.'))
-		symbols_count += ft_stroccurrences("+-", *(str++));
-	while (str && *str && symbols_count <= 1 && points_count <= 1
-		&& (ft_isdigit(*str) || *str == '.'))
+	char	**args;
+
+	args = ft_split_set(line, SPACES_CHARS);
+	if (!args)
+		throw_sys_error("ft_split");
+	if (args[0] && *args[0] != '#')
 	{
-		points_count += *str == '.';
-		nums_count += ft_isdigit(*str);
-		str++;
+		if (!try_parse_scene_elems(ctx, args, &window->render.scene))
+			if (!try_parse_render_elems(ctx, args, &window->render))
+			throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
 	}
-	if (*str || symbols_count > 1 || points_count > 1 || nums_count < 1)
-		throw_parse_err(ctx,
-			ft_strjoin("Invalid floating point number: ", aux));
-	return (ft_atod(aux));
+	free_matrix(args);
 }
 
-int	parse_int(t_parser_ctx *ctx, char *str)
+void	parse_from_fd(t_parser_ctx *ctx, int fd, t_window *window)
 {
-	if (!ft_isnum(str))
-		throw_parse_err(ctx, ft_strjoin("Invalid integer number: ", str));
-	return (ft_atoi(str));
+	char	*line;
+
+	ctx->line = 1;
+	line = get_next_line(fd, 0);
+	while (line != NULL)
+	{
+		if (*line)
+			parse_line(ctx, line, window);
+		free(line);
+		ctx->line++;
+		line = get_next_line(fd, 0);
+	}
+}
+
+void	parse(t_window *window, char *filename)
+{
+	int				fd;
+	t_parser_ctx	ctx;
+
+	window->filename = filename;
+	pthread_mutex_init(&window->render.scene.mutex, NULL);
+	ctx.textures = &window->textures;
+	ctx.filename = window->filename;
+	ctx.line = 0;
+	if (!correct_file_extension(window->filename, SCENE_FILE_EXTENSION))
+		throw_parse_err(&ctx, "Only .rt files are allowed");
+	fd = open(window->filename, O_RDONLY);
+	if (fd == -1)
+		throw_sys_error(window->filename);
+	init_render_opts(&window->render);
+	window->render.scene.settings.name = get_file_name(window->filename, SCENE_FILE_EXTENSION);
+	if (!window->render.scene.settings.name)
+		throw_sys_error("trying to allocate scene name");
+	parse_from_fd(&ctx, fd, window);
+	close(fd);
+	check_parsing(&ctx, window);
 }

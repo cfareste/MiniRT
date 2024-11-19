@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/11 13:14:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:26:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/vector/parser/vector_parser.h"
 #include "../../../parser/figure_parser.h"
 #include "../plane.h"
+#include "parser/helpers/parser_helper.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_figure *plane)
 {

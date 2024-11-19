@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plastic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:34:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:26:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
 #include "scene/figure/material/material.h"
+#include "parser/helpers/parser_helper.h"
 
 static void	scatter(t_ray *ray, t_hit_record *hit_record, uint32_t *seed)
 {

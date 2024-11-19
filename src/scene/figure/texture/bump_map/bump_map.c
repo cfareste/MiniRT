@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/12 13:20:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:26:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "bump_map.h"
 #include "utils/utils_bonus.h"
 #include "window/textures/textures.h"
+#include "parser/helpers/parser_helper.h"
 #include <string.h>
 #include <errno.h>
 

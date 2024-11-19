@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/05 16:31:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:23:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "color.h"
 #include "utils/utils_bonus.h"
 #include "render/utils/vector/vector.h"
+#include "parser/helpers/parser_helper.h"
 
 void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 18:01:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:23:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/figure/types/sphere/parser/sphere_parser.h"
 #include "scene/figure/types/sphere/pattern/sphere_pattern.h"
 #include "scene/figure/types/sphere/texture/bump_map_sphere.h"
+#include "parser/helpers/parser_helper.h"
 
 static void	print_attrs(void *param)
 {

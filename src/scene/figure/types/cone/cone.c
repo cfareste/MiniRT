@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/14 17:06:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:24:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
+#include "parser/helpers/parser_helper.h"
 #include <math.h>
 
 static void	print_attrs(void *param)

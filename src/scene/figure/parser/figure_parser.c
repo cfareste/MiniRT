@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 14:10:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:25:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "../types/plane/parser/plane_parser.h"
 #include "../texture/bump_map/bump_map.h"
 #include "scene/figure/material/material.h"
+#include "parser/helpers/parser_helper.h"
+
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
