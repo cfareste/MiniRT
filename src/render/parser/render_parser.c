@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:44:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:26:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "render_parser.h"
 #include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
+#include <limits.h>
+
+static void	check_parsing(t_parser_ctx *ctx, t_render *render)
+{
+	if (render->samples < 1 || render->samples > INT_MAX)
+		throw_parse_err(ctx, "At least 1 sample is required");
+	else if (render->max_depth < 1 || render->max_depth > INT_MAX)
+		throw_parse_err(ctx, "Max depth must be greater than 0");
+}
 
 static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 				t_render *render)
@@ -24,12 +33,12 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 			throw_sys_error, "trying to split render elem params");
 	if (ft_strcmp(args[0], SAMPLES_KEY) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
-		render->samples = (unsigned int) parse_int(ctx, args[1]);
+		render->samples = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], ANTIALIASING_KEY) == EQUAL_STRINGS)
 		render->antialiasing = 1;
 	else if (ft_strcmp(args[0], MAX_DEPTH_KEY) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
-		render->max_depth = (unsigned int) parse_int(ctx, args[1]);
+		render->max_depth = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
 		render->raytracing = 1;
 	else
@@ -38,6 +47,7 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		return (0);
 	}
 	free_matrix(args);
+	check_parsing(ctx, render);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:06:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 15:28:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:10:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ static int	try_parse_window_elem(t_parser_ctx *ctx, char *arg,
 			throw_sys_error, "trying to split window elem params");
 	if (ft_strcmp(args[0], WINDOW_PARSE_WIDTH_ID) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
-		window->size.width = (unsigned int) parse_int(ctx, args[1]);
+		window->size.width = (unsigned int)
+			ft_clamp(parse_int(ctx, args[1]), 1, WINDOW_WIDTH);
 	else if (ft_strcmp(args[0], WINDOW_PARSE_HEIGHT_ID) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
-		window->size.height = (unsigned int) parse_int(ctx, args[1]);
+		window->size.height = (unsigned int)
+			ft_clamp(parse_int(ctx, args[1]), 1, WINDOW_HEIGHT);
 	else
 	{
 		free_matrix(args);
