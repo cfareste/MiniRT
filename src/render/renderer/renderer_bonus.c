@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 20:01:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:12:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,18 @@ void	*render_routine(t_window *window)
 		return (NULL);
 	img_size = get_image_size(window->render.image,
 			&window->render.image_mutex);
-	set_loader_total(&window->render.loader,
-		img_size.width * img_size.height);
+	// set_loader_total(&window->render.loader,
+	// 	img_size.width * img_size.height);
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport, img_size);
 	render_parts(&window->render, img_size);
 	if (is_render_finished(&window->render))
 		return (NULL);
-	pthread_mutex_lock(&window->render.image_mutex);
-	window->render.image->instances[0].enabled = true;
-	pthread_mutex_unlock(&window->render.image_mutex);
-	set_loader_progress(&window->render.loader, 0);
-	set_loader_visibility(&window->render.loader, false);
+	// pthread_mutex_lock(&window->render.image_mutex);
+	// window->render.image->instances[0].enabled = true;
+	// pthread_mutex_unlock(&window->render.image_mutex);
+	// set_loader_progress(&window->render.loader, 0);
+	// set_loader_visibility(&window->render.loader, false);
 	set_render_finish(&window->render, 1);
 	pthread_mutex_lock(&window->render.mutex);
 	printf("FINISHED RENDER: %f\n\n",
@@ -90,14 +90,14 @@ void	*render_routine(t_window *window)
 static void	prepare_render(t_window *window)
 {
 	stop_render(&window->render);
-	pthread_mutex_lock(&window->render.loader.image_mutex);
-	mlx_resize_image(window->render.loader.image, window->mlx->width,
-		window->mlx->height);
-	pthread_mutex_unlock(&window->render.loader.image_mutex);
-	set_loader_progress(&window->render.loader, 0);
-	set_loader_visibility(&window->render.loader, true);
+	// pthread_mutex_lock(&window->render.loader.image_mutex);
+	// mlx_resize_image(window->render.loader.image, window->mlx->width,
+	// 	window->mlx->height);
+	// pthread_mutex_unlock(&window->render.loader.image_mutex);
+	// set_loader_progress(&window->render.loader, 0);
+	// set_loader_visibility(&window->render.loader, true);
 	pthread_mutex_lock(&window->render.image_mutex);
-	window->render.image->instances[0].enabled = false;
+	// window->render.image->instances[0].enabled = false;
 	mlx_resize_image(window->render.image,
 		window->mlx->width, window->mlx->height);
 	pthread_mutex_unlock(&window->render.image_mutex);

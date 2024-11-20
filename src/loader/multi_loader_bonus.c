@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 19:48:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:08:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 
 static void	*loader_routine(t_multi_loader *loader)
 {
-	if (loader->background)
-		paint_black_image(loader->image, NULL);
+	(void) loader;
+	// if (loader->background)
+	// 	paint_black_image(loader->image, NULL);
 	return (NULL);
 }
 

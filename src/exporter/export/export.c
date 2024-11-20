@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 16:45:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:03:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	*export_routine(t_export *export)
 	double	start_time;
 
 	set_exporter_active(export->exporter, 1);
-	set_loader_progress(&export->exporter->render->loader, 0);
-	set_loader_total(&export->exporter->render->loader, 100);
-	set_loader_visibility(&export->exporter->render->loader, 1);
+	// set_loader_progress(&export->exporter->render->loader, 0);
+	// set_loader_total(&export->exporter->render->loader, 100);
+	// set_loader_visibility(&export->exporter->render->loader, 1);
 	start_time = mlx_get_time();
 	path = set_file_name(export->exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR, 0);
@@ -110,7 +110,7 @@ void	*export_routine(t_export *export)
 		printf("FINSHED EXPORTING %s: %f\n", path,
 			mlx_get_time() - start_time);
 	free(path);
-	set_loader_visibility(&export->exporter->render->loader, 0);
+	// set_loader_visibility(&export->exporter->render->loader, 0);
 	set_exporter_active(export->exporter, 0);
 	free(export);
 	return (NULL);

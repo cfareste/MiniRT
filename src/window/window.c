@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 15:05:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:14:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	main_loop(void *window_)
 	if (window->resize.last_resize
 		&& diff_sizes(&window->size, &window->resize.size))
 	{
-		stop_render(&window->render);
 		window->resize.last_resize = 0;
 		window->size = window->resize.size;
 		render(window);

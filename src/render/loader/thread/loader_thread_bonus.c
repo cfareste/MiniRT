@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/09 22:08:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:07:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	*loader_routine(t_loader *loader)
 		current_pre = current;
 		current = get_bar_width(img_size.width, get_loader_progress(loader),
 				get_loader_total(loader));
-		if (diff_sizes(&img_size, &img_size_pre)
-			|| (current != current_pre && current == 0))
-			paint_black_image(loader->image, &loader->image_mutex);
-		if (current > current_pre)
-			update_progress_bar(loader, current, img_size);
+		// if (diff_sizes(&img_size, &img_size_pre)
+		// 	|| (current != current_pre && current == 0))
+		// 	paint_black_image(loader->image, &loader->image_mutex);
+		// if (current > current_pre)
+		// 	//update_progress_bar(loader, current, img_size);
 	}
-	set_loader_visibility(loader, false);
+	// set_loader_visibility(loader, false);
 	return (NULL);
 }
 
