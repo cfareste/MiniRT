@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 19:48:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:45:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,13 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export,
 	return (iter[1]);
 }
 
-static void	file_from_export(int fd, t_export *export)
+static void	file_from_export(char *path, t_export *export)
 {
 	int		px_amount;
 	char	*file_buff;
 	int		j;
+	int		fd;
 
-	ft_printff(fd, "P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
-		export->image->size.width, export->image->size.height, 255);
 	px_amount = export->image->size.width * export->image->size.height;
 	file_buff = ft_calloc(1, sizeof(char) * (px_amount * 12));
 	if (!file_buff)
@@ -78,14 +77,23 @@ static void	file_from_export(int fd, t_export *export)
 	px_amount *= 4;
 	j = fill_buffer(file_buff, px_amount, export,
 			&export->exporter->render->loader);
-	write(fd, file_buff, j);
+	if (is_exporter_active(export->exporter))
+	{
+		fd = open(path, O_CREAT | O_WRONLY, 0644);
+		if (fd == -1)
+			throw_sys_error(path);
+		ft_printff(fd,
+			"P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
+			export->image->size.width, export->image->size.height, 255);
+		write(fd, file_buff, j);
+		close(fd);
+	}
 	free(file_buff);
 	destroy_image(export->image);
 }
 
 void	*export_routine(t_export *export)
 {
-	int		fd;
 	char	*path;
 	double	start_time;
 
@@ -97,12 +105,10 @@ void	*export_routine(t_export *export)
 	path = set_file_name(export->exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR, 0);
 	printf("Exporting %s\n", path);
-	fd = open(path, O_CREAT | O_WRONLY, 0644);
-	if (fd == -1)
-		throw_sys_error(path);
-	file_from_export(fd, export);
-	close(fd);
-	printf("FINSHED EXPORTING %s: %f\n", path, mlx_get_time() - start_time);
+	file_from_export(path, export);
+	if (is_exporter_active(export->exporter))
+		printf("FINSHED EXPORTING %s: %f\n", path,
+			mlx_get_time() - start_time);
 	free(path);
 	set_loader_visibility(&export->exporter->render->loader, 0);
 	set_exporter_active(export->exporter, 0);

@@ -174,6 +174,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/export:\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
+			$(SRC)window/parser:\
 			$(SRC)render/strategies:\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
@@ -286,7 +287,8 @@ SRCS = miniRT.c \
 	strategies_shared.c \
 	hit_record.c \
 	parser_helper.c \
-	render_parser.c
+	render_parser.c \
+	window_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
