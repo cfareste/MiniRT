@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 18:44:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 00:07:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	t_ray			ray;
 	t_color			pixel_color;
 	t_color			sample_color;
-	t_scene			*scene;
 
 	k = 0;
-	scene = &part->render->scene;
 	ft_bzero(&pixel_color, sizeof(t_color));
 	ft_bzero(&sample_color, sizeof(t_color));
 	while (k < part->render->samples)
