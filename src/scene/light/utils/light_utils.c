@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 16:38:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:03:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ void	set_diffuse_params(t_ray *ray, t_hit_record *hit_record,
 	params->hit_point = hit_record->point;
 }
 
-void	compute_diffuse(t_diffuse_params *params,
+void	compute_diffuse(t_diffuse_params *params, float material_diffuse,
 			t_light *light, t_color *color)
 {
 	float	strength;
-	float	material_diffuse;
 	t_color	aux;
 
 	strength = dot(&params->ray_direction, &params->normal);
@@ -38,7 +37,6 @@ void	compute_diffuse(t_diffuse_params *params,
 		strength = 0.0;
 	strength *= 1 / pow(params->distance, 2.0);
 	ft_bzero(&aux, sizeof(t_color));
-	material_diffuse = 0.5;
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_diffuse, &aux);
 	sum_colors(color, &aux, color);
@@ -52,19 +50,17 @@ void	set_specular_params(t_scene *scene, t_ray *ray,
 	params->material_glosiness = hit_record->figure->glosiness;
 }
 
-void	compute_specular(t_specular_params *params, t_light *light,
-	t_color *color)
+void	compute_specular(t_specular_params *params, float material_specular,
+	t_light *light, t_color *color)
 {
 	float	strength;
-	float	material_specular;
 	t_color	aux;
 
 	strength = dot(&params->camera_vector, &params->ray_dir_reflected);
 	if (strength < 0.0)
 		strength = 0.0;
-	strength *= 1 / pow(params->distance, 2.0);
-	material_specular = 0.5;
 	strength = pow(strength, params->material_glosiness);
+	strength *= 1 / pow(params->distance, 2.0);
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_specular, &aux);
 	sum_colors(color, &aux, color);

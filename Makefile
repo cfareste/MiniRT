@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
@@ -179,6 +179,8 @@ vpath %.c	$(SRC):\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
 			$(SRC)render/strategies/pathtracing:\
+			$(SRC)render/strategies/raytracing/helpers:\
+			$(SRC)render/strategies/pathtracing/helpers:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -288,7 +290,9 @@ SRCS = miniRT.c \
 	hit_record.c\
 	parser_helper.c \
 	render_parser.c \
-	window_parser.c
+	window_parser.c \
+	raytracing_helpers.c \
+	pathtracing_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
