@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:10:34 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/05 16:22:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:11:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 	size_t	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (-1);
 	while (ft_chrcmp(s1[i], s2[i]) == 0
 		&& s1[i] != '\0' && s2[i] != '\0')
 		i++;

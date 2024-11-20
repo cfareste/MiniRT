@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:04:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:12:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 	while (args[i])
 	{
 		if (!try_parse_render_elem(ctx, args[i], render))
-			throw_parse_err(ctx, ft_strjoin("Unknown render option: ",
+			throw_parse_err(ctx, ft_strjoin("Unknown render param: ",
 					args[i]));
 		i++;
 	}
