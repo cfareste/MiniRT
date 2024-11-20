@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 11:41:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:38:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,25 @@
 #include "light_utils.h"
 #include <math.h>
 
-void	compute_diffuse(t_ray *shadow_ray, t_hit_record *hit_record,
+void	set_diffuse_params(t_ray *ray, t_hit_record *hit_record,
+	t_diffuse_params *params)
+{
+	params->ray_direction = ray->direction;
+	params->normal = hit_record->normal;
+	params->hit_point = hit_record->point;
+}
+
+void	compute_diffuse(t_diffuse_params *params,
 			t_light *light, t_color *color)
 {
 	float	strength;
 	float	material_diffuse;
 	t_color	aux;
 
-	strength = dot(&shadow_ray->direction, &hit_record->normal);
+	strength = dot(&params->ray_direction, &params->normal);
 	if (strength < 0.0)
 		strength = 0.0;
+	strength *= 1 / pow(params->distance, 2.0);
 	ft_bzero(&aux, sizeof(t_color));
 	material_diffuse = 0.5;
 	multiply_color_scalar(&light->color,
@@ -53,6 +62,7 @@ void	compute_specular(t_specular_params *params, t_light *light,
 	strength = dot(&params->camera_vector, &params->ray_dir_reflected);
 	if (strength < 0.0)
 		strength = 0.0;
+	strength *= 1 / pow(params->distance, 2.0);
 	material_specular = 0.5;
 	strength = pow(strength, params->material_glosiness);
 	multiply_color_scalar(&light->color,
