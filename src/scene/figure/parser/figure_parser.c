@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 23:43:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:56:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../texture/bump_map/bump_map.h"
 #include "scene/figure/material/material.h"
 #include "parser/helpers/parser_helper.h"
+#include "render/utils/color/color_operations/color_operations.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {

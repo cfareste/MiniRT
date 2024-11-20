@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 21:04:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:15:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static void	process_lighting(t_scene *scene, t_hit_record *hit_record,
 	{
 		get_sky_color(scene->ambient_light, &scene->settings.sky_color,
 			&sample_color);
-		sum_colors(final_color, sample_color, final_color);
+		sum_colors(final_color, &sample_color, final_color);
 		return ;
 	}
 	apply_ambient_lighting(scene->ambient_light, &light_color);
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
-	check_lights(hit_record, scene, &light_color);
+	sample_lights(scene, hit_record, &light_color);
 	mix_colors(&light_color, &figure_color, &sample_color);
-	sum_colors(final_color, sample_color, final_color);
+	sum_colors(final_color, &sample_color, final_color);
 }
 
 void	compute_raytracing(t_scene *scene, t_ray *ray, t_color *sample_color)

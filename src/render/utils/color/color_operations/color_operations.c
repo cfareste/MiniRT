@@ -6,18 +6,18 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/03 14:24:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:40:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "render/utils/color/color.h"
 
-void	sum_colors(t_color *first_color, t_color second_color, t_color *res)
+void	sum_colors(t_color *first_color, t_color *second_color, t_color *res)
 {
-	res->red = first_color->red + second_color.red;
-	res->green = first_color->green + second_color.green;
-	res->blue = first_color->blue + second_color.blue;
+	res->red = first_color->red + second_color->red;
+	res->green = first_color->green + second_color->green;
+	res->blue = first_color->blue + second_color->blue;
 }
 
 void	mix_colors(t_color *first_color, t_color *second_color, t_color *res)

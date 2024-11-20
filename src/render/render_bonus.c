@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 15:10:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:57:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 		if (part->render->raytracing)
 			compute_raytracing(scene, &ray, &sample_color);
 		else
-			compute_pathtracing(scene, &ray, &sample_color, seed);
+			compute_pathtracing(part->render, &ray, &sample_color, seed);
 		k++;
 	}
 	multiply_color_scalar(&sample_color,

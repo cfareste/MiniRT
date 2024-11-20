@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 23:45:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:56:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	set_shadow_ray(t_ray *shadow_ray, t_point *origin, t_point *light_pos)
 	get_vector(light_pos, &shadow_ray->origin, &shadow_ray->direction);
 	shadow_ray->bounds.max = sqrt(dot(&shadow_ray->direction,
 				&shadow_ray->direction));
-	shadow_ray->bounds.min = 0.0001;
+	shadow_ray->bounds.min = 0.001;
 	normalize(&shadow_ray->direction);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modes_shared.c                                     :+:      :+:    :+:   */
+/*   strategies_shared.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 20:42:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:24:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "render/utils/color/color_operations/color_operations.h"
+#include <math.h>
 
 static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 {
@@ -29,11 +30,27 @@ static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 	}
 }
 
-void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
+static void	get_direct_lighting(t_diffuse_params *diff_params,
+	t_specular_params *spec_params, t_light *light, t_color *color)
 {
-	t_ray		shadow_ray;
-	t_light		*light;
-	t_figure	*figure;
+	t_vector	point_to_light;
+	float		distance;
+
+	get_vector(&light->position, &diff_params->hit_point, &point_to_light);
+	distance = sqrt(dot(&point_to_light, &point_to_light));
+	diff_params->distance = distance;
+	spec_params->distance = distance;
+	compute_diffuse(diff_params, light, color);
+	compute_specular(spec_params, light, color);
+}
+
+void	sample_lights(t_scene *scene, t_hit_record *hit_record, t_color *color)
+{
+	t_ray				shadow_ray;
+	t_light				*light;
+	t_figure			*figure;
+	t_diffuse_params	diff_params;
+	t_specular_params	spec_params;
 
 	light = scene->lights;
 	while (light)
@@ -43,9 +60,9 @@ void	check_lights(t_hit_record *hit_record, t_scene *scene, t_color *color)
 		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
-			compute_diffuse(&shadow_ray, hit_record, light, color);
-			sum_colors(color, compute_specular(scene, get_reflection(
-						&shadow_ray, hit_record), light, hit_record), color);
+			set_diffuse_params(&shadow_ray, hit_record, &diff_params);
+			set_specular_params(scene, &shadow_ray, hit_record, &spec_params);
+			get_direct_lighting(&diff_params, &spec_params, light, color);
 		}
 		light = light->next;
 	}

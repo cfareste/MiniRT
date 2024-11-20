@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 23:42:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:56:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	parse_light(t_parser_ctx *ctx, char **parts, t_light **lights)
 	parse_coordinates(ctx, parts[1], &light->position);
 	light->brightness = parse_double(ctx, parts[2]);
 	parse_color(ctx, parts[3], &light->color);
-	if (light->brightness < 0 || light->brightness > 1.0)
-		throw_parse_err(ctx, "Light brightness must be in range [0.0,1.0]");
+	if (light->brightness < 0)
+		throw_parse_err(ctx, "Light brightness must be a positive value");
 }

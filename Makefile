@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -O3 #-g -fsanitize=address
 
 
 #----DIRS----#
@@ -285,7 +285,7 @@ SRCS = miniRT.c \
 	raytracing.c \
 	pathtracing.c \
 	strategies_shared.c \
-	hit_record.c \
+	hit_record.c\
 	parser_helper.c \
 	render_parser.c \
 	window_parser.c

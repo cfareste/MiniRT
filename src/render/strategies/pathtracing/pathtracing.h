@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pathtracing.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:19:13 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:32:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:58:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "scene/scene.h"
+#include "render/render_bonus.h"
 
-void	compute_pathtracing(t_scene *scene, t_ray *ray, t_color *sample_color,
+void	compute_pathtracing(t_render *render, t_ray *ray, t_color *sample_color,
 			uint32_t *seed);
