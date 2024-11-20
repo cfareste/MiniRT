@@ -6,14 +6,15 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:49:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:41:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define SCENE_SETT_NAME "SN"
-#define SCENE_SETT_SKY_COLOR "SSC"
+#define SCENE_SETTINGS_ID "S"
+#define SCENE_SETT_NAME "name"
+#define SCENE_SETT_SKY_COLOR "sky"
 
 #include "parser/parser.h"
 #include "../scene_settings.h"

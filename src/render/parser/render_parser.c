@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:12:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:44:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 #include "render_parser.h"
 #include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
-
-static int	ensure_params_amount(t_parser_ctx *ctx, char **args, int amount)
-{
-	if (ft_matrix_len(args + 1) < amount)
-		throw_parse_err(ctx, safe_ft_strjoin("Missing params: ", args[0],
-				throw_sys_error, "splitting error message"));
-	return (1);
-}
 
 static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 				t_render *render)
@@ -54,8 +46,7 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 {
 	int	i;
 
-	if (ft_strncmp(RENDER_PARSE_ID, args[0],
-			ft_strlen(RENDER_PARSE_ID)) != EQUAL_STRINGS)
+	if (ft_strcmp(RENDER_PARSE_ID, args[0]) != EQUAL_STRINGS)
 		return (0);
 	i = 1;
 	while (args[i])

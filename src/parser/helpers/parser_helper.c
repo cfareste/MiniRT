@@ -6,12 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:15:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:16:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:37:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "../parser.h"
+#include "utils/utils_bonus.h"
 
 void	throw_parse_err(t_parser_ctx *ctx, char *error_msg)
 {
@@ -57,4 +58,12 @@ int	parse_int(t_parser_ctx *ctx, char *str)
 	if (!ft_isnum(str))
 		throw_parse_err(ctx, ft_strjoin("Invalid integer number: ", str));
 	return (ft_atoi(str));
+}
+
+int	ensure_params_amount(t_parser_ctx *ctx, char **args, int amount)
+{
+	if (ft_matrix_len(args + 1) < amount)
+		throw_parse_err(ctx, safe_ft_strjoin("Missing params: ", args[0],
+				throw_sys_error, "splitting error message"));
+	return (1);
 }

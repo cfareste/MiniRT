@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 23:44:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:49:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	parse(t_window *window, char *filename)
 	if (fd == -1)
 		throw_sys_error(window->filename);
 	init_render_opts(&window->render);
+	init_scene_settings(&window->render.scene.settings);
 	window->render.scene.settings.name = get_file_name(window->filename,
 			SCENE_FILE_EXTENSION);
 	if (!window->render.scene.settings.name)

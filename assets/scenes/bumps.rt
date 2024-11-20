@@ -1,13 +1,13 @@
 # SETTINGS
-SN Bumps
-R raytracing samples:500 antialiasing
+S name:Bumps sky:214,34,255
+R raytracing samples:200 antialiasing
+# SN Bumps
 # SA 1
 # SS 1
-SSC	194,231,255
+# SSC	194,231,255
 # SRT 1
-
 # Ambient
-A			0.2			255,255,255
+A			0.2		255,255,255
 
 # Camera
 # Cylinder cameras:
@@ -27,7 +27,7 @@ A			0.2			255,255,255
 	# C	2,1,2	0,0,-1	130
 
 # Light
-# L	2,4,-2		1		255,255,255
+L	2,4,-2		1		255,255,255
 # l	2,2,4		0.6		255,255,255
 # L	2,4,6		1		255,255,255
 
