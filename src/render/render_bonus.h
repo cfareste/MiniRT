@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 22:12:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:10:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,4 @@ void	*render_part(t_render_part *part);
 
 void	init_render(t_render *render, mlx_t *mlx);
 
-void	init_render_opts(t_render *render);
+void	set_render_defaults(t_render *render);

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_settings.h                                   :+:      :+:    :+:   */
+/*   window_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 20:37:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 15:13:52 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/20 15:06:55 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/20 15:25:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "render/utils/color/color.h"
-#include "parser/parser.h"
+#define WINDOW_PARSE_ID "W"
+#define WINDOW_PARSE_HEIGHT_ID "height"
+#define WINDOW_PARSE_WIDTH_ID "width"
+#include "../window.h"
 
-typedef struct s_scene_settings
-{
-	char			*name;
-	t_color			sky_color;
-}	t_scene_settings;
+void	set_window_defaults(t_window *window);
 
-void	print_scene_settings(t_scene_settings *settings);
-
-void	destroy_scene_settings(t_scene_settings *settings);
-
-void	set_scene_defaults(t_scene_settings *settings, char *filename);
+int		try_parse_window_elems(t_parser_ctx *ctx, char **args,
+			t_window *window);

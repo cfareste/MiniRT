@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 20:21:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:05:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ void	init_window(t_window *window)
 	pthread_mutex_init(&window->ready, NULL);
 	pthread_mutex_init(&window->jobs.mutex, NULL);
 	pthread_mutex_lock(&window->ready);
-	window->size.width = WINDOW_WIDTH;
-	window->size.height = WINDOW_HEIGHT;
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			PROGRAM_NAME, true);

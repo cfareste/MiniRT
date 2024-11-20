@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 22:12:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:10:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	*render_part(t_render_part *part)
 	return (NULL);
 }
 
-void	init_render_opts(t_render *render)
+void	set_render_defaults(t_render *render)
 {
 	render->samples = 1;
 	render->antialiasing = 0;

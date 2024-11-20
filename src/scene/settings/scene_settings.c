@@ -6,11 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:48:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:14:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "miniRT.h"
 #include "libft.h"
+#include "utils/utils_bonus.h"
 #include "scene_settings.h"
 
 void	print_scene_settings(t_scene_settings *settings)
@@ -21,8 +23,9 @@ void	print_scene_settings(t_scene_settings *settings)
 		settings->sky_color.blue);
 }
 
-void	init_scene_settings(t_scene_settings *settings)
+void	set_scene_defaults(t_scene_settings *settings, char *filename)
 {
+	settings->name = get_file_name(filename, FILE_EXTENSION);
 	settings->sky_color.red = 0.839215686;
 	settings->sky_color.green = 0.956862745;
 	settings->sky_color.blue = 1;

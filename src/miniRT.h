@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:08 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 20:25:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:28:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define MINIRT_H
 # define PROGRAM_NAME "miniRT"
 # define PROGRAM_NAME_SUFF " · miniRT"
+# define FILE_EXTENSION ".rt"
 # ifndef DARWIN
 #  define DARWIN 0
 # endif
 # ifndef LINUX
 #  define LINUX 0
 # endif
+
 # include "window/window.h"
 
 void	destroy(t_window *window);
