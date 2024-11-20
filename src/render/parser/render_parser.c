@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 00:07:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:04:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
 		render->raytracing = 1;
 	else
+	{
+		free_matrix(args);
 		return (0);
+	}
+	free_matrix(args);
 	return (1);
 }
 
