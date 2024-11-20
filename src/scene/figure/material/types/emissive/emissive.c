@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   emissive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:41:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:27:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:02:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
+#include "render/render_bonus.h"
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/material/material.h"
 
-static void	scatter(t_ray *ray, t_hit_record *hit_record, uint32_t *seed)
+static void	scatter(t_render *render, t_scatter_params *params,
+	t_color *direct_light, uint32_t *seed)
 {
-	(void) ray;
-	(void) hit_record;
+	(void) render;
+	(void) params;
+	(void) direct_light;
 	(void) seed;
 }
 

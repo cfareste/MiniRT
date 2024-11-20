@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 18:31:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:07:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,29 @@ static void	compute_direct_lighting(t_render *render,
 		rt_compute_direct_light_comps(direct_lighting, light, color);
 }
 
-void	sample_lights(t_render *render, t_scene *scene,
-	t_hit_record *hit_record, t_color *color)
+void	sample_lights(t_render *render, t_hit_record *hit_record,
+	t_material_type scatter_type, t_color *color)
 {
 	t_ray				shadow_ray;
 	t_light				*light;
 	t_figure			*figure;
 	t_direct_lighting	direct_lighting;
 
-	light = scene->lights;
+	light = render->scene.lights;
 	while (light)
 	{
 		set_shadow_ray(&shadow_ray, &hit_record->point, &light->position);
-		figure = scene->figures;
+		figure = render->scene.figures;
 		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
-			direct_lighting.figure = hit_record->figure;
+			direct_lighting.scatter_type = scatter_type;
 			set_diffuse_params(&shadow_ray, hit_record,
 				&direct_lighting.diffuse);
-			set_specular_params(scene, &shadow_ray, hit_record,
+			set_specular_params(&render->scene, &shadow_ray, hit_record,
 				&direct_lighting.specular);
-			compute_direct_lighting(render, &direct_lighting, light, color);
+			compute_direct_lighting(render, &direct_lighting, light,
+				color);
 		}
 		light = light->next;
 	}

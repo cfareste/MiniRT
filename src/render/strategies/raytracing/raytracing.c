@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 18:47:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:06:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	process_lighting(t_render *render, t_hit_record *hit_record,
 	}
 	apply_ambient_lighting(render->scene.ambient_light, &light_color);
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
-	sample_lights(render, &render->scene, hit_record, &light_color);
+	sample_lights(render, hit_record, PLASTIC, &light_color);
 	mix_colors(&light_color, &figure_color, &sample_color);
 	sum_colors(final_color, &sample_color, final_color);
 }
