@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 19:51:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:48:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define EXPORT_BASE_DIR "assets/exports/"
+#define EXPORT_BASE_DIR "exports/"
 #include "render/render_bonus.h"
 #include "window/jobs/jobs.h"
 
