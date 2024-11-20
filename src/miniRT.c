@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:08:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:01:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	destroy(t_window *window)
 static void	*start_routine(void *window_)
 {
 	t_window	*window;
+	char		*title;
 
 	window = (t_window *) window_;
 	loader_show_animation(&window->loader, 1, window->size);
@@ -49,9 +50,18 @@ static void	*start_routine(void *window_)
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);
-	push_job(&window->jobs, init_title_job(new_job(), safe_ft_strjoin(
-				ft_filename(window->filename),
-				PROGRAM_NAME_SUFF, throw_sys_error, "concating window title")));
+	title = ft_calloc(1, sizeof(char) * (
+				ft_strlen(window->render.scene.settings.name)
+				+ ft_strlen(ft_filename(window->filename))
+				+ ft_strlen(PROGRAM_NAME_SUFF)
+				+ ft_strlen(" ·  · ")
+				+ 1));
+	sprintf(title, "%s · %s · %s",
+		window->render.scene.settings.name,
+		ft_filename(window->filename),
+		PROGRAM_NAME_SUFF);
+	perror("");
+	push_job(&window->jobs, init_title_job(new_job(), title));
 	render(window);
 	return (NULL);
 }
