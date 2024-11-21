@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 16:56:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:22:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
 	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
 		parse_metallic(ctx, parts[1], material);
 	else if (ft_strcmp(parts[0], PLASTIC_ID) == EQUAL_STRINGS)
-		parse_plastic(ctx, parts[1], material);
+		parse_plastic(ctx, parts + 1, material);
 	else if (ft_strcmp(parts[0], GLASS_ID) == EQUAL_STRINGS)
 		parse_glass(ctx, parts + 1, material);
 	else if (ft_strcmp(parts[0], EMISSIVE_ID) == EQUAL_STRINGS)
