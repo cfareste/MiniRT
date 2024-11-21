@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 19:03:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:34:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	set_diffuse_params(t_ray *ray, t_hit_record *hit_record,
 {
 	params->ray_direction = ray->direction;
 	params->normal = hit_record->normal;
-	params->hit_point = hit_record->point;
 }
 
 void	compute_diffuse(t_diffuse_params *params, float material_diffuse,

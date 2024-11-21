@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 16:44:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:31:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	diffuse_scatter(t_render *render, t_scatter_params *params,
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
 	sample_lights(render, &params->hit_record, DIFFUSE, direct_light);
 }
-
 
 void	metallic_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)

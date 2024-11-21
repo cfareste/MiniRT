@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:07:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:40:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	compute_direct_lighting(t_render *render,
 	t_vector	point_to_light;
 	float		distance;
 
-	get_vector(&light->position, &direct_lighting->diffuse.hit_point,
+	get_vector(&light->position, &direct_lighting->hit_point,
 		&point_to_light);
 	distance = sqrt(dot(&point_to_light, &point_to_light));
 	direct_lighting->diffuse.distance = distance;
@@ -65,6 +65,7 @@ void	sample_lights(t_render *render, t_hit_record *hit_record,
 		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
+			direct_lighting.hit_point = hit_record->point;
 			direct_lighting.scatter_type = scatter_type;
 			set_diffuse_params(&shadow_ray, hit_record,
 				&direct_lighting.diffuse);

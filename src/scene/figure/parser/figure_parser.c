@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 17:22:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:39:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	parse_coordinates(ctx, parts[1], &figure->position);
 	figure->glosiness = parse_double(ctx, parts[2]);
 	parse_material(ctx, parts[3], &figure->material);
+	if (figure->material.type == METALLIC)
+		figure->glosiness *= 1.1 - figure->material.metallic_attrs->roughness;
+	else if (figure->material.type == PLASTIC)
+		figure->glosiness *= 1.1 - figure->material.plastic_attrs->roughness;
 	parse_color(ctx, parts[color_i], &figure->color);
 	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);

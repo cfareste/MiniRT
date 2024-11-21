@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:11:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:01:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:39:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	pt_compute_direct_light_comps(t_direct_lighting *direct_lighting,
 {
 	if (direct_lighting->scatter_type == DIFFUSE)
 		compute_diffuse(&direct_lighting->diffuse, 1.0, light, color);
-	if (direct_lighting->scatter_type == METALLIC)
+	else if (direct_lighting->scatter_type == METALLIC)
 		compute_specular(&direct_lighting->specular, 1.0, light, color);
 }
