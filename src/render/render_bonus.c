@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 19:49:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:08:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void	init_render(t_render *render, mlx_t *mlx)
 	pthread_mutex_init(&render->image_mutex, NULL);
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
-	mlx_set_instance_depth(render->image->instances + render->image->count - 1, 0);
+	mlx_set_instance_depth(render->image->instances
+		+ render->image->count - 1, 0);
 }
