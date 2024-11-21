@@ -56,7 +56,12 @@ static void	*start_routine(void *window_)
 				+ ft_strlen(PROGRAM_NAME_SUFF)
 				+ ft_strlen(" ·  · ")
 				+ 1));
-	sprintf(title, "%s · %s · %s",
+	snprintf(title,
+		ft_strlen(window->render.scene.settings.name)
+		+ ft_strlen(ft_filename(window->filename))
+		+ ft_strlen(PROGRAM_NAME_SUFF)
+		+ ft_strlen(" ·  · "),
+		"%s · %s · %s",
 		window->render.scene.settings.name,
 		ft_filename(window->filename),
 		PROGRAM_NAME_SUFF);
