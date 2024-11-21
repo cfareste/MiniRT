@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:28:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 19:53:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:52:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "texture/texture.h"
-#include "loader/multi_loader_bonus.h"
+#include "window/loader/multi_loader_bonus.h"
 #include "window/jobs/jobs.h"
 
 typedef struct s_textures

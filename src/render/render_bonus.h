@@ -6,13 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 15:10:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:49:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "MLX42.h"
-#include "loader/loader_bonus.h"
 #include "scene/scene.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
@@ -23,7 +22,6 @@ typedef struct s_render
 	mlx_image_t		*image;
 	pthread_mutex_t	image_mutex;
 	pthread_t		thread;
-	t_loader		loader;
 	int				finished;
 	pthread_mutex_t	mutex;
 	double			start_time;

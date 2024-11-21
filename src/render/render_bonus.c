@@ -6,13 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 16:57:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:49:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "helpers/render_helper_bonus.h"
-#include "loader/helpers/loader_helper/loader_helper_bonus.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "render/utils/thread/thread.h"
@@ -64,7 +63,6 @@ void	*render_part(t_render_part *part)
 			&& iterators.i < part->img_size.width)
 		{
 			render_pixel(part, &iterators, &seed);
-			add_loader_progress(&part->render->loader);
 			iterators.i += part->render->parts_amount;
 		}
 		iterators.j++;
@@ -86,5 +84,5 @@ void	init_render(t_render *render, mlx_t *mlx)
 	pthread_mutex_init(&render->image_mutex, NULL);
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
-	init_loader(&render->loader, mlx);
+	mlx_set_instance_depth(render->image->instances + render->image->count - 1, 0);
 }

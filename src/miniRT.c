@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:04:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:52:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 #include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/parser/scene_parser.h"
-#include "loader/multi_loader_bonus.h"
+#include "window/loader/multi_loader_bonus.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
 #include "utils/utils_bonus.h"
 
 void	destroy(t_window *window)
 {
 	destroy_exporter(&window->exporter);
-	destroy_loader(&window->render.loader);
 	mlx_delete_texture(window->icon);
 	mlx_terminate(window->mlx);
 	destroy_jobs(&window->jobs);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 20:08:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:53:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 static void	*loader_routine(t_multi_loader *loader)
 {
 	(void) loader;
-	// if (loader->background)
-	// 	paint_black_image(loader->image, NULL);
 	return (NULL);
 }
 
@@ -44,4 +42,5 @@ void	init_multi_loader(t_multi_loader *loader, mlx_t *mlx)
 	loader->mlx = mlx;
 	loader->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	mlx_image_to_window(mlx, loader->image, 0, 0);
+	mlx_set_instance_depth(loader->image->instances + loader->image->count - 1, 1);
 }

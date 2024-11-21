@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:12:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:49:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "window/helpers/window_helper_bonus.h"
 #include "render/render_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
-#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
 #include "window/jobs/job/types/title/title_job.h"
 #include <pthread.h>
 
@@ -27,7 +26,6 @@ void	stop_render(t_render *render)
 		return ;
 	set_render_finish(render, 1);
 	pthread_join(render->thread, NULL);
-	set_loader_visibility(&render->loader, false);
 }
 
 static void	render_parts(t_render *render, t_size img_size)
@@ -42,7 +40,6 @@ static void	render_parts(t_render *render, t_size img_size)
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		add_loader_progress(&render->loader);
 		parts[i].render = render;
 		parts[i].img_size = img_size;
 		parts[i].min_size.height = i;
@@ -67,18 +64,11 @@ void	*render_routine(t_window *window)
 		return (NULL);
 	img_size = get_image_size(window->render.image,
 			&window->render.image_mutex);
-	// set_loader_total(&window->render.loader,
-	// 	img_size.width * img_size.height);
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport, img_size);
 	render_parts(&window->render, img_size);
 	if (is_render_finished(&window->render))
 		return (NULL);
-	// pthread_mutex_lock(&window->render.image_mutex);
-	// window->render.image->instances[0].enabled = true;
-	// pthread_mutex_unlock(&window->render.image_mutex);
-	// set_loader_progress(&window->render.loader, 0);
-	// set_loader_visibility(&window->render.loader, false);
 	set_render_finish(&window->render, 1);
 	pthread_mutex_lock(&window->render.mutex);
 	printf("FINISHED RENDER: %f\n\n",
@@ -90,14 +80,7 @@ void	*render_routine(t_window *window)
 static void	prepare_render(t_window *window)
 {
 	stop_render(&window->render);
-	// pthread_mutex_lock(&window->render.loader.image_mutex);
-	// mlx_resize_image(window->render.loader.image, window->mlx->width,
-	// 	window->mlx->height);
-	// pthread_mutex_unlock(&window->render.loader.image_mutex);
-	// set_loader_progress(&window->render.loader, 0);
-	// set_loader_visibility(&window->render.loader, true);
 	pthread_mutex_lock(&window->render.image_mutex);
-	// window->render.image->instances[0].enabled = false;
 	mlx_resize_image(window->render.image,
 		window->mlx->width, window->mlx->height);
 	pthread_mutex_unlock(&window->render.image_mutex);

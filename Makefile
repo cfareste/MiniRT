@@ -158,12 +158,8 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
 			$(SRC)render/helpers:\
-			$(SRC)render/loader:\
 			$(SRC)render/ray:\
 			$(SRC)render/ray/helpers:\
-			$(SRC)render/loader/helpers/loader_helper:\
-			$(SRC)render/loader/helpers/bar_helper:\
-			$(SRC)render/loader/thread:\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
 			$(SRC)window/jobs:\
@@ -199,7 +195,7 @@ vpath %.c	$(SRC):\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
 			$(SRC)exporter/export:\
-			$(SRC)loader:\
+			$(SRC)window/loader:\
 
 
 #----SHARED----#
@@ -228,12 +224,8 @@ SRCS = miniRT.c \
 	reference_system.c \
 	render_helper_bonus.c \
 	window_helper_bonus.c \
-	loader_bonus.c \
-	loader_helper_bonus.c \
 	size.c \
 	images_bonus.c \
-	loader_thread_bonus.c \
-	bar_helper.c \
 	ray_helper.c \
 	ray.c \
 	light_utils.c \

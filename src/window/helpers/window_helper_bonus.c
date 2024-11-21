@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:21:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:47:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	window_resized(int32_t width, int32_t height, t_window *window)
 	window->resize.last_resize = 1;
 	window->resize.size.width = width;
 	window->resize.size.height = height;
-	// stop_render(&window->render);
 }
 
 int	diff_sizes(t_size *a, t_size *b)

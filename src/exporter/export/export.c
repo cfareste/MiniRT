@@ -6,18 +6,15 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 20:03:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:49:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/utils_bonus.h"
 #include "libft.h"
 #include "export.h"
-#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "../helpers/exporter_helper_bonus.h"
-#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
-#include "render/loader/loader_bonus.h"
 #include <fcntl.h>
 
 t_export	*new_export(t_exporter *exporter)
@@ -33,14 +30,12 @@ t_export	*new_export(t_exporter *exporter)
 	return (export);
 }
 
-static int	fill_buffer(char *file_buff, int px_amount, t_export *export,
-				t_loader *loader)
+static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 {
 	int		iter[3];
 	char	*num_str;
 
 	ft_bzero(iter, sizeof(int) * 3);
-	set_loader_total(loader, px_amount);
 	while (iter[0] < px_amount && is_exporter_active(export->exporter))
 	{
 		if (iter[2] == 3)
@@ -57,7 +52,6 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export,
 				write_str(file_buff, " ", iter + 1);
 			iter[2]++;
 		}
-		add_loader_progress(loader);
 		iter[0]++;
 	}
 	return (iter[1]);
@@ -75,8 +69,7 @@ static void	file_from_export(char *path, t_export *export)
 	if (!file_buff)
 		throw_sys_error("Dynamic memory is so funny today :( ");
 	px_amount *= 4;
-	j = fill_buffer(file_buff, px_amount, export,
-			&export->exporter->render->loader);
+	j = fill_buffer(file_buff, px_amount, export);
 	if (is_exporter_active(export->exporter))
 	{
 		fd = open(path, O_CREAT | O_WRONLY, 0644);
@@ -98,9 +91,6 @@ void	*export_routine(t_export *export)
 	double	start_time;
 
 	set_exporter_active(export->exporter, 1);
-	// set_loader_progress(&export->exporter->render->loader, 0);
-	// set_loader_total(&export->exporter->render->loader, 100);
-	// set_loader_visibility(&export->exporter->render->loader, 1);
 	start_time = mlx_get_time();
 	path = set_file_name(export->exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR, 0);
@@ -110,7 +100,6 @@ void	*export_routine(t_export *export)
 		printf("FINSHED EXPORTING %s: %f\n", path,
 			mlx_get_time() - start_time);
 	free(path);
-	// set_loader_visibility(&export->exporter->render->loader, 0);
 	set_exporter_active(export->exporter, 0);
 	free(export);
 	return (NULL);

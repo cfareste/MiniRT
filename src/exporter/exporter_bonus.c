@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 19:51:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:49:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "render/helpers/render_helper_bonus.h"
 #include "image/image_bonus.h"
 #include "helpers/exporter_helper_bonus.h"
-#include "render/loader/helpers/loader_helper/loader_helper_bonus.h"
 #include "window/jobs/job/types/export/export_job.h"
 #include "export/export.h"
 #include <limits.h>
