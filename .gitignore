@@ -1,11 +1,13 @@
 miniRT
 
+exports/
 bin/
-a.out
 
 *.a
 lib/mlx
 
 .vscode
 
+test/
+a.out
 log
