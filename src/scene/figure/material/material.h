@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:04:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:49:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef enum e_material_type
 
 typedef struct s_scatter_params
 {
-	t_ray			*ray;
-	t_hit_record	hit_record;
+	t_ray				*ray;
+	t_hit_record		hit_record;
+	t_metallic_attrs	*attrs;
 }	t_scatter_params;
 
 typedef struct s_material
