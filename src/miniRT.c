@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 19:52:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:11:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/parser/scene_parser.h"
-#include "window/loader/multi_loader_bonus.h"
+#include "window/loader/loader_bonus.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
 #include "utils/utils_bonus.h"
 
@@ -41,6 +41,7 @@ static void	*start_routine(void *window_)
 {
 	t_window	*window;
 	char		*title;
+	size_t		title_size;
 
 	window = (t_window *) window_;
 	loader_show_animation(&window->loader, 1, window->size);
@@ -49,18 +50,12 @@ static void	*start_routine(void *window_)
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);
-	title = ft_calloc(1, sizeof(char) * (
-				ft_strlen(window->render.scene.settings.name)
-				+ ft_strlen(ft_filename(window->filename))
-				+ ft_strlen(PROGRAM_NAME_SUFF)
-				+ ft_strlen(" ·  · ")
-				+ 1));
-	snprintf(title,
-		ft_strlen(window->render.scene.settings.name)
+	title_size = ft_strlen(window->render.scene.settings.name)
 		+ ft_strlen(ft_filename(window->filename))
 		+ ft_strlen(PROGRAM_NAME_SUFF)
-		+ ft_strlen(" ·  · "),
-		"%s · %s · %s",
+		+ ft_strlen(" ·  · ");
+	title = ft_calloc(1, sizeof(char) * (title_size + 1));
+	snprintf(title, title_size, "%s · %s · %s",
 		window->render.scene.settings.name,
 		ft_filename(window->filename),
 		PROGRAM_NAME_SUFF);

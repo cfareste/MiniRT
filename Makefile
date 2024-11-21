@@ -255,7 +255,7 @@ SRCS = miniRT.c \
 	plane_pattern.c \
 	cylinder_pattern.c \
 	cone_pattern.c \
-	multi_loader_bonus.c \
+	loader_bonus.c \
 	jobs.c \
 	job.c \
 	title_job.c \

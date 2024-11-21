@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_loader_bonus.h                               :+:      :+:    :+:   */
+/*   loader_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 19:55:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:12:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_loader_progress
 	int	total;
 }	t_progress;
 
-typedef struct s_multi_loader
+typedef struct s_loader
 {
 	pthread_t		thread;
 	t_progress		progress;
@@ -39,11 +39,11 @@ typedef struct s_multi_loader
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	t_loader_mode	mode;
-}	t_multi_loader;
+}	t_loader;
 
-void	loader_show_animation(t_multi_loader *loader, int background,
+void	loader_show_animation(t_loader *loader, int background,
 			t_size size);
 
-void	loader_hide(t_multi_loader *loader);
+void	loader_hide(t_loader *loader);
 
-void	init_multi_loader(t_multi_loader *loader, mlx_t *mlx);
+void	init_loader(t_loader *loader, mlx_t *mlx);

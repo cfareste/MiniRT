@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:14:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:12:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	init_window(t_window *window)
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
-	init_multi_loader(&window->loader, window->mlx);
+	init_loader(&window->loader, window->mlx);
 	init_exporter(&window->exporter, &window->render, &window->jobs);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
