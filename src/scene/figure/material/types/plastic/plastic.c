@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:22:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 03:22:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,43 @@
 #include "render/render_bonus.h"
 #include "scene/figure/material/material.h"
 #include "parser/helpers/parser_helper.h"
+#include "render/utils/random/random.h"
+#include "scene/figure/material/helpers/material_helpers.h"
+#include <math.h>
+
+static int	is_metallic_scatter(float specular_index, float cos, uint32_t *seed)
+{
+	float	diffuse_scatter_probability;
+	float	fresnel_effect_probability;
+
+	diffuse_scatter_probability = get_random_float(seed);
+	fresnel_effect_probability = get_random_float(seed);
+	if (specular_index > diffuse_scatter_probability
+		|| (specular_index && pow(1 - cos, 5) > fresnel_effect_probability))
+		return (1);
+	return (0);
+}
 
 static void	scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
-	(void) render;
-	(void) params;
-	(void) direct_light;
-	(void) seed;
+	t_metallic_attrs	attrs;
+	t_vector			reversed_ray_dir;
+	float				cos;
+	float				specular_index;
+
+	multiply_vector_scalar(&params->ray->direction, -1, &reversed_ray_dir);
+	cos = dot(&reversed_ray_dir, &params->hit_record.normal);
+	specular_index = params->hit_record.figure
+		->material.plastic_attrs->specular_index;
+	attrs.roughness = params->hit_record.figure
+		->material.plastic_attrs->roughness;
+	params->attrs = &attrs;
+	if (is_metallic_scatter(specular_index, cos, seed))
+		metallic_scatter(render, params, direct_light, seed);
+	else
+		diffuse_scatter(render, params, direct_light, seed);
+	params->attrs = NULL;
 }
 
 static void	check_parsing(t_parser_ctx *ctx, t_material *material)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:31:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 02:32:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	diffuse_scatter(t_render *render, t_scatter_params *params,
 {
 	t_vector	new_ray_direction;
 
+	params->scatter_type = DIFFUSE;
 	randomize_ray_direction(&params->hit_record.normal,
 		&params->hit_record.point, seed, &new_ray_direction);
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
@@ -49,16 +50,19 @@ void	diffuse_scatter(t_render *render, t_scatter_params *params,
 void	metallic_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
-	t_vector	new_ray_direction;
-	t_vector	rnd_point;
+	t_metallic_attrs	*metallic_attrs;
+	t_vector			new_ray_direction;
+	t_vector			rnd_point;
 
 	reflect(&params->ray->direction, &params->hit_record.normal,
 		&new_ray_direction);
-	if (params->attrs->roughness)
+	metallic_attrs = params->attrs;
+	params->scatter_type = METALLIC;
+	if (metallic_attrs->roughness)
 	{
 		get_random_point_in_sphere(seed, &rnd_point);
 		normalize(&rnd_point);
-		multiply_vector_scalar(&rnd_point, pow(params->attrs->roughness, 2.0),
+		multiply_vector_scalar(&rnd_point, pow(metallic_attrs->roughness, 2.0),
 			&rnd_point);
 		translate_point(&rnd_point, &new_ray_direction, 1, &new_ray_direction);
 	}

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 21:41:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 02:45:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ static void	get_ambient_light(t_light *ambient_light, t_color *sky_color,
 	sum_colors(&aux, final_color, final_color);
 }
 
-static void	process_lighting(t_hit_record *hit_record, t_color *energy,
+static void	process_lighting(t_scatter_params *params, t_color *energy,
 	t_color *light_color, t_color *final_color)
 {
-	t_color	bounce_color;
-	t_color	figure_color;
+	t_hit_record	*hit_record;
+	t_color			bounce_color;
+	t_color			figure_color;
 
+	hit_record = &params->hit_record;
 	ft_bzero(&bounce_color, sizeof(t_color));
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
 	if (hit_record->figure->material.type == EMISSIVE)
@@ -41,7 +43,10 @@ static void	process_lighting(t_hit_record *hit_record, t_color *energy,
 			hit_record->figure->material.emissive_attrs->intensity,
 			&bounce_color);
 	mix_colors(&bounce_color, energy, &bounce_color);
-	mix_colors(light_color, &figure_color, light_color);
+	if (hit_record->figure->material.type != PLASTIC
+		|| (hit_record->figure->material.type == PLASTIC
+			&& params->scatter_type == DIFFUSE))
+		mix_colors(light_color, &figure_color, light_color);
 	mix_colors(light_color, energy, light_color);
 	sum_colors(light_color, &bounce_color, &bounce_color);
 	sum_colors(final_color, &bounce_color, final_color);
@@ -82,7 +87,7 @@ void	compute_pathtracing(t_render *render, t_ray *ray, t_color *sample_color,
 			break ;
 		params.hit_record.figure->material.scatter(render,
 			&params, &lighting, seed);
-		process_lighting(&params.hit_record, &energy, &lighting, &depth_color);
+		process_lighting(&params, &energy, &lighting, &depth_color);
 		if (params.hit_record.figure->material.type == EMISSIVE)
 			break ;
 		i++;
