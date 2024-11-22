@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 13:38:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:28:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			render(window);
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
+		if (keydata.key == MLX_KEY_1 || keydata.key == MLX_KEY_2)
+		{
+			if (keydata.key == MLX_KEY_1)
+				window->render.raytracing = 1;
+			else
+				window->render.raytracing = 0;
+			render(window);
+		}
 	}
 	camera_key_events(keydata, window);
 }
