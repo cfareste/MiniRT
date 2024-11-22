@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 20:00:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:39:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ typedef struct s_material
 		t_glass_attrs		*glass_attrs;
 		t_emissive_attrs	*emissive_attrs;
 	};
-	int			(*scatter)(t_render *render, t_scatter_params *params,
+	int				(*scatter)(t_render *render, t_scatter_params *params,
 			t_color *direct_light, uint32_t *seed);
 }	t_material;
