@@ -114,7 +114,9 @@ vpath %.c	$(SRC):\
 			$(SRC)scene:\
 			$(SRC)scene/parser:\
 			$(SRC)scene/camera:\
+			$(SRC)scene/camera/helpers:\
 			$(SRC)scene/camera/parser:\
+			$(SRC)scene/camera/events:\
 			$(SRC)scene/light:\
 			$(SRC)scene/light/parser:\
 			$(SRC)scene/light/utils:\
@@ -280,7 +282,9 @@ SRCS = miniRT.c \
 	hit_record.c\
 	parser_helper.c \
 	render_parser.c \
-	window_parser.c
+	window_parser.c \
+	camera_helper.c \
+	camera_events.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

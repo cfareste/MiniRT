@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 03:25:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:38:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "exporter/exporter_bonus.h"
-#include "scene/camera/camera.h"
+#include "scene/camera/helpers/camera_helper.h"
+#include "scene/camera/events/camera_events.h"
 #include "jobs/job/job.h"
 #include "miniRT.h"
 
@@ -45,8 +46,6 @@ static void	close_window(t_window *window)
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
-	// if (keydata.action != MLX_PRESS)
-	// 	return ;
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
@@ -56,37 +55,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
 	}
-	if (keydata.key == MLX_KEY_I)
-		update_camera_fov(window->render.scene.camera, -1);
-	else if (keydata.key == MLX_KEY_O)
-		update_camera_fov(window->render.scene.camera, 1);
-	else if (keydata.key == MLX_KEY_UP)
-		update_camera_front(window->render.scene.camera, wrap_point(0, 0.2, 0));
-	else if (keydata.key == MLX_KEY_DOWN)
-		update_camera_front(window->render.scene.camera, wrap_point(0, -0.2, 0));
-	else if (keydata.key == MLX_KEY_LEFT)
-		update_camera_front(window->render.scene.camera, wrap_point(-0.2, 0, 0));
-	else if (keydata.key == MLX_KEY_RIGHT)
-		update_camera_front(window->render.scene.camera, wrap_point(0.2, 0, 0));
-	else if (keydata.key == MLX_KEY_SPACE)
-		update_camera_pos(window->render.scene.camera, wrap_point(0, 0.2, 0));
-	else if (keydata.key == MLX_KEY_LEFT_SHIFT || keydata.key == MLX_KEY_RIGHT_SHIFT)
-		update_camera_pos(window->render.scene.camera, wrap_point(0, -0.2, 0));
-	else if (keydata.key == MLX_KEY_W)
-		update_camera_pos(window->render.scene.camera, wrap_point(0, 0, -0.2));
-	else if (keydata.key == MLX_KEY_S)
-		update_camera_pos(window->render.scene.camera, wrap_point(0, 0, 0.2));
-	else if (keydata.key == MLX_KEY_A)
-		update_camera_pos(window->render.scene.camera, wrap_point(-0.2, 0, 0));
-	else if (keydata.key == MLX_KEY_D)
-		update_camera_pos(window->render.scene.camera, wrap_point(0.2, 0, 0));
-	else if (keydata.key == MLX_KEY_K)
-		update_camera_focus_dis(window->render.scene.camera, -1);
-	else if (keydata.key == MLX_KEY_J)
-		update_camera_focus_dis(window->render.scene.camera, 1);
-	else
-		return ;
-	render(window);
+	camera_key_events(keydata, window);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)

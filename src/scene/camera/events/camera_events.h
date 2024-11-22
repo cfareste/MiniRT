@@ -1,26 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinates.h                                      :+:      :+:    :+:   */
+/*   camera_events.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:55:59 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 13:46:18 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/22 13:34:29 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/22 13:43:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "parser/parser.h"
+#include "MLX42.h"
+#include "window/window.h"
 
-typedef struct s_coordinates
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_coordinates;
-
-void			parse_coordinates(t_parser_ctx *ctx, char *str,
-					t_coordinates *coordinates);
-
-t_coordinates	wrap_coordinates(double x, double y, double z);
+void	camera_key_events(mlx_key_data_t keydata, t_window *window);

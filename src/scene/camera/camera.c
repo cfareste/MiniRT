@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 02:12:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:33:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,49 +51,4 @@ void	print_camera(t_camera *camera)
 		camera->right.x, camera->right.y, camera->right.z,
 		camera->up.x, camera->up.y, camera->up.z,
 		camera->fov);
-}
-
-void	update_camera_fov(t_camera *camera, int factor)
-{
-	int	new_fov;
-
-	new_fov = camera->fov + factor;
-	if (new_fov <= 180 && new_fov >= 0)
-		camera->fov = new_fov;
-}
-
-void	update_camera_pos(t_camera *camera, t_point factor)
-{
-	printf("0 -> Camera position: %f,%f,%f\n",
-		camera->position.x,
-		camera->position.y,
-		camera->position.z);
-	camera->position.x += factor.x;
-	camera->position.y += factor.y;
-	camera->position.z += factor.z;
-	printf("1 -> Camera position: %f,%f,%f\n",
-		camera->position.x,
-		camera->position.y,
-		camera->position.z);
-}
-
-void	update_camera_focus_dis(t_camera *camera, double factor)
-{
-	camera->focus_dist += (factor * 0.2);
-}
-
-void	update_camera_front(t_camera *camera, t_point factor)
-{
-	printf("0 -> Camera front: %f,%f,%f\n",
-		camera->front.x,
-		camera->front.y,
-		camera->front.z);
-	camera->front.x += factor.x * 0.06;
-	camera->front.y += factor.y * 0.06;
-	camera->front.z += factor.z * 0.06;
-	set_camera_vectors(camera);
-	printf("2 -> Camera front: %f,%f,%f\n",
-		camera->front.x,
-		camera->front.y,
-		camera->front.z);
 }
