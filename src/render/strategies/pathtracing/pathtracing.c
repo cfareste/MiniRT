@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 02:45:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:13:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ void	compute_pathtracing(t_render *render, t_ray *ray, t_color *sample_color,
 		ft_bzero(&params.hit_record, sizeof(t_hit_record));
 		ft_bzero(&lighting, sizeof(t_color));
 		check_collisions(&render->scene, ray, &params.hit_record);
-		if (missed_ray(render, &params, &energy, &depth_color))
+		if (missed_ray(render, &params, &energy, &depth_color)
+			|| !params.hit_record.figure->material.scatter(render,
+				&params, &lighting, seed))
 			break ;
-		params.hit_record.figure->material.scatter(render,
-			&params, &lighting, seed);
 		process_lighting(&params, &energy, &lighting, &depth_color);
 		if (params.hit_record.figure->material.type == EMISSIVE)
 			break ;

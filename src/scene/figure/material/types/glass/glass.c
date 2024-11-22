@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:02:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:10:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include "scene/figure/material/material.h"
 #include "parser/helpers/parser_helper.h"
 
-static void	scatter(t_render *render, t_scatter_params *params,
+static int	scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
 	(void) render;
 	(void) params;
 	(void) direct_light;
 	(void) seed;
+	return (1);
 }
 
 static void	check_parsing(t_parser_ctx *ctx, t_material *material)

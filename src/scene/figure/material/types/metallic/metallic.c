@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:08:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 16:50:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:07:25 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 #include "render/strategies/shared/strategies_shared.h"
 #include "scene/figure/material/helpers/material_helpers.h"
 
-static void	scatter(t_render *render, t_scatter_params *params,
+static int	scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
 	params->attrs = params->hit_record.figure->material.metallic_attrs;
-	metallic_scatter(render, params, direct_light, seed);
+	return (metallic_scatter(render, params, direct_light, seed));
 }
 
 static void	check_parsing(t_parser_ctx *ctx, t_material *material)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 02:32:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:34:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	randomize_ray_direction(t_vector *ideal_bounce_direction,
 	get_vector(&new_ray_point, hit_point, res);
 }
 
-void	diffuse_scatter(t_render *render, t_scatter_params *params,
+int	diffuse_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
 	t_vector	new_ray_direction;
@@ -45,27 +45,39 @@ void	diffuse_scatter(t_render *render, t_scatter_params *params,
 		&params->hit_record.point, seed, &new_ray_direction);
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
 	sample_lights(render, &params->hit_record, DIFFUSE, direct_light);
+	return (1);
 }
 
-void	metallic_scatter(t_render *render, t_scatter_params *params,
+void	divert_ray_direction(t_vector *ray_dir, float roughness,
+	uint32_t *seed, t_vector *res)
+{
+	t_vector	rnd_point;
+
+	get_random_point_in_sphere(seed, &rnd_point);
+	normalize(&rnd_point);
+	multiply_vector_scalar(&rnd_point, pow(roughness, 2.0), &rnd_point);
+	translate_point(&rnd_point, ray_dir, 1, res);
+}
+
+int	metallic_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
 	t_metallic_attrs	*metallic_attrs;
 	t_vector			new_ray_direction;
-	t_vector			rnd_point;
+	t_vector			reflected;
 
-	reflect(&params->ray->direction, &params->hit_record.normal,
-		&new_ray_direction);
+	reflect(&params->ray->direction, &params->hit_record.normal, &reflected);
+	new_ray_direction = reflected;
 	metallic_attrs = params->attrs;
 	params->scatter_type = METALLIC;
 	if (metallic_attrs->roughness)
 	{
-		get_random_point_in_sphere(seed, &rnd_point);
-		normalize(&rnd_point);
-		multiply_vector_scalar(&rnd_point, pow(metallic_attrs->roughness, 2.0),
-			&rnd_point);
-		translate_point(&rnd_point, &new_ray_direction, 1, &new_ray_direction);
+		divert_ray_direction(&reflected, metallic_attrs->roughness, seed,
+			&new_ray_direction);
+		if (dot(&params->hit_record.normal, &new_ray_direction) < 0.0)
+			return (0);
 	}
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
 	sample_lights(render, &params->hit_record, METALLIC, direct_light);
+	return (1);
 }

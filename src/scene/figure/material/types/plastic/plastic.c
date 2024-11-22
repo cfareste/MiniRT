@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 03:22:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 20:09:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	is_metallic_scatter(float specular_index, float cos, uint32_t *seed)
 	return (0);
 }
 
-static void	scatter(t_render *render, t_scatter_params *params,
+static int	scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
 	t_metallic_attrs	attrs;
@@ -49,10 +49,10 @@ static void	scatter(t_render *render, t_scatter_params *params,
 		->material.plastic_attrs->roughness;
 	params->attrs = &attrs;
 	if (is_metallic_scatter(specular_index, cos, seed))
-		metallic_scatter(render, params, direct_light, seed);
+		return (metallic_scatter(render, params, direct_light, seed));
 	else
 		diffuse_scatter(render, params, direct_light, seed);
-	params->attrs = NULL;
+	return (1);
 }
 
 static void	check_parsing(t_parser_ctx *ctx, t_material *material)
