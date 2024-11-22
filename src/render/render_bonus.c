@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 20:08:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:10:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,15 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	t_ray			ray;
 	t_color			pixel_color;
 	t_color			sample_color;
-	t_scene			*scene;
 
 	k = 0;
-	scene = &part->render->scene;
 	ft_bzero(&pixel_color, sizeof(t_color));
 	ft_bzero(&sample_color, sizeof(t_color));
 	while (k < part->render->samples)
 	{
 		set_ray_from_camera(&ray, part->render, iterators, seed);
 		if (part->render->raytracing)
-			compute_raytracing(scene, &ray, &sample_color);
+			compute_raytracing(part->render, &ray, &sample_color);
 		else
 			compute_pathtracing(part->render, &ray, &sample_color, seed);
 		k++;

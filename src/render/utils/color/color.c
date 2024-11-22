@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:23:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/20 21:23:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,11 @@ void	get_normal_color(t_color *color, t_vector *normal)
 	color->red = 0.5 * (normal->x + 1);
 	color->green = 0.5 * (normal->y + 1);
 	color->blue = 0.5 * (normal->z + 1);
+}
+
+void	new_color(float red, float green, float blue, t_color *res)
+{
+	res->red = red;
+	res->green = green;
+	res->blue = blue;
 }

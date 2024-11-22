@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 16:56:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:39:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
 	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
 		parse_metallic(ctx, parts[1], material);
 	else if (ft_strcmp(parts[0], PLASTIC_ID) == EQUAL_STRINGS)
-		parse_plastic(ctx, parts[1], material);
+		parse_plastic(ctx, parts + 1, material);
 	else if (ft_strcmp(parts[0], GLASS_ID) == EQUAL_STRINGS)
 		parse_glass(ctx, parts + 1, material);
 	else if (ft_strcmp(parts[0], EMISSIVE_ID) == EQUAL_STRINGS)
@@ -109,6 +109,10 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	parse_coordinates(ctx, parts[1], &figure->position);
 	figure->glosiness = parse_double(ctx, parts[2]);
 	parse_material(ctx, parts[3], &figure->material);
+	if (figure->material.type == METALLIC)
+		figure->glosiness *= 1.1 - figure->material.metallic_attrs->roughness;
+	else if (figure->material.type == PLASTIC)
+		figure->glosiness *= 1.1 - figure->material.plastic_attrs->roughness;
 	parse_color(ctx, parts[color_i], &figure->color);
 	parse_optionals(parts, color_i + 1, figure, ctx);
 	check_parsing(ctx, figure);

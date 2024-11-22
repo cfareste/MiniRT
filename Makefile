@@ -125,6 +125,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/material:\
+			$(SRC)scene/figure/material/helpers:\
 			$(SRC)scene/figure/material/types:\
 			$(SRC)scene/figure/material/types/diffuse:\
 			$(SRC)scene/figure/material/types/emissive:\
@@ -177,6 +178,8 @@ vpath %.c	$(SRC):\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
 			$(SRC)render/strategies/pathtracing:\
+			$(SRC)render/strategies/raytracing/helpers:\
+			$(SRC)render/strategies/pathtracing/helpers:\
 			$(SRC)render/utils/color:\
 			$(SRC)render/utils/color/color_operations:\
 			$(SRC)render/utils/coordinates:\
@@ -284,7 +287,10 @@ SRCS = miniRT.c \
 	render_parser.c \
 	window_parser.c \
 	camera_helper.c \
-	camera_events.c
+	camera_events.c \
+	raytracing_helpers.c \
+	pathtracing_helpers.c \
+	material_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

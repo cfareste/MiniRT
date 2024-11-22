@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:14:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 18:30:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:44:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@
 
 #include "scene/scene.h"
 
-void	compute_raytracing(t_scene *scene, t_ray *ray, t_color *sample_color);
+void	compute_raytracing(t_render *render, t_ray *ray, t_color *sample_color);
