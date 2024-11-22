@@ -1,9 +1,9 @@
 S name:Pathtracer sky:160,200,255
-R samples:1 max_depth:8 antialiasing
+R samples:2000  antialiasing max_depth:80
 W width:1600 height:900
-A   0.7 255,255,255
+A   0.2 255,255,255
 
-# L 2,15,2   1    255,255,255
+L 2,15,2   14    255,255,255
 
 # Cameras
 	# Front camera

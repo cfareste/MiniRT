@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 17:05:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 01:07:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,10 @@ int			ft_stroccurrences_set(char *str, char *set);
 int			ft_clamp(int value, int min, int max);
 
 float		ft_fclamp(float value, float min, float max);
+
+double		ft_clampd(double value, double min, double max);
+
+double		ft_overflowd(double value, double min, double max);
 
 long		ft_closest_multiple(long n, long x);
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:25:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 00:39:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	calculate_defocus_components(t_camera *camera)
 		&camera->defocus_up);
 }
 
-static void	set_camera_vectors(t_camera *camera)
+void	set_camera_vectors(t_camera *camera)
 {
 	t_vector	world_axis;
 

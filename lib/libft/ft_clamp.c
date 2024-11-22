@@ -19,11 +19,29 @@ int	ft_clamp(int value, int min, int max)
 	return (value);
 }
 
+double	ft_clampd(double value, double min, double max)
+{
+	if (value < min)
+		value = max;
+	else if (value > max)
+		value = max;
+	return (value);
+}
+
 float	ft_fclamp(float value, float min, float max)
 {
 	if (value < min)
 		value = min;
 	else if (value > max)
 		value = max;
+	return (value);
+}
+
+double	ft_overflowd(double value, double min, double max)
+{
+	if (value < min)
+		value = max;
+	else if (value > max)
+		value = min;
 	return (value);
 }

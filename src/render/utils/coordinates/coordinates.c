@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:23:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 00:54:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,18 @@ void	parse_coordinates(t_parser_ctx *ctx, char *str,
 	coordinates->y = parse_double(ctx, parts[1]);
 	coordinates->z = parse_double(ctx, parts[2]);
 	free_matrix(parts);
+}
+
+t_coordinates	wrap_coordinates(double x, double y, double z)
+{
+	t_coordinates	coordinates;
+
+	coordinates.x = x;
+	coordinates.y = y;
+	coordinates.z = z;
+	printf("Wrapped Coordinates: %f,%f,%f\n",
+		coordinates.x,
+		coordinates.y,
+		coordinates.z);
+	return (coordinates);
 }

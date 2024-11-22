@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 17:27:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 02:08:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include "parser/parser.h"
+#include <limits.h>
+#include <float.h>
+#define CAMERA_MAX_X DBL_MAX
+#define CAMERA_MAX_Y DBL_MAX
+#define CAMERA_MAX_Z DBL_MAX
 
 typedef struct s_viewport
 {
@@ -46,3 +51,9 @@ void	print_camera(t_camera *camera);
 void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size);
 
 void	update_camera_fov(t_camera *camera, int factor);
+
+void	update_camera_pos(t_camera *camera, t_point factor);
+
+void	update_camera_front(t_camera *camera, t_point factor);
+
+void	update_camera_focus_dis(t_camera *camera, double factor);
