@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 20:11:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/22 14:05:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	*start_routine(void *window_)
 		+ ft_strlen(PROGRAM_NAME_SUFF)
 		+ ft_strlen(" ·  · ");
 	title = ft_calloc(1, sizeof(char) * (title_size + 1));
-	snprintf(title, title_size, "%s · %s · %s",
+	snprintf(title, title_size + 1, "%s · %s · %s",
 		window->render.scene.settings.name,
 		ft_filename(window->filename),
 		PROGRAM_NAME_SUFF);
