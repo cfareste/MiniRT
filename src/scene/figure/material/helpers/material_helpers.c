@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 20:34:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:12:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include "render/utils/random/random.h"
 #include "render/strategies/shared/strategies_shared.h"
 #include <math.h>
+
+float	get_fresnel_effect(float index, float cos)
+{
+	float	r;
+
+	r = (1 - index) / (1 + index);
+	r = r * r;
+	r = r + ((1 - r) * pow(1 - cos, 5));
+	return (r);
+}
 
 void	randomize_ray_direction(t_vector *ideal_bounce_direction,
 	t_point *hit_point, uint32_t *seed, t_vector *res)
@@ -48,7 +58,7 @@ int	diffuse_scatter(t_render *render, t_scatter_params *params,
 	return (1);
 }
 
-void	divert_ray_direction(t_vector *ray_dir, float roughness,
+static void	divert_ray_direction(t_vector *ray_dir, float roughness,
 	uint32_t *seed, t_vector *res)
 {
 	t_vector	rnd_point;

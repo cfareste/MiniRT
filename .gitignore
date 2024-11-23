@@ -11,3 +11,5 @@ lib/mlx
 test/
 a.out
 log
+
+.DS_Store

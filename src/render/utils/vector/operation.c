@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:43:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ void	multiply_vector_scalar(t_vector *vec, float scalar, t_vector *res)
 	res->x = vec->x * scalar;
 	res->y = vec->y * scalar;
 	res->z = vec->z * scalar;
+}
+
+void	sum_vectors(t_vector *vec1, t_vector *vec2, t_vector *res)
+{
+	res->x = vec1->x + vec2->x;
+	res->y = vec1->y + vec2->y;
+	res->z = vec1->z + vec2->z;
 }

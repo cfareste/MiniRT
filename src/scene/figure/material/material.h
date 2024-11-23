@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 20:39:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/22 22:21:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "scene/figure/material/types/plastic/plastic.h"
 #include "scene/figure/material/types/metallic/metallic.h"
 #include "scene/figure/material/types/emissive/emissive.h"
+
+#define AIR_REFRACTIVE_INDEX 1.0003
 
 typedef struct s_render	t_render;
 
