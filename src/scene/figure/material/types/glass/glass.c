@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/23 23:13:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:07:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include "render/utils/random/random.h"
 #include <math.h>
 
-static void	refractive_scatter(t_ray *ray, t_hit_record *hit_record,
-	float cos, float index_ratio)
+static void	refractive_scatter(t_scatter_params *params, float cos,
+	float index_ratio, uint32_t *seed)
 {
 	t_vector	perpendicular;
 	t_vector	parallel;
@@ -30,14 +30,19 @@ static void	refractive_scatter(t_ray *ray, t_hit_record *hit_record,
 	float		parallel_scalar;
 	float		perpendicular_length_squared;
 
-	multiply_vector_scalar(&hit_record->normal, cos, &perpendicular);
-	sum_vectors(&ray->direction, &perpendicular, &perpendicular);
+	multiply_vector_scalar(&params->hit_record.normal, cos, &perpendicular);
+	sum_vectors(&params->ray->direction, &perpendicular, &perpendicular);
 	multiply_vector_scalar(&perpendicular, index_ratio, &perpendicular);
 	perpendicular_length_squared = dot(&perpendicular, &perpendicular);
 	parallel_scalar = sqrt(fabs(1.0 - perpendicular_length_squared)) * -1.0;
-	multiply_vector_scalar(&hit_record->normal, parallel_scalar, &parallel);
+	multiply_vector_scalar(&params->hit_record.normal, parallel_scalar,
+		&parallel);
 	sum_vectors(&perpendicular, &parallel, &new_ray_direction);
-	set_ray(ray, &hit_record->point, &new_ray_direction);
+	if (params->hit_record.figure->material.glass_attrs->transparency < 1)
+		divert_ray_direction(&new_ray_direction,
+			1 - params->hit_record.figure->material.glass_attrs->transparency,
+			seed, &new_ray_direction);
+	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
 }
 
 static int	is_metallic_scatter(float cos, float index, uint32_t *seed)
@@ -79,7 +84,7 @@ static int	scatter(t_render *render, t_scatter_params *params,
 	if (is_metallic_scatter(cos, index_ratio, seed) && is_front_face)
 		return (metallic_scatter(render, params, direct_light, seed));
 	else
-		refractive_scatter(params->ray, &params->hit_record, cos, index_ratio);
+		refractive_scatter(params, cos, index_ratio, seed);
 	return (1);
 }
 

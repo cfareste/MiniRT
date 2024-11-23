@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/23 14:12:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:11:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	diffuse_scatter(t_render *render, t_scatter_params *params,
 	return (1);
 }
 
-static void	divert_ray_direction(t_vector *ray_dir, float roughness,
+void	divert_ray_direction(t_vector *ray_dir, float roughness,
 	uint32_t *seed, t_vector *res)
 {
 	t_vector	rnd_point;
