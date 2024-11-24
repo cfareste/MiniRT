@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/24 14:38:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:56:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 		new = parse_sphere(ctx, parts);
 	else if (ft_strcmp(parts[0], CONE_ID) == EQUAL_STRINGS)
 		new = parse_cone(ctx, parts);
+	else if (ft_strcmp(parts[0], DISK_ID) == EQUAL_STRINGS)
+		new = parse_disk(ctx, parts);
 	else
 		return (0);
 	update_figure_list(figure, new);

@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   disk.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/11/24 17:01:25 by cfidalgo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "disk.h"
+#include "utils/utils_bonus.h"
+#include "scene/figure/figure.h"
+#include "parser/helpers/parser_helper.h"
+#include "scene/figure/parser/figure_parser.h"
+#include "scene/figure/types/disk/parser/disk_parser.h"
+#include "libft.h"
+#include <stdio.h>
+
+static void	print_attrs(void *param)
+{
+	t_disk_attrs	*attrs;
+
+	attrs = param;
+	printf("%f | %f, %f, %f", attrs->radius,
+		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
+}
+
+static int	hit(t_figure *figure, t_ray *ray, float *distance)
+{
+	(void) figure;
+	(void) ray;
+	(void) distance;
+	return (0);
+}
+
+static void	normal(t_figure *figure, t_point *point, t_vector *res)
+{
+	(void) figure;
+	(void) point;
+	(void) res;
+}
+
+static void	get_color(t_figure *figure, t_point *point, t_color *res)
+{
+	(void) figure;
+	(void) point;
+	(void) res;
+}
+
+t_figure	*parse_disk(t_parser_ctx *ctx, char **parts)
+{
+	t_figure	*disk;
+
+	if (ft_matrix_len(parts) < FIG_ATT_LEN + 2)
+		throw_parse_err(ctx, "Missing some disk parameter");
+	disk = parse_figure(ctx, parts, FIG_LAST_ATT + 3);
+	disk->di_attrs = ft_calloc(1, sizeof(t_disk_attrs));
+	if (!disk->di_attrs)
+		throw_sys_error("trying to allocate disk attributes");
+	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
+		&disk->di_attrs->orientation);
+	disk->di_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
+	normalize(&disk->di_attrs->orientation);
+	disk->print_attrs = print_attrs;
+	disk->hit = hit;
+	disk->normal = normal;
+	disk->get_color_pattern = get_color;
+	check_disk_parsing(ctx, disk);
+	return (disk);
+}
