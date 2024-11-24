@@ -123,6 +123,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/light/ambient_light:\
 			$(SRC)scene/figure:\
 			$(SRC)scene/figure/parser:\
+			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/material:\
 			$(SRC)scene/figure/material/helpers:\
@@ -290,7 +291,8 @@ SRCS = miniRT.c \
 	camera_events.c \
 	raytracing_helpers.c \
 	pathtracing_helpers.c \
-	material_helpers.c
+	material_helpers.c \
+	figure_parser_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

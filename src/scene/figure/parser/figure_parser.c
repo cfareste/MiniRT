@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 17:39:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:38:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include "scene/figure/material/material.h"
 #include "parser/helpers/parser_helper.h"
 #include "render/utils/color/color_operations/color_operations.h"
+#include "scene/figure/parser/helpers/figure_parser_helpers.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
 	t_figure	*new;
-	t_figure	*aux;
 
 	if (ft_strcmp(parts[0], CYLINDER_ID) == EQUAL_STRINGS)
 		new = parse_cylinder(ctx, parts);
@@ -34,15 +34,7 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 		new = parse_cone(ctx, parts);
 	else
 		return (0);
-	if (!*figure)
-		*figure = new;
-	else
-	{
-		aux = *figure;
-		while (aux->next)
-			aux = aux->next;
-		aux->next = new;
-	}
+	update_figure_list(figure, new);
 	return (1);
 }
 
