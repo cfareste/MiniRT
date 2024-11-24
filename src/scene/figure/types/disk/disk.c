@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 17:01:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:31:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "scene/figure/types/disk/parser/disk_parser.h"
 #include "libft.h"
 #include <stdio.h>
+#include <math.h>
 
 static void	print_attrs(void *param)
 {
@@ -30,17 +31,30 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	(void) figure;
-	(void) ray;
-	(void) distance;
-	return (0);
+	t_figure		plane;
+	t_plane_attrs	pl_attrs;
+	t_point			hit_point;
+	t_vector		hit_to_center;
+	float			base_distance;
+
+	base_distance = FLT_MAX;
+	pl_attrs.orientation = figure->di_attrs->orientation;
+	set_plane(&plane, &figure->position, &pl_attrs);
+	if (!plane.hit(&plane, ray, &base_distance))
+		return (0);
+	translate_point(&ray->origin, &ray->direction, base_distance, &hit_point);
+	get_vector(&hit_point, &figure->position, &hit_to_center);
+	if (base_distance <= ray->bounds.min || base_distance >= ray->bounds.max
+		|| sqrt(dot(&hit_to_center, &hit_to_center)) > figure->di_attrs->radius)
+		return (0);
+	*distance = base_distance;
+	return (1);
 }
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	(void) figure;
 	(void) point;
-	(void) res;
+	*res = figure->di_attrs->orientation;
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
