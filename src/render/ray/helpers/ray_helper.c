@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 16:56:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:19:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,31 @@ static void	set_viewport_coords(t_coordinates *vp_coords, t_render *render,
 		- (camera->up.z * camera->viewport.y_unit * (iterators->j + offset.y));
 }
 
-static void	randomize_ray_origin(t_point *origin, t_camera *camera,
-				uint32_t *seed)
+static void	randomize_ray_origin(t_point *origin, t_vector *defocus_right,
+				t_vector *defocus_up, uint32_t *seed)
 {
 	t_vector	offset;
 
 	get_random_point_in_disk(seed, &offset);
-	origin->x += camera->defocus_right.x * offset.x
-		- camera->defocus_up.x * offset.y;
-	origin->y += camera->defocus_right.y * offset.x
-		- camera->defocus_up.y * offset.y;
-	origin->z += camera->defocus_right.z * offset.x
-		- camera->defocus_up.z * offset.y;
+	origin->x += (defocus_right->x * offset.x) - (defocus_up->x * offset.y);
+	origin->y += (defocus_right->y * offset.x) - (defocus_up->y * offset.y);
+	origin->z += (defocus_right->z * offset.x) - (defocus_up->z * offset.y);
 }
 
 void	set_ray_from_camera(t_ray *ray, t_render *render,
 			t_iterators *iterators, uint32_t *seed)
 {
 	t_coordinates	vp_coords;
+	t_camera		*camera;
 	t_vector		direction;
 	t_point			origin;
 
+	camera = render->scene.camera;
 	origin = render->scene.camera->position;
 	set_viewport_coords(&vp_coords, render, iterators, seed);
 	if (render->scene.camera->defocus > 0)
-		randomize_ray_origin(&origin, render->scene.camera, seed);
+		randomize_ray_origin(&origin, &camera->defocus_right,
+			&camera->defocus_up, seed);
 	get_vector(&vp_coords, &origin, &direction);
 	set_ray(ray, &origin, &direction);
 }
