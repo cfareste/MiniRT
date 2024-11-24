@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:05:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 00:28:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:57:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	get_base_pattern(t_figure *figure, t_point *point, t_base_attrs *attrs,
 				+ attrs->base_distance) / figure->pattern.dimension);
 	if (point->x > 0.0)
 		pattern_x_index++;
-	if (point->z > 0.0)
+	if (point->z > 0.0 && fabs(point->z) > 0.0001)
 		pattern_y_index++;
 	pattern_index = ((pattern_x_index % 2) + (pattern_y_index % 2)) % 2;
 	*res = figure->pattern.colors[pattern_index];

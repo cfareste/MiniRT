@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 17:31:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:38:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/types/disk/parser/disk_parser.h"
+#include "scene/figure/pattern/helpers/pattern_helpers.h"
+#include "render/utils/reference_system/reference_system.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
@@ -59,9 +61,15 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	(void) figure;
-	(void) point;
-	(void) res;
+	t_point			rotated_point;
+	t_base_attrs	base_attrs;
+
+	base_attrs.radius = figure->di_attrs->radius;
+	base_attrs.base_distance = 0.0;
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->di_attrs->orientation, NULL,
+		&rotated_point);
+	get_base_pattern(figure, &rotated_point, &base_attrs, res);
 }
 
 t_figure	*parse_disk(t_parser_ctx *ctx, char **parts)
