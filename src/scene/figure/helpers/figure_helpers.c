@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 16:06:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/25 20:41:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,25 @@ int	belongs_to_base(t_point *point, t_point *center, t_vector *normal,
 		return (1);
 	else
 		return (-1);
+}
+
+float	get_plane_center_to_hit(t_vector *normal, t_point *center, t_ray *ray,
+	t_vector *center_to_hit)
+{
+	t_point			hit_point;
+	t_figure		plane;
+	t_plane_attrs	plane_attrs;
+	float			hit_distance;
+
+	hit_distance = FLT_MAX;
+	plane_attrs.orientation = *normal;
+	set_plane(&plane, center, &plane_attrs);
+	if (!plane.hit(&plane, ray, &hit_distance)
+		|| hit_distance >= ray->bounds.max || hit_distance <= ray->bounds.min)
+		return (-1);
+	translate_point(&ray->origin, &ray->direction, hit_distance, &hit_point);
+	get_vector(&hit_point, center, center_to_hit);
+	return (hit_distance);
 }
 
 int	hit_base(t_reference_system *refsys, float base_center_distance,

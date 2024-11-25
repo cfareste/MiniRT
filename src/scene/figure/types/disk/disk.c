@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 23:18:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:04:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "scene/figure/figure.h"
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
+#include "scene/figure/helpers/figure_helpers.h"
 #include "scene/figure/types/disk/parser/disk_parser.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
@@ -34,23 +35,18 @@ static void	print_attrs(void *param)
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
-	t_figure		plane;
-	t_plane_attrs	pl_attrs;
-	t_point			hit_point;
-	t_vector		hit_to_center;
-	float			base_distance;
+	t_vector	center_to_hit;
+	float		hit_distance;
+	float		hit_radius;
 
-	base_distance = FLT_MAX;
-	pl_attrs.orientation = figure->di_attrs->orientation;
-	set_plane(&plane, &figure->position, &pl_attrs);
-	if (!plane.hit(&plane, ray, &base_distance))
+	hit_distance = get_plane_center_to_hit(&figure->di_attrs->orientation,
+			&figure->position, ray, &center_to_hit);
+	if (hit_distance < 0.0)
 		return (0);
-	translate_point(&ray->origin, &ray->direction, base_distance, &hit_point);
-	get_vector(&hit_point, &figure->position, &hit_to_center);
-	if (base_distance <= ray->bounds.min || base_distance >= ray->bounds.max
-		|| sqrt(dot(&hit_to_center, &hit_to_center)) > figure->di_attrs->radius)
+	hit_radius = sqrt(dot(&center_to_hit, &center_to_hit));
+	if (hit_distance < 0.0 || hit_radius > figure->di_attrs->radius)
 		return (0);
-	*distance = base_distance;
+	*distance = hit_distance;
 	return (1);
 }
 
