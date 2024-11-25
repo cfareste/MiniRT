@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 23:49:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 00:05:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/helpers/figure_helpers.h"
+#include "scene/figure/types/plane/pattern/plane_pattern.h"
+#include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "libft.h"
@@ -54,15 +56,19 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	(void) point;
-	*res = figure->qu_attrs->orientation;
+	*res = figure->pl_attrs->orientation;
+	if (figure->bump_map.texture)
+		get_plane_bump_normal(figure, point, res);
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	(void) figure;
-	(void) point;
-	(void) res;
+	t_point	rotated_point;
+
+	get_vector(point, &figure->position, &rotated_point);
+	rotate_reference_system(&figure->pl_attrs->orientation, NULL,
+		&rotated_point);
+	get_plane_pattern(figure, &rotated_point, res);
 }
 
 t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
