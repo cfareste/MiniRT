@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 16:30:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:01:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "types/cylinder/cylinder.h"
 #include "types/cone/cone.h"
 #include "types/disk/disk.h"
+#include "types/quadrilater/quadrilater.h"
 #include "texture/bump_map/bump_map.h"
 #include "pattern/pattern.h"
 #include "material/material.h"
@@ -35,6 +36,7 @@ typedef struct s_figure
 		t_cylinder_attrs	*cy_attrs;
 		t_cone_attrs		*co_attrs;
 		t_disk_attrs		*di_attrs;
+		t_quadrilater_attrs	*qu_attrs;
 	};
 	t_color		color;
 	t_pattern	pattern;

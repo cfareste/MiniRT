@@ -155,6 +155,8 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/disk:\
 			$(SRC)scene/figure/types/disk/parser:\
 			$(SRC)scene/figure/types/disk/texture:\
+			$(SRC)scene/figure/types/quadrilater:\
+			$(SRC)scene/figure/types/quadrilater/parser:\
 			$(SRC)scene/figure/texture/bump_map:\
 			$(SRC)scene/figure/texture/bump_map/helpers:\
 			$(SRC)scene/figure/texture/texel:\
@@ -298,7 +300,9 @@ SRCS = miniRT.c \
 	figure_parser_helpers.c \
 	disk.c \
 	disk_parser.c \
-	bump_map_disk.c
+	bump_map_disk.c \
+	quadrilater.c \
+	quadrilater_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
