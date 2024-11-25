@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 20:38:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/24 23:18:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/types/disk/parser/disk_parser.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
+#include "scene/figure/types/disk/texture/bump_map_disk.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "libft.h"
 #include <stdio.h>
@@ -55,8 +56,10 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	(void) point;
-	*res = figure->di_attrs->orientation;
+	if (figure->bump_map.texture)
+		get_disk_bump_normal(figure, point, res);
+	else
+		*res = figure->di_attrs->orientation;
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)

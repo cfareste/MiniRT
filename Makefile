@@ -154,6 +154,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cone/texture:\
 			$(SRC)scene/figure/types/disk:\
 			$(SRC)scene/figure/types/disk/parser:\
+			$(SRC)scene/figure/types/disk/texture:\
 			$(SRC)scene/figure/texture/bump_map:\
 			$(SRC)scene/figure/texture/bump_map/helpers:\
 			$(SRC)scene/figure/texture/texel:\
@@ -296,7 +297,8 @@ SRCS = miniRT.c \
 	material_helpers.c \
 	figure_parser_helpers.c \
 	disk.c \
-	disk_parser.c
+	disk_parser.c \
+	bump_map_disk.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

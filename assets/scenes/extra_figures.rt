@@ -1,13 +1,16 @@
 S name:Extra_figures
-R samples:200 max_depth:8 antialiasing
+R samples:20 max_depth:8 raytracing antialiasing
 W width:1600 height:900
 
 A   0.6 255,255,255
 
-# L  2,3,2   5    255,255,255
+L  0,3,3   5    255,255,255
 
 C 	0,5,10	 0,-0.5,-1 	60		0.0	1.0
 
-di	0,1,0  256 	diffuse    0,0,1		2 		250,250,250		cd:36,113,163:93,173,226:0.39269908169
+co		-2,1,0   256 	metallic:0    0,0,1		2 	0.0		250,250,250		bm:assets/textures/metallic_rack.png:0.7835
+di		0,1,0 	 256 	metallic:0    0,0,1		2 				250,250,250		bm:assets/textures/metallic_rack.png:0.7835
+cy		2,1,0    256 	metallic:0    0,0,1		2 	0.0		250,250,250		bm:assets/textures/metallic_rack.png:0.7835
+
 
 pl 0,0,0  256 	diffuse   0,1,0     250,100,100			cd:250,215,160:236,112,99:1
