@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:27:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
 	quadrilater->normal = normal;
 	quadrilater->get_color_pattern = get_color;
 	check_quadrilater_parsing(ctx, quadrilater);
-	get_object_axis(&quadrilater->qu_attrs->orientation,
+	get_axes(&quadrilater->qu_attrs->orientation,
 		&quadrilater->qu_attrs->right, &quadrilater->qu_attrs->up);
 	return (quadrilater);
 }

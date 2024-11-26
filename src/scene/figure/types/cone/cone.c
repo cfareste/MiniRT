@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:24:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ static void	normal(t_figure *figure, t_coordinates *point, \
 	else
 	{
 		calculate_ideal_normal(point, figure, &refsys_angle, res);
-		get_axis(&ideal, BACK);
+		get_world_axis(&ideal, BACK);
 		if (dot(&figure->co_attrs->orientation, &ideal) == -1.0)
-			get_axis(&axis, UP);
+			get_world_axis(&axis, UP);
 		else
 			cross(&figure->co_attrs->orientation, &ideal, &axis);
 		normalize(&axis);

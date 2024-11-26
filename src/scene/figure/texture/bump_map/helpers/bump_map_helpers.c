@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 16:34:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ void	rotate_bump_to_point_position(t_vector *point_normal, t_vector *res)
 {
 	t_vector	texture_normal;
 
-	get_axis(&texture_normal, BACK);
+	get_world_axis(&texture_normal, BACK);
 	rotate_by_ideal(&texture_normal, point_normal, res);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:18 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:18 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_vector(t_coordinates *final, t_coordinates *start, t_vector *vec)
 	vec->z = final->z - start->z;
 }
 
-void	get_axis(t_vector *axis, t_pointing direction)
+void	get_world_axis(t_vector *axis, t_pointing direction)
 {
 	if (direction == RIGHT)
 		axis->x = 1.0;

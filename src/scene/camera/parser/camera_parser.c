@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 14:25:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 	parse_coordinates(ctx, parts[1], &(*camera)->position);
 	parse_coordinates(ctx, parts[2], &(*camera)->front);
 	(*camera)->fov = parse_int(ctx, parts[3]);
-	get_object_axis(&(*camera)->front, &(*camera)->right, &(*camera)->up);
+	get_axes(&(*camera)->front, &(*camera)->right, &(*camera)->up);
 	(*camera)->defocus = 0;
 	(*camera)->focus_dist = 1;
 	if (parts[4])

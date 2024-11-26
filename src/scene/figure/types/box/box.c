@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:28:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_figure	*parse_box(t_parser_ctx *ctx, char **parts)
 	box->normal = normal;
 	box->get_color_pattern = get_color;
 	check_box_parsing(ctx, box);
-	get_object_axis(&box->bo_attrs->orientation, &box->bo_attrs->right,
+	get_axes(&box->bo_attrs->orientation, &box->bo_attrs->right,
 		&box->bo_attrs->up);
 	return (box);
 }

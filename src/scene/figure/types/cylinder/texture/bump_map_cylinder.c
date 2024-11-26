@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:19 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 16:44:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	get_cylinder_bump_normal(t_figure *figure, t_point *point, int is_base,
 			figure->bump_map.texture, res);
 	else
 		get_base_bump_normal(figure, &rotated_point, &base_attrs, res);
-	get_axis(&ideal, BACK);
+	get_world_axis(&ideal, BACK);
 	if (is_base && base_attrs.base_distance == 0.0
 		&& dot(&ideal, &figure->cy_attrs->orientation) != -1.0)
 		rotate_by_axis(UP, M_PI, res);
