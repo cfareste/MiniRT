@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:11:59 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 13:11:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:01:27 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	check_box_parsing(t_parser_ctx *ctx, t_figure *box)
 {
-	check_ori_vector_parsing(ctx, &box->bo_attrs->orientation);
+	check_ori_vector_parsing(ctx, &box->bo_attrs->faces[0].orientation);
 	if (box->bo_attrs->width <= 0)
 		throw_parse_err(ctx, "Box width must be a positive value");
 	if (box->bo_attrs->height <= 0)
