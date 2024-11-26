@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 13:32:54 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:28:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/types/box/parser/box_parser.h"
-#include "scene/figure/types/box/helpers/box_helpers.h"
 #include "libft.h"
 
 static void	print_attrs(void *param)
@@ -72,6 +71,7 @@ t_figure	*parse_box(t_parser_ctx *ctx, char **parts)
 	box->normal = normal;
 	box->get_color_pattern = get_color;
 	check_box_parsing(ctx, box);
-	set_box_vectors(box);
+	get_object_axis(&box->bo_attrs->orientation, &box->bo_attrs->right,
+		&box->bo_attrs->up);
 	return (box);
 }

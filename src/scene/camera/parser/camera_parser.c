@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/22 00:39:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:25:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,6 @@ static void	calculate_defocus_components(t_camera *camera)
 		&camera->defocus_up);
 }
 
-void	set_camera_vectors(t_camera *camera)
-{
-	t_vector	world_axis;
-
-	normalize(&camera->front);
-	get_axis(&world_axis, UP);
-	if (dot(&camera->front, &world_axis) == 1.0)
-		get_axis(&world_axis, BACK);
-	else if (dot(&camera->front, &world_axis) == -1.0)
-		get_axis(&world_axis, FRONT);
-	cross(&camera->front, &world_axis, &camera->right);
-	normalize(&camera->right);
-	cross(&camera->right, &camera->front, &camera->up);
-	normalize(&camera->up);
-}
-
 void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 {
 	if (*camera)
@@ -69,7 +53,7 @@ void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
 	parse_coordinates(ctx, parts[1], &(*camera)->position);
 	parse_coordinates(ctx, parts[2], &(*camera)->front);
 	(*camera)->fov = parse_int(ctx, parts[3]);
-	set_camera_vectors(*camera);
+	get_object_axis(&(*camera)->front, &(*camera)->right, &(*camera)->up);
 	(*camera)->defocus = 0;
 	(*camera)->focus_dist = 1;
 	if (parts[4])

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/23 14:43:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:24:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,20 @@ void	sum_vectors(t_vector *vec1, t_vector *vec2, t_vector *res)
 	res->x = vec1->x + vec2->x;
 	res->y = vec1->y + vec2->y;
 	res->z = vec1->z + vec2->z;
+}
+
+void	get_object_axis(t_vector *front, t_vector *right, t_vector *up)
+{
+	t_vector	world_axis;
+
+	normalize(front);
+	get_axis(&world_axis, UP);
+	if (dot(front, &world_axis) == 1.0)
+		get_axis(&world_axis, BACK);
+	else if (dot(front, &world_axis) == -1.0)
+		get_axis(&world_axis, FRONT);
+	cross(front, &world_axis, right);
+	normalize(right);
+	cross(right, front, up);
+	normalize(up);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 00:05:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:27:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
-#include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
@@ -91,6 +90,7 @@ t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
 	quadrilater->normal = normal;
 	quadrilater->get_color_pattern = get_color;
 	check_quadrilater_parsing(ctx, quadrilater);
-	set_quadrilater_vectors(quadrilater);
+	get_object_axis(&quadrilater->qu_attrs->orientation,
+		&quadrilater->qu_attrs->right, &quadrilater->qu_attrs->up);
 	return (quadrilater);
 }
