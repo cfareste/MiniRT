@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 19:21:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 22:55:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/types/box/parser/box_parser.h"
+#include "scene/figure/types/box/helpers/box_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "libft.h"
 
@@ -25,9 +26,9 @@ static void	print_attrs(void *param)
 
 	attrs = param;
 	printf("%f, %f, %f | %f | %f | %f",
-		attrs->faces[0].orientation.x,
-		attrs->faces[0].orientation.y,
-		attrs->faces[0].orientation.z,
+		attrs->faces[0].attrs.orientation.x,
+		attrs->faces[0].attrs.orientation.y,
+		attrs->faces[0].attrs.orientation.z,
 		attrs->width, attrs->height, attrs->length);
 }
 
@@ -64,16 +65,15 @@ t_figure	*parse_box(t_parser_ctx *ctx, char **parts)
 	if (!box->bo_attrs)
 		throw_sys_error("trying to allocate box attributes");
 	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&box->bo_attrs->faces[0].orientation);
+		&box->bo_attrs->faces[0].attrs.orientation);
 	box->bo_attrs->width = parse_double(ctx, parts[FIG_LAST_ATT + 2]);
 	box->bo_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	box->bo_attrs->length = parse_double(ctx, parts[FIG_LAST_ATT + 4]);
-	normalize(&box->bo_attrs->faces[0].orientation);
 	box->print_attrs = print_attrs;
 	box->hit = hit;
 	box->normal = normal;
 	box->get_color_pattern = get_color;
 	check_box_parsing(ctx, box);
-	set_box_faces(box->bo_attrs);
+	set_box_faces(box->bo_attrs, &box->position);
 	return (box);
 }
