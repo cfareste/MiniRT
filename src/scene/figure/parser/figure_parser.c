@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/25 19:21:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:27:54 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 		new = parse_quadrilater(ctx, parts);
 	else
 		return (0);
-	update_figure_list(figure, new);
+	push_figure(figure, new);
 	return (1);
 }
 

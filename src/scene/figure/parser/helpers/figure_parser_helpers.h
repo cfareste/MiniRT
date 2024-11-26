@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:34:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 16:07:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:28:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@
 
 #include "scene/figure/figure.h"
 
-void	update_figure_list(t_figure **figure, t_figure *new_figure);
+void	push_figure(t_figure **figure, t_figure *new_figure);
