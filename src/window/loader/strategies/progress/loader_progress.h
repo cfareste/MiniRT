@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   loader_progress.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:57:57 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/26 15:16:37 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/26 15:51:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "../../loader_bonus.h"
 
-#include "job/job.h"
-#include <pthread.h>
+t_size	get_bar_size(t_size max);
 
-typedef struct s_jobs
-{
-	int				amount;
-	t_job			*job;
-	pthread_mutex_t	mutex;
-}	t_jobs;
+double	get_progress_factor(t_progress *progress);
 
-t_job	*push_job(t_jobs *jobs, t_job *job);
+void	loader_set_total(t_loader *loader, int total);
 
-int		remove_job(t_jobs *jobs, t_job *job);
+void	loader_add_progress(t_loader *loader);
 
-void	exec_jobs(t_jobs *jobs, t_window *window);
-
-void	destroy_jobs(t_jobs *jobs);
+void	paint_bar(t_loader *loader, t_size img);

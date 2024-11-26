@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   load.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:57:57 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/25 18:11:01 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/25 20:08:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "job/job.h"
+#include "../loader_bonus.h"
 #include <pthread.h>
 
-typedef struct s_jobs
+typedef struct s_load
 {
-	int				amount;
-	t_job			*job;
-	pthread_mutex_t	mutex;
-}	t_jobs;
+	pthread_t	thread;
+	t_loader	*loader;
+}	t_load;
 
-t_job	*push_job(t_jobs *jobs, t_job *job);
+void	*minirt_load_routine(t_load *load);
 
-int		remove_job(t_jobs *jobs, t_job *job);
-
-void	exec_jobs(t_jobs *jobs, t_window *window);
-
-void	destroy_jobs(t_jobs *jobs);
+t_load	*new_loader_load(t_loader *loader);

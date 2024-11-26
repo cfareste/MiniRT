@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   loader_helper.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:57:57 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/25 21:09:17 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/26 15:17:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "../loader_bonus.h"
 
-#include "job/job.h"
-#include <pthread.h>
+int		loader_is_alive(t_loader *loader);
 
-typedef struct s_jobs
-{
-	int				amount;
-	t_job			*job;
-	pthread_mutex_t	mutex;
-}	t_jobs;
+void	loader_set_alive(t_loader *loader, int alive);
 
-t_job	*push_job(t_jobs *jobs, t_job *job);
-
-int		remove_job(t_jobs *jobs, t_job *job);
-
-void	exec_jobs(t_jobs *jobs, t_window *window);
-
-void	destroy_jobs(t_jobs *jobs);
+void	loader_set_img_enabled(t_loader	*loader, int enabled);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 20:12:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:05:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_window
 	mlx_texture_t	*icon;
 	mlx_t			*mlx;
 	t_render		render;
+	t_render		*renders;
 	t_resize		resize;
 	double			last_scroll;
 	t_exporter		exporter;

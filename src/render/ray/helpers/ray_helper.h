@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:41 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 23:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:08:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../ray.h"
 #include "scene/camera/camera.h"
-#include "render/utils/iterators/iterators.h"
+#include "utils/iterators/iterators.h"
 #include "render/render_bonus.h"
 
 void	set_ray_from_camera(t_ray *ray, t_render *render,

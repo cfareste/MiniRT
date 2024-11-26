@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterators.h                                        :+:      :+:    :+:   */
+/*   renders.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 18:34:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 18:35:00 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/11/25 19:20:57 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/25 19:30:56 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "../render_bonus.h"
 
-typedef struct s_iterators
-{
-	unsigned int	i;
-	unsigned int	j;
-}	t_iterators;
+t_render	*push_render(t_render *renders, t_render render);

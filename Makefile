@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3
+CCFLAGS += -Wall -Werror -Wextra -g -fsanitize=address
 
 
 #----DIRS----#
@@ -75,7 +75,7 @@ MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
-MLX_COMP_FLAGS = -DGLFW_FETCH=1 #-DDEBUG=1
+MLX_COMP_FLAGS = -DGLFW_FETCH=1 -DDEBUG=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 INCLUDES += -I$(MLX_DIR)/include/MLX42
 LIBRARIES += -L$(MLX_BUILD_DIR)
@@ -171,6 +171,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/destroy:\
 			$(SRC)window/jobs/job/types/anonymous:\
 			$(SRC)window/jobs/job/types/export:\
+			$(SRC)window/jobs/job/types/image_resize:\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
 			$(SRC)window/parser:\
@@ -192,6 +193,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/thread:\
 			$(SRC)render/utils/random:\
 			$(SRC)render/parser:\
+			$(SRC)render/renders:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
@@ -201,6 +203,9 @@ vpath %.c	$(SRC):\
 			$(SRC)exporter/helpers:\
 			$(SRC)exporter/export:\
 			$(SRC)window/loader:\
+			$(SRC)window/loader/load:\
+			$(SRC)window/loader/helpers:\
+			$(SRC)window/loader/strategies/progress:\
 
 
 #----SHARED----#
@@ -290,7 +295,12 @@ SRCS = miniRT.c \
 	camera_events.c \
 	raytracing_helpers.c \
 	pathtracing_helpers.c \
-	material_helpers.c
+	material_helpers.c \
+	load.c \
+	renders.c \
+	loader_helper.c \
+	image_resize_job.c \
+	loader_progress.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

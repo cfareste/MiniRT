@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs.h                                             :+:      :+:    :+:   */
+/*   image_resize_job.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:18:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:57:57 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/26 12:51:06 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/26 14:00:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "MLX42.h"
+#include "../../job.h"
 
-#include "job/job.h"
-#include <pthread.h>
-
-typedef struct s_jobs
+typedef struct s_resize_wrapper
 {
-	int				amount;
-	t_job			*job;
-	pthread_mutex_t	mutex;
-}	t_jobs;
+	t_size	nsize;
+	mlx_image_t *image;
+}	t_resize_wrapper;
 
-t_job	*push_job(t_jobs *jobs, t_job *job);
-
-int		remove_job(t_jobs *jobs, t_job *job);
-
-void	exec_jobs(t_jobs *jobs, t_window *window);
-
-void	destroy_jobs(t_jobs *jobs);
+t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image);

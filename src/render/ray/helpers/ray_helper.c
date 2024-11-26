@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 13:19:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:08:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "scene/camera/camera.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/random/random.h"
-#include "render/utils/iterators/iterators.h"
+#include "utils/iterators/iterators.h"
 #include <math.h>
 
 static void	set_viewport_coords(t_coordinates *vp_coords, t_render *render,

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 19:30:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:57:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "libft.h"
 
-void	push_job(t_jobs *jobs, t_job *job)
+t_job	*push_job(t_jobs *jobs, t_job *job)
 {
 	t_job	*aux;
 
@@ -30,6 +30,7 @@ void	push_job(t_jobs *jobs, t_job *job)
 	else
 		aux->next = job;
 	pthread_mutex_unlock(&jobs->mutex);
+	return (job);
 }
 
 int	remove_job(t_jobs *jobs, t_job *job)

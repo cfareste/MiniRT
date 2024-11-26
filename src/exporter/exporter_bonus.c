@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 19:49:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:38:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ void	export_image(t_exporter *exporter, t_jobs *jobs)
 	push_job(jobs, init_export_job(new_job(), new_export(exporter)));
 }
 
-void	init_exporter(t_exporter *exporter, t_render *render, t_jobs *jobs)
+void	init_exporter(t_exporter *exporter, t_render *render, t_jobs *jobs,
+			t_loader *loader)
 {
 	pthread_mutex_init(&exporter->mutex, NULL);
 	exporter->render = render;
 	exporter->jobs = jobs;
+	exporter->loader = loader;
 }
 
 void	destroy_exporter(t_exporter *exporter)
 {
 	set_exporter_active(exporter, 0);
 	pthread_join(exporter->thread, NULL);
+	printf("Exporter joined\n");
 }
