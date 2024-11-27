@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 23:37:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@
 #include <stdio.h>
 #include <math.h>
 
-static void	print_attrs(void *param)
-{
-	t_quadrilater_attrs	*attrs;
-
-	attrs = param;
-	printf("%f, %f, %f | %f | %f",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z,
-		attrs->width, attrs->height);
-}
-
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
 	float		hit_distance;
@@ -42,7 +32,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 	hit_distance = get_plane_center_to_hit(&figure->qu_attrs->orientation,
 			&figure->position, ray, &center_to_hit);
-	if (hit_distance < 0.0)
+	if (hit_distance < 0.0 || *distance <= hit_distance)
 		return (0);
 	x_length = dot(&center_to_hit, &figure->qu_attrs->right);
 	y_length = dot(&center_to_hit, &figure->qu_attrs->up);
@@ -70,6 +60,16 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	get_plane_pattern(figure, &rotated_point, res);
 }
 
+void	set_quad(t_figure *quad, t_point *position, t_quadrilater_attrs *attrs)
+{
+	quad->print_attrs = NULL;
+	quad->normal = normal;
+	quad->hit = hit;
+	quad->qu_attrs = attrs;
+	quad->position = *position;
+	quad->get_color_pattern = get_color;
+}
+
 t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
 {
 	t_figure	*quadrilater;
@@ -85,7 +85,7 @@ t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
 	quadrilater->qu_attrs->width = parse_double(ctx, parts[FIG_LAST_ATT + 2]);
 	quadrilater->qu_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	normalize(&quadrilater->qu_attrs->orientation);
-	quadrilater->print_attrs = print_attrs;
+	quadrilater->print_attrs = NULL;
 	quadrilater->hit = hit;
 	quadrilater->normal = normal;
 	quadrilater->get_color_pattern = get_color;
