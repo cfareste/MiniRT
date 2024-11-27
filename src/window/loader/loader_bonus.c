@@ -69,7 +69,12 @@ void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size)
 		write(2, "Loader not being shown!\n", 24);
 	loader->lsize = size;
 	loader->mode = mode;
-	if (loader_is_alive(loader) && pthread_create(&loader->thread, NULL,
+	if (!loader_is_alive(loader))
+	{
+		free(load);
+		return ;
+	}
+	if (pthread_create(&loader->thread, NULL,
 			(void *(*)(void *)) minirt_load_routine, load) == -1)
 		throw_sys_error("creating loader thread");
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 16:58:08 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:40:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 static	void	destroy(t_job *job)
 {
-	free(job->arg);
-	pthread_mutex_destroy(&job->finish_mutex);
 	job->free(job);
 }
 
 static	void	free_job(t_job *job)
 {
+	free(job->arg);
+	pthread_mutex_destroy(&job->finish_mutex);
 	free(job);
 }
 
