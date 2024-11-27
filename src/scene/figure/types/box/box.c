@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 01:21:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/27 21:58:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "scene/figure/types/box/parser/box_parser.h"
 #include "scene/figure/types/box/helpers/box_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
+#include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "libft.h"
 #include <math.h>
 
@@ -36,42 +37,38 @@ static void	print_attrs(void *param)
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
 	int			i;
-	int			hit;
 	float		face_distance;
 	t_figure	face;
 
 	i = 0;
-	hit = 0;
 	face_distance = FLT_MAX;
 	while (i < 6)
 	{
 		set_quad(&face, &figure->bo_attrs->faces[i].center,
 			&figure->bo_attrs->faces[i].attrs);
-		hit |= face.hit(&face, ray, &face_distance);
+		face.hit(&face, ray, &face_distance);
 		i++;
 	}
 	if (face_distance >= *distance)
 		return (0);
 	*distance = face_distance;
-	return (hit);
+	return (1);
 }
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	int		index_face;
-	t_point	rotated_point;
+	t_figure	face;
+	int			index_face;
+	t_point		rotated_point;
 
 	get_vector(point, &figure->position, &rotated_point);
-	rotate_reference_system(&figure->bo_attrs->orientation, NULL,
-		&rotated_point);
-	rotated_point.x = round(rotated_point.x * 10000.0) / 10000.0;
-	rotated_point.y = round(rotated_point.y * 10000.0) / 10000.0;
-	rotated_point.z = round(rotated_point.z * 10000.0) / 10000.0;
+	get_quad_rotated_point(&figure->bo_attrs->orientation,
+		&figure->bo_attrs->faces[0].attrs.right, &rotated_point);
 	index_face = get_face_index(figure, &rotated_point);
-	if (index_face >= 0)
-		*res = figure->bo_attrs->faces[index_face].attrs.orientation;
-	else
-		*res = figure->bo_attrs->faces[0].attrs.orientation;
+	face.bump_map = figure->bump_map;
+	set_quad(&face, &figure->bo_attrs->faces[index_face].center,
+		&figure->bo_attrs->faces[index_face].attrs);
+	face.normal(&face, point, res);
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
@@ -93,6 +90,7 @@ t_figure	*parse_box(t_parser_ctx *ctx, char **parts)
 		throw_sys_error("trying to allocate box attributes");
 	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
 		&box->bo_attrs->orientation);
+	normalize(&box->bo_attrs->orientation);
 	box->bo_attrs->width = parse_double(ctx, parts[FIG_LAST_ATT + 2]);
 	box->bo_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	box->bo_attrs->length = parse_double(ctx, parts[FIG_LAST_ATT + 4]);

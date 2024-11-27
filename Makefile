@@ -156,6 +156,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/disk/parser:\
 			$(SRC)scene/figure/types/disk/texture:\
 			$(SRC)scene/figure/types/quadrilater:\
+			$(SRC)scene/figure/types/quadrilater/helpers:\
 			$(SRC)scene/figure/types/quadrilater/parser:\
 			$(SRC)scene/figure/types/box:\
 			$(SRC)scene/figure/types/box/helpers:\
@@ -308,7 +309,8 @@ SRCS = miniRT.c \
 	quadrilater_parser.c \
 	box.c \
 	box_helpers.c \
-	box_parser.c
+	box_parser.c \
+	quadrilater_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
