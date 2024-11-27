@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 21:58:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:40:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/types/box/parser/box_parser.h"
 #include "scene/figure/types/box/helpers/box_helpers.h"
+#include "scene/figure/types/box/pattern/box_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "libft.h"
@@ -73,9 +74,19 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
 {
-	(void) figure;
-	(void) point;
-	(void) res;
+	t_figure	face;
+	int			face_index;
+	t_point		rotated_point;
+
+	get_vector(point, &figure->position, &rotated_point);
+	get_quad_rotated_point(&figure->bo_attrs->orientation,
+		&figure->bo_attrs->faces[0].attrs.right, &rotated_point);
+	face_index = get_face_index(figure, &rotated_point);
+	face.pattern = figure->pattern;
+	set_quad(&face, &figure->bo_attrs->faces[face_index].center,
+		&figure->bo_attrs->faces[face_index].attrs);
+	face.get_color_pattern(&face, point, res);
+	add_pattern_offset(figure, face_index, res);
 }
 
 t_figure	*parse_box(t_parser_ctx *ctx, char **parts)

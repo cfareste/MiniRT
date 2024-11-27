@@ -161,6 +161,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/box:\
 			$(SRC)scene/figure/types/box/helpers:\
 			$(SRC)scene/figure/types/box/parser:\
+			$(SRC)scene/figure/types/box/pattern:\
 			$(SRC)scene/figure/texture/bump_map:\
 			$(SRC)scene/figure/texture/bump_map/helpers:\
 			$(SRC)scene/figure/texture/texel:\
@@ -310,7 +311,8 @@ SRCS = miniRT.c \
 	box.c \
 	box_helpers.c \
 	box_parser.c \
-	quadrilater_helpers.c
+	quadrilater_helpers.c \
+	box_pattern.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

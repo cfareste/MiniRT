@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 23:37:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:24:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
+#include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
@@ -55,7 +56,7 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	t_point	rotated_point;
 
 	get_vector(point, &figure->position, &rotated_point);
-	rotate_reference_system(&figure->pl_attrs->orientation, NULL,
+	get_quad_rotated_point(&figure->qu_attrs->orientation, &figure->qu_attrs->right,
 		&rotated_point);
 	get_plane_pattern(figure, &rotated_point, res);
 }
