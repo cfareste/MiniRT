@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/10 19:43:17 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:36:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	throw_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+// TODO: Push destroy job!
 void	throw_sys_error(char *msg)
 {
 	ft_printff(STDERR_FILENO, "%s: %s: %s\n",

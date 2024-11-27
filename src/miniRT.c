@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 16:57:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:18:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	destroy(t_window *window)
 static void	*start_routine(void *window_)
 {
 	t_window	*window;
-	char		*title;
-	size_t		title_size;
 
 	window = (t_window *) window_;
 	loader_show(&window->loader, BAR, LOADER_SIZE_FULL);
@@ -49,16 +47,8 @@ static void	*start_routine(void *window_)
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);
-	title_size = ft_strlen(window->render.scene.settings.name)
-		+ ft_strlen(ft_filename(window->filename))
-		+ ft_strlen(PROGRAM_NAME_SUFF)
-		+ ft_strlen(" ·  · ");
-	title = ft_calloc(1, sizeof(char) * (title_size + 1));
-	snprintf(title, title_size + 1, "%s · %s · %s",
-		window->render.scene.settings.name,
-		ft_filename(window->filename),
-		PROGRAM_NAME_SUFF);
-	push_job(&window->jobs, init_title_job(new_job(), title));
+	push_job(&window->jobs, init_title_job(new_job(),
+			ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF)));
 	render(window);
 	return (NULL);
 }
