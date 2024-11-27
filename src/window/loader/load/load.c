@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 19:12:30 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:14:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils/utils_bonus.h"
 #include "../helpers/loader_helper.h"
 #include "window/jobs/job/types/image_resize/image_resize_job.h"
-#include "../strategies/progress/loader_progress.h"
+#include "../strategies/strategies.h"
 
 static void	paint(t_load *load)
 {
@@ -23,13 +23,17 @@ static void	paint(t_load *load)
 
 	if (!loader_is_alive(load->loader))
 		return ;
+	if (1 || load->loader->resize)
+	{
+		loader_update_size(load->loader);
+		wait_job(push_job(load->loader->jobs,
+				init_img_resize_job(new_job(),
+					load->loader->size, load->loader->image)));
+		printf("YES Loader resizing\n");
+	}
+	else
+		printf("NO Loader resizing\n");
 	load->loader->resize = 0;
-	if (load->loader->resize)
-
-	loader_update_size(load->loader);
-	wait_job(push_job(load->loader->jobs,
-		init_img_resize_job(new_job(),
-			load->loader->size, load->loader->image)));
 	if (!loader_is_alive(load->loader))
 		return ;
 	img_size = get_image_size(load->loader->image, &load->loader->img_mutex);
@@ -37,8 +41,8 @@ static void	paint(t_load *load)
 		return ;
 	if (load->loader->mode == BAR)
 		paint_bar(load->loader, img_size);
-	// else
-	// 	paint_text(load, img_size);
+	else
+		paint_text(load->loader, img_size);
 	printf("Salgo paint\n");
 }
 
@@ -47,7 +51,7 @@ static void	clean_image(t_loader *loader)
 	t_size		img_size;
 	int			max;
 	int			i;
-	
+
 	img_size = get_image_size(loader->image, &loader->img_mutex);
 	max = img_size.width * img_size.height * 4;
 	pthread_mutex_lock(&loader->progress.mutex);
@@ -63,8 +67,8 @@ static void	clean_image(t_loader *loader)
 
 void	*minirt_load_routine(t_load *load)
 {
-	int			i;
-	
+	int	i;
+
 	if (!loader_is_alive(load->loader))
 		return (NULL);
 	clean_image(load->loader);

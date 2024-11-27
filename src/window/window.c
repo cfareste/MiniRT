@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 19:06:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:14:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	init_window(t_window *window)
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
 	init_loader(&window->loader, &window->jobs, window->mlx);
-	init_exporter(&window->exporter, &window->render, &window->jobs, &window->loader);
+	init_exporter(&window->exporter, &window->render,
+		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);

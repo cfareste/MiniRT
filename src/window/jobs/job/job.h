@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:35:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:01:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_job
 	int					(*run)(t_job *, t_window *);
 	void				(*free)(t_job *);
 	void				(*destroy)(t_job *);
-	pthread_mutex_t	finish_mutex;
+	pthread_mutex_t		finish_mutex;
 	t_job				*next;
 }	t_job;
 

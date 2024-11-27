@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 19:12:17 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:14:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include "helpers/loader_helper.h"
 #include "load/load.h"
 
-
-// TODO: Loader Resize!!!
 void	loader_hide(t_loader *loader)
 {
 	printf("Not loading anymore \n");
@@ -34,6 +32,7 @@ void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx)
 	pthread_mutex_init(&loader->alive_mutx, NULL);
 	pthread_mutex_init(&loader->progress.mutex, NULL);
 	pthread_mutex_init(&loader->resize_mutx, NULL);
+	loader->resize = 1;
 	loader->jobs = jobs;
 	loader->mlx = mlx;
 	loader->image = mlx_new_image(mlx, mlx->width, mlx->height);
@@ -52,25 +51,24 @@ void	loader_update_size(t_loader *loader)
 	}
 	else
 	{
-		loader->size.width = ft_clamp(loader->mlx->width / 2, MIN_LOADER_MINI_WIDTH, MAX_LOADER_MINI_WIDTH);
-		loader->size.height = ft_clamp(loader->mlx->height / 2, MIN_LOADER_MINI_HEIGHT, MAX_LOADER_MINI_HEIGHT);
+		loader->size.width = ft_clamp(loader->mlx->width / 2,
+				MIN_LOADER_MINI_WIDTH, MAX_LOADER_MINI_WIDTH);
+		loader->size.height = ft_clamp(loader->mlx->height / 2,
+				MIN_LOADER_MINI_HEIGHT, MAX_LOADER_MINI_HEIGHT);
 	}
 	pthread_mutex_unlock(&loader->img_mutex);
 }
 
-// // TODO: Destroy/free t_load!!!!!
 void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size)
 {
 	t_load	*load;
 
-	// loader_hide(loader);
 	loader_set_alive(loader, 1);
 	load = new_loader_load(loader);
 	if (!load)
 		write(2, "Loader not being shown!\n", 24);
 	loader->lsize = size;
 	loader->mode = mode;
-	// TODO: Try to push a window job to write from main thread!!
 	if (loader_is_alive(loader) && pthread_create(&loader->thread, NULL,
 			(void *(*)(void *)) minirt_load_routine, load) == -1)
 		throw_sys_error("creating loader thread");

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 19:12:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:13:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef enum loader_mode
 
 typedef struct s_loader_progress
 {
-	int	current;
-	int	total;
+	int				current;
+	int				total;
 	pthread_mutex_t	mutex;
 }	t_progress;
 

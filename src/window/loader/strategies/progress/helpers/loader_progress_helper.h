@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_resize_job.h                                 :+:      :+:    :+:   */
+/*   loader_progress_helper.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 12:51:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 16:58:19 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/27 17:05:38 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/27 17:16:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "MLX42.h"
-#include "../../job.h"
+#include "../../../loader_bonus.h"
 
-typedef struct s_resize_wrapper
-{
-	t_size		nsize;
-	mlx_image_t	*image;
-}	t_resize_wrapper;
+double	get_progress_factor(t_progress *progress);
 
-t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image);
+void	loader_set_total(t_loader *loader, int total);
+
+void	loader_add_progress(t_loader *loader);

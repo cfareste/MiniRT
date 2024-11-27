@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 15:15:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:58:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	run(t_job *job, t_window *window)
 static t_resize_wrapper	*wrap_resize(t_size	nsize, mlx_image_t *image)
 {
 	t_resize_wrapper	*wrapper;
-	
+
 	wrapper = ft_calloc(1, sizeof(t_resize_wrapper));
 	if (!wrapper)
 		throw_sys_error("Resizing wrapper creation");

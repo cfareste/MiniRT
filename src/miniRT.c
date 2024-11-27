@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 16:40:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:57:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	*start_routine(void *window_)
 	size_t		title_size;
 
 	window = (t_window *) window_;
-	// loader_show(&window->loader, BAR, LOADER_SIZE_FULL);
+	loader_show(&window->loader, BAR, LOADER_SIZE_FULL);
 	load_textures(&window->loader, &window->textures, &window->jobs);
-	// loader_hide(&window->loader);
+	loader_hide(&window->loader);
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);

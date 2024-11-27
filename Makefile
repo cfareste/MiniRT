@@ -206,6 +206,8 @@ vpath %.c	$(SRC):\
 			$(SRC)window/loader/load:\
 			$(SRC)window/loader/helpers:\
 			$(SRC)window/loader/strategies/progress:\
+			$(SRC)window/loader/strategies/progress/helpers:\
+			$(SRC)window/loader/strategies/text:
 
 
 #----SHARED----#
@@ -300,7 +302,9 @@ SRCS = miniRT.c \
 	renders.c \
 	loader_helper.c \
 	image_resize_job.c \
-	loader_progress.c
+	loader_progress.c \
+	loader_progress_helper.c \
+	loader_text.c 
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
