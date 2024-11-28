@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 17:28:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:22:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			render(window);
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
-		if (keydata.key == MLX_KEY_1 || keydata.key == MLX_KEY_2)
+		if (keydata.key >= MLX_KEY_1 && keydata.key <= MLX_KEY_3)
 		{
 			if (keydata.key == MLX_KEY_1)
-				window->render.raytracing = 1;
-			else
-				window->render.raytracing = 0;
+				window->render.strategy = RAYTRACING;
+			else if (keydata.key == MLX_KEY_2)
+				window->render.strategy = PATHTRACING;
+			else if (keydata.key == MLX_KEY_3)
+				window->render.strategy = NORMAL_MAP;
 			render(window);
 		}
 	}

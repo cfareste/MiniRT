@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 16:50:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:30:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	compute_direct_lighting(t_render *render,
 	distance = sqrt(dot(&point_to_light, &point_to_light));
 	direct_lighting->diffuse.distance = distance;
 	direct_lighting->specular.distance = distance;
-	if (!render->raytracing)
+	if (render->strategy == PATHTRACING)
 		pt_compute_direct_light_comps(direct_lighting, light, color);
-	else
+	else if (render->strategy == RAYTRACING)
 		rt_compute_direct_light_comps(direct_lighting, light, color);
 }
 

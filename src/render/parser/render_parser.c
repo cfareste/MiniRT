@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 17:26:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:25:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		&& ensure_params_amount(ctx, args, 1))
 		render->max_depth = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
-		render->raytracing = 1;
+		render->strategy = RAYTRACING;
+	else if (ft_strcmp(args[0], NORMAL_MAP_KEY) == EQUAL_STRINGS)
+		render->strategy = NORMAL_MAP;
 	else
 	{
 		free_matrix(args);

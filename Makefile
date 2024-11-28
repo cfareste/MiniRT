@@ -189,6 +189,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
 			$(SRC)render/strategies/pathtracing:\
+			$(SRC)render/strategies/normal_map:\
 			$(SRC)render/strategies/raytracing/helpers:\
 			$(SRC)render/strategies/pathtracing/helpers:\
 			$(SRC)render/utils/color:\
@@ -312,7 +313,8 @@ SRCS = miniRT.c \
 	box_helpers.c \
 	box_parser.c \
 	quadrilater_helpers.c \
-	box_pattern.c
+	box_pattern.c \
+	normal_map.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
