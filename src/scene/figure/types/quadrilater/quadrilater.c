@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 22:24:03 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:15:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	t_point	rotated_point;
 
 	get_vector(point, &figure->position, &rotated_point);
-	get_quad_rotated_point(&figure->qu_attrs->orientation, &figure->qu_attrs->right,
-		&rotated_point);
+	get_quad_rotated_point(&figure->qu_attrs->orientation,
+		&figure->qu_attrs->right, &rotated_point);
 	get_plane_pattern(figure, &rotated_point, res);
 }
 
