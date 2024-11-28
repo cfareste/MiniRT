@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:42:29 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 16:48:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 23:11:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	set_hit_record(t_hit_record *hit_record, t_ray *ray, t_figure *figure)
 {
-	if (hit_record->distance >= ray->bounds.max)
-		return ;
 	ray->bounds.max = hit_record->distance;
 	hit_record->figure = figure;
 }
