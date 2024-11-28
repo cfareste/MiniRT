@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 18:09:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 00:41:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,23 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	*res = figure->qu_attrs->orientation;
-	if (figure->bump_map.texture)
-		get_plane_bump_normal(figure, point, res);
+	t_point		rotated_point;
+	float		quad_angle;
+	float		second_angle;
+
+	if (!figure->bump_map.texture)
+	{
+		*res = figure->qu_attrs->orientation;
+		return ;
+	}
+	get_vector(point, &figure->position, &rotated_point);
+	quad_angle = rotate_reference_system(&figure->qu_attrs->orientation,
+		NULL, NULL);
+	second_angle = get_quad_rotated_point(&figure->qu_attrs->orientation,
+		&figure->qu_attrs->right, &rotated_point);
+	get_plane_bump_normal(figure, &rotated_point, res);
+	rotate_by_axis(BACK, -second_angle, res);
+	rotate_by_angle(&figure->qu_attrs->orientation, -quad_angle, res);
 }
 
 static void	get_color(t_figure *figure, t_point *point, t_color *res)
