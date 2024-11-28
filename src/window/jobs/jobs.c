@@ -77,9 +77,9 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 		if (job->required
 			|| (!jobs_executed && i == jobs->amount - 1))
 		{
-			jobs_executed++;
 			if (job->run(job, window) && remove_job(jobs, job))
 			{
+				jobs_executed++;
 				job = jobs->job;
 				continue ;
 			}

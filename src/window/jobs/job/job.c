@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:35:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:18:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	wait_job(t_job *job)
 {
 	pthread_mutex_lock(&job->finish_mutex);
 	pthread_mutex_unlock(&job->finish_mutex);
+}
+
+static int	run(t_job *job, t_window *window)
+{
+	(void) job;
+	(void) window;
+	return (1);
 }
 
 static void	destroy(t_job *job)
@@ -43,5 +50,6 @@ t_job	*new_job(void)
 	job->required = 0;
 	job->free = free_job;
 	job->destroy = destroy;
+	job->run = run;
 	return (job);
 }
