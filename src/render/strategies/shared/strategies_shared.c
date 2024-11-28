@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:40:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:50:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,10 @@ void	check_collisions(t_scene *scene, t_ray *ray, t_hit_record *hit_record)
 			set_hit_record(hit_record, ray, figure);
 		figure = figure->next;
 	}
+	if (!hit_record->figure)
+		return ;
+	translate_point(&ray->origin, &ray->direction, hit_record->distance,
+		&hit_record->point);
+	hit_record->figure->normal(hit_record->figure, &hit_record->point,
+		&hit_record->normal);
 }
