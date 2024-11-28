@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 15:15:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:09:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	hit(t_figure *figure, t_ray *ray, float *distance)
 
 static void	normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	*res = figure->pl_attrs->orientation;
+	*res = figure->qu_attrs->orientation;
 	if (figure->bump_map.texture)
 		get_plane_bump_normal(figure, point, res);
 }
