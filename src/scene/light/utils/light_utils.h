@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:35 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:40:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:40:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_specular_params
 {
 	t_vector	camera_vector;
 	t_vector	ray_dir_reflected;
-	float		material_glosiness;
+	float		material_glossiness;
 	float		distance;
 }	t_specular_params;
 

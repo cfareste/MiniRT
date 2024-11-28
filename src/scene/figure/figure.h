@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 13:04:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:39:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_figure
 {
 	char		*type;
 	t_point		position;
-	double		glosiness;
+	double		glossiness;
 	t_material	material;
 	union
 	{

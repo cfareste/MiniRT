@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 13:29:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:25:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 	return (1);
 }
 
-static void	check_parsing(t_parser_ctx *ctx, t_figure *figure)
+static void	parse_glossiness(t_parser_ctx *ctx, t_figure *figure, char *str)
 {
-	if (figure->glosiness < 0)
-		throw_parse_err(ctx, "Glosiness must be a positive value");
+	if (!str)
+		throw_parse_err(ctx, "Missing glossiness value");
+	figure->glossiness = parse_double(ctx, str);
 }
 
-static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
+static void	parse_material(t_parser_ctx *ctx, char **parts,
+	t_material *material)
 {
-	char	**parts;
-
-	parts = safe_ft_split(str, ':',
-			throw_sys_error, "error parsing figure's material");
-	if (ft_strcmp(parts[0], DIFFUSE_ID) == EQUAL_STRINGS)
+	if (!parts[0])
+		throw_parse_err(ctx, "Missing material type");
+	else if (ft_strcmp(parts[0], DIFFUSE_ID) == EQUAL_STRINGS)
 		parse_diffuse(material);
 	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
 		parse_metallic(ctx, parts[1], material);
@@ -69,7 +69,6 @@ static void	parse_material(t_parser_ctx *ctx, char *str, t_material *material)
 	else
 		throw_parse_err(ctx, safe_ft_strjoin(
 				"Unknown material type: ", parts[0], throw_sys_error, "error"));
-	free_matrix(parts);
 }
 
 static void	parse_optionals(char **params, int i, t_figure *figure,
@@ -87,6 +86,10 @@ static void	parse_optionals(char **params, int i, t_figure *figure,
 			parse_texture(ctx, &figure->bump_map, sub_params);
 		else if (ft_strcmp(sub_params[0], OPT_CD) == EQUAL_STRINGS)
 			parse_pattern(ctx, &figure->pattern, sub_params);
+		else if (ft_strcmp(sub_params[0], OPT_MAT) == EQUAL_STRINGS)
+			parse_material(ctx, sub_params + 1, &figure->material);
+		else if (ft_strcmp(sub_params[0], OPT_GL) == EQUAL_STRINGS)
+			parse_glossiness(ctx, figure, sub_params[1]);
 		else
 			throw_parse_err(ctx, safe_ft_strjoin(
 					"Unknown figure optional param identifier: ", sub_params[0],
@@ -104,15 +107,11 @@ t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
 	if (!figure)
 		throw_sys_error("trying to allocate new figure");
 	figure->type = ft_strdup(parts[0]);
+	set_figure_defaults(figure);
 	parse_coordinates(ctx, parts[1], &figure->position);
-	figure->glosiness = parse_double(ctx, parts[2]);
-	parse_material(ctx, parts[3], &figure->material);
-	if (figure->material.type == METALLIC)
-		figure->glosiness *= 1.1 - figure->material.metallic_attrs->roughness;
-	else if (figure->material.type == PLASTIC)
-		figure->glosiness *= 1.1 - figure->material.plastic_attrs->roughness;
 	parse_color(ctx, parts[color_i], &figure->color);
 	parse_optionals(parts, color_i + 1, figure, ctx);
-	check_parsing(ctx, figure);
+	adjust_glossiness(figure);
+	check_figure_parsing(ctx, figure);
 	return (figure);
 }
