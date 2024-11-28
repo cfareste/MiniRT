@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 15:27:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:12:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	parse(t_window *window, char *filename)
 	int				fd;
 	t_parser_ctx	ctx;
 
+	printf("Parsing\r");
 	window->filename = filename;
 	pthread_mutex_init(&window->render.scene.mutex, NULL);
 	ctx.textures = &window->textures;
