@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 17:14:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:46:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	main_loop(void *window_)
 {
 	t_window	*window;
 
+	printf("looping...\n");
 	window = (t_window *) window_;
 	exec_jobs(&window->jobs, window);
 	if (window->resize.last_resize
@@ -40,8 +41,19 @@ static void	main_loop(void *window_)
 
 static void	close_window(t_window *window)
 {
-	stop_render(&window->render);
+	t_job	*job;
+
+	printf("JOBS:\n");
+	job = window->jobs.job;
+	while(job)
+	{
+		printf("Job: %p\n", job);
+		job = job->next;
+	}
+	printf("\n");
 	destroy_exporter(&window->exporter);
+	stop_render(&window->render);
+	printf("Cierro la ventana cabron \n");
 	mlx_close_window(window->mlx);
 }
 
@@ -55,6 +67,8 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			render(window);
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
+		if (keydata.key == MLX_KEY_L)
+			loader_hide(window->exporter.loader);
 		if (keydata.key == MLX_KEY_1 || keydata.key == MLX_KEY_2)
 		{
 			if (keydata.key == MLX_KEY_1)

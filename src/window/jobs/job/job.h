@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 17:01:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 14:55:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ typedef struct s_job
 	int					(*run)(t_job *, t_window *);
 	void				(*free)(t_job *);
 	void				(*destroy)(t_job *);
-	pthread_mutex_t		finish_mutex;
+	int					finished;
+	pthread_mutex_t		finished_mutex;
 	t_job				*next;
 }	t_job;
 
 t_job	*new_job(void);
 
-void	wait_job(t_job *job);
+void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg);

@@ -6,10 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:05:47 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 17:07:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:35:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "loader_progress_helper.h"
 
 double	get_progress_factor(t_progress *progress)

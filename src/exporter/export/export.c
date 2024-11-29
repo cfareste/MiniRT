@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 16:33:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 21:01:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 	int		iter[3];
 	char	*num_str;
 
+	if (!is_exporter_active(export->exporter))
+		return (0);
 	ft_bzero(iter, sizeof(int) * 3);
-	while (iter[0] < px_amount && is_exporter_active(export->exporter))
+	while (is_exporter_active(export->exporter) && iter[0] < px_amount)
 	{
 		loader_add_progress(export->exporter->loader);
 		if (iter[2] == 3)
@@ -104,7 +106,6 @@ void	*export_routine(t_export *export)
 		printf("FINSHED EXPORTING %s: %f\n", path,
 			mlx_get_time() - start_time);
 	loader_hide(export->exporter->loader);
-	printf("Salgo\n");
 	free(path);
 	set_exporter_active(export->exporter, 0);
 	free(export);

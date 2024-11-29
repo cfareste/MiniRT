@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:01 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/25 20:08:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:47:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,5 @@ typedef struct s_load
 void	*minirt_load_routine(t_load *load);
 
 t_load	*new_loader_load(t_loader *loader);
+
+void	clean_load(t_loader *loader);
