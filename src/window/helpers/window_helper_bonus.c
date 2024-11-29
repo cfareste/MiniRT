@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 16:47:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:36:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	window_resized(int32_t width, int32_t height, t_window *window)
 	window->resize.size.width = width;
 	window->resize.size.height = height;
 	window->exporter.loader->resize = 1;
-	printf("Window resized\n");
 }
 
 int	diff_sizes(t_size *a, t_size *b)

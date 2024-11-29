@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 16:38:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:34:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,4 @@ void	destroy_exporter(t_exporter *exporter)
 {
 	set_exporter_active(exporter, 0);
 	pthread_join(exporter->thread, NULL);
-	printf("Exporter joined\n");
 }

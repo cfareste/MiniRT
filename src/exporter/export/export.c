@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 21:01:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:41:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 	int		iter[3];
 	char	*num_str;
 
-	if (!is_exporter_active(export->exporter))
-		return (0);
 	ft_bzero(iter, sizeof(int) * 3);
 	while (is_exporter_active(export->exporter) && iter[0] < px_amount)
 	{

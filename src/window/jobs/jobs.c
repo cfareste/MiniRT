@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 20:13:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:36:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	exec_jobs(t_jobs *jobs, t_window *window)
 	job = jobs->job;
 	i = 0;
 	jobs_executed = 0;
-	// printf("Execing jobs\n");
 	pthread_mutex_lock(&jobs->mutex);
 	while (job && i < jobs->amount)
 	{

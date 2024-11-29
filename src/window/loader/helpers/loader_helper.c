@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:09:25 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 12:29:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:37:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	loader_set_alive(t_loader *loader, int alive)
 	pthread_mutex_lock(&loader->alive_mutx);
 	loader->alive = alive;
 	pthread_mutex_unlock(&loader->alive_mutx);
-	printf("Set alive: %d\n", alive);
 }
 
 void	loader_set_img_enabled(t_loader	*loader, int enabled)

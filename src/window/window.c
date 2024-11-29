@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 14:46:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:35:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	main_loop(void *window_)
 {
 	t_window	*window;
 
-	printf("looping...\n");
 	window = (t_window *) window_;
 	exec_jobs(&window->jobs, window);
 	if (window->resize.last_resize
@@ -41,19 +40,8 @@ static void	main_loop(void *window_)
 
 static void	close_window(t_window *window)
 {
-	t_job	*job;
-
-	printf("JOBS:\n");
-	job = window->jobs.job;
-	while(job)
-	{
-		printf("Job: %p\n", job);
-		job = job->next;
-	}
-	printf("\n");
 	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
-	printf("Cierro la ventana cabron \n");
 	mlx_close_window(window->mlx);
 }
 

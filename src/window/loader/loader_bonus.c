@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 20:08:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:37:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@
 
 void	loader_hide(t_loader *loader)
 {
-	(void) loader;
 	loader_set_alive(loader, 0);
 	loader_set_img_enabled(loader, 0);
 	pthread_cancel(loader->thread);
 	pthread_join(loader->thread, NULL);
-	printf("Not loading anymore\n\n");
 }
 
 void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx)

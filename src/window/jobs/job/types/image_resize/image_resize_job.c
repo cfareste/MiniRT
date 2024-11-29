@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 14:56:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:36:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	run(t_job *job, t_window *window)
 {
 	t_resize_wrapper	*resize;
 
-	printf("Resizing!!!\n");
 	(void) window;
 	resize = (t_resize_wrapper *) job->arg;
 	mlx_resize_image(resize->image, resize->nsize.width,

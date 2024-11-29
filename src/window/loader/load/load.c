@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 14:57:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:44:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../helpers/loader_helper.h"
 #include "window/jobs/job/types/image_resize/image_resize_job.h"
 #include "../strategies/strategies.h"
+#include "../loader_bonus.h"
 
 // TODO: Mutex resize!!
 static void	paint(t_load *load)
@@ -25,15 +26,12 @@ static void	paint(t_load *load)
 	if (!loader_is_alive(load->loader))
 		return ;
 	if (load->loader->resize)
-			clean_load(load->loader);
-	printf("PAINT: resizing\n");
-	if (load->loader->resize)
 		clean_load(load->loader);
 	loader_update_size(load->loader);
 	wait_job(push_job(load->loader->jobs,
-		init_img_resize_job(new_job(),
-			load->loader->size, load->loader->image)), is_loader_alive, loader);
-	printf("PAINT: resized\n");
+			init_img_resize_job(new_job(),
+				load->loader->size, load->loader->image)),
+		(int (*)(void *)) loader_is_alive, load->loader);
 	load->loader->resize = 0;
 	if (!loader_is_alive(load->loader))
 		return ;
@@ -65,7 +63,6 @@ void	*minirt_load_routine(t_load *load)
 {
 	int	i;
 
-	printf("ENTRO load routine %p\n", load);
 	if (!loader_is_alive(load->loader))
 		return (free(load), NULL);
 	pthread_mutex_lock(&load->loader->progress.mutex);
@@ -82,7 +79,6 @@ void	*minirt_load_routine(t_load *load)
 		i++;
 	}
 	free(load);
-	printf("Salgo de la load rotine\n");
 	return (NULL);
 }
 
@@ -94,6 +90,5 @@ t_load	*new_loader_load(t_loader *loader)
 	if (!load)
 		return (NULL);
 	load->loader = loader;
-	printf("Alojo load: %p\n", load);
 	return (load);
 }
