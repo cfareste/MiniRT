@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 18:30:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:25:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/utils/color/color_operations/color_operations.h"
 #include "render/strategies/raytracing/helpers/raytracing_helpers.h"
 #include "render/strategies/pathtracing/helpers/pathtracing_helpers.h"
+#include "strategies_shared.h"
 #include <math.h>
 
 static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
@@ -49,7 +50,7 @@ static void	compute_direct_lighting(t_render *render,
 		rt_compute_direct_light_comps(direct_lighting, light, color);
 }
 
-void	sample_lights(t_render *render, t_hit_record *hit_record,
+void	sample_lights(t_sample_lights_params *params, t_hit_record *hit_record,
 	t_material_type scatter_type, t_color *color)
 {
 	t_ray				shadow_ray;
@@ -57,11 +58,12 @@ void	sample_lights(t_render *render, t_hit_record *hit_record,
 	t_figure			*figure;
 	t_direct_lighting	direct_lighting;
 
-	light = render->scene.lights;
+	light = params->render->scene.lights;
 	while (light)
 	{
-		set_shadow_ray(&shadow_ray, &hit_record->point, &light->position);
-		figure = render->scene.figures;
+		set_shadow_ray(params, &shadow_ray, &hit_record->point,
+			&light->position);
+		figure = params->render->scene.figures;
 		check_shadow_hits(&figure, &shadow_ray);
 		if (!figure)
 		{
@@ -69,9 +71,9 @@ void	sample_lights(t_render *render, t_hit_record *hit_record,
 			direct_lighting.scatter_type = scatter_type;
 			set_diffuse_params(&shadow_ray, hit_record,
 				&direct_lighting.diffuse);
-			set_specular_params(&render->scene, &shadow_ray, hit_record,
+			set_specular_params(&params->render->scene, &shadow_ray, hit_record,
 				&direct_lighting.specular);
-			compute_direct_lighting(render, &direct_lighting, light,
+			compute_direct_lighting(params->render, &direct_lighting, light,
 				color);
 		}
 		light = light->next;

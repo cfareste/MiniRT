@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 13:19:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:03:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/random/random.h"
 #include "render/utils/iterators/iterators.h"
+#include "render/strategies/shared/strategies_shared.h"
 #include <math.h>
 
 static void	set_viewport_coords(t_coordinates *vp_coords, t_render *render,
@@ -74,10 +75,22 @@ void	set_ray_from_camera(t_ray *ray, t_render *render,
 	set_ray(ray, &origin, &direction);
 }
 
-void	set_shadow_ray(t_ray *shadow_ray, t_point *origin, t_point *light_pos)
+void	set_shadow_ray(t_sample_lights_params *params, t_ray *shadow_ray,
+	t_point *origin, t_point *light_pos)
 {
+	t_point		random_pos;
+	t_point		final_light_pos;
+
 	shadow_ray->origin = *origin;
-	get_vector(light_pos, &shadow_ray->origin, &shadow_ray->direction);
+	final_light_pos = *light_pos;
+	if (params->render->soft_shadows_radius > 0.0)
+	{
+		get_random_point_in_sphere(params->seed, &random_pos);
+		multiply_vector_scalar(&random_pos, params->render->soft_shadows_radius,
+			&random_pos);
+		sum_vectors(light_pos, &random_pos, &final_light_pos);
+	}
+	get_vector(&final_light_pos, &shadow_ray->origin, &shadow_ray->direction);
 	shadow_ray->bounds.max = sqrt(dot(&shadow_ray->direction,
 				&shadow_ray->direction));
 	shadow_ray->bounds.min = 0.001;

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 18:20:16 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:02:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_render
 	int				antialiasing;
 	unsigned int	max_depth;
 	t_strategy		strategy;
+	float			soft_shadows_radius;
 }	t_render;
 
 typedef struct s_render_part

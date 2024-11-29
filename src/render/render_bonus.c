@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 18:40:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:50:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	compute_strategy(t_render_part *part, t_ray *ray,
 	t_color *sample_color, uint32_t *seed)
 {
 	if (part->render->strategy == RAYTRACING)
-		compute_raytracing(part->render, ray, sample_color);
+		compute_raytracing(part->render, ray, sample_color, seed);
 	else if (part->render->strategy == PATHTRACING)
 		compute_pathtracing(part->render, ray, sample_color, seed);
 	else if (part->render->strategy == NORMAL_MAP)
@@ -83,6 +83,7 @@ void	set_render_defaults(t_render *render)
 	render->antialiasing = 0;
 	render->strategy = PATHTRACING;
 	render->max_depth = 1;
+	render->soft_shadows_radius = 0;
 }
 
 void	init_render(t_render *render, mlx_t *mlx)

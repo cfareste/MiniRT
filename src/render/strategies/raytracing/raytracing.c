@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 20:06:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:32:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 #include "libft.h"
 
 static void	process_lighting(t_render *render, t_hit_record *hit_record,
-	t_color *final_color)
+	t_color *final_color, uint32_t *seed)
 {
-	t_color	light_color;
-	t_color	sample_color;
-	t_color	figure_color;
+	t_color					light_color;
+	t_color					sample_color;
+	t_color					figure_color;
+	t_sample_lights_params	params;
 
 	ft_bzero(&sample_color, sizeof(t_color));
 	ft_bzero(&light_color, sizeof(t_color));
@@ -37,18 +38,21 @@ static void	process_lighting(t_render *render, t_hit_record *hit_record,
 		sum_colors(final_color, &sample_color, final_color);
 		return ;
 	}
+	params.seed = seed;
+	params.render = render;
 	apply_ambient_lighting(render->scene.ambient_light, &light_color);
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
-	sample_lights(render, hit_record, PLASTIC, &light_color);
+	sample_lights(&params, hit_record, PLASTIC, &light_color);
 	mix_colors(&light_color, &figure_color, &sample_color);
 	sum_colors(final_color, &sample_color, final_color);
 }
 
-void	compute_raytracing(t_render *render, t_ray *ray, t_color *sample_color)
+void	compute_raytracing(t_render *render, t_ray *ray, t_color *sample_color,
+	uint32_t *seed)
 {
 	t_hit_record	hit_record;
 
 	ft_bzero(&hit_record, sizeof(t_hit_record));
 	check_collisions(&render->scene, ray, &hit_record);
-	process_lighting(render, &hit_record, sample_color);
+	process_lighting(render, &hit_record, sample_color, seed);
 }
