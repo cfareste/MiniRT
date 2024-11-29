@@ -389,6 +389,9 @@ norm:
 	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
 	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
 
+test:
+	cd tester && ./tester.sh
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -402,7 +405,8 @@ norm:
 		libft_fclean \
 		make_mlx \
 		mlx_fclean \
-		norm
+		norm \
+		test
 
 -include $(DEPS)
 -include $(MDEPS)
