@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 18:26:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:05:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	run(t_job *job, t_window *window)
 	return (1);
 }
 
-static t_resize_wrapper	*wrap_resize(t_size	nsize, mlx_image_t *image, pthread_mutex_t *mutex)
+static t_resize_wrapper	*wrap_resize(t_size	nsize, mlx_image_t *image,
+			pthread_mutex_t *mutex)
 {
 	t_resize_wrapper	*wrapper;
 
@@ -61,7 +62,8 @@ static t_resize_wrapper	*wrap_resize(t_size	nsize, mlx_image_t *image, pthread_m
 	return (wrapper);
 }
 
-t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image, pthread_mutex_t *mutex)
+t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image,
+			pthread_mutex_t *mutex)
 {
 	pthread_mutex_init(&job->finished_mutex, NULL);
 	pthread_mutex_init(&job->to_free_mutex, NULL);
