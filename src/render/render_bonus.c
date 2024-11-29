@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:50:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:04:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "render/utils/thread/thread.h"
 #include "render/utils/color/color_operations/color_operations.h"
-#include "render/utils/iterators/iterators.h"
+#include "utils/iterators/iterators.h"
 #include "render/strategies/strategies.h"
 #include <math.h>
 

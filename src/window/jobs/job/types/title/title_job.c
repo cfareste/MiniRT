@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:59:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 21:04:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:08:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_job	*init_title_job(t_job *job, char *arg)
 	job->type = TITLE_JOB;
 	job->arg = arg;
 	job->run = run;
+	job->required = 1;
 	return (job);
 }

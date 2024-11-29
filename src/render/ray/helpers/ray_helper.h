@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ray_helper.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:41 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:27:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:04:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../ray.h"
 #include "scene/camera/camera.h"
-#include "render/utils/iterators/iterators.h"
+#include "utils/iterators/iterators.h"
 #include "render/render_bonus.h"
 #include "render/strategies/shared/strategies_shared.h"
 

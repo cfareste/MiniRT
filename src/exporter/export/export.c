@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 19:49:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:41:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "export.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "../helpers/exporter_helper_bonus.h"
+#include "window/loader/strategies/progress/loader_progress.h"
 #include <fcntl.h>
 
 t_export	*new_export(t_exporter *exporter)
@@ -36,8 +37,9 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 	char	*num_str;
 
 	ft_bzero(iter, sizeof(int) * 3);
-	while (iter[0] < px_amount && is_exporter_active(export->exporter))
+	while (is_exporter_active(export->exporter) && iter[0] < px_amount)
 	{
+		loader_add_progress(export->exporter->loader);
 		if (iter[2] == 3)
 		{
 			iter[2] = 0;
@@ -69,6 +71,7 @@ static void	file_from_export(char *path, t_export *export)
 	if (!file_buff)
 		throw_sys_error("Dynamic memory is so funny today :( ");
 	px_amount *= 4;
+	loader_set_total(export->exporter->loader, px_amount);
 	j = fill_buffer(file_buff, px_amount, export);
 	if (is_exporter_active(export->exporter))
 	{
@@ -95,10 +98,12 @@ void	*export_routine(t_export *export)
 	path = set_file_name(export->exporter->render->scene.settings.name,
 			".ppm", EXPORT_BASE_DIR, 0);
 	printf("Exporting %s\n", path);
+	loader_show(export->exporter->loader, BAR, LOADER_SIZE_MINI);
 	file_from_export(path, export);
 	if (is_exporter_active(export->exporter))
 		printf("FINSHED EXPORTING %s: %f\n", path,
 			mlx_get_time() - start_time);
+	loader_hide(export->exporter->loader);
 	free(path);
 	set_exporter_active(export->exporter, 0);
 	free(export);

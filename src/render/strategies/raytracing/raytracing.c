@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:32:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:04:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/scene.h"
 #include "render/ray/helpers/ray_helper.h"
-#include "render/utils/iterators/iterators.h"
+#include "utils/iterators/iterators.h"
 #include "../shared/strategies_shared.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "render/utils/color/color_operations/color_operations.h"

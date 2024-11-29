@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 18:22:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:05:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	main_loop(void *window_)
 
 static void	close_window(t_window *window)
 {
+	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
 	mlx_close_window(window->mlx);
 }
@@ -54,6 +55,8 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			render(window);
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
+		if (keydata.key == MLX_KEY_L)
+			loader_toggle_visibility(window->exporter.loader);
 		if (keydata.key >= MLX_KEY_1 && keydata.key <= MLX_KEY_3)
 		{
 			if (keydata.key == MLX_KEY_1)
@@ -98,8 +101,9 @@ void	init_window(t_window *window)
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
-	init_loader(&window->loader, window->mlx);
-	init_exporter(&window->exporter, &window->render, &window->jobs);
+	init_loader(&window->loader, &window->jobs, window->mlx);
+	init_exporter(&window->exporter, &window->render,
+		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);
 	mlx_key_hook(window->mlx,
 		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
