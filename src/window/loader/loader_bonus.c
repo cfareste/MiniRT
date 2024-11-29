@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 20:53:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:03:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,16 @@ void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size)
 	if (pthread_create(&loader->thread, NULL,
 			(void *(*)(void *)) minirt_load_routine, load) == -1)
 		throw_sys_error("creating loader thread");
+}
+
+void	loader_toggle_visibility(t_loader *loader)
+{
+	int	actual;
+
+	if (!loader_is_alive(loader))
+		return ;
+	pthread_mutex_lock(&loader->img_mutex);
+	actual = loader->image->enabled;
+	pthread_mutex_unlock(&loader->img_mutex);
+	loader_set_img_enabled(loader, !actual);
 }

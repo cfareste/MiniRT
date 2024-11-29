@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 17:13:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:02:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,5 @@ void	loader_hide(t_loader *loader);
 void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx);
 
 void	loader_update_size(t_loader *loader);
+
+void	loader_toggle_visibility(t_loader *loader);
