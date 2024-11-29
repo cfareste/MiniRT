@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   title_job.c                                        :+:      :+:    :+:   */
+/*   job_helper.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:59:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 17:08:44 by arcanava         ###   ########.fr       */
+/*   Created: 2024/11/29 21:13:25 by arcanava          #+#    #+#             */
+/*   Updated: 2024/11/29 21:14:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-#include "title_job.h"
-#include "window/window.h"
-#include "utils/utils_bonus.h"
+#pragma once
+#include "../job.h"
 
-static int	run(t_job *job, t_window *window)
-{
-	mlx_set_window_title(window->mlx, job->arg);
-	return (1);
-}
+void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg);
 
-t_job	*init_title_job(t_job *job, char *arg)
-{
-	job->type = TITLE_JOB;
-	job->arg = arg;
-	job->run = run;
-	job->required = 1;
-	return (job);
-}
+void	job_set_to_free(t_job *job, int to_free);

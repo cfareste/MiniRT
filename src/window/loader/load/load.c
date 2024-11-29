@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 19:18:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:17:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "utils/utils_bonus.h"
 #include "../helpers/loader_helper.h"
 #include "window/jobs/job/types/image_resize/image_resize_job.h"
+#include "window/jobs/job/helpers/job_helper.h"
 #include "../strategies/strategies.h"
 #include "../loader_bonus.h"
 

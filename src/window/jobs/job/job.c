@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 18:15:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:16:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,11 @@
 #include "libft.h"
 #include <pthread.h>
 
-void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg)
+static int	run(t_job *job, t_window *window)
 {
-	pthread_mutex_lock(&job->finished_mutex);
-	while (!job->finished && check_proceed(arg))
-	{
-		pthread_mutex_unlock(&job->finished_mutex);
-		pthread_mutex_lock(&job->finished_mutex);
-	}
-	pthread_mutex_unlock(&job->finished_mutex);
-	job->free(job);
-}
-
-void	job_set_to_free(t_job *job, int to_free)
-{
-	pthread_mutex_lock(&job->to_free_mutex);
-	job->to_free = to_free;
-	pthread_mutex_unlock(&job->to_free_mutex);
+	(void) job;
+	(void) window;
+	return (1);
 }
 
 static void	destroy(t_job *job)
@@ -56,5 +44,6 @@ t_job	*new_job(void)
 	job->required = 0;
 	job->free = free_job;
 	job->destroy = destroy;
+	job->run = run;
 	return (job);
 }

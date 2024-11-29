@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:05:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:17:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../job.h"
 #include "image_resize_job.h"
 #include "utils/size/size.h"
+#include "window/jobs/job/helpers/job_helper.h"
 
 static	void	destroy(t_job *job)
 {

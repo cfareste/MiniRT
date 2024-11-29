@@ -167,6 +167,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/helpers:\
 			$(SRC)window/jobs:\
 			$(SRC)window/jobs/job:\
+			$(SRC)window/jobs/job/helpers:\
 			$(SRC)window/jobs/job/types/title:\
 			$(SRC)window/jobs/job/types/destroy:\
 			$(SRC)window/jobs/job/types/anonymous:\
@@ -304,7 +305,8 @@ SRCS = miniRT.c \
 	image_resize_job.c \
 	loader_progress.c \
 	loader_progress_helper.c \
-	loader_text.c 
+	loader_text.c \
+	job_helper.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

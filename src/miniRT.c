@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 19:03:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:08:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	*start_routine(void *window_)
 	t_window	*window;
 
 	window = (t_window *) window_;
+	push_job(&window->jobs, init_title_job(new_job(),
+			ft_strdup("Loading textures...")));
 	load_textures(&window->loader, &window->textures, &window->jobs);
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
