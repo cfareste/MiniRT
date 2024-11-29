@@ -95,6 +95,7 @@ void	destroy_jobs(t_jobs *jobs)
 	t_job	*job;
 	t_job	*aux;
 
+	pthread_mutex_lock(&jobs->mutex);
 	job = jobs->job;
 	while (job)
 	{

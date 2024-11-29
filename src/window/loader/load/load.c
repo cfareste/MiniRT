@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 18:26:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:18:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "../strategies/strategies.h"
 #include "../loader_bonus.h"
 
-// TODO: Mutex resize!!
 static void	paint(t_load *load)
 {
 	if (!loader_is_alive(load->loader))
