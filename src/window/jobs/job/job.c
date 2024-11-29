@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 14:56:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:15:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg)
 		pthread_mutex_lock(&job->finished_mutex);
 	}
 	pthread_mutex_unlock(&job->finished_mutex);
+	job->free(job);
+}
+
+void	job_set_to_free(t_job *job, int to_free)
+{
+	pthread_mutex_lock(&job->to_free_mutex);
+	job->to_free = to_free;
+	pthread_mutex_unlock(&job->to_free_mutex);
 }
 
 static void	destroy(t_job *job)

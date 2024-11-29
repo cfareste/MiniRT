@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:09:25 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:37:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:58:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,22 @@ void	loader_set_img_enabled(t_loader	*loader, int enabled)
 {
 	pthread_mutex_lock(&loader->img_mutex);
 	loader->image->enabled = enabled;
+	pthread_mutex_unlock(&loader->img_mutex);
+}
+
+int	loader_to_resize(t_loader *loader)
+{
+	int	resize;
+
+	pthread_mutex_lock(&loader->img_mutex);
+	resize = loader->resize;
+	pthread_mutex_unlock(&loader->img_mutex);
+	return (resize);
+}
+
+void	loader_set_resize(t_loader *loader, int resize)
+{
+	pthread_mutex_lock(&loader->img_mutex);
+	loader->resize = resize;
 	pthread_mutex_unlock(&loader->img_mutex);
 }

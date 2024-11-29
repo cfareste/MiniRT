@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:44:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:26:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,25 @@
 // TODO: Mutex resize!!
 static void	paint(t_load *load)
 {
-	t_size		img_size;
-
 	if (!loader_is_alive(load->loader))
 		return ;
-	if (load->loader->resize)
+	if (loader_to_resize(load->loader))
+	{
 		clean_load(load->loader);
-	loader_update_size(load->loader);
-	wait_job(push_job(load->loader->jobs,
-			init_img_resize_job(new_job(),
-				load->loader->size, load->loader->image)),
-		(int (*)(void *)) loader_is_alive, load->loader);
-	load->loader->resize = 0;
-	if (!loader_is_alive(load->loader))
-		return ;
-	img_size = get_image_size(load->loader->image, &load->loader->img_mutex);
-	if (!loader_is_alive(load->loader))
-		return ;
-	if (load->loader->mode == BAR)
-		paint_bar(load->loader, img_size);
-	else
-		paint_text(load->loader, img_size);
+		loader_update_size(load->loader);
+		wait_job(push_job(load->loader->jobs,
+				init_img_resize_job(new_job(),
+					load->loader->size, load->loader->image,
+					&load->loader->img_mutex)),
+			(int (*)(void *)) loader_is_alive, load->loader);
+		loader_set_resize(load->loader, 0);
+	}
+	if (load->loader->mode == BAR && loader_is_alive(load->loader))
+		paint_bar(load->loader, get_image_size(load->loader->image,
+				&load->loader->img_mutex));
+	else if (loader_is_alive(load->loader))
+		paint_text(load->loader, get_image_size(load->loader->image,
+				&load->loader->img_mutex));
 }
 
 void	clean_load(t_loader *loader)

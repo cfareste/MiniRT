@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:36:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:59:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "utils/utils_bonus.h"
 #include "MLX42.h"
 #include "render/renderer/renderer_bonus.h"
+#include "window/loader/helpers/loader_helper.h"
 
 void	window_resized(int32_t width, int32_t height, t_window *window)
 {
 	window->resize.last_resize = 1;
 	window->resize.size.width = width;
 	window->resize.size.height = height;
-	window->exporter.loader->resize = 1;
+	loader_set_resize(window->exporter.loader, 1);
 }
 
 int	diff_sizes(t_size *a, t_size *b)
