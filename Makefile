@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -g
+CCFLAGS += -Wall -Werror -Wextra -O3
 
 
 #----DIRS----#
@@ -123,6 +123,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/light/ambient_light:\
 			$(SRC)scene/figure:\
 			$(SRC)scene/figure/parser:\
+			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/material:\
 			$(SRC)scene/figure/material/helpers:\
@@ -151,6 +152,16 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cone/parser:\
 			$(SRC)scene/figure/types/cone/pattern:\
 			$(SRC)scene/figure/types/cone/texture:\
+			$(SRC)scene/figure/types/disk:\
+			$(SRC)scene/figure/types/disk/parser:\
+			$(SRC)scene/figure/types/disk/texture:\
+			$(SRC)scene/figure/types/quadrilater:\
+			$(SRC)scene/figure/types/quadrilater/helpers:\
+			$(SRC)scene/figure/types/quadrilater/parser:\
+			$(SRC)scene/figure/types/box:\
+			$(SRC)scene/figure/types/box/helpers:\
+			$(SRC)scene/figure/types/box/parser:\
+			$(SRC)scene/figure/types/box/pattern:\
 			$(SRC)scene/figure/texture/bump_map:\
 			$(SRC)scene/figure/texture/bump_map/helpers:\
 			$(SRC)scene/figure/texture/texel:\
@@ -180,6 +191,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
 			$(SRC)render/strategies/pathtracing:\
+			$(SRC)render/strategies/normal_map:\
 			$(SRC)render/strategies/raytracing/helpers:\
 			$(SRC)render/strategies/pathtracing/helpers:\
 			$(SRC)render/utils/color:\
@@ -306,7 +318,19 @@ SRCS = miniRT.c \
 	loader_progress.c \
 	loader_progress_helper.c \
 	loader_text.c \
-	job_helper.c
+	job_helper.c\
+	figure_parser_helpers.c \
+	disk.c \
+	disk_parser.c \
+	bump_map_disk.c \
+	quadrilater.c \
+	quadrilater_parser.c \
+	box.c \
+	box_helpers.c \
+	box_parser.c \
+	quadrilater_helpers.c \
+	box_pattern.c \
+	normal_map.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

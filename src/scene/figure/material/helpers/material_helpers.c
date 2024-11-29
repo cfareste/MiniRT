@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 00:11:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:36:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,17 @@ void	randomize_ray_direction(t_vector *ideal_bounce_direction,
 int	diffuse_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
-	t_vector	new_ray_direction;
+	t_vector				new_ray_direction;
+	t_sample_lights_params	sample_lights_params;
 
 	params->scatter_type = DIFFUSE;
+	sample_lights_params.render = render;
+	sample_lights_params.seed = seed;
 	randomize_ray_direction(&params->hit_record.normal,
 		&params->hit_record.point, seed, &new_ray_direction);
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
-	sample_lights(render, &params->hit_record, DIFFUSE, direct_light);
+	sample_lights(&sample_lights_params, &params->hit_record, DIFFUSE,
+		direct_light);
 	return (1);
 }
 
@@ -72,9 +76,10 @@ void	divert_ray_direction(t_vector *ray_dir, float roughness,
 int	metallic_scatter(t_render *render, t_scatter_params *params,
 	t_color *direct_light, uint32_t *seed)
 {
-	t_metallic_attrs	*metallic_attrs;
-	t_vector			new_ray_direction;
-	t_vector			reflected;
+	t_metallic_attrs		*metallic_attrs;
+	t_vector				new_ray_direction;
+	t_vector				reflected;
+	t_sample_lights_params	sample_lights_params;
 
 	reflect(&params->ray->direction, &params->hit_record.normal, &reflected);
 	new_ray_direction = reflected;
@@ -87,7 +92,10 @@ int	metallic_scatter(t_render *render, t_scatter_params *params,
 		if (dot(&params->hit_record.normal, &new_ray_direction) < 0.0)
 			return (0);
 	}
+	sample_lights_params.render = render;
+	sample_lights_params.seed = seed;
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
-	sample_lights(render, &params->hit_record, METALLIC, direct_light);
+	sample_lights(&sample_lights_params, &params->hit_record, METALLIC,
+		direct_light);
 	return (1);
 }

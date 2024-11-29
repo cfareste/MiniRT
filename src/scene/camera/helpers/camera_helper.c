@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/22 13:46:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	update_camera_front(t_camera *camera, t_point factor)
 	camera->front.x += factor.x * 0.06;
 	camera->front.y += factor.y * 0.06;
 	camera->front.z += factor.z * 0.06;
-	set_camera_vectors(camera);
+	get_axes(&camera->front, &camera->right, &camera->up);
 }

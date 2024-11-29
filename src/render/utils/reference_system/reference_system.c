@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 01:41:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ float	rotate_reference_system(t_vector *normal, t_vector *vec, t_point *point)
 	t_vector	axis;
 	float		angle;
 
-	get_axis(&ideal, BACK);
+	get_world_axis(&ideal, BACK);
 	if (dot(normal, &ideal) == -1.0)
-		get_axis(&axis, UP);
+		get_world_axis(&axis, UP);
 	else
 		cross(normal, &ideal, &axis);
 	if (axis.x == 0.0 && axis.y == 0.0 && axis.z == 0.0)
@@ -41,9 +41,9 @@ void	rotate_by_angle(t_vector *normal, float angle, t_vector *res)
 	t_vector	ideal;
 	t_vector	axis;
 
-	get_axis(&ideal, BACK);
+	get_world_axis(&ideal, BACK);
 	if (dot(normal, &ideal) == -1.0)
-		get_axis(&axis, UP);
+		get_world_axis(&axis, UP);
 	else
 		cross(normal, &ideal, &axis);
 	if (axis.x == 0.0 && axis.y == 0.0 && axis.z == 0.0)
@@ -69,6 +69,6 @@ void	rotate_by_axis(t_pointing axis_pointing, float angle, t_vector *res)
 {
 	t_vector	axis;
 
-	get_axis(&axis, axis_pointing);
+	get_world_axis(&axis, axis_pointing);
 	rotate_vector(res, &axis, angle, res);
 }

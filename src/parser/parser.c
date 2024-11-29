@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 17:12:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:03:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@ static void	check_parsing(t_parser_ctx *ctx, t_window *window)
 
 void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 {
+	char	**splitted_by_comment;
 	char	**args;
 
-	args = ft_split_set(line, SPACES_CHARS);
+	if (*line == '#')
+		return ;
+	splitted_by_comment = ft_split(line, '#');
+	if (!splitted_by_comment)
+		throw_sys_error("ft_split");
+	args = ft_split_set(splitted_by_comment[0], SPACES_CHARS);
 	if (!args)
 		throw_sys_error("ft_split");
-	if (args[0] && *args[0] != '#')
+	if (args[0])
 	{
 		if (!try_parse_scene_elems(ctx, args, &window->render.scene)
 			&& !try_parse_render_elems(ctx, args, &window->render)
@@ -42,6 +48,7 @@ void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 			throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
 	}
 	free_matrix(args);
+	free_matrix(splitted_by_comment);
 }
 
 void	parse_from_fd(t_parser_ctx *ctx, int fd, t_window *window)

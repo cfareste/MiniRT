@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 16:08:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:04:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 #include "utils/iterators/iterators.h"
 #include "render/strategies/strategies.h"
 #include <math.h>
+
+static void	compute_strategy(t_render_part *part, t_ray *ray,
+	t_color *sample_color, uint32_t *seed)
+{
+	if (part->render->strategy == RAYTRACING)
+		compute_raytracing(part->render, ray, sample_color, seed);
+	else if (part->render->strategy == PATHTRACING)
+		compute_pathtracing(part->render, ray, sample_color, seed);
+	else if (part->render->strategy == NORMAL_MAP)
+		compute_normal_map(&part->render->scene, ray, sample_color);
+}
 
 static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	uint32_t *seed)
@@ -34,14 +45,12 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	while (k < part->render->samples)
 	{
 		set_ray_from_camera(&ray, part->render, iterators, seed);
-		if (part->render->raytracing)
-			compute_raytracing(part->render, &ray, &sample_color);
-		else
-			compute_pathtracing(part->render, &ray, &sample_color, seed);
+		compute_strategy(part, &ray, &sample_color, seed);
 		k++;
+		if (part->render->strategy == NORMAL_MAP)
+			break ;
 	}
-	multiply_color_scalar(&sample_color,
-		1 / (float) part->render->samples, &pixel_color);
+	multiply_color_scalar(&sample_color, 1 / (float) k, &pixel_color);
 	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
 		get_color_value(&pixel_color));
 }
@@ -72,8 +81,9 @@ void	set_render_defaults(t_render *render)
 {
 	render->samples = 1;
 	render->antialiasing = 0;
-	render->raytracing = 0;
+	render->strategy = PATHTRACING;
 	render->max_depth = 1;
+	render->soft_shadows_radius = 0;
 }
 
 void	init_render(t_render *render, mlx_t *mlx)

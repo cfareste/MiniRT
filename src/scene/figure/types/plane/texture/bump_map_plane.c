@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:49:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 19:08:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 23:40:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,5 @@ static void	get_texture_normal(t_figure *figure, t_point *point,
 
 void	get_plane_bump_normal(t_figure *figure, t_point *point, t_vector *res)
 {
-	t_point		rotated_point;
-	float		angle;
-
-	get_vector(point, &figure->position, &rotated_point);
-	angle = rotate_reference_system(&figure->pl_attrs->orientation, NULL,
-			&rotated_point);
-	get_texture_normal(figure, &rotated_point, figure->bump_map.texture, res);
-	rotate_by_angle(&figure->pl_attrs->orientation, -angle, res);
+	get_texture_normal(figure, point, figure->bump_map.texture, res);
 }

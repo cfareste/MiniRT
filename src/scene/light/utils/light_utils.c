@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:34:23 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:40:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	set_specular_params(t_scene *scene, t_ray *ray,
 {
 	params->camera_vector = scene->camera->front;
 	reflect(&ray->direction, &hit_record->normal, &params->ray_dir_reflected);
-	params->material_glosiness = hit_record->figure->glosiness;
+	params->material_glossiness = hit_record->figure->glossiness;
 }
 
 void	compute_specular(t_specular_params *params, float material_specular,
@@ -58,7 +58,7 @@ void	compute_specular(t_specular_params *params, float material_specular,
 	strength = dot(&params->camera_vector, &params->ray_dir_reflected);
 	if (strength < 0.0)
 		strength = 0.0;
-	strength = pow(strength, params->material_glosiness);
+	strength = pow(strength, params->material_glossiness);
 	strength *= 1 / pow(params->distance, 2.0);
 	multiply_color_scalar(&light->color,
 		strength * light->brightness * material_specular, &aux);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 19:49:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:02:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include "scene/scene.h"
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
+
+typedef enum e_strategy
+{
+	PATHTRACING,
+	RAYTRACING,
+	NORMAL_MAP
+}	t_strategy;
 
 typedef struct s_render
 {
@@ -30,7 +37,8 @@ typedef struct s_render
 	unsigned int	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
-	int				raytracing;
+	t_strategy		strategy;
+	float			soft_shadows_radius;
 }	t_render;
 
 typedef struct s_render_part

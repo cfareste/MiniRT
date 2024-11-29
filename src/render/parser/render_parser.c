@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 17:26:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/11/29 17:49:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ static void	check_parsing(t_parser_ctx *ctx, t_render *render)
 		throw_parse_err(ctx, "At least 1 sample is required");
 	else if (render->max_depth < 1 || render->max_depth > INT_MAX)
 		throw_parse_err(ctx, "Max depth must be greater than 0");
+	else if (render->soft_shadows_radius < 0)
+		throw_parse_err(ctx, "Soft shadow radius must be a positive value");
+}
+
+static int	free_args(char **args)
+{
+	free_matrix(args);
+	return (0);
 }
 
 static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
@@ -40,12 +48,13 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		&& ensure_params_amount(ctx, args, 1))
 		render->max_depth = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
-		render->raytracing = 1;
+		render->strategy = RAYTRACING;
+	else if (ft_strcmp(args[0], NORMAL_MAP_KEY) == EQUAL_STRINGS)
+		render->strategy = NORMAL_MAP;
+	else if (ft_strcmp(args[0], SOFT_SHADOWS_KEY) == EQUAL_STRINGS)
+		render->soft_shadows_radius = parse_double(ctx, args[1]);
 	else
-	{
-		free_matrix(args);
-		return (0);
-	}
+		free_args(args);
 	free_matrix(args);
 	check_parsing(ctx, render);
 	return (1);

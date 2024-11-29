@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 15:06:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,27 @@
 #include <math.h>
 
 static void	remove_point_texture_offset(t_point *point,
-	float point_base_height, float *arc, t_vector *texture_dims)
+	t_base_point_context *ctx, t_base_attrs *attrs, t_vector *texture_dims)
 {
 	if (point->x < 0.0)
-		*arc = -*arc + texture_dims->x
-			+ (texture_dims->x * (int)(*arc / texture_dims->x));
-	if (point->z < 0.0)
-		point->z = (point->z - point_base_height) + texture_dims->y
-			+ (texture_dims->y * (int)((fabs(point->z)
-						+ point_base_height) / texture_dims->y));
-	if (*arc >= texture_dims->x)
-		*arc = *arc
-			- (texture_dims->x * (int)(*arc / texture_dims->x));
-	if (point->z >= texture_dims->y)
-		point->z = (point->z + point_base_height)
-			- (texture_dims->y * (int)((point->z
-						+ point_base_height) / texture_dims->y));
+		ctx->point_arc = -ctx->point_arc + texture_dims->x
+			+ (texture_dims->x * (int)(ctx->point_arc / texture_dims->x));
+	if (ctx->point_arc >= texture_dims->x)
+		ctx->point_arc = ctx->point_arc
+			- (texture_dims->x * (int)(ctx->point_arc / texture_dims->x));
+	if (attrs->base_distance < 0.0)
+		point->z = (attrs->base_distance - ctx->point_base_height)
+			+ texture_dims->y
+			+ (texture_dims->y * (int)((fabs(attrs->base_distance)
+						+ ctx->point_base_height) / texture_dims->y));
+	if (attrs->base_distance >= 0.0
+		&& attrs->base_distance < texture_dims->y)
+		point->z = attrs->base_distance + ctx->point_base_height;
+	if (attrs->base_distance >= 0.0
+		&& attrs->base_distance + ctx->point_base_height >= texture_dims->y)
+		point->z = (attrs->base_distance + ctx->point_base_height)
+			- (texture_dims->y * (int)((attrs->base_distance
+						+ ctx->point_base_height) / texture_dims->y));
 }
 
 static void	set_base_point_attrs(t_point *point,
@@ -67,14 +72,13 @@ void	get_base_bump_normal(t_figure *figure, t_point *point,
 		* (point_ctx.point_radius / base_attrs->radius);
 	texture_dims.y = figure->bump_map.width_dim
 		* (texture->mlx->height / (float) texture->mlx->width);
-	remove_point_texture_offset(point, point_ctx.point_base_height,
-		&point_ctx.point_arc, &texture_dims);
+	remove_point_texture_offset(point, &point_ctx, base_attrs, &texture_dims);
 	texel.x = point_ctx.point_arc * (texture->mlx->width / texture_dims.x);
 	texel.y = point->z * (texture->mlx->height / texture_dims.y);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	get_pixel_normal(pixel, figure->bump_map.format, res);
-	if (base_attrs->base_distance > 0.0)
+	if (base_attrs->base_distance >= 0.0)
 		return ;
 	rotate_by_axis(UP, M_PI, res);
 }
@@ -98,6 +102,6 @@ void	rotate_bump_to_point_position(t_vector *point_normal, t_vector *res)
 {
 	t_vector	texture_normal;
 
-	get_axis(&texture_normal, BACK);
+	get_world_axis(&texture_normal, BACK);
 	rotate_by_ideal(&texture_normal, point_normal, res);
 }
