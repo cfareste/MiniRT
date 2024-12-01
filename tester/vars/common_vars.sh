@@ -27,7 +27,23 @@ DELETE_LINE="\033[2K\r"
 #----------------#
 
 
-
 #----# Dirs #----#
 SRC=src/
+TESTER=tester/
+#----------------#
+
+
+#---# Scenes #---#
+TEST_SCENE="tester/test_scene.rt"
+#----------------#
+
+
+#--# Defaults #--#
+DEFAULT_CAMERA="C	0,0,0	0,0,-1	60	0	1"
+DEFAULT_AMBIENTAL="A	1	255,255,255"
+#---------------–#
+
+
+#----# Misc #----#
+header=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
 #----------------#

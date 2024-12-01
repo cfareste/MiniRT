@@ -2,12 +2,19 @@
 
 set -o nounset
 
-. ./common_vars.sh --source-only
-. ./utils.sh --source-only
+. ./vars/common_vars.sh --source-only
+. ./utils/utils.sh --source-only
 . ./tests/norme/norme_test.sh --source-only
 . ./tests/scene_settings/scene_settings_test.sh --source-only
 
-header=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
+print_header(){
+	printf "$header"
+	echo
+}
+
+create_test_scene(){
+	(cd .. && > $TEST_SCENE)
+}
 
 execute_tests(){
 	local tests=$(ls tests/)
@@ -20,7 +27,7 @@ execute_tests(){
 	for test in $tests
 	do
 		local test_name="test_"$test
-		$test_name
+		(cd .. && $test_name)
 		local test_status=$?
 
 		if [ $test_status -eq 0 ]
@@ -37,13 +44,33 @@ execute_tests(){
 	printf $YELLOW"Summary:\n"
 	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "${passed_tests[*]}"
 	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "${failed_tests[*]}"
-	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
+	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
+}
+
+remove_test_scene(){
+	(cd .. && rm -rf $TEST_SCENE)
+}
+
+execute_make(){
+	(cd .. && make > /dev/null) &
+}
+
+compile_binary(){
+	local title=$CYAN"Executing "$WHITE_BOLD"make"
+	execute_make
+	local update_pid=$!
+
+	print_status $update_pid "$title"
+	wait $update_pid
+	printf $DELETE_LINE"$title: ✅"$DEF_COLOR"\n"
 }
 
 init_tester(){
-	printf "$header\n"
-
+	print_header
+	compile_binary
+	create_test_scene
 	execute_tests
+	remove_test_scene
 	return 0
 }
 

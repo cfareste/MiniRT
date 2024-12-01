@@ -15,11 +15,15 @@ print_norme_result(){
 	return $exit_status
 }
 
+execute_norminette(){
+	norminette $SRC | grep -v "OK!" > $temp_file &
+}
+
 test_norme(){
 	local test_title=$CYAN"Executing "$WHITE_BOLD"norminette"
 	local temp_file=$(mktemp)
 
-	(cd .. && norminette $SRC | grep -v "OK!" > $temp_file) &
+	execute_norminette
 	local norme_pid=$!
 	print_status $norme_pid "$test_title"
 	wait $norme_pid
