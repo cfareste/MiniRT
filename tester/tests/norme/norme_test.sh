@@ -15,7 +15,7 @@ print_result(){
 	return $exit_status
 }
 
-test_norm(){
+test_norme(){
 	local test_title=$CYAN"Executing "$WHITE_BOLD"norminette"
 	local temp_file=$(mktemp)
 
@@ -31,5 +31,5 @@ test_norm(){
 	print_result "$test_title" $norme_exit_status "$norme_output"
 	local test_status=$?
 
-	return $test_statuse
+	return $test_status
 }
