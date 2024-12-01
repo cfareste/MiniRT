@@ -1,11 +1,11 @@
 #! /bin/bash
 
-print_result(){
+print_norme_result(){
 	printf $DELETE_LINE"$1: "
 
 	if [ $2 -eq 0 ]
 	then
-		printf "❌\n"$RED"%s\n" "$3"
+		printf "❌\n"$RED"%s\n"$DEF_COLOR "$3"
 		exit_status=1
 	else
 		printf "✅"$DEF_COLOR"\n"
@@ -28,7 +28,7 @@ test_norme(){
 	local norme_output=$(cat $temp_file)
 	rm -rf $temp_file
 
-	print_result "$test_title" $norme_exit_status "$norme_output"
+	print_norme_result "$test_title" $norme_exit_status "$norme_output"
 	local test_status=$?
 
 	return $test_status
