@@ -8,7 +8,7 @@ set -o nounset
 . ./tests/scene_settings/scene_settings_test.sh --source-only
 
 print_header(){
-	printf "$header"
+	printf "$HEADER"
 	echo
 }
 
@@ -27,6 +27,7 @@ execute_tests(){
 	for test in $tests
 	do
 		local test_name="test_"$test
+		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
 		(cd .. && $test_name)
 		local test_status=$?
 
@@ -56,13 +57,13 @@ execute_make(){
 }
 
 compile_binary(){
-	local title=$CYAN"Executing "$WHITE_BOLD"make"
+	local title=$CYAN"Compiling "$WHITE_BOLD$PROGRAM
 	execute_make
 	local update_pid=$!
 
 	print_status $update_pid "$title"
 	wait $update_pid
-	printf $DELETE_LINE"$title: ✅"$DEF_COLOR"\n"
+	printf $DELETE_LINE"$title: "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR"\n"
 }
 
 init_tester(){

@@ -5,10 +5,10 @@ print_norme_result(){
 
 	if [ $2 -eq 0 ]
 	then
-		printf "❌\n"$RED"%s\n"$DEF_COLOR "$3"
+		printf $RED_BOLD"$WRONG_ICON\n"$RED"%s\n"$DEF_COLOR "$3"
 		exit_status=1
 	else
-		printf "✅"$DEF_COLOR"\n"
+		printf $GREEN_BOLD$CORRECT_ICON$DEF_COLOR"\n"
 		exit_status=0
 	fi
 
@@ -20,7 +20,7 @@ execute_norminette(){
 }
 
 test_norme(){
-	local test_title=$CYAN"Executing "$WHITE_BOLD"norminette"
+	local test_title=$CYAN"Checking "$WHITE_BOLD"norme"
 	local temp_file=$(mktemp)
 
 	execute_norminette

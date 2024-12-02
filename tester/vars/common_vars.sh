@@ -33,6 +33,11 @@ TESTER=tester/
 #----------------#
 
 
+#--# UseCases #--#
+SCENE_SETTINGS_UC="tester/tests/scene_settings/use_cases/scene_settings_use_cases"
+#----------------#
+
+
 #---# Scenes #---#
 TEST_SCENE="tester/test_scene.rt"
 #----------------#
@@ -45,5 +50,13 @@ DEFAULT_AMBIENTAL="A	1	255,255,255"
 
 
 #----# Misc #----#
-header=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
+HEADER=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
+PROGRAM="miniRT"
+WRONG_ICON="✘"
+CORRECT_ICON="✔"
+#----------------#
+
+
+#---# OLDIFS #---#
+OLDIFS="$IFS"
 #----------------#

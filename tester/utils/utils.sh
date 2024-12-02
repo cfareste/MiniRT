@@ -35,3 +35,30 @@ set_scene_defaults(){
 reset_scene(){
 	> $TEST_SCENE
 }
+
+insert_element_in_scene(){
+	echo $1 >> $TEST_SCENE
+}
+
+start_lazy_kill(){
+	sleep 0.02
+	pkill -2 $PROGRAM
+}
+
+run_program(){
+	./"$PROGRAM" $TEST_SCENE 2>&1
+}
+
+run_test(){
+	local output
+	local exit_status
+	start_lazy_kill &
+	output=$(run_program)
+	exit_status=$?
+	echo "$output"
+	return $exit_status
+}
+
+trim_string(){
+	sed -rE $'s/^[\t ]*|[\t ]*$//g'
+}
