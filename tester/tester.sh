@@ -4,16 +4,14 @@ set -o nounset
 
 . ./vars/common_vars.sh --source-only
 . ./utils/utils.sh --source-only
+. ./utils/assert/assert.sh --source-only
+. ./utils/scene/scene.sh --source-only
 . ./tests/norme/norme_test.sh --source-only
 . ./tests/scene_settings/scene_settings_test.sh --source-only
 
 print_header(){
 	printf "$HEADER"
 	echo
-}
-
-create_test_scene(){
-	(cd .. && > $TEST_SCENE)
 }
 
 execute_tests(){
@@ -27,7 +25,10 @@ execute_tests(){
 	for test in $tests
 	do
 		local test_name="test_"$test
-		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
+		if [ "$test" != "norme" ]
+		then
+			printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
+		fi
 		(cd .. && $test_name)
 		local test_status=$?
 
@@ -46,10 +47,6 @@ execute_tests(){
 	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "${passed_tests[*]}"
 	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "${failed_tests[*]}"
 	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
-}
-
-remove_test_scene(){
-	(cd .. && rm -rf $TEST_SCENE)
 }
 
 execute_make(){
