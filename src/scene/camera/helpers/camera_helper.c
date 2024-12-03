@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:54:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ void	update_camera_fov(t_camera *camera, int factor)
 
 void	update_camera_pos(t_camera *camera, t_point factor)
 {
-	camera->position.x += factor.x;
-	camera->position.y += factor.y;
-	camera->position.z += factor.z;
+	if (factor.x)
+		translate_point(&camera->position, &camera->right, factor.x,
+			&camera->position);
+	if (factor.y)
+		translate_point(&camera->position, &camera->up, factor.y,
+			&camera->position);
+	if (factor.z)
+		translate_point(&camera->position, &camera->front, factor.z,
+			&camera->position);
 }
 
 void	update_camera_focus_dis(t_camera *camera, double factor)
@@ -37,8 +43,8 @@ void	update_camera_focus_dis(t_camera *camera, double factor)
 
 void	update_camera_front(t_camera *camera, t_point factor)
 {
-	camera->front.x += factor.x * 0.06;
-	camera->front.y += factor.y * 0.06;
-	camera->front.z += factor.z * 0.06;
+	camera->front.x += factor.x;
+	camera->front.y += factor.y;
+	camera->front.z += factor.z;
 	get_axes(&camera->front, &camera->right, &camera->up);
 }

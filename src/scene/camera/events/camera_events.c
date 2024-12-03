@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/22 13:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:55:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 static int	movement_event(keys_t key, t_camera *camera)
 {
 	if (key == MLX_KEY_UP)
-		update_camera_front(camera, wrap_point(0, 0.2, 0));
+		update_camera_front(camera, wrap_point(0, 0.02, 0));
 	else if (key == MLX_KEY_DOWN)
-		update_camera_front(camera, wrap_point(0, -0.2, 0));
+		update_camera_front(camera, wrap_point(0, -0.02, 0));
 	else if (key == MLX_KEY_LEFT)
-		update_camera_front(camera, wrap_point(-0.2, 0, 0));
+		update_camera_front(camera, wrap_point(-0.02, 0, 0));
 	else if (key == MLX_KEY_RIGHT)
-		update_camera_front(camera, wrap_point(0.2, 0, 0));
+		update_camera_front(camera, wrap_point(0.02, 0, 0));
 	else if (key == MLX_KEY_SPACE)
 		update_camera_pos(camera, wrap_point(0, 0.2, 0));
 	else if (key == MLX_KEY_LEFT_SHIFT || key == MLX_KEY_RIGHT_SHIFT)
 		update_camera_pos(camera, wrap_point(0, -0.2, 0));
 	else if (key == MLX_KEY_W)
-		update_camera_pos(camera, wrap_point(0, 0, -0.2));
-	else if (key == MLX_KEY_S)
 		update_camera_pos(camera, wrap_point(0, 0, 0.2));
+	else if (key == MLX_KEY_S)
+		update_camera_pos(camera, wrap_point(0, 0, -0.2));
 	else if (key == MLX_KEY_A)
 		update_camera_pos(camera, wrap_point(-0.2, 0, 0));
 	else if (key == MLX_KEY_D)
