@@ -17,6 +17,12 @@ run_test(){
 	return $exit_status
 }
 
+reset_group_test(){
+	reset_scene
+	$1
+	IFS=$'\n'
+}
+
 process_test_result(){
 	local expected_exit_code=1
 
@@ -52,7 +58,7 @@ execute_group_test(){
 	local test_status
 	local group_result=0
 
-	$1
+	reset_group_test $1
 	for line in $(cat < "$2")
 	do
 		IFS=';'
@@ -82,7 +88,7 @@ execute_group_test(){
 			group_result=1
 		fi
 		((test_id++))
-		$1
+		reset_group_test $1
 	done
 
 	IFS="$OLDIFS"

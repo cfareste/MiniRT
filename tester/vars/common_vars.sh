@@ -35,6 +35,13 @@ TESTER=tester/
 
 #--# UseCases #--#
 SCENE_SETTINGS_UC="tester/tests/scene_settings/use_cases/scene_settings_use_cases"
+RENDER_SETTINGS_UC="tester/tests/render_settings/use_cases/render_settings_use_cases"
+WINDOW_SETTINGS_UC="tester/tests/window_settings/use_cases/window_settings_use_cases"
+AMBIENTAL_UC="tester/tests/ambiental/use_cases/ambiental_use_cases"
+CAMERA_UC="tester/tests/camera/use_cases/camera_use_cases"
+LIGHT_UC="tester/tests/light/use_cases/light_use_cases"
+FIGURE_UC="tester/tests/figure/use_cases/figure_use_cases"
+OPTIONAL_UC="tester/tests/optional/use_cases/optional_use_cases"
 #----------------#
 
 
@@ -46,6 +53,7 @@ TEST_SCENE="tester/test_scene.rt"
 #--# Defaults #--#
 DEFAULT_CAMERA="C	0,0,0	0,0,-1	60	0	1"
 DEFAULT_AMBIENTAL="A	1	255,255,255"
+DEFAULT_FIGURE="sp		0,0,10		2		255,255,255"
 #---------------–#
 
 

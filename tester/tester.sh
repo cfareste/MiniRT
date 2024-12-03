@@ -8,6 +8,13 @@ set -o nounset
 . ./utils/scene/scene.sh --source-only
 . ./tests/norme/norme_test.sh --source-only
 . ./tests/scene_settings/scene_settings_test.sh --source-only
+. ./tests/render_settings/render_settings_test.sh --source-only
+. ./tests/window_settings/window_settings_test.sh --source-only
+. ./tests/ambiental/ambiental_test.sh --source-only
+. ./tests/camera/camera_test.sh --source-only
+. ./tests/light/light_test.sh --source-only
+. ./tests/figure/figure_test.sh --source-only
+. ./tests/optional/optional_test.sh --source-only
 
 print_header(){
 	printf "$HEADER"
@@ -34,10 +41,10 @@ execute_tests(){
 
 		if [ $test_status -eq 0 ]
 		then
-			passed_tests=($passed_tests $test)
+			passed_tests+=($test)
 			((num_passed++))
 		else
-			failed_tests=($failed_tests $test)
+			failed_tests+=($test)
 			((num_failed++))
 		fi
 	done
