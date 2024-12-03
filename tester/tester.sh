@@ -22,20 +22,27 @@ print_header(){
 }
 
 execute_tests(){
-	local tests=$(ls tests/)
-	local passed_tests=""
-	local failed_tests=""
+	local tests=$(ls tests/ | grep -v "norme")
+	local passed_tests
+	local failed_tests
 	local total_tests=$(ls tests/ | wc -w)
 	local num_passed=0
 	local num_failed=0
 
+	(cd .. && test_norme)
+	if [ $? -eq 0 ]
+	then
+		passed_tests="norme"
+		((num_passed++))
+	else
+		failed_tests="norme"
+		((num_failed++))
+	fi
+
 	for test in $tests
 	do
 		local test_name="test_"$test
-		if [ "$test" != "norme" ]
-		then
-			printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
-		fi
+		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
 		(cd .. && $test_name)
 		local test_status=$?
 
