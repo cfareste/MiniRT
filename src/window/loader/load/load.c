@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:17:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:19:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	paint(t_load *load)
 		return ;
 	if (loader_to_resize(load->loader))
 	{
-		clean_load(load->loader);
 		loader_update_size(load->loader);
 		wait_job(push_job(load->loader->jobs,
 				init_img_resize_job(new_job(),

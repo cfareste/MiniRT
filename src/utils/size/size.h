@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   size.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:43 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:56:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:59:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include <pthread.h>
 
 typedef struct s_window_size
 {
 	unsigned int	width;
 	unsigned int	height;
+	pthread_mutex_t	mutex;
 }	t_size;
 
-t_size	new_size(int height, int width);
+void	set_size(t_size *size, unsigned int width, unsigned int height);
+
+t_size	get_size(t_size *size);

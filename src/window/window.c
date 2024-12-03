@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 23:05:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:45:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "scene/camera/events/camera_events.h"
 #include "jobs/job/job.h"
 #include "miniRT.h"
+#include "window/loader/helpers/loader_helper.h"
 
 static void	main_loop(void *window_)
 {
@@ -33,7 +34,9 @@ static void	main_loop(void *window_)
 		&& diff_sizes(&window->size, &window->resize.size))
 	{
 		window->resize.last_resize = 0;
-		window->size = window->resize.size;
+		set_size(&window->size,
+			window->resize.size.width, window->resize.size.height);
+		loader_set_resize(window->exporter.loader, 1);
 		render(window);
 	}
 }
@@ -94,6 +97,7 @@ void	init_window(t_window *window)
 {
 	pthread_mutex_init(&window->ready, NULL);
 	pthread_mutex_init(&window->jobs.mutex, NULL);
+	pthread_mutex_init(&window->size.mutex, NULL);
 	pthread_mutex_lock(&window->ready);
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
@@ -101,7 +105,7 @@ void	init_window(t_window *window)
 	window->last_scroll = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
-	init_loader(&window->loader, &window->jobs, window->mlx);
+	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);

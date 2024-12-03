@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:02:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:38:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 
 #define BAR_MINI
 #define TEXT_FULL
-#define MIN_LOADER_MINI_WIDTH 120
+#define MIN_LOADER_MINI_WIDTH 10
 #define MAX_LOADER_MINI_WIDTH 400
-#define MIN_LOADER_MINI_HEIGHT 80
-#define MAX_LOADER_MINI_HEIGHT 200
+#define MIN_LOADER_MINI_HEIGHT 2
+#define MAX_LOADER_MINI_HEIGHT 25
+#define LOADER_POS 45
 
 typedef enum loader_size
 {
@@ -58,13 +59,14 @@ typedef struct s_loader
 	t_jobs			*jobs;
 	int				resize;
 	pthread_mutex_t	resize_mutx;
+	t_size			*w_size;
 }	t_loader;
 
 void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size);
 
 void	loader_hide(t_loader *loader);
 
-void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx);
+void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx, t_size *w_size);
 
 void	loader_update_size(t_loader *loader);
 

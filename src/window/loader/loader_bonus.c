@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:03:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:38:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	loader_hide(t_loader *loader)
 	pthread_join(loader->thread, NULL);
 }
 
-void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx)
+void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx, t_size *w_size)
 {
 	pthread_mutex_init(&loader->img_mutex, NULL);
 	pthread_mutex_init(&loader->alive_mutx, NULL);
@@ -34,27 +34,23 @@ void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx)
 	loader->resize = 1;
 	loader->jobs = jobs;
 	loader->mlx = mlx;
+	loader->w_size = w_size;
 	loader->image = mlx_new_image(mlx, mlx->width, mlx->height);
-	mlx_image_to_window(mlx, loader->image, 0, 0);
+	mlx_image_to_window(mlx, loader->image, LOADER_POS, LOADER_POS);
 	mlx_set_instance_depth(loader->image->instances
 		+ loader->image->count - 1, 1);
 }
 
 void	loader_update_size(t_loader *loader)
 {
+	t_size	w_size;
+
+	w_size = get_size(loader->w_size);
 	pthread_mutex_lock(&loader->img_mutex);
-	if (loader->lsize == LOADER_SIZE_FULL)
-	{
-		loader->size.width = loader->mlx->width;
-		loader->size.height = loader->mlx->height;
-	}
-	else
-	{
-		loader->size.width = ft_clamp(loader->mlx->width / 2,
-				MIN_LOADER_MINI_WIDTH, MAX_LOADER_MINI_WIDTH);
-		loader->size.height = ft_clamp(loader->mlx->height / 2,
-				MIN_LOADER_MINI_HEIGHT, MAX_LOADER_MINI_HEIGHT);
-	}
+	loader->size.width = ft_clamp(w_size.width / 2 - LOADER_POS,
+			MIN_LOADER_MINI_WIDTH, MAX_LOADER_MINI_WIDTH);
+	loader->size.height = ft_clamp(w_size.height / 10,
+			MIN_LOADER_MINI_HEIGHT, MAX_LOADER_MINI_HEIGHT);
 	pthread_mutex_unlock(&loader->img_mutex);
 }
 
