@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 19:05:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 20:48:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #  define WINDOW_HEIGHT 800
 # endif
 # define ICON_PATH "assets/images/icon.png"
+# define KEY_REPEAT_RATE 0.04
 
 # include "MLX42.h"
 # include "render/render_bonus.h"
@@ -49,6 +50,7 @@ typedef struct s_window
 	t_loader		loader;
 	t_jobs			jobs;
 	t_textures		textures;
+	double			last_update;
 }	t_window;
 
 void	init_window(t_window *window);

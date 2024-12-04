@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 00:59:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:13:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,5 @@ t_point	wrap_point(double x, double y, double z)
 	point.x = x;
 	point.y = y;
 	point.z = z;
-	printf("Wrapped point: %f,%f,%f\n",
-		point.x,
-		point.y,
-		point.z);
 	return (point);
 }

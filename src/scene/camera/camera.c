@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 13:33:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:38:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include "parser/camera_parser.h"
+#include "helpers/camera_helper.h"
 #include <math.h>
 
 void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
@@ -51,4 +52,27 @@ void	print_camera(t_camera *camera)
 		camera->right.x, camera->right.y, camera->right.z,
 		camera->up.x, camera->up.y, camera->up.z,
 		camera->fov);
+}
+
+t_camera	*camera_dup(t_camera *camera, t_camera_controls *controls)
+{
+	t_camera	*new;
+
+	new = ft_calloc(1, sizeof(t_camera));
+	if (!new)
+		throw_sys_error("trying to allocate t_camera");
+	*new = *camera;
+	new->controls = *controls;
+	return (new);
+}
+
+void	update_camera(t_camera *camera)
+{
+	update_camera_focus_dis(camera, camera->controls.focus_dist);
+	update_camera_fov(camera, camera->controls.zoom);
+	update_camera_front(camera, wrap_point(0.02 * camera->controls.view_right,
+			0.02 * camera->controls.view_up, 0));
+	update_camera_pos(camera, wrap_point(0.2 * camera->controls.move_right,
+			0.2 * camera->controls.move_up,
+			0.2 * camera->controls.move_front));
 }

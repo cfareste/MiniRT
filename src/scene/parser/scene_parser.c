@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 23:42:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:30:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	try_parse_scene_elems(t_parser_ctx *ctx, char **args,
 	if (is_char && *args[0] == AMBIENT_LIGHT_ID)
 		parse_ambient_light(ctx, args, &scene->ambient_light);
 	else if (is_char && *args[0] == CAMERA_ID[0])
+	{
 		parse_camera(ctx, args, &scene->camera);
+		scene->orig_camera = *scene->camera;
+	}
 	else if (is_char && (*args[0] == LIGHT_ID_MANDATORY
 			|| *args[0] == LIGHT_ID))
 		parse_light(ctx, args, &scene->lights);

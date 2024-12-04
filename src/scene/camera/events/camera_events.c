@@ -6,52 +6,67 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:55:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:44:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "camera_events.h"
 #include "../helpers/camera_helper.h"
 #include "render/renderer/renderer_bonus.h"
 
-static int	movement_event(keys_t key, t_camera *camera)
+static int	set_control(int8_t *control, mlx_key_data_t *keydata, keys_t pos,
+					keys_t neg)
 {
-	if (key == MLX_KEY_UP)
-		update_camera_front(camera, wrap_point(0, 0.02, 0));
-	else if (key == MLX_KEY_DOWN)
-		update_camera_front(camera, wrap_point(0, -0.02, 0));
-	else if (key == MLX_KEY_LEFT)
-		update_camera_front(camera, wrap_point(-0.02, 0, 0));
-	else if (key == MLX_KEY_RIGHT)
-		update_camera_front(camera, wrap_point(0.02, 0, 0));
-	else if (key == MLX_KEY_SPACE)
-		update_camera_pos(camera, wrap_point(0, 0.2, 0));
-	else if (key == MLX_KEY_LEFT_SHIFT || key == MLX_KEY_RIGHT_SHIFT)
-		update_camera_pos(camera, wrap_point(0, -0.2, 0));
-	else if (key == MLX_KEY_W)
-		update_camera_pos(camera, wrap_point(0, 0, 0.2));
-	else if (key == MLX_KEY_S)
-		update_camera_pos(camera, wrap_point(0, 0, -0.2));
-	else if (key == MLX_KEY_A)
-		update_camera_pos(camera, wrap_point(-0.2, 0, 0));
-	else if (key == MLX_KEY_D)
-		update_camera_pos(camera, wrap_point(0.2, 0, 0));
+	int8_t	mod;
+	int8_t	factor;
+
+	factor = 0;
+	mod = 0;
+	if (keydata->key == pos)
+		factor = 1;
+	else if (keydata->key == neg)
+		factor = -1;
 	else
-		return (0);
-	return (1);
+		return (mod);
+	if (keydata->action == MLX_PRESS)
+		mod = 1;
+	else if (keydata->action == MLX_RELEASE)
+		mod = -1;
+	factor *= mod;
+	*control += factor;
+	return (mod);
+}
+
+static void	movement_event(mlx_key_data_t *keydata, t_camera *camera)
+{
+	camera->controls.moving += set_control(&camera->controls.view_up,
+			keydata, MLX_KEY_UP, MLX_KEY_DOWN);
+	camera->controls.moving += set_control(&camera->controls.view_right,
+			keydata, MLX_KEY_RIGHT, MLX_KEY_LEFT);
+	camera->controls.moving += set_control(&camera->controls.move_up,
+			keydata, MLX_KEY_SPACE, MLX_KEY_LEFT_SHIFT);
+	camera->controls.moving += set_control(&camera->controls.move_front,
+			keydata, MLX_KEY_W, MLX_KEY_S);
+	camera->controls.moving += set_control(&camera->controls.move_right,
+			keydata, MLX_KEY_D, MLX_KEY_A);
 }
 
 void	camera_key_events(mlx_key_data_t keydata, t_window *window)
 {
-	if (keydata.key == MLX_KEY_I)
-		update_camera_fov(window->render.scene.camera, -1);
-	else if (keydata.key == MLX_KEY_O)
-		update_camera_fov(window->render.scene.camera, 1);
-	else if (keydata.key == MLX_KEY_K)
-		update_camera_focus_dis(window->render.scene.camera, -1);
-	else if (keydata.key == MLX_KEY_J)
-		update_camera_focus_dis(window->render.scene.camera, 1);
-	else if (!movement_event(keydata.key, window->render.scene.camera))
-		return ;
-	render(window);
+	t_camera	*camera;
+
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_C)
+	{
+		window->render.scene.camera = camera_dup(
+				&window->render.scene.orig_camera,
+				&window->render.scene.camera->controls);
+		render(window);
+	}
+	camera = window->render.scene.camera;
+	camera->controls.moving += set_control(&camera->controls.zoom,
+			&keydata, MLX_KEY_O, MLX_KEY_I);
+	camera->controls.moving += set_control(&camera->controls.focus_dist,
+			&keydata, MLX_KEY_J, MLX_KEY_K);
+	movement_event(&keydata, window->render.scene.camera);
 }

@@ -27,8 +27,10 @@
 static void	main_loop(void *window_)
 {
 	t_window	*window;
+	int			to_render;
 
 	window = (t_window *) window_;
+	to_render = 0;
 	exec_jobs(&window->jobs, window);
 	if (window->resize.last_resize
 		&& diff_sizes(&window->size, &window->resize.size))
@@ -37,8 +39,17 @@ static void	main_loop(void *window_)
 		set_size(&window->size,
 			window->resize.size.width, window->resize.size.height);
 		loader_set_resize(window->exporter.loader, 1);
-		render(window);
+		to_render = 1;
 	}
+	else if (mlx_get_time() - window->last_update > KEY_REPEAT_RATE
+		&& window->render.scene.camera->controls.moving)
+	{
+		update_camera(window->render.scene.camera);
+		window->last_update = mlx_get_time();
+		to_render = 1;
+	}
+	if (to_render)
+		render(window);
 }
 
 static void	close_window(t_window *window)
@@ -103,6 +114,7 @@ void	init_window(t_window *window)
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			PROGRAM_NAME, true);
 	window->last_scroll = mlx_get_time();
+	window->last_update = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);

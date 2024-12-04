@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/20 15:12:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:30:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_scene
 	t_scene_settings	settings;
 	t_light				*ambient_light;
 	t_camera			*camera;
+	t_camera			orig_camera;
 	t_light				*lights;
 	t_figure			*figures;
 	int					ready;

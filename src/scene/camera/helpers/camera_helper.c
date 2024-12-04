@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:54:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:42:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	update_camera_fov(t_camera *camera, int factor)
 {
 	int	new_fov;
 
+	if (!factor)
+		return ;
 	new_fov = camera->fov + factor;
 	if (new_fov <= 180 && new_fov >= 0)
 		camera->fov = new_fov;
@@ -38,11 +40,15 @@ void	update_camera_pos(t_camera *camera, t_point factor)
 
 void	update_camera_focus_dis(t_camera *camera, double factor)
 {
+	if (!factor)
+		return ;
 	camera->focus_dist += (factor * 0.2);
 }
 
 void	update_camera_front(t_camera *camera, t_point factor)
 {
+	if (!factor.x && !factor.y && !factor.z)
+		return ;
 	camera->front.x += factor.x;
 	camera->front.y += factor.y;
 	camera->front.z += factor.z;
