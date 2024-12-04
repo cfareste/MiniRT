@@ -1,1 +1,21 @@
-L	  0,0,0  	5	255,255,255	#		;				SUCCESS
+l	  0,0,0  	5	255,255,255	#		;										SUCCESS
+L	  0,0,0  	5	255,255,255	#		;										SUCCESS
+  L	  0,0,0  	5	255,255,255	#	 ;											SUCCESS
+ 	L	  0,0,0  	5	255,255,255	#	;										SUCCESS
+	L	  0,0,0  	5	255,255,255	# 	;										SUCCESS
+ L	  0,0,0  	5	255,255,255		#dsadfad;									SUCCESS
+ L	  0,0,0  	5	255,255,255	#L   ;											SUCCESS
+L	  0,0,0  	5	255,255,255	#L  0,0,0  	5	255,255,255	#;					SUCCESS
+l;																				FAILURE			;		Missing light params
+L	;																			FAILURE			;		Missing light params
+L   0,0,0 #  		255,255,255;												FAILURE			;		Missing light params
+L   0,0,0 	5#  		255,255,255;											FAILURE			;		Missing light params
+lfhdjfdh   ;																	FAILURE			;		Unknown parameter: lfhdjfdh
+Lfhdjfdh   ;																	FAILURE			;		Unknown parameter: Lfhdjfdh
+Lfhdjfdh   0,0,0 5    255,255,255;												FAILURE			;		Unknown parameter: Lfhdjfdh
+Light L ;																		FAILURE			;		Unknown parameter: Light
+light l ;																		FAILURE			;		Unknown parameter: light
+L	  20,-3,10  	5	255,255,255;											SUCCESS
+L	  20,-3,10  	5	255,255,255;											SUCCESS
+L	  20,-3,10  	-1	255,255,255;											FAILURE			;		Light brightness must be a positive value
+L	  20,-3,10  	0	255,255,255;											SUCCESS

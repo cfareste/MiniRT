@@ -4,13 +4,24 @@
 #S#   ;										SUCCESS
 	# 	S	#;								SUCCESS
 	#	S	#	sdadsd	;					SUCCESS
-S	sky:two,2.,41					#	;	FAILURE			;		Invalid integer number: 1.0
+S	sky:1.0,2.,41					#	;	FAILURE			;		Invalid integer number: 1.0
+S	sky:two,2.,41					#	;	FAILURE			;		Invalid integer number: two
 S	sky:24,2.,41					#	;	FAILURE			;		Invalid integer number: 2.
 S	sky:24,gad,41					#	;	FAILURE			;		Invalid integer number: gad
 S	sky:24,43,43.0					#	;	FAILURE			;		Invalid integer number: 43.0
+S	sky:24,43,43.0					#	;	FAILURE			;		Invalid integer number: 43.0
+S	sky:24,43,fadf					#	;	FAILURE			;		Invalid integer number: fadf
 S	sky:24,							#	;	FAILURE			;		Missing color params: 24,
 S	sky:241,241						#	;	FAILURE			;		Missing color params: 241,241
-S	sky:241,241,255					#	;	SUCCESS
 S	sky:241:241:255					#	;	FAILURE			;		Missing color params: 241			
 S	sky:300,241,255					#	;	FAILURE			;		Color params must be in range [0,255]
 S	sky:-10,241,255					#	;	FAILURE			;		Color params must be in range [0,255]
+L	  0,0,0  	0.2	255,255,255	#		;	SUCCESS
+L	  0,0,0  	0.	255,255,255	#		;	SUCCESS
+L	  0,0,0  	.2	255,255,255	#		;	SUCCESS
+L	  0,0,0  	2..2	255,255,255	#	;	FAILURE			;		Invalid floating point number: 2..2
+L	  0,0,0  	.2.2	255,255,255	#	;	FAILURE			;		Invalid floating point number: .2.2
+L	  0,0,0  	.222.	255,255,255	#	;	FAILURE			;		Invalid floating point number: .222.
+L	  0,0,0  	2.2.	255,255,255	#	;	FAILURE			;		Invalid floating point number: 2.2.
+L	  0,0,0  	a.2.	255,255,255	#	;	FAILURE			;		Invalid floating point number: a.2.
+L	  0,0,0  	2.a		255,255,255	#	;	FAILURE			;		Invalid floating point number: 2.a

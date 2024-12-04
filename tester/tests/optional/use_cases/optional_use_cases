@@ -1,1 +1,48 @@
-mat:diffuse		#		;				SUCCESS
+mat:diffuse		#		;										SUCCESS
+mat:metallic:0		#		;									SUCCESS
+mat:glass:1.5:1		#		;									SUCCESS
+mat:plastic:0.2:0		#		;								SUCCESS
+mat:emissive:1		#		;									SUCCESS
+mat:diffuse	mat:metallic:0	#		;							SUCCESS
+gl:256					;										SUCCESS
+bm:assets/textures/test.png:1	;								SUCCESS
+cd:255,255,255:0,0,0:1				;							SUCCESS
+diffuse							;								FAILURE			;		Unknown figure optional param identifier: diffuse
+material:diffuse							;					FAILURE			;		Unknown figure optional param identifier: material
+glossiness:256							;						FAILURE			;		Unknown figure optional param identifier: glossiness
+bump:assets/textures/test.png:1							;		FAILURE			;		Unknown figure optional param identifier: bump
+checkerboard:diffuse							;				FAILURE			;		Unknown figure optional param identifier: checkerboard
+mat				#		;										FAILURE			;		Missing material type
+mat:				#		;									FAILURE			;		Missing material type
+mat:diffuse:01	#		;										SUCCESS
+mat:metallic:		#		;									FAILURE			;		Missing metallic roughness attribute
+mat:metallic:-1		#		;									FAILURE			;		Metallic roughness must be in range [0,1]
+mat:metallic:2		#		;									FAILURE			;		Metallic roughness must be in range [0,1]
+mat:glass:		#		;										FAILURE			;		Missing some glass attributes
+mat:glass:1		#		;										FAILURE			;		Missing some glass attributes
+mat:glass:-1:1		#		;									FAILURE			;		Refraction index must be greater than 1
+mat:glass:0:1		#		;									FAILURE			;		Refraction index must be greater than 1
+mat:glass:1:2		#		;									FAILURE			;		Glass transparency must be in range [0,1]
+mat:glass:1:-1		#		;									FAILURE			;		Glass transparency must be in range [0,1]
+mat:plastic:		#		;									FAILURE			;		Missing some plastic attributes
+mat:plastic:1		#		;									FAILURE			;		Missing some plastic attributes
+mat:plastic:-1:0		#		;								FAILURE			;		Specular index must be in range [0,1]
+mat:plastic:2:0			#		;								FAILURE			;		Specular index must be in range [0,1]
+mat:plastic:0.2:-1			#		;							FAILURE			;		Plastic roughness must be in range [0,1]
+mat:plastic:0:2			#		;								FAILURE			;		Plastic roughness must be in range [0,1]
+mat:emissive:		#		;									FAILURE			;		Missing emissive intensity attribute
+mat:emissive:-1		#		;									FAILURE			;		Emissive intensity must be a positive value
+gl								;								FAILURE			;		Missing glossiness value
+gl:								;								FAILURE			;		Missing glossiness value
+gl:-1								;							FAILURE			;		Glossiness must be a positive value
+gl:0								;							FAILURE			;		Glossiness must be a positive value
+bm							;									FAILURE			;		Missing texture params
+bm:							;									FAILURE			;		Missing texture params
+bm:assets/textures/test.png:			;						FAILURE			;		Missing texture params
+bm:assets/textures/test.png:0			;						FAILURE			;		Texture width must be greater than 0
+bm:assets/textures/test.png:-1			;						FAILURE			;		Texture width must be greater than 0
+cd				;												FAILURE			;		Missing parameters for color disruption
+cd:255,255,255	;												FAILURE			;		Missing parameters for color disruption
+cd:255,255,255:0,0,0	;										FAILURE			;		Missing parameters for color disruption
+cd:255,255,255:0,0,0:0	;										FAILURE			;		Pattern width must be greater than 0
+cd:255,255,255:0,0,0:-1	;										FAILURE			;		Pattern width must be greater than 0
