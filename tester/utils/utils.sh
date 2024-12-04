@@ -24,11 +24,11 @@ trim_string(){
 }
 
 split_string_by_commas(){
-	sed -rE 's/ /, /g'
+	sed -rE $'s/ /, /g'
 }
 
 remove_repeated_spaces(){
-	sed -rE 's/[\t ]{1,}/ /g'
+	sed -rE $'s/[\t ]{1,}/ /g'
 }
 
 has_been_signaled(){
