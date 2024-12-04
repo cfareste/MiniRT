@@ -207,6 +207,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/random:\
 			$(SRC)render/parser:\
 			$(SRC)render/renders:\
+			$(SRC)render/events:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
@@ -330,7 +331,8 @@ SRCS = miniRT.c \
 	box_parser.c \
 	quadrilater_helpers.c \
 	box_pattern.c \
-	normal_map.c
+	normal_map.c \
+	render_events.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

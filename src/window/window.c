@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/03 17:45:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:12:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "jobs/job/job.h"
 #include "miniRT.h"
 #include "window/loader/helpers/loader_helper.h"
+#include "render/events/render_events.h"
 
 static void	main_loop(void *window_)
 {
@@ -41,7 +42,8 @@ static void	main_loop(void *window_)
 		loader_set_resize(window->exporter.loader, 1);
 		to_render = 1;
 	}
-	else if (mlx_get_time() - window->last_update > KEY_REPEAT_RATE
+	else if (!window->render.blocked
+		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE
 		&& window->render.scene.camera->controls.moving)
 	{
 		update_camera(window->render.scene.camera);
@@ -65,23 +67,12 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 			close_window(window);
-		if (keydata.key == MLX_KEY_R || keydata.key == MLX_KEY_F5)
-			render(window);
 		if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
 		if (keydata.key == MLX_KEY_L)
 			loader_toggle_visibility(window->exporter.loader);
-		if (keydata.key >= MLX_KEY_1 && keydata.key <= MLX_KEY_3)
-		{
-			if (keydata.key == MLX_KEY_1)
-				window->render.strategy = RAYTRACING;
-			else if (keydata.key == MLX_KEY_2)
-				window->render.strategy = PATHTRACING;
-			else if (keydata.key == MLX_KEY_3)
-				window->render.strategy = NORMAL_MAP;
-			render(window);
-		}
 	}
+	render_key_events(&keydata, window);
 	camera_key_events(keydata, window);
 }
 
@@ -91,7 +82,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 	(void) xdelta;
 	window = (t_window *) param;
-	if (mlx_get_time() - window->last_scroll < 0.2)
+	if (window->render.blocked || mlx_get_time() - window->last_scroll < 0.2)
 		return ;
 	stop_render(&window->render);
 	if (ydelta <= -1.0)

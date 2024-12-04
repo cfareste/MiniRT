@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/04 21:44:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/04 22:13:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	camera_key_events(mlx_key_data_t keydata, t_window *window)
 {
 	t_camera	*camera;
 
-	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_C)
+	if (!window->render.blocked
+		&& keydata.action == MLX_PRESS && keydata.key == MLX_KEY_C)
 	{
 		window->render.scene.camera = camera_dup(
 				&window->render.scene.orig_camera,
