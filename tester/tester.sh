@@ -15,6 +15,7 @@ set -o nounset
 . ./tests/light/light_test.sh --source-only
 . ./tests/figure/figure_test.sh --source-only
 . ./tests/optional/optional_test.sh --source-only
+. ./tests/misc/misc_test.sh --source-only
 
 print_header(){
 	printf "$HEADER"
@@ -59,6 +60,7 @@ execute_tests(){
 
 	passed_tests=$(echo "${passed_tests[*]}" | trim_string | split_string_by_commas)
 	failed_tests=$(echo "${failed_tests[*]}" | trim_string | split_string_by_commas)
+	echo
 	printf $YELLOW"Summary:\n"
 	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "$passed_tests"
 	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "$failed_tests"

@@ -42,6 +42,7 @@ CAMERA_UC="tester/tests/camera/use_cases/camera_use_cases"
 LIGHT_UC="tester/tests/light/use_cases/light_use_cases"
 FIGURE_UC="tester/tests/figure/use_cases/figure_use_cases"
 OPTIONAL_UC="tester/tests/optional/use_cases/optional_use_cases"
+MISC_UC="tester/tests/misc/use_cases/misc_use_cases"
 #----------------#
 
 
