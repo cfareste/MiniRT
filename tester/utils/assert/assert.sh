@@ -34,6 +34,7 @@ process_test_result(){
 	if [ $expected_exit_code -ne $4 ] || ([ "$5" != "$6" ] && [ ! -z "$6" ])
 	then
 		IFS=$'\n'
+		local parsed_test_title=$(echo "$2" | remove_repeated_spaces)
 		local parsed_actual="(No error returned)"
 		if has_been_signaled $4
 		then
@@ -44,7 +45,7 @@ process_test_result(){
 			parsed_actual=${splitted_actual[1]}
 		fi
 		printf $BLUE"Test "$YELLOW$1$WHITE$BLUE":\n"
-		printf $WHITE" - Testing: $PINK\"$2\"\n"$DEF_COLOR
+		printf $WHITE" - Testing: $PINK\"$parsed_test_title\"\n"$DEF_COLOR
 		printf $WHITE" - Expected: $CYAN$5$DEF_COLOR\n"
 		printf $WHITE" - Actual: $RED${parsed_actual}$DEF_COLOR\n"
 		return 1
@@ -69,13 +70,12 @@ execute_group_test(){
 		local raw_tokens=($line)
 		local expected_output="(No error expected)"
 
-		tokens[0]=${raw_tokens[0]}
-		for ((i = 1; i < ${#raw_tokens[@]}; i++))
+		for ((i = 0; i < ${#raw_tokens[@]}; i++))
 		do
 			tokens[$i]=$(echo "${raw_tokens[$i]}" | trim_string)
 		done
 
-		insert_element_in_scene "${tokens[0]}"
+		insert_element_in_scene "${raw_tokens[0]}"
 		output=$(run_test)
 		test_status=$?
 		if [ ${#raw_tokens[@]} -eq 3 ]

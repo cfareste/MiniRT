@@ -27,6 +27,10 @@ split_string_by_commas(){
 	sed -rE 's/ /, /g'
 }
 
+remove_repeated_spaces(){
+	sed -rE 's/[\t ]{1,}/ /g'
+}
+
 has_been_signaled(){
 	if [ $1 -eq $EXIT_SUCCESS ] || [ $1 -eq $EXIT_FAILURE ]
 	then
