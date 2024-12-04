@@ -25,17 +25,22 @@ reset_group_test(){
 
 process_test_result(){
 	local expected_exit_code=1
+	local parsed_actual="(No error returned)"
 
 	if [ "$3" = "SUCCESS" ]
 	then
 		expected_exit_code=130
 	fi
 
-	if [ $expected_exit_code -ne $4 ] || ([ "$5" != "$6" ] && [ ! -z "$6" ])
+	if [ ! -z "$6" ]
+	then
+		parsed_actual=$(echo $6 | tail -1)
+	fi
+
+	if [ $expected_exit_code -ne $4 ] || ([ "$5" != "$parsed_actual" ] && [ ! -z "$6" ])
 	then
 		IFS=$'\n'
 		local parsed_test_title=$(echo "$2" | remove_repeated_spaces)
-		local parsed_actual="(No error returned)"
 		if has_been_signaled $4
 		then
 			parsed_actual=$(get_signal_name $4)
@@ -63,6 +68,8 @@ execute_group_test(){
 	local failed_tests=()
 
 	reset_group_test $1
+	local test_line_num=$(wc -l < $TEST_SCENE)
+	((test_line_num++))
 	for line in $(cat < "$2")
 	do
 		IFS=';'
@@ -80,7 +87,7 @@ execute_group_test(){
 		test_status=$?
 		if [ ${#raw_tokens[@]} -eq 3 ]
 		then
-			expected_output="$TEST_SCENE -> ${tokens[2]}"
+			expected_output="$TEST_SCENE:$test_line_num -> ${tokens[2]}"
 		fi
 		test_results=$(process_test_result $test_id "${tokens[0]}" "${tokens[1]}" $test_status "$expected_output" "$output")
 		local test_exit_code=$?
