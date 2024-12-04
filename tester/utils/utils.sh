@@ -22,3 +22,7 @@ print_status(){
 trim_string(){
 	sed -rE $'s/^[\t ]*|[\t ]*$//g'
 }
+
+split_string_by_commas(){
+	sed -rE 's/ /, /g'
+}

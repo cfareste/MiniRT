@@ -43,7 +43,7 @@ execute_tests(){
 	for test in $tests
 	do
 		local test_name="test_"$test
-		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests: "$DEF_COLOR
+		printf $CYAN"Running "$WHITE_BOLD$test$CYAN": "$DEF_COLOR
 		(cd .. && $test_name)
 		local test_status=$?
 
@@ -57,10 +57,11 @@ execute_tests(){
 		fi
 	done
 
-	echo
+	passed_tests=$(echo "${passed_tests[*]}" | trim_string | split_string_by_commas)
+	failed_tests=$(echo "${failed_tests[*]}" | trim_string | split_string_by_commas)
 	printf $YELLOW"Summary:\n"
-	printf $WHITE"Passed:"$GREEN"%s\n"$DEF_COLOR "${passed_tests[*]}"
-	printf $WHITE"Failed:"$RED"%s\n"$DEF_COLOR "${failed_tests[*]}"
+	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "$passed_tests"
+	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "$failed_tests"
 	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
 }
 
