@@ -5,12 +5,12 @@ mat:plastic:0.2:0		#		;								SUCCESS
 mat:emissive:1		#		;									SUCCESS
 mat:diffuse	mat:metallic:0	#		;							SUCCESS
 gl:256					;										SUCCESS
-bm:assets/textures/test.png:1	;								SUCCESS
+bm:assets/textures/test.png:1	;								FAILURE			;		assets/textures/test.png: No such file or directory
 cd:255,255,255:0,0,0:1				;							SUCCESS
 diffuse							;								FAILURE			;		Unknown figure optional param identifier: diffuse
 material:diffuse							;					FAILURE			;		Unknown figure optional param identifier: material
 glossiness:256							;						FAILURE			;		Unknown figure optional param identifier: glossiness
-bump:assets/textures/test.png:1							;		FAILURE			;		Unknown figure optional param identifier: bump
+bump:assets/textures/metallic_rack.png:1							;FAILURE			;		Unknown figure optional param identifier: bump
 checkerboard:diffuse							;				FAILURE			;		Unknown figure optional param identifier: checkerboard
 mat				#		;										FAILURE			;		Missing material type
 mat:				#		;									FAILURE			;		Missing material type
@@ -38,9 +38,9 @@ gl:-1								;							FAILURE			;		Glossiness must be a positive value
 gl:0								;							FAILURE			;		Glossiness must be a positive value
 bm							;									FAILURE			;		Missing texture params
 bm:							;									FAILURE			;		Missing texture params
-bm:assets/textures/test.png:			;						FAILURE			;		Missing texture params
-bm:assets/textures/test.png:0			;						FAILURE			;		Texture width must be greater than 0
-bm:assets/textures/test.png:-1			;						FAILURE			;		Texture width must be greater than 0
+bm:assets/textures/metallic_rack.png:			;				FAILURE			;		Missing texture params
+bm:assets/textures/metallic_rack.png:0			;				FAILURE			;		Texture width must be greater than 0
+bm:assets/textures/metallic_rack.png:-1			;				FAILURE			;		Texture width must be greater than 0
 cd				;												FAILURE			;		Missing parameters for color disruption
 cd:255,255,255	;												FAILURE			;		Missing parameters for color disruption
 cd:255,255,255:0,0,0	;										FAILURE			;		Missing parameters for color disruption

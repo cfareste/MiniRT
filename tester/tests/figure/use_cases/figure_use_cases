@@ -13,7 +13,6 @@ sp   sp;																		FAILURE			;		Missing some sphere parameter
 sp		#0,0,0	2	255,255,255		#		;									FAILURE			;		Missing some sphere parameter
 sp		0,0,0	#2	255,255,255		#		;									FAILURE			;		Missing some sphere parameter
 sp		0,0,0	2	#255,255,255		#		;								FAILURE			;		Missing some sphere parameter
-sp		0,0,0	2	255,255,255				;									FAILURE			;		Missing some sphere parameter
 sp		0,0,0	0	255,255,255				;									FAILURE			;		Sphere diameter must be a positive value
 sp		0,0,0	-1	255,255,255				;									FAILURE			;		Sphere diameter must be a positive value
 
@@ -96,13 +95,13 @@ difsjkfsj   ;																	FAILURE			;		Unknown parameter: difsjkfsj
 disk di ;																		FAILURE			;		Unknown parameter: disk
 DI;																				FAILURE			;		Unknown parameter: DI
 di   di;																		FAILURE			;		Missing some disk parameter
-disk		#0,0,0	0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
-disk		0,0,0	#0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
-disk		0,0,0	0,0,1	#2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
-disk		0,0,0	0,0,1	2	#255,255,255		#		;					FAILURE			;		Missing some disk parameter
-disk		0,0,0	0,0,0	2	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
-disk		0,0,0	0,0,1	0	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
-disk		0,0,0	0,0,1	-2	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
+di			#0,0,0	0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	#0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,1	#2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,1	2	#255,255,255		#		;					FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,0	2	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
+di			0,0,0	0,0,1	0	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
+di			0,0,0	0,0,1	-2	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
 
 
 qu		0,0,0	0,0,1	2	3	255,255,255		#		;						SUCCESS
@@ -141,16 +140,16 @@ bofsjkfsj   ;																	FAILURE			;		Unknown parameter: bofsjkfsj
 box bo ;																		FAILURE			;		Unknown parameter: box
 BO;																				FAILURE			;		Unknown parameter: BO
 bo   bo;																		FAILURE			;		Missing some box parameter
-qu		#0,0,0	0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
-qu		0,0,0	#0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
-qu		0,0,0	0,0,1	#2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
-qu		0,0,0	0,0,1	2	#3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
-qu		0,0,0	0,0,1	2	3	#4	255,255,255		#		;					FAILURE			;		Missing some box parameter
-qu		0,0,0	0,0,1	2	3	4	#255,255,255		#		;				FAILURE			;		Missing some box parameter
-qu		0,0,0	0,0,0	2	3	4	255,255,255				;					FAILURE			;		Orientation vector must point somewhere
-qu		0,0,0	0,0,1	0	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
-qu		0,0,0	0,0,1	-2	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
-qu		0,0,0	0,0,1	2	0	4	255,255,255				;					FAILURE			;		Box height must be a positive value
-qu		0,0,0	0,0,1	2	-3	4	255,255,255				;					FAILURE			;		Box height must be a positive value
-qu		0,0,0	0,0,1	2	3	0	255,255,255				;					FAILURE			;		Box length must be a positive value
-qu		0,0,0	0,0,1	2	3	-4	255,255,255				;					FAILURE			;		Box length must be a positive value
+bo		#0,0,0	0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	#0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	#2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	#3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	3	#4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	3	4	#255,255,255		#		;				FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,0	2	3	4	255,255,255				;					FAILURE			;		Orientation vector must point somewhere
+bo		0,0,0	0,0,1	0	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	-2	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	2	0	4	255,255,255				;					FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	2	-3	4	255,255,255				;					FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	2	3	0	255,255,255				;					FAILURE			;		Box length must be a positive value
+bo		0,0,0	0,0,1	2	3	-4	255,255,255				;					FAILURE			;		Box length must be a positive value
