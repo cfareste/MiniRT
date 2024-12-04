@@ -63,6 +63,8 @@ HEADER=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
 PROGRAM="miniRT"
 WRONG_ICON="✘"
 CORRECT_ICON="✔"
+EXIT_FAILURE=1
+EXIT_SUCCESS=130
 #----------------#
 
 
