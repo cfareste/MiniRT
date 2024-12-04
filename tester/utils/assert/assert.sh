@@ -26,27 +26,25 @@ reset_group_test(){
 process_test_result(){
 	local expected_exit_code=1
 
-	if [ "$2" = "SUCCESS" ]
+	if [ "$3" = "SUCCESS" ]
 	then
 		expected_exit_code=130
 	fi
 
-	if [ $expected_exit_code -ne $3 ] || ([ "$4" != "$5" ] && [ ! -z "$5" ])
+	if [ $expected_exit_code -ne $4 ] || ([ "$5" != "$6" ] && [ ! -z "$6" ])
 	then
 		IFS=$'\n'
 		local parsed_actual="(No error returned)"
-		if [ ! -z "$5" ]
+		if [ ! -z "$6" ]
 		then
-			splitted_actual=($5)
+			splitted_actual=($6)
 			parsed_actual=${splitted_actual[1]}
 		fi
-		printf "$RED_BOLD$WRONG_ICON$DEF_COLOR\n"
-		printf $WHITE_BOLD"Testing: $PINK\"$1\"\n"$DEF_COLOR
-		printf $WHITE_BOLD"Expected: $CYAN$4$DEF_COLOR\n"
-		printf $WHITE_BOLD"Actual: $RED${parsed_actual}$DEF_COLOR\n\n"
+		printf $BLUE"Test "$YELLOW$1$WHITE$BLUE":\n"
+		printf $WHITE" - Testing: $PINK\"$2\"\n"$DEF_COLOR
+		printf $WHITE" - Expected: $CYAN$5$DEF_COLOR\n"
+		printf $WHITE" - Actual: $RED${parsed_actual}$DEF_COLOR\n"
 		return 1
-	else
-		printf "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR\n"
 	fi
 
 	return 0
@@ -57,6 +55,8 @@ execute_group_test(){
 	local output
 	local test_status
 	local group_result=0
+	local test_results
+	local failed_tests=()
 
 	reset_group_test $1
 	for line in $(cat < "$2")
@@ -65,8 +65,6 @@ execute_group_test(){
 		local tokens=""
 		local raw_tokens=($line)
 		local expected_output="(No error expected)"
-
-		printf "Test $PINK_BOLD$test_id$DEF_COLOR: "
 
 		tokens[0]=${raw_tokens[0]}
 		for ((i = 1; i < ${#raw_tokens[@]}; i++))
@@ -81,16 +79,27 @@ execute_group_test(){
 		then
 			expected_output="$TEST_SCENE -> ${tokens[2]}"
 		fi
-		process_test_result "${tokens[0]}" "${tokens[1]}" $test_status "$expected_output" "$output"
-		local test_result=$?
-		if [ $test_result -ne 0 ]
+		test_results=$(process_test_result $test_id "${tokens[0]}" "${tokens[1]}" $test_status "$expected_output" "$output")
+		local test_exit_code=$?
+		if [ $test_exit_code -ne 0 ]
 		then
+			printf "$RED_BOLD$WRONG_ICON$DEF_COLOR "
+			failed_tests+=("$test_results\n")
 			group_result=1
+		else
+			printf "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR "
 		fi
 		((test_id++))
 		reset_group_test $1
 	done
 
+	echo
+	if [ ${#failed_tests[@]} -gt 0 ]
+	then
+		echo
+		printf "${failed_tests[*]}"
+		echo
+	fi
 	IFS="$OLDIFS"
 	return $group_result
 }

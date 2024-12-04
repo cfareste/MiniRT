@@ -23,8 +23,8 @@ print_header(){
 
 execute_tests(){
 	local tests=$(ls tests/ | grep -v "norme")
-	local passed_tests
-	local failed_tests
+	local passed_tests=("")
+	local failed_tests=("")
 	local total_tests=$(ls tests/ | wc -w)
 	local num_passed=0
 	local num_failed=0
@@ -32,17 +32,18 @@ execute_tests(){
 	(cd .. && test_norme)
 	if [ $? -eq 0 ]
 	then
-		passed_tests="norme"
+		passed_tests+=("norme")
 		((num_passed++))
 	else
-		failed_tests="norme"
+		failed_tests+=("norme")
 		((num_failed++))
 	fi
 
+	echo
 	for test in $tests
 	do
 		local test_name="test_"$test
-		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests:"$DEF_COLOR"\n"
+		printf $CYAN"Running "$WHITE_BOLD$test$CYAN" tests: "$DEF_COLOR
 		(cd .. && $test_name)
 		local test_status=$?
 
@@ -58,8 +59,8 @@ execute_tests(){
 
 	echo
 	printf $YELLOW"Summary:\n"
-	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "${passed_tests[*]}"
-	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "${failed_tests[*]}"
+	printf $WHITE"Passed:"$GREEN"%s\n"$DEF_COLOR "${passed_tests[*]}"
+	printf $WHITE"Failed:"$RED"%s\n"$DEF_COLOR "${failed_tests[*]}"
 	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
 }
 
