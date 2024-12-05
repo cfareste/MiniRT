@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:21:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 18:32:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:16:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
 #include "libft.h"
 #include <math.h>
-
-#include <stdio.h>
 
 static void	remove_point_texture_offset(t_point *point,
 	t_polar_coordinates *coords, t_vector *texture_dims)
@@ -45,7 +43,7 @@ static void	rotate_texture_normal(t_point *point, t_vector *res)
 	rotate_bump_to_point_position(&point_normal, res);
 }
 
-static void	get_polar_coordinates(t_point *point, t_figure *sphere,
+void	get_polar_coordinates(t_point *point, t_figure *sphere,
 	t_polar_coordinates *coords)
 {
 	float		longitude_angle;

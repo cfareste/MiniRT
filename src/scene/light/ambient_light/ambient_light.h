@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:30 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/07 13:34:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:08:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@
 
 void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light);
 
-void	get_sky_color(t_light *ambient_light, t_color *scene_sky_color,
+void	get_sky_color(t_scene *scene, t_ray *ray, t_light *ambient_light,
 			t_color *sky_color);

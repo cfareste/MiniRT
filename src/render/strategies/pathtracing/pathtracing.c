@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 20:13:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:27:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include "render/utils/color/color_operations/color_operations.h"
 #include "libft.h"
 
-static void	get_ambient_light(t_light *ambient_light, t_color *sky_color,
+static void	get_ambient_light(t_scene *scene, t_ray *ray,
 	t_color *energy, t_color *final_color)
 {
 	t_color	light_color;
 	t_color	aux;
 
-	get_sky_color(ambient_light, sky_color, &light_color);
+	get_sky_color(scene, ray, scene->ambient_light, &light_color);
 	mix_colors(energy, &light_color, &aux);
 	sum_colors(&aux, final_color, final_color);
 }
@@ -58,8 +58,8 @@ static int	missed_ray(t_render *render, t_scatter_params *params,
 {
 	if (!params->hit_record.figure)
 	{
-		get_ambient_light(render->scene.ambient_light,
-			&render->scene.settings.sky_color, energy, depth_color);
+		get_ambient_light(&render->scene, params->ray,
+			energy, depth_color);
 		return (1);
 	}
 	return (0);

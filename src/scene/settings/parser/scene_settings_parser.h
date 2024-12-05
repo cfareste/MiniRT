@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_settings_parser.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:41:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:25:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #define SCENE_SETTINGS_ID "S"
 #define SCENE_SETT_NAME "name"
 #define SCENE_SETT_SKY_COLOR "sky"
+#define SCENE_SETT_SKY_BOX "sky_box"
 
 #include "parser/parser.h"
 #include "../scene_settings.h"
