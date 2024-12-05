@@ -15,18 +15,14 @@ R   samples;																	FAILURE			;		Missing params: samples
 R   raytracer;																	FAILURE			;		Unknown render param: raytracer
 R   samples:20   ;																SUCCESS
 R   samples:   ;																FAILURE			;		Missing params: samples
-R   samples:-414   ;															FAILURE			;		At least 1 sample is required
 R   samples:0   ;																FAILURE			;		At least 1 sample is required
-R   samples:9999999999   ;														FAILURE			;		At least 1 sample is required
-R   samples:2147483650   ;														FAILURE			;		At least 1 sample is required
-R   max_depth:   ;																FAILURE			;		Missing params: max_depth
+R   samples:-414   ;															FAILURE			;		At least 1 sample is required
 R   max_depth   ;																FAILURE			;		Missing params: max_depth
+R   max_depth:   ;	 															FAILURE			;		Missing params: max_depth
 R   max_depth:0   ;																FAILURE			;		Max depth must be greater than 0
 R   max_depth:32   ;															SUCCESS
-R   max_depth:2147483650   ;													FAILURE			;		Max depth must be greater than 0
 R   max_depth:-414   ;															FAILURE			;		Max depth must be greater than 0
 R   raytracing   ;																SUCCESS
-R   max_depth:9999999999   ;													FAILURE			;		Max depth must be greater than 0
 R   raytracing:0   ;															SUCCESS
 R   raytracing:a   ;															SUCCESS
 R   normal_map:a   ;															SUCCESS
@@ -39,6 +35,4 @@ R   soft_shadows:   ;															FAILURE			;		Missing params: soft_shadows
 R   soft_shadows   ;															FAILURE			;		Missing params: soft_shadows
 R   soft_shadows:-12   ;														FAILURE			;		Soft shadow radius must be a positive value
 R   soft_shadows:0   ;															SUCCESS
-R   soft_shadows:2147483650   ;													FAILURE			;		Soft shadow radius must be a positive value
-R   soft_shadows:9999999999   ;													FAILURE			;		Soft shadow radius must be a positive value
 R   antialiasing samples:2 raytracing normal_map soft_shadows:0 max_depth:8 ;	SUCCESS

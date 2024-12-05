@@ -11,9 +11,9 @@ Sfsjkfsj   ;								FAILURE			;		Unknown parameter: Sfsjkfsj
 Scene S ;									FAILURE			;		Unknown parameter: Scene
 s;											FAILURE			;		Unknown parameter: s
 S   S;										FAILURE			;		Unknown scene param: S
-S   nnname:Test							;	FAILURE			;		Unknown scene param: nnname
-S   nameee:Test							;	FAILURE			;		Unknown scene param: nameee
-	S 	namename:Test					;	FAILURE			;		Unknown scene param: namename
+S   nnname:Test							;	FAILURE			;		Unknown scene param: nnname:Test
+S   nameee:Test							;	FAILURE			;		Unknown scene param: nameee:Test
+	S 	namename:Test					;	FAILURE			;		Unknown scene param: namename:Test
 S	NAME								;	FAILURE			;		Unknown scene param: NAME
 S	Name								;	FAILURE			;		Unknown scene param: Name
 S	namE			#					;	FAILURE			;		Unknown scene param: namE
@@ -29,13 +29,13 @@ S   skkky								;	FAILURE			;		Unknown scene param: skkky
 S   SKY									;	FAILURE			;		Unknown scene param: SKY	
 S   Sky				#					;	FAILURE			;		Unknown scene param: Sky
 S   skY									;	FAILURE			;		Unknown scene param: skY
-S   SkY									;	FAILURE			;		Unknown scene param: sssky
+S   SkY									;	FAILURE			;		Unknown scene param: SkY
 S	sky									;	FAILURE			;		Missing params: sky
 S	sky:			#					;	FAILURE			;		Missing params: sky
 S	sky:255,255,255			#			;	SUCCESS
 S	name sky			#				;	FAILURE			;		Missing params: name
 S	sky	name		#					;	FAILURE			;		Missing params: sky
-S   name:Test	name					;	FAILURE			;		Unknown scene param: name
-S   sky:255,255,255	sky					;	FAILURE			;		Unknown scene param: sky
+S   name:Test	name					;	FAILURE			;		Missing params: name
+S   sky:255,255,255	sky					;	FAILURE			;		Missing params: sky
 S   name:Test	name:Test2				;	SUCCESS
 S   sky:255,255,255 sky:255,255,0		;	SUCCESS

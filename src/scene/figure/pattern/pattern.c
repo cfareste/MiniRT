@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pattern.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:31:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:26:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:17:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@ void	parse_pattern(t_parser_ctx *ctx, t_pattern *pattern, char **str)
 	parse_color(ctx, str[1], pattern->colors);
 	parse_color(ctx, str[2], pattern->colors + 1);
 	pattern->dimension = parse_double(ctx, str[3]);
+	if (pattern->dimension <= 0)
+		throw_parse_err(ctx, "Pattern width must be greater than 0");
 }

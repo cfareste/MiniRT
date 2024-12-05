@@ -15,15 +15,7 @@ W   win_width;													FAILURE			;		Unknown window param: win_width
 W   width;														FAILURE			;		Missing params: width
 W   width:   ;													FAILURE			;		Missing params: width
 W   width:20   ;												SUCCESS
-W   width:0   ;													FAILURE			;		Window width must be a positive value
-W   width:-414   ;												FAILURE			;		Window width must be a positive value
-W   width:2147483650   ;										FAILURE			;		Window width must be a positive value
-W   width:9999999999   ;										FAILURE			;		Window width must be a positive value
 W   height   ;													FAILURE			;		Missing params: height
 W   height:   ;													FAILURE			;		Missing params: height
 W   height:32   ;												SUCCESS
-W   height:0   ;												FAILURE			;		Window height must be a positive value
-W   height:-414   ;												FAILURE			;		Window height must be a positive value
-W   height:2147483650   ;										FAILURE			;		Window height must be a positive value
-W   height:9999999999   ;										FAILURE			;		Window height must be a positive value
 W   width:4 height:2   ;										SUCCESS

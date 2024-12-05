@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 23:04:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:19:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	set_render_defaults(t_render *render)
 	render->samples = 1;
 	render->antialiasing = 0;
 	render->strategy = PATHTRACING;
-	render->max_depth = 1;
+	render->max_depth = 4;
 	render->soft_shadows_radius = 0;
 }
 

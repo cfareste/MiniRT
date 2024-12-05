@@ -16,7 +16,6 @@ C 	-10,2,0	2,0,-1	8;													SUCCESS
 C 	4,2,0	0,0,1	0;													SUCCESS
 C 	4,2,0	0,0,1	180;												SUCCESS
 C 	4,2,0	0,0,0	8;													FAILURE			;		Orientation vector must point somewhere
-C 	4,2,0	0,0,1	8;													FAILURE			;		Orientation vector must point somewhere
 C 	4,2,0	0,0,1	-240;												FAILURE			;		Camera field of view (fov) must be in range [0,180]
 C 	4,2,0	0,0,1	200;												FAILURE			;		Camera field of view (fov) must be in range [0,180]
 C 	4,2,0	0,0,1	60		0.0		1.0;								SUCCESS
