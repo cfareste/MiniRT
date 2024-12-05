@@ -28,21 +28,22 @@ DELETE_LINE="\033[2K\r"
 
 
 #----# Dirs #----#
-SRC=src/
-TESTER=tester/
+SRC=src
+TESTER=tester
+TEST_GROUP_DIR=test_group
 #----------------#
 
 
 #--# UseCases #--#
-SCENE_SETTINGS_UC="tester/tests/scene_settings/use_cases/scene_settings_use_cases"
-RENDER_SETTINGS_UC="tester/tests/render_settings/use_cases/render_settings_use_cases"
-WINDOW_SETTINGS_UC="tester/tests/window_settings/use_cases/window_settings_use_cases"
-AMBIENTAL_UC="tester/tests/ambiental/use_cases/ambiental_use_cases"
-CAMERA_UC="tester/tests/camera/use_cases/camera_use_cases"
-LIGHT_UC="tester/tests/light/use_cases/light_use_cases"
-FIGURE_UC="tester/tests/figure/use_cases/figure_use_cases"
-OPTIONAL_UC="tester/tests/optional/use_cases/optional_use_cases"
-MISC_UC="tester/tests/misc/use_cases/misc_use_cases"
+SCENE_SETTINGS_UC="$TESTER/$TEST_GROUP_DIR/scene_settings/use_cases/scene_settings_use_cases"
+RENDER_SETTINGS_UC="$TESTER/$TEST_GROUP_DIR/render_settings/use_cases/render_settings_use_cases"
+WINDOW_SETTINGS_UC="$TESTER/$TEST_GROUP_DIR/window_settings/use_cases/window_settings_use_cases"
+AMBIENTAL_UC="$TESTER/$TEST_GROUP_DIR/ambiental/use_cases/ambiental_use_cases"
+CAMERA_UC="$TESTER/$TEST_GROUP_DIR/camera/use_cases/camera_use_cases"
+LIGHT_UC="$TESTER/$TEST_GROUP_DIR/light/use_cases/light_use_cases"
+FIGURE_UC="$TESTER/$TEST_GROUP_DIR/figure/use_cases/figure_use_cases"
+OPTIONAL_UC="$TESTER/$TEST_GROUP_DIR/optional/use_cases/optional_use_cases"
+MISC_UC="$TESTER/$TEST_GROUP_DIR/misc/use_cases/misc_use_cases"
 #----------------#
 
 

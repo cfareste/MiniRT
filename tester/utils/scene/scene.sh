@@ -1,3 +1,5 @@
+#! /bin/bash
+
 create_test_scene(){
 	(cd .. && > $TEST_SCENE)
 }

@@ -4,18 +4,21 @@ set -o nounset
 
 . ./vars/common_vars.sh --source-only
 . ./utils/utils.sh --source-only
-. ./utils/assert/assert.sh --source-only
+. ./utils/run_test/run_test.sh --source-only
 . ./utils/scene/scene.sh --source-only
-. ./tests/norme/norme_test.sh --source-only
-. ./tests/scene_settings/scene_settings_test.sh --source-only
-. ./tests/render_settings/render_settings_test.sh --source-only
-. ./tests/window_settings/window_settings_test.sh --source-only
-. ./tests/ambiental/ambiental_test.sh --source-only
-. ./tests/camera/camera_test.sh --source-only
-. ./tests/light/light_test.sh --source-only
-. ./tests/figure/figure_test.sh --source-only
-. ./tests/optional/optional_test.sh --source-only
-. ./tests/misc/misc_test.sh --source-only
+. ./utils/signal/signal.sh --source-only
+. ./utils/string/string.sh --source-only
+. ./test_group/test_group.sh --source-only
+. ./test_group/norme/norme_test.sh --source-only
+. ./test_group/scene_settings/scene_settings_test.sh --source-only
+. ./test_group/render_settings/render_settings_test.sh --source-only
+. ./test_group/window_settings/window_settings_test.sh --source-only
+. ./test_group/ambiental/ambiental_test.sh --source-only
+. ./test_group/camera/camera_test.sh --source-only
+. ./test_group/light/light_test.sh --source-only
+. ./test_group/figure/figure_test.sh --source-only
+. ./test_group/optional/optional_test.sh --source-only
+. ./test_group/misc/misc_test.sh --source-only
 
 print_header(){
 	printf "$HEADER"
@@ -23,10 +26,10 @@ print_header(){
 }
 
 execute_tests(){
-	local tests=$(ls tests/ | grep -v "norme")
+	local tests=$(ls $TEST_GROUP_DIR | grep -vE "norme|*.sh")
 	local passed_tests=("")
 	local failed_tests=("")
-	local total_tests=$(ls tests/ | wc -w)
+	local total_tests=$(ls $TEST_GROUP_DIR | grep -vE "*.sh" | wc -w)
 	local num_passed=0
 	local num_failed=0
 
@@ -58,8 +61,8 @@ execute_tests(){
 		fi
 	done
 
-	passed_tests=$(echo "${passed_tests[*]}" | trim_string | split_string_by_commas)
-	failed_tests=$(echo "${failed_tests[*]}" | trim_string | split_string_by_commas)
+	passed_tests=$(parse_test_result "${passed_tests[*]}")
+	failed_tests=$(parse_test_result "${failed_tests[*]}")
 	echo
 	printf $YELLOW"Summary:\n"
 	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "$passed_tests"

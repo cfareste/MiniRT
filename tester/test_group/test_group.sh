@@ -1,23 +1,6 @@
-start_lazy_kill(){
-	sleep 0.02
-	pkill -2 $PROGRAM
-}
+#! /bin/bash
 
-run_program(){
-	./"$PROGRAM" $TEST_SCENE 2>&1
-}
-
-run_test(){
-	local output
-	local exit_status
-	start_lazy_kill &
-	output=$(run_program)
-	exit_status=$?
-	echo "$output"
-	return $exit_status
-}
-
-reset_group_test(){
+reset_test_group(){
 	reset_scene
 	$1
 	IFS=$'\n'
@@ -55,7 +38,7 @@ process_test_result(){
 	return 0
 }
 
-execute_group_test(){
+execute_test_group(){
 	local test_id=1
 	local output
 	local test_status
@@ -63,7 +46,7 @@ execute_group_test(){
 	local test_results
 	local failed_tests=()
 
-	reset_group_test $1
+	reset_test_group $1
 	local test_line_num=$(wc -l < $TEST_SCENE)
 	((test_line_num++))
 	for line in $(cat < "$2")
@@ -96,7 +79,7 @@ execute_group_test(){
 			printf "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR "
 		fi
 		((test_id++))
-		reset_group_test $1
+		reset_test_group $1
 	done
 
 	echo
