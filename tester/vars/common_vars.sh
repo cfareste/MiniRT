@@ -60,7 +60,11 @@ DEFAULT_FIGURE="sp		0,0,10		2		255,255,255"
 
 
 #----# Misc #----#
-HEADER=$PINK_BOLD"Amethyst MiniRT tester"$DEF_COLOR
+HEADER=$CYAN"╔════════════════════════════════════════════════════════════════════════════════╗\n\
+║                           "$BLUE"Welcome to "$PINK_BOLD"Amethyst"$BLUE" tester"$CYAN"                           ║\n\
+╚════════════════════════╦══════════════════════════════╦════════════════════════╝\n\
+                         ║            "$YELLOW_BOLD"miniRT"$CYAN"            ║\n\
+                         ╚══════════════════════════════╝"$DEF_COLOR"\n"
 PROGRAM="miniRT"
 WRONG_ICON="✘"
 CORRECT_ICON="✔"

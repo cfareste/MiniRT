@@ -21,7 +21,23 @@ set -o nounset
 . ./test_group/misc/misc_test.sh --source-only
 
 print_header(){
+	echo
 	printf "$HEADER"
+}
+
+print_footer(){
+	local footer_message=""
+
+	if [ $1 -eq 0 ]
+	then
+		footer_message="🎉 "$GREEN"All tests passed!"$CYAN" 🎉"
+	else
+		footer_message="😔 "$RED"Some tests failed"$CYAN" 😔"
+	fi
+	echo
+	printf $CYAN"╔═══════════════════════════════════════════════════════════════════════════════╗\n\
+║                            $footer_message                            ║\n\
+╚═══════════════════════════════════════════════════════════════════════════════╝"$DEF_COLOR"\n"
 	echo
 }
 
@@ -41,9 +57,9 @@ execute_tests(){
 	else
 		failed_tests+=("norme")
 		((num_failed++))
+		echo
 	fi
 
-	echo
 	for test in $tests
 	do
 		local test_name="test_"$test
@@ -68,6 +84,7 @@ execute_tests(){
 	printf $WHITE"Passed: "$GREEN"%s\n"$DEF_COLOR "$passed_tests"
 	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "$failed_tests"
 	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
+	print_footer $num_failed
 }
 
 execute_make(){
