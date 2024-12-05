@@ -44,10 +44,6 @@ process_test_result(){
 		if has_been_signaled $4
 		then
 			parsed_actual=$(get_signal_name $4)
-		elif [ ! -z "$6" ]
-		then
-			local splitted_actual=($6)
-			parsed_actual=${splitted_actual[1]}
 		fi
 		printf $BLUE"Test "$YELLOW$1$WHITE$BLUE":\n"
 		printf $WHITE" - Testing: $PINK\"$parsed_test_title\"\n"$DEF_COLOR
