@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 21:16:30 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:24:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ void	parse_ambient_light(t_parser_ctx *ctx, char **parts, t_light **light)
 			"Brightness param for ambient light must be in range [0.0,1.0]");
 }
 
+static void	parse_polar_coords(t_point *point, t_polar_coordinates *coords)
+{
+	if (point->x < 0.0)
+		coords->latitude = -coords->latitude;
+	if (point->y > 0.0)
+		coords->longitude = -coords->longitude;
+}
+
 static void	get_sky_box_color(t_figure *figure, t_point *point,
 	t_texture *texture, t_color *color)
 {
@@ -49,17 +57,16 @@ static void	get_sky_box_color(t_figure *figure, t_point *point,
 
 	get_polar_coordinates(point, figure, &coords);
 	point_radius = sqrt(pow(point->x, 2) + pow(point->z, 2));
-	texture_dims.x = figure->bump_map.width_dim
+	texture_dims.x = texture->mlx->width
 		* (point_radius / figure->sp_attrs->radius);
-	texture_dims.y = figure->bump_map.width_dim
-		* (texture->mlx->height / (float) texture->mlx->width);
-	if (point->x > 0.0)
-		coords.latitude = -coords.latitude;
-	if (point->y > 0.0)
-		coords.longitude = -coords.longitude;
+	texture_dims.y = texture->mlx->height;
+	parse_polar_coords(point, &coords);
 	texel.x = (coords.latitude * (texture->mlx->width / texture_dims.x));
-	texel.y = (coords.longitude * (texture->mlx->height / texture_dims.y))
-		+ (texture_dims.y / 2.0);
+	texel.y = coords.longitude + (texture_dims.y / 2.0);
+	if (coords.latitude < 0)
+		texel.x += texture->mlx->width;
+	texel.x = ft_clamp(texel.x, 0, texture->mlx->width - 1);
+	texel.y = ft_clamp(texel.y, 0, texture->mlx->height - 1);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	color->red = *pixel / 255.0;
@@ -72,6 +79,7 @@ void	get_sky_color(t_scene *scene, t_ray *ray, t_light *ambient_light,
 	t_color *sky_color)
 {
 	t_hit_record	hit_record;
+	t_vector		translated_point;
 	t_color			scene_sky_color;
 
 	if (scene->settings.sky_box
@@ -80,7 +88,9 @@ void	get_sky_color(t_scene *scene, t_ray *ray, t_light *ambient_light,
 	{
 		translate_point(&ray->origin, &ray->direction, hit_record.distance,
 			&hit_record.point);
-		get_sky_box_color(scene->settings.sky_box, &hit_record.point,
+		get_vector(&hit_record.point, &scene->camera->position,
+			&translated_point);
+		get_sky_box_color(scene->settings.sky_box, &translated_point,
 			scene->settings.sky_box->bump_map.texture, &scene_sky_color);
 	}
 	else
