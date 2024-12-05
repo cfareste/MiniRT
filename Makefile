@@ -170,10 +170,6 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/settings:\
 			$(SRC)scene/settings/parser:\
 			$(SRC)scene/figure/types/cone/helpers:\
-			$(SRC)render/renderer:\
-			$(SRC)render/helpers:\
-			$(SRC)render/ray:\
-			$(SRC)render/ray/helpers:\
 			$(SRC)window:\
 			$(SRC)window/helpers:\
 			$(SRC)window/jobs:\
@@ -187,6 +183,12 @@ vpath %.c	$(SRC):\
 			$(SRC)window/textures:\
 			$(SRC)window/textures/texture:\
 			$(SRC)window/parser:\
+			$(SRC)render/renderer:\
+			$(SRC)render/renderer/parts:\
+			$(SRC)render/renderer/pixels:\
+			$(SRC)render/helpers:\
+			$(SRC)render/ray:\
+			$(SRC)render/ray/helpers:\
 			$(SRC)render/strategies:\
 			$(SRC)render/strategies/shared:\
 			$(SRC)render/strategies/raytracing:\
@@ -332,7 +334,9 @@ SRCS = miniRT.c \
 	quadrilater_helpers.c \
 	box_pattern.c \
 	normal_map.c \
-	render_events.c
+	render_events.c \
+	renderer_pixels.c \
+	renderer_parts.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

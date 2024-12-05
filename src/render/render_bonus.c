@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 23:04:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:34:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,21 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 
 void	*render_part(t_render_part *part)
 {
-	uint32_t		seed;
-	t_iterators		iterators;
+	uint32_t	seed;
+	t_pixel		*pixels;
+	t_iterators	iterators;
+	size_t		i;
 
 	get_thread_id(&part->thread, &seed);
-	iterators.j = 0;
+	pixels = part->pixels;
+	i = 0;
 	while (!is_render_finished(part->render)
-		&& iterators.j < part->img_size.height)
+		&& i < part->pixels_amount)
 	{
-		iterators.i = part->min_size.height;
-		while (!is_render_finished(part->render)
-			&& iterators.i < part->img_size.width)
-		{
-			render_pixel(part, &iterators, &seed);
-			iterators.i += part->render->parts_amount;
-		}
-		iterators.j++;
+		iterators.i = pixels[i].x;
+		iterators.j = pixels[i].y;
+		render_pixel(part, &iterators, &seed);
+		i++;
 	}
 	return (NULL);
 }
@@ -90,6 +89,8 @@ void	init_render(t_render *render, mlx_t *mlx)
 {
 	pthread_mutex_init(&render->mutex, NULL);
 	pthread_mutex_init(&render->image_mutex, NULL);
+	pthread_mutex_init(&render->resize_mutex, NULL);
+	render->resize = 1;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
 	mlx_set_instance_depth(render->image->instances

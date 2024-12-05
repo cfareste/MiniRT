@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 21:08:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:22:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	destroy(t_window *window)
 	free_textures(&window->textures);
 	free(window->render.scene.ambient_light);
 	free(window->render.scene.camera);
+	free(window->render.pixels);
 	free_lights(window->render.scene.lights);
 	free_figures(window->render.scene.figures);
 }

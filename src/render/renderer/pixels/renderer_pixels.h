@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   random.h                                           :+:      :+:    :+:   */
+/*   renderer_pixels.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 18:35:08 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 18:03:23 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/05 17:45:38 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/05 22:15:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include "stdint.h"
+#include "utils/size/size.h"
 
-#include "render/utils/vector/vector.h"
-#include "render/utils/point/point.h"
-#include <stdint.h>
+typedef struct s_pixel
+{
+	unsigned int	x;
+	unsigned int	y;
+}	t_pixel;
 
-float		get_random_float(uint32_t *seed);
+t_pixel	*get_random_pixels(t_pixel *pixels, int parts_amount,
+			uint32_t *seed, t_size *w_size);
 
-void		get_random_point_in_disk(uint32_t *seed, t_vector *vec);
+void	fill_pixels(t_size *img_size, t_pixel **pixels_, size_t *px_amount);
 
-void		get_random_point_in_square(uint32_t *seed, t_vector *vec);
-
-void		get_random_point_in_sphere(uint32_t *seed, t_point *point);
-
-uint32_t	get_random(uint32_t *seed);
+void	shuffle_pixels(t_pixel *array, size_t n, uint32_t *seed);

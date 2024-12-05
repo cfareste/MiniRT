@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 19:49:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:49:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "render/render_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "window/jobs/job/types/title/title_job.h"
+#include "../utils/thread/thread.h"
+#include "parts/renderer_parts.h"
 #include <pthread.h>
 
 void	stop_render(t_render *render)
@@ -28,37 +30,13 @@ void	stop_render(t_render *render)
 	pthread_join(render->thread, NULL);
 }
 
-static void	render_parts(t_render *render, t_size img_size)
-{
-	int				i;
-	t_render_part	*parts;
-
-	render->parts_amount = 10;
-	parts = ft_calloc(render->parts_amount, sizeof(t_render_part));
-	if (!parts)
-		throw_sys_error("ft_calloc in rendering");
-	i = 0;
-	while (!is_render_finished(render) && i < render->parts_amount)
-	{
-		parts[i].render = render;
-		parts[i].img_size = img_size;
-		parts[i].min_size.height = i;
-		if (pthread_create(&parts[i].thread, NULL,
-				(void *(*)(void *)) render_part, parts + i) == -1)
-			throw_sys_error("creating render part thread");
-		i++;
-	}
-	i = -1;
-	while (++i < render->parts_amount)
-		if (parts[i].thread)
-			pthread_join(parts[i].thread, NULL);
-	free(parts);
-}
-
 void	*render_routine(t_window *window)
 {
-	t_size	img_size;
+	t_size		img_size;
+	uint32_t	seed;
 
+	get_thread_id(&window->render.thread, &seed);
+	seed *= mlx_get_time();
 	set_render_finish(&window->render, 0);
 	if (is_render_finished(&window->render) || !window->render.image)
 		return (NULL);
@@ -66,7 +44,7 @@ void	*render_routine(t_window *window)
 			&window->render.image_mutex);
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport, img_size);
-	render_parts(&window->render, img_size);
+	render_parts(&window->render, img_size, &seed);
 	if (is_render_finished(&window->render))
 		return (NULL);
 	set_render_finish(&window->render, 1);

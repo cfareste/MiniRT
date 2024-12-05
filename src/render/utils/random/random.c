@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   random.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:35:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 20:02:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:39:32 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/point/point.h"
 #include <stdint.h>
 #include <math.h>
+
+uint32_t	get_random(uint32_t *seed)
+{
+	*seed ^= *seed << 13;
+	*seed ^= *seed >> 17;
+	*seed ^= *seed << 5;
+	return (*seed);
+}
 
 float	get_random_float(uint32_t *seed)
 {

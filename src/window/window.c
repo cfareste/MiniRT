@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/04 22:12:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 22:34:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 static void	main_loop(void *window_)
 {
 	t_window	*window;
-	int			to_render;
 
 	window = (t_window *) window_;
-	to_render = 0;
 	exec_jobs(&window->jobs, window);
 	if (window->resize.last_resize
 		&& diff_sizes(&window->size, &window->resize.size))
@@ -40,7 +38,8 @@ static void	main_loop(void *window_)
 		set_size(&window->size,
 			window->resize.size.width, window->resize.size.height);
 		loader_set_resize(window->exporter.loader, 1);
-		to_render = 1;
+		render_set_resize(&window->render, 1);
+		render(window);
 	}
 	else if (!window->render.blocked
 		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE
@@ -48,10 +47,8 @@ static void	main_loop(void *window_)
 	{
 		update_camera(window->render.scene.camera);
 		window->last_update = mlx_get_time();
-		to_render = 1;
-	}
-	if (to_render)
 		render(window);
+	}
 }
 
 static void	close_window(t_window *window)
