@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 17:03:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:48:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,6 @@ void	*render_part(t_render_part *part)
 		i++;
 	}
 	return (NULL);
-}
-
-void	set_render_defaults(t_render *render)
-{
-	render->samples = 1;
-	render->antialiasing = 0;
-	render->strategy = PATHTRACING;
-	render->max_depth = 4;
-	render->soft_shadows_radius = 0;
 }
 
 void	init_render(t_render *render, mlx_t *mlx)

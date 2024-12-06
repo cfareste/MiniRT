@@ -6,28 +6,16 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/21 20:11:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:47:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "miniRT.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
 #include "textures.h"
 #include "window/loader/loader_bonus.h"
-
-t_texture	*push_texture(t_textures *textures, char *filename)
-{
-	t_texture	*texture;
-
-	texture = ft_calloc(1, sizeof(t_texture));
-	if (!texture)
-		throw_sys_error("allocating texture");
-	texture->path = ft_strdup(filename);
-	texture->next = textures->texture;
-	textures->texture = texture;
-	textures->amount += 1;
-	return (texture);
-}
+#include "window/jobs/job/types/destroy/destroy_job.h"
 
 void	print_textures(t_textures *textures)
 {
@@ -40,18 +28,6 @@ void	print_textures(t_textures *textures)
 		ft_printf("%s: %p\n", texture->path, texture->mlx);
 		texture = texture->next;
 	}
-}
-
-t_texture	*get_texture(t_textures *textures, char *path)
-{
-	t_texture	*texture;
-
-	texture = textures->texture;
-	while (texture && ft_strcmp(texture->path, path) != EQUAL_STRINGS)
-		texture = texture->next;
-	if (!texture)
-		texture = push_texture(textures, path);
-	return (texture);
 }
 
 void	free_textures(t_textures *textures)
@@ -71,6 +47,13 @@ void	free_textures(t_textures *textures)
 		free(aux->path);
 		free(aux);
 	}
+}
+
+void	throw_mlx_error(t_jobs *jobs, char *msg, const char *mlx_msg)
+{
+	ft_printff(STDERR_FILENO, "%s: %s: %s\n",
+		PROGRAM_NAME, msg, mlx_msg);
+	push_job(jobs, init_destroy_job(new_job()));
 }
 
 void	load_textures(t_loader *loader, t_textures *textures,

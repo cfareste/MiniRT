@@ -31,6 +31,7 @@ DELETE_LINE="\033[2K\r"
 SRC=src
 TESTER=tester
 TEST_GROUP_DIR=test_group
+MAIN_TEST_DIR=main_test
 #----------------#
 
 
@@ -65,7 +66,7 @@ HEADER=$CYAN"╔═════════════════════�
 ╚════════════════════════╦══════════════════════════════╦════════════════════════╝\n\
                          ║            "$YELLOW_BOLD"miniRT"$CYAN"            ║\n\
                          ╚══════════════════════════════╝"$DEF_COLOR"\n"
-PROGRAM="miniRT"
+PROGRAM="main_test"
 WRONG_ICON="✘"
 CORRECT_ICON="✔"
 EXIT_FAILURE=1

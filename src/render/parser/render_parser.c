@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 15:21:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 18:07:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,13 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 		i++;
 	}
 	return (1);
+}
+
+void	set_render_defaults(t_render *render)
+{
+	render->samples = 1;
+	render->antialiasing = 0;
+	render->strategy = PATHTRACING;
+	render->max_depth = 4;
+	render->soft_shadows_radius = 0;
 }

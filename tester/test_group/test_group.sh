@@ -12,7 +12,7 @@ process_test_result(){
 
 	if [ "$3" = "SUCCESS" ]
 	then
-		expected_exit_code=130
+		expected_exit_code=0
 	fi
 
 	if [ ! -z "$6" ]

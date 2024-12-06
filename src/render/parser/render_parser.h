@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:46:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:44:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 #include "parser/parser.h"
 #include "../render_bonus.h"
 
-int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
-		t_render *render);
+int		try_parse_render_elems(t_parser_ctx *ctx, char **args,
+			t_render *render);
+
+void	set_render_defaults(t_render *render);

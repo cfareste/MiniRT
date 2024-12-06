@@ -49,15 +49,20 @@ execute_tests(){
 	local num_passed=0
 	local num_failed=0
 
-	(cd .. && test_norme)
-	if [ $? -eq 0 ]
+	if [ "$#" -eq 0 ] || ([ "$#" -gt 0 ] && [ "$1" != "-n" ])
 	then
-		passed_tests+=("norme")
-		((num_passed++))
+		(cd .. && test_norme)
+		if [ $? -eq 0 ]
+		then
+			passed_tests+=("norme")
+			((num_passed++))
+		else
+			failed_tests+=("norme")
+			((num_failed++))
+			echo
+		fi
 	else
-		failed_tests+=("norme")
-		((num_failed++))
-		echo
+		((total_tests--))
 	fi
 
 	for test in $tests
@@ -88,7 +93,7 @@ execute_tests(){
 }
 
 execute_make(){
-	(cd .. && make > /dev/null) &
+	(cd $MAIN_TEST_DIR && make > /dev/null) &
 }
 
 compile_binary(){
@@ -105,7 +110,7 @@ init_tester(){
 	print_header
 	compile_binary
 	create_test_scene
-	execute_tests
+	execute_tests $@
 	remove_test_scene
 	return 0
 }

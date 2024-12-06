@@ -1,4 +1,4 @@
-NAME = miniRT
+NAME = main_test
 
 
 #----COLORS----#
@@ -51,48 +51,30 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 -g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -O3
 
 
 #----DIRS----#
 BIN_DIR = bin/
-SRC = src/
+SRC = ../../src/
 INCLUDES = -I$(SRC)
-EXPORTS = exports/
+EXPORTS = ../../exports/
 
 
 #----LIBS----#
 
-
-#----LIBFT----#
-LIBFT_DIR = lib/libft/
-LIBFT_LIB = $(LIBFT_DIR)libft.a
-INCLUDES += -I$(LIBFT_DIR)
-
-
 #----MLX----#
 MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
-MLX_DIR = lib/mlx
+MLX_DIR = ../../lib/mlx
+MLX_LIB = $(MLX_DIR)/include/MLX42.h
 MLX_BUILD_DIR = $(MLX_DIR)/build
-MLX_COMP_FLAGS = -DGLFW_FETCH=1 -DDEBUG=1
-MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 INCLUDES += -I$(MLX_DIR)/include/MLX42
-LIBRARIES += -L$(MLX_BUILD_DIR)
-LIBRARIES_DEPS += -ldl -lm -lpthread -lmlx42
-ifeq ($(UNAME_S), Darwin)
-	LIBRARIES_DEPS += -lglfw3
-	ifeq ($(shell test -f $(HOMEBREW_PREFIX)/lib/libglfw3.a || echo "not_installed"), not_installed)
-		LIBRARIES += -L$(MLX_BUILD_DIR)/_deps/glfw-build/src
-	else
-		LIBRARIES += -L$(HOMEBREW_PREFIX)/lib
-	endif
-	LIBRARIES_DEPS += -framework Cocoa -framework OpenGL -framework IOKit
-endif
-ifeq ($(UNAME_S), Linux)
-	LIBRARIES_DEPS += -lglfw
-endif
 
+#----LIBFT----#
+LIBFT_DIR = ../../lib/libft/
+LIBFT_LIB = $(LIBFT_DIR)libft.a
+INCLUDES += -I$(LIBFT_DIR)
 
 #----MACROS----#
 export GNL_BUFFER_SIZE := 50000
@@ -182,7 +164,6 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs/job/types/export:\
 			$(SRC)window/jobs/job/types/image_resize:\
 			$(SRC)window/textures:\
-			$(SRC)window/textures/parser:\
 			$(SRC)window/textures/texture:\
 			$(SRC)window/parser:\
 			$(SRC)render/renderer:\
@@ -216,131 +197,90 @@ vpath %.c	$(SRC):\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
 			$(SRC)parser/helpers:\
-			$(SRC)exporter:\
-			$(SRC)exporter/image:\
-			$(SRC)exporter/helpers:\
-			$(SRC)exporter/export:\
-			$(SRC)window/loader:\
-			$(SRC)window/loader/load:\
-			$(SRC)window/loader/helpers:\
-			$(SRC)window/loader/strategies/progress:\
-			$(SRC)window/loader/strategies/progress/helpers:\
-			$(SRC)window/loader/strategies/text:
-
+			$(SRC)window/textures/parser:\
 
 #----SHARED----#
-SRCS = miniRT.c \
-	scene.c \
-	errors.c \
-	file_utils.c \
-	light.c \
-	color.c \
-	color_operations.c \
-	camera.c \
-	coordinates.c \
-	figure.c \
-	figure_helpers.c \
-	cylinder.c \
-	cylinder_helpers.c \
-	cylinder_parser.c \
-	plane.c \
-	sphere.c \
-	render_bonus.c \
-	window.c \
-	renderer_bonus.c \
-	vector.c \
-	operation.c \
-	point.c \
-	reference_system.c \
-	render_helper_bonus.c \
-	window_helper_bonus.c \
-	size.c \
-	images_bonus.c \
-	ray_helper.c \
-	ray.c \
-	light_utils.c \
-	ambient_light.c \
-	cone.c \
-	cone_helpers.c \
-	parser.c \
-	camera_parser.c \
-	light_parser.c \
-	scene_parser.c \
-	figure_parser.c \
-	vector_parser.c \
-	plane_parser.c \
-	bump_map.c \
-	scene_settings.c \
-	scene_settings_parser.c \
-	exporter_bonus.c \
-	image_bonus.c \
-	exporter_helper_bonus.c\
-	random.c \
-	thread.c \
-	pattern.c \
-	pattern_helpers.c \
-	cone_parser.c \
-	sphere_parser.c \
-	sphere_pattern.c \
-	plane_pattern.c \
-	cylinder_pattern.c \
-	cone_pattern.c \
-	loader_bonus.c \
-	jobs.c \
-	job.c \
-	title_job.c \
-	destroy_job.c \
-	anon_job.c \
-	textures.c \
-	textures_parser.c \
-	export_job.c \
-	bump_map_helpers.c \
-	bump_map_plane.c \
-	bump_map_cylinder.c \
-	bump_map_cone.c \
-	bump_map_sphere.c \
-	export.c \
-	diffuse.c \
-	metallic.c \
-	plastic.c \
-	glass.c \
-	emissive.c \
-	raytracing.c \
-	pathtracing.c \
-	strategies_shared.c \
-	hit_record.c\
-	parser_helper.c \
-	render_parser.c \
-	window_parser.c \
-	camera_helper.c \
-	camera_events.c \
-	raytracing_helpers.c \
-	pathtracing_helpers.c \
-	material_helpers.c \
-	load.c \
-	renders.c \
-	loader_helper.c \
-	image_resize_job.c \
-	loader_progress.c \
-	loader_progress_helper.c \
-	loader_text.c \
-	job_helper.c\
-	figure_parser_helpers.c \
-	disk.c \
-	disk_parser.c \
-	bump_map_disk.c \
-	quadrilater.c \
-	quadrilater_parser.c \
-	box.c \
-	box_helpers.c \
-	box_parser.c \
-	quadrilater_helpers.c \
-	box_pattern.c \
-	normal_map.c \
-	render_events.c \
-	renderer_pixels.c \
-	renderer_parts.c \
-	sky_box.c \
+SRCS =	main_test.c \
+		errors.c \
+		file_utils.c \
+		light.c \
+		color.c \
+		color_operations.c \
+		coordinates.c \
+		figure.c \
+		figure_helpers.c \
+		cylinder.c \
+		cylinder_helpers.c \
+		cylinder_parser.c \
+		plane.c \
+		sphere.c \
+		vector.c \
+		operation.c \
+		point.c \
+		reference_system.c \
+		ray_helper.c \
+		ray.c \
+		light_utils.c \
+		ambient_light.c \
+		cone.c \
+		cone_helpers.c \
+		parser.c \
+		camera_parser.c \
+		light_parser.c \
+		scene_parser.c \
+		figure_parser.c \
+		vector_parser.c \
+		plane_parser.c \
+		bump_map.c \
+		scene_settings.c \
+		scene_settings_parser.c \
+		random.c \
+		pattern.c \
+		pattern_helpers.c \
+		cone_parser.c \
+		sphere_parser.c \
+		sphere_pattern.c \
+		plane_pattern.c \
+		cylinder_pattern.c \
+		cone_pattern.c \
+		bump_map_helpers.c \
+		bump_map_plane.c \
+		bump_map_cylinder.c \
+		bump_map_cone.c \
+		bump_map_sphere.c \
+		diffuse.c \
+		metallic.c \
+		plastic.c \
+		glass.c \
+		emissive.c \
+		raytracing.c \
+		pathtracing.c \
+		strategies_shared.c \
+		hit_record.c\
+		parser_helper.c \
+		render_parser.c \
+		window_parser.c \
+		camera_helper.c \
+		raytracing_helpers.c \
+		pathtracing_helpers.c \
+		material_helpers.c \
+		renders.c \
+		job_helper.c\
+		figure_parser_helpers.c \
+		disk.c \
+		disk_parser.c \
+		bump_map_disk.c \
+		quadrilater.c \
+		quadrilater_parser.c \
+		box.c \
+		box_helpers.c \
+		box_parser.c \
+		quadrilater_helpers.c \
+		box_pattern.c \
+		normal_map.c \
+		renderer_pixels.c \
+		sky_box.c \
+		textures_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -350,11 +290,10 @@ DEPS = $(OBJS:%.o=%.d)
 #----- R U L E S -----#
 
 all:
-	mkdir -p $(EXPORTS)
 	@$(MAKE) --no-print-directory make_libft
 	@$(MAKE) --no-print-directory $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
+$(NAME): $(MLX_LIB) $(LIBFT_LIB) $(OBJS)
 	@printf "$(BLUE)Linking objects and creating program...$(DEF_COLOR)\n"
 	$(CC) $(CCFLAGS) $(OBJS) $(LIBFT_LIB) $(LIBRARIES) $(LIBRARIES_DEPS) -o $(NAME)
 	@echo "$(GREEN)[✓] $(PINK)$(NAME)$(GREEN) created!!!$(DEF_COLOR)"
@@ -368,7 +307,7 @@ clean: libft_clean
 	@rm -rf $(BIN_DIR)
 	@echo "$(RED)Binaries deleted$(DEF_COLOR)\n"
 
-fclean: clean libft_fclean mlx_fclean
+fclean: clean libft_fclean
 	@rm -rf $(NAME)
 	@echo "$(RED)Executable deleted$(DEF_COLOR)\n"
 
@@ -383,15 +322,7 @@ bonusre: fclean bonus
 
 bre: bonusre
 
-make_libft:
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) bonus
-
-libft_clean:
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
-
-libft_fclean:
-	@echo "$(RED)Cleaning $(PINK)Libft$(RED)...$(DEF_COLOR)"
-	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
+$(MLX_LIB): | $(MLX_DIR)
 
 $(MLX_DIR):
 	printf "$(CYAN)Downloading $(PINK)mlx...$(DEF_COLOR)\n"
@@ -401,25 +332,15 @@ $(MLX_DIR):
 	mv -f MLX42-$(MLX_VERSION) $(MLX_DIR)
 	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) downloaded!!!$(DEF_COLOR)\n"
 
-$(MLX_LIB): | $(MLX_DIR)
-	printf "$(CYAN)Compiling $(PINK)mlx...$(DEF_COLOR)\n"
-	cd lib/mlx && cmake $(MLX_COMP_FLAGS) -Wsupress -Wno-dev -B build/ >/dev/null && make --no-print-directory -C build > /dev/null
-	echo "$(GREEN)[✓] $(PINK)mlx$(GREEN) compiled!!!$(DEF_COLOR)\n"
+make_libft:
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) bonus
 
-mlx_fclean:
-	rm -rf $(MLX_DIR)
+libft_clean:
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
 
-norm:
-	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(SRC)$(BLUE)...$(DEF_COLOR)\n"
-	norminette $(SRC) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
-	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
-	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
-
-test:
-	cd tester && ./tester.sh
-
-min-test:
-	cd tester && ./tester.sh -n
+libft_fclean:
+	@echo "$(RED)Cleaning $(PINK)Libft$(RED)...$(DEF_COLOR)"
+	@$(MAKE) --no-print-directory -C $(LIBFT_DIR) fclean
 
 .PHONY: all \
 		clean \
@@ -432,13 +353,6 @@ min-test:
 		make_libft \
 		libft_clean \
 		libft_fclean \
-		make_mlx \
-		mlx_fclean \
-		norm \
-		test \
-		min-test
 
 -include $(DEPS)
--include $(MDEPS)
--include $(BDEPS)
 .SILENT:
