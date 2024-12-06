@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 21:33:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 23:07:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	close_window(t_window *window)
 	mlx_close_window(window->mlx);
 }
 
-static void	init_hooks(t_window *window)
+static void	set_hooks(t_window *window)
 {
 	mlx_key_hook(window->mlx, (mlx_keyfunc) key_hook, window);
 	mlx_scroll_hook(window->mlx, scroll_hook, window);
@@ -90,6 +90,6 @@ void	init_window(t_window *window)
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);
-	init_hooks(window);
+	set_hooks(window);
 	pthread_mutex_unlock(&window->ready);
 }

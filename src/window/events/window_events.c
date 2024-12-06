@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 22:07:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 23:09:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			set_selection_fig(&window->render.scene,
 				window->render.scene.figures);
 	}
+	composer_key_events(&keydata, window);
 	if (selection)
 	{
 		selection_key_events(&keydata, window);
@@ -44,7 +45,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		return ;
 	}
 	render_key_events(&keydata, window);
-	camera_key_events(keydata, window);
+	camera_key_events(&keydata, window);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)
