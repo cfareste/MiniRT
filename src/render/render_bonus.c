@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 23:05:27 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:43:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ void	*render_part(t_render_part *part)
 
 	get_thread_id(&part->thread, &seed);
 	iterators.j = 0;
-	if (part->render->scene.settings.sky_box)
-		part->render->scene.settings.sky_box->position
-			= part->render->scene.camera->position;
 	while (!is_render_finished(part->render)
 		&& iterators.j < part->img_size.height)
 	{

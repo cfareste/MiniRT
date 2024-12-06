@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bump_map.h                                         :+:      :+:    :+:   */
+/*   sky_box.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 20:35:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 02:05:50 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/06 02:38:44 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/06 02:41:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/scene.h"
+#include <math.h>
 
-#include "MLX42.h"
-#include "parser/parser.h"
-
-typedef enum e_bump_map_format
+void	configure_sky_box(t_scene *scene)
 {
-	OPENGL,
-	DIRECTX
-}	t_bump_map_format;
-
-typedef struct s_bump_map
-{
-	t_bump_map_format	format;
-	float				width_dim;
-	t_texture			*texture;
-}	t_bump_map;
-
-void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **str);
-
-void	check_file(t_parser_ctx *ctx, char *path);
-
-void	print_texture(t_bump_map *texture);
+	if (!scene->settings.sky_box)
+		return ;
+	scene->settings.sky_box->position = scene->camera->position;
+	scene->settings.sky_box->sp_attrs->radius
+		= scene->settings.sky_box->bump_map.texture->mlx->height / M_PI;
+}

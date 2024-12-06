@@ -168,6 +168,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/pattern:\
 			$(SRC)scene/figure/pattern/helpers:\
 			$(SRC)scene/settings:\
+			$(SRC)scene/settings/sky_box:\
 			$(SRC)scene/settings/parser:\
 			$(SRC)scene/figure/types/cone/helpers:\
 			$(SRC)render/renderer:\
@@ -330,7 +331,8 @@ SRCS = miniRT.c \
 	box_parser.c \
 	quadrilater_helpers.c \
 	box_pattern.c \
-	normal_map.c
+	normal_map.c \
+	sky_box.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

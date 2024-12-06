@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 15:16:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:05:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_texture(t_bump_map *texture)
 		format_str, texture->texture, texture->width_dim);
 }
 
-static void	check_file(t_parser_ctx *ctx, char *path)
+void	check_file(t_parser_ctx *ctx, char *path)
 {
 	char	*err_pref;
 
