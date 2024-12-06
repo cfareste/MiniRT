@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 23:04:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:40:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,25 @@
 #include "scene/figure/helpers/figure_helpers.h"
 #include "libft.h"
 
-static void	process_lighting(t_render *render, t_hit_record *hit_record,
-	t_color *final_color, uint32_t *seed)
+static void	process_lighting(t_sample_lights_params *params, t_ray *ray,
+	t_hit_record *hit_record, t_color *final_color)
 {
 	t_color					light_color;
 	t_color					sample_color;
 	t_color					figure_color;
-	t_sample_lights_params	params;
 
 	ft_bzero(&sample_color, sizeof(t_color));
 	ft_bzero(&light_color, sizeof(t_color));
 	if (!hit_record->figure)
 	{
-		get_sky_color(render->scene.ambient_light,
-			&render->scene.settings.sky_color, &sample_color);
+		get_sky_color(&params->render->scene, ray,
+			params->render->scene.ambient_light, &sample_color);
 		sum_colors(final_color, &sample_color, final_color);
 		return ;
 	}
-	params.seed = seed;
-	params.render = render;
-	apply_ambient_lighting(render->scene.ambient_light, &light_color);
+	apply_ambient_lighting(params->render->scene.ambient_light, &light_color);
 	get_figure_color(hit_record->figure, &hit_record->point, &figure_color);
-	sample_lights(&params, hit_record, PLASTIC, &light_color);
+	sample_lights(params, hit_record, PLASTIC, &light_color);
 	mix_colors(&light_color, &figure_color, &sample_color);
 	sum_colors(final_color, &sample_color, final_color);
 }
@@ -50,9 +47,12 @@ static void	process_lighting(t_render *render, t_hit_record *hit_record,
 void	compute_raytracing(t_render *render, t_ray *ray, t_color *sample_color,
 	uint32_t *seed)
 {
-	t_hit_record	hit_record;
+	t_hit_record			hit_record;
+	t_sample_lights_params	params;
 
+	params.seed = seed;
+	params.render = render;
 	ft_bzero(&hit_record, sizeof(t_hit_record));
 	check_collisions(&render->scene, ray, &hit_record);
-	process_lighting(render, &hit_record, sample_color, seed);
+	process_lighting(&params, ray, &hit_record, sample_color);
 }

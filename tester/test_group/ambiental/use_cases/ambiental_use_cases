@@ -1,0 +1,15 @@
+A 	0.0		255,255,255 #;												SUCCESS
+  A 	0.0		255,255,255	#	 ;										SUCCESS
+ 	A 	0.0		255,255,255	#	;										SUCCESS
+	A 	0.0		255,255,255 	;										SUCCESS
+ A 	0.0		255,255,255 	#dsadfad;									SUCCESS
+ A 	0.0		255,255,255	#A   ;											SUCCESS
+A 	0.0		255,255,255   # A 	0.0		255,255,255;					SUCCESS
+A	;																	FAILURE			;		Missing ambient light params
+A   0.0 #  		255,255,255;											FAILURE			;		Missing ambient light params
+Afhdjfdh   ;															FAILURE			;		Unknown parameter: Afhdjfdh
+Afhdjfdh   0.0    255,255,255;											FAILURE			;		Unknown parameter: Afhdjfdh
+Ambient A ;																FAILURE			;		Unknown parameter: Ambient
+a;																		FAILURE			;		Unknown parameter: a
+A   -1.0	255,255,255;												FAILURE			;		Brightness param for ambient light must be in range [0.0,1.0]
+A   2.0	255,255,255;													FAILURE			;		Brightness param for ambient light must be in range [0.0,1.0]

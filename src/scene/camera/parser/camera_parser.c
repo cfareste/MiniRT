@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 14:43:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:09:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 #include "parser/parser.h"
 #include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
+#include "render/utils/vector/parser/vector_parser.h"
 #include <math.h>
 
 static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
 {
-	if (camera->front.x < -1.0 || camera->front.x > 1.0
-		|| camera->front.y < -1.0 || camera->front.y > 1.0
-		|| camera->front.z < -1.0 || camera->front.z > 1.0)
-		throw_parse_err(ctx,
-			"Camera orientation vector components must be in range [-1,1]");
-	else if (camera->fov < 0 || camera->fov > 180)
+	check_ori_vector_parsing(ctx, &camera->front);
+	if (camera->fov < 0 || camera->fov > 180)
 		throw_parse_err(ctx,
 			"Camera field of view (fov) must be in range [0,180]");
+	if (camera->defocus < 0)
+		throw_parse_err(ctx, "Defocus radius must be a positive value");
+	if (camera->focus_dist <= 0)
+		throw_parse_err(ctx, "Focus distance must be a positive value");
 }
 
 static void	calculate_defocus_components(t_camera *camera)

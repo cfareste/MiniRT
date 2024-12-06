@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3
+CCFLAGS += -Wall -Werror -Wextra -O3 -g -fsanitize=address
 
 
 #----DIRS----#
@@ -168,6 +168,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/pattern:\
 			$(SRC)scene/figure/pattern/helpers:\
 			$(SRC)scene/settings:\
+			$(SRC)scene/settings/sky_box:\
 			$(SRC)scene/settings/parser:\
 			$(SRC)scene/figure/types/cone/helpers:\
 			$(SRC)window:\
@@ -336,7 +337,8 @@ SRCS = miniRT.c \
 	normal_map.c \
 	render_events.c \
 	renderer_pixels.c \
-	renderer_parts.c
+	renderer_parts.c \
+	sky_box.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -411,6 +413,9 @@ norm:
 	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
 	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
 
+test:
+	cd tester && ./tester.sh
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -424,7 +429,8 @@ norm:
 		libft_fclean \
 		make_mlx \
 		mlx_fclean \
-		norm
+		norm \
+		test
 
 -include $(DEPS)
 -include $(MDEPS)

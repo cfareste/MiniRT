@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:06:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 17:10:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:53:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	try_parse_window_elems(t_parser_ctx *ctx, char **args, t_window *window)
 	while (args[i])
 	{
 		if (!try_parse_window_elem(ctx, args[i], window))
-			throw_parse_err(ctx, ft_strjoin("Unknown render param: ",
+			throw_parse_err(ctx, ft_strjoin("Unknown window param: ",
 					args[i]));
 		i++;
 	}

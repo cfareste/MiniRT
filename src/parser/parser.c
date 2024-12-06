@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 23:03:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:33:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	parse(t_window *window, char *filename)
 	int				fd;
 	t_parser_ctx	ctx;
 
-	printf("Parsing\r");
 	window->filename = filename;
 	pthread_mutex_init(&window->render.scene.mutex, NULL);
 	ctx.textures = &window->textures;

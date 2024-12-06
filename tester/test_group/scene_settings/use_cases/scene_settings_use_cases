@@ -1,0 +1,44 @@
+S	;										SUCCESS
+S 	#;										SUCCESS
+  S	#	 ;									SUCCESS
+ 	S	#	;								SUCCESS
+	S 	;									SUCCESS
+ S 	#dsadfad;								SUCCESS
+S 	#sky_color;								SUCCESS
+ S	#S   ;									SUCCESS
+S   # Scene sFSSFs S sfsf;					SUCCESS
+Sfsjkfsj   ;								FAILURE			;		Unknown parameter: Sfsjkfsj
+Scene S ;									FAILURE			;		Unknown parameter: Scene
+s;											FAILURE			;		Unknown parameter: s
+S   S;										FAILURE			;		Unknown scene param: S
+S   nnname:Test							;	FAILURE			;		Unknown scene param: nnname:Test
+S   nameee:Test							;	FAILURE			;		Unknown scene param: nameee:Test
+	S 	namename:Test					;	FAILURE			;		Unknown scene param: namename:Test
+S	NAME								;	FAILURE			;		Unknown scene param: NAME
+S	Name								;	FAILURE			;		Unknown scene param: Name
+S	namE			#					;	FAILURE			;		Unknown scene param: namE
+S	NaMe								;	FAILURE			;		Unknown scene param: NaMe
+S	name			#					;	FAILURE			;		Missing params: name
+S	name:								;	FAILURE			;		Missing params: name
+S	name:Test							;	SUCCESS
+S	name:a1231_321_			#			;	SUCCESS
+S	name:!!)$(!DSL:AF_			#		;	SUCCESS
+S   sssky			#					;	FAILURE			;		Unknown scene param: sssky
+S   skyyy								;	FAILURE			;		Unknown scene param: skyyy
+S   skkky								;	FAILURE			;		Unknown scene param: skkky
+S   SKY									;	FAILURE			;		Unknown scene param: SKY
+S   Sky				#					;	FAILURE			;		Unknown scene param: Sky
+S   skY									;	FAILURE			;		Unknown scene param: skY
+S   SkY									;	FAILURE			;		Unknown scene param: SkY
+S	sky									;	FAILURE			;		Missing params: sky
+S	sky:			#					;	FAILURE			;		Missing params: sky
+S	sky:255,255,255			#			;	SUCCESS
+S	name sky			#				;	FAILURE			;		Missing params: name
+S	sky	name		#					;	FAILURE			;		Missing params: sky
+S   name:Test	name					;	FAILURE			;		Missing params: name
+S   sky:255,255,255	sky					;	FAILURE			;		Missing params: sky
+S   name:Test	name:Test2				;	SUCCESS
+S   sky:255,255,255 sky:255,255,0		;	SUCCESS
+S   sky_box								;	FAILURE			;		Missing params: sky_box
+S   sky_box:							;	FAILURE			;		Missing params: sky_box
+S   sky_box:assets/textures/noche.png	;	SUCCESS

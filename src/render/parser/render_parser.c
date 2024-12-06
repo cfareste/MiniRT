@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:49:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:21:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		render->strategy = RAYTRACING;
 	else if (ft_strcmp(args[0], NORMAL_MAP_KEY) == EQUAL_STRINGS)
 		render->strategy = NORMAL_MAP;
-	else if (ft_strcmp(args[0], SOFT_SHADOWS_KEY) == EQUAL_STRINGS)
+	else if (ft_strcmp(args[0], SOFT_SHADOWS_KEY) == EQUAL_STRINGS
+		&& ensure_params_amount(ctx, args, 1))
 		render->soft_shadows_radius = parse_double(ctx, args[1]);
 	else
-		free_args(args);
+		return (free_args(args));
 	free_matrix(args);
 	check_parsing(ctx, render);
 	return (1);

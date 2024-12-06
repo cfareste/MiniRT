@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 22:22:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:03:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/parser/scene_parser.h"
+#include "scene/settings/sky_box/sky_box.h"
 #include "window/loader/loader_bonus.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
 #include "utils/utils_bonus.h"
@@ -45,6 +46,7 @@ static void	*start_routine(void *window_)
 	push_job(&window->jobs, init_title_job(new_job(),
 			ft_strdup("Loading textures...")));
 	load_textures(&window->loader, &window->textures, &window->jobs);
+	configure_sky_box(&window->render.scene);
 	pthread_mutex_lock(&window->render.scene.mutex);
 	window->render.scene.ready = 1;
 	pthread_mutex_unlock(&window->render.scene.mutex);

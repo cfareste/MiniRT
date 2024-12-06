@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 22:34:08 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 17:03:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/utils/color/color_operations/color_operations.h"
 #include "utils/iterators/iterators.h"
 #include "render/strategies/strategies.h"
+#include "scene/settings/sky_box/sky_box.h"
 #include <math.h>
 
 static void	compute_strategy(t_render_part *part, t_ray *ray,
@@ -63,6 +64,7 @@ void	*render_part(t_render_part *part)
 	size_t		i;
 
 	get_thread_id(&part->thread, &seed);
+	configure_sky_box(&part->render->scene);
 	pixels = part->pixels;
 	i = 0;
 	while (!is_render_finished(part->render)
@@ -81,7 +83,7 @@ void	set_render_defaults(t_render *render)
 	render->samples = 1;
 	render->antialiasing = 0;
 	render->strategy = PATHTRACING;
-	render->max_depth = 1;
+	render->max_depth = 4;
 	render->soft_shadows_radius = 0;
 }
 

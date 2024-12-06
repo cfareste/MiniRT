@@ -1,0 +1,27 @@
+C 	0,0,0	0,0,1	80	 #;												SUCCESS
+  C 	0,0,0	0,0,1	80	#	 ;										SUCCESS
+ 	C 	0,0,0	0,0,1	80	#	;										SUCCESS
+	C 	0,0,0	0,0,1	80 	;											SUCCESS
+ C 	0,0,0	0,0,1	80 	#dsadfad;										SUCCESS
+ C 	0,0,0	0,0,1	80	#C   ;											SUCCESS
+C 	0,0,0	0,0,1	80   # C 	0,0,0	0,0,1	80;						SUCCESS
+C	;																	FAILURE			;		Missing camera params
+C   0,0,0 #  	0,0,1	80;												FAILURE			;		Missing camera params
+C   0,0,0   	0,0,1	#80;											FAILURE			;		Missing camera params
+Ckdfjdkf   ;															FAILURE			;		Unknown parameter: Ckdfjdkf
+Ckdfjdkf   0,0,0   0,0,1	80;											FAILURE			;		Unknown parameter: Ckdfjdkf
+Camera C ;																FAILURE			;		Unknown parameter: Camera
+c;																		FAILURE			;		Unknown parameter: c
+C 	-10,2,0	2,0,-1	8;													SUCCESS
+C 	4,2,0	0,0,1	0;													SUCCESS
+C 	4,2,0	0,0,1	180;												SUCCESS
+C 	4,2,0	0,0,0	8;													FAILURE			;		Orientation vector must point somewhere
+C 	4,2,0	0,0,1	-240;												FAILURE			;		Camera field of view (fov) must be in range [0,180]
+C 	4,2,0	0,0,1	200;												FAILURE			;		Camera field of view (fov) must be in range [0,180]
+C 	4,2,0	0,0,1	60		0.0		1.0;								SUCCESS
+C 	4,2,0	0,0,1	60		5.0		15.0;								SUCCESS
+C 	4,2,0	0,0,1	60		5.0		;									SUCCESS
+C 	4,2,0	0,0,1	60		5.0		#15.0;								SUCCESS
+C 	4,2,0	0,0,1	60		5.0		#15.0;								SUCCESS
+C 	4,2,0	0,0,1	60		-1.0		#15.0;							FAILURE			;		Defocus radius must be a positive value
+C 	4,2,0	0,0,1	60		1.0		-1.0;								FAILURE			;		Focus distance must be a positive value

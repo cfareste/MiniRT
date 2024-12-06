@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/19 21:26:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:05:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_texture(t_bump_map *texture)
 		format_str, texture->texture, texture->width_dim);
 }
 
-static void	check_file(t_parser_ctx *ctx, char *path)
+void	check_file(t_parser_ctx *ctx, char *path)
 {
 	char	*err_pref;
 
@@ -61,4 +61,6 @@ void	parse_texture(t_parser_ctx *ctx, t_bump_map *bump_map, char **params)
 	bump_map->format = OPENGL;
 	if (params[3] && ft_strcmp(params[3], "directx") == EQUAL_STRINGS)
 		bump_map->format = DIRECTX;
+	if (bump_map->width_dim <= 0)
+		throw_parse_err(ctx, "Texture width must be greater than 0");
 }

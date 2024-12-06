@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/12 13:06:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 02:05:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ typedef struct s_bump_map
 }	t_bump_map;
 
 void	parse_texture(t_parser_ctx *ctx, t_bump_map *texture, char **str);
+
+void	check_file(t_parser_ctx *ctx, char *path);
 
 void	print_texture(t_bump_map *texture);

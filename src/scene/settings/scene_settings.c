@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_settings.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 15:14:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:37:14 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	set_scene_defaults(t_scene_settings *settings, char *filename)
 	settings->sky_color.red = 0.839215686;
 	settings->sky_color.green = 0.956862745;
 	settings->sky_color.blue = 1;
+	settings->sky_box = NULL;
 }
 
 void	destroy_scene_settings(t_scene_settings *settings)
 {
 	free(settings->name);
+	free_figures(settings->sky_box);
 }

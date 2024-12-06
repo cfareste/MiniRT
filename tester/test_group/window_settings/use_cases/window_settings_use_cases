@@ -1,0 +1,21 @@
+W	;															SUCCESS
+W 	#;															SUCCESS
+  W	#	 ;														SUCCESS
+ 	W	#	;													SUCCESS
+	W 	;														SUCCESS
+ W 	#dsadfad;													SUCCESS
+W 	#raytracer;													SUCCESS
+ W	#W   ;														SUCCESS
+W   # win_width with_height 	;								SUCCESS
+Wfkjdkfd   ;													FAILURE			;		Unknown parameter: Wfkjdkfd
+Window W ;														FAILURE			;		Unknown parameter: Window
+w;																FAILURE			;		Unknown parameter: w
+W   W;															FAILURE			;		Unknown window param: W
+W   win_width;													FAILURE			;		Unknown window param: win_width
+W   width;														FAILURE			;		Missing params: width
+W   width:   ;													FAILURE			;		Missing params: width
+W   width:20   ;												SUCCESS
+W   height   ;													FAILURE			;		Missing params: height
+W   height:   ;													FAILURE			;		Missing params: height
+W   height:32   ;												SUCCESS
+W   width:4 height:2   ;										SUCCESS

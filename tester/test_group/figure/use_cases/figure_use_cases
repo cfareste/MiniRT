@@ -1,0 +1,155 @@
+sp		0,0,0	2	255,255,255		#		;									SUCCESS
+sp		0,0,0	2	255,255,255		#		#;									SUCCESS
+  sp		0,0,0	2	255,255,255		#		;								SUCCESS
+ 	sp		0,0,0	2	255,255,255		#		;								SUCCESS
+	sp		0,0,0	2	255,255,255		#		;								SUCCESS
+ sp		0,0,0	2	255,255,255		#		 	#dsadfad;						SUCCESS
+ sp		0,0,0	2	255,255,255		#			#sp   ;							SUCCESS
+sp		0,0,0	2	255,255,255		#		 sFSSFs S sfsf;						SUCCESS
+spfsjkfsj   ;																	FAILURE			;		Unknown parameter: spfsjkfsj
+sphere sp ;																		FAILURE			;		Unknown parameter: sphere
+SP;																				FAILURE			;		Unknown parameter: SP
+sp   sp;																		FAILURE			;		Missing some sphere parameter
+sp		#0,0,0	2	255,255,255		#		;									FAILURE			;		Missing some sphere parameter
+sp		0,0,0	#2	255,255,255		#		;									FAILURE			;		Missing some sphere parameter
+sp		0,0,0	2	#255,255,255		#		;								FAILURE			;		Missing some sphere parameter
+sp		0,0,0	0	255,255,255				;									FAILURE			;		Sphere diameter must be a positive value
+sp		0,0,0	-1	255,255,255				;									FAILURE			;		Sphere diameter must be a positive value
+
+
+pl		0,0,0	0,0,1	255,255,255		#		;								SUCCESS
+pl		0,0,0	0,0,1	255,255,255		#		#;								SUCCESS
+  pl		0,0,0	0,0,1	255,255,255		#		;							SUCCESS
+ 	pl		0,0,0	0,0,1	255,255,255		#		;							SUCCESS
+	pl		0,0,0	0,0,1	255,255,255		#		;							SUCCESS
+ pl		0,0,0	0,0,1	255,255,255		#		 	#dsadfad;					SUCCESS
+ pl		0,0,0	0,0,1	255,255,255		#			#pl   ;						SUCCESS
+pl		0,0,0	0,0,1	255,255,255		#		 sFSSFs S sfsf;					SUCCESS
+plfsjkfsj   ;																	FAILURE			;		Unknown parameter: plfsjkfsj
+plane pl ;																		FAILURE			;		Unknown parameter: plane
+PL;																				FAILURE			;		Unknown parameter: PL
+pl   pl;																		FAILURE			;		Missing some plane parameter
+pl		#0,0,0	0,0,1	255,255,255		#		;								FAILURE			;		Missing some plane parameter
+pl		0,0,0	#0,0,1	255,255,255		#		;								FAILURE			;		Missing some plane parameter
+pl		0,0,0	0,0,1	#255,255,255		#		;							FAILURE			;		Missing some plane parameter
+pl		0,0,0	0,0,0	255,255,255				;								FAILURE			;		Orientation vector must point somewhere
+
+
+cy		0,0,0	0,0,1	2	3	255,255,255		#		;						SUCCESS
+cy		0,0,0	0,0,1	2	3	255,255,255		#		#;						SUCCESS
+  cy		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ 	cy		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+	cy		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ cy		0,0,0	0,0,1	2	3	255,255,255		#		 	#dsadfad;			SUCCESS
+ cy		0,0,0	0,0,1	2	3	255,255,255		#			#cy   ;				SUCCESS
+cy		0,0,0	0,0,1	2	3	255,255,255		#		 sFSSFs S sfsf;			SUCCESS
+cyfsjkfsj   ;																	FAILURE			;		Unknown parameter: cyfsjkfsj
+cylinder cy ;																	FAILURE			;		Unknown parameter: cylinder
+CY;																				FAILURE			;		Unknown parameter: CY
+cy   cy;																		FAILURE			;		Missing some cylinder parameter
+cy		#0,0,0	0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some cylinder parameter
+cy		0,0,0	#0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some cylinder parameter
+cy		0,0,0	0,0,1	#2	3	255,255,255		#		;						FAILURE			;		Missing some cylinder parameter
+cy		0,0,0	0,0,1	2	#3	255,255,255		#		;						FAILURE			;		Missing some cylinder parameter
+cy		0,0,0	0,0,1	2	3	#255,255,255		#		;					FAILURE			;		Missing some cylinder parameter
+cy		0,0,0	0,0,0	2	3	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
+cy		0,0,0	0,0,1	0	3	255,255,255				;						FAILURE			;		Cylinder diameter must be a positive value
+cy		0,0,0	0,0,1	-2	3	255,255,255				;						FAILURE			;		Cylinder diameter must be a positive value
+cy		0,0,0	0,0,1	2	0	255,255,255				;						FAILURE			;		Cylinder height must be a positive value
+cy		0,0,0	0,0,1	2	-3	255,255,255				;						FAILURE			;		Cylinder height must be a positive value
+
+
+co		0,0,0	0,0,1	2	3	255,255,255		#		;						SUCCESS
+co		0,0,0	0,0,1	2	3	255,255,255		#		#;						SUCCESS
+  co		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ 	co		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+	co		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ co		0,0,0	0,0,1	2	3	255,255,255		#		 	#dsadfad;			SUCCESS
+ co		0,0,0	0,0,1	2	3	255,255,255		#			#co   ;				SUCCESS
+co		0,0,0	0,0,1	2	3	255,255,255		#		 sFSSFs S sfsf;			SUCCESS
+cofsjkfsj   ;																	FAILURE			;		Unknown parameter: cofsjkfsj
+cone co ;																		FAILURE			;		Unknown parameter: cone
+CO;																				FAILURE			;		Unknown parameter: CO
+co   co;																		FAILURE			;		Missing some cone parameter
+co		#0,0,0	0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some cone parameter
+co		0,0,0	#0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some cone parameter
+co		0,0,0	0,0,1	#2	3	255,255,255		#		;						FAILURE			;		Missing some cone parameter
+co		0,0,0	0,0,1	2	#3	255,255,255		#		;						FAILURE			;		Missing some cone parameter
+co		0,0,0	0,0,1	2	3	#255,255,255		#		;					FAILURE			;		Missing some cone parameter
+co		0,0,0	0,0,0	2	3	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
+co		0,0,0	0,0,1	0	3	255,255,255				;						FAILURE			;		Cone diameter must be a positive value
+co		0,0,0	0,0,1	-2	3	255,255,255				;						FAILURE			;		Cone diameter must be a positive value
+co		0,0,0	0,0,1	2	0	255,255,255				;						FAILURE			;		Cone height must be a positive value
+co		0,0,0	0,0,1	2	-3	255,255,255				;						FAILURE			;		Cone height must be a positive value
+
+
+di		0,0,0	0,0,1	2	255,255,255		#		;							SUCCESS
+di		0,0,0	0,0,1	2	255,255,255		#		#;							SUCCESS
+  di		0,0,0	0,0,1	2	255,255,255		#		;						SUCCESS
+ 	di		0,0,0	0,0,1	2	255,255,255		#		;						SUCCESS
+	di		0,0,0	0,0,1	2	255,255,255		#		;						SUCCESS
+ di		0,0,0	0,0,1	2	255,255,255		#		 	#dsadfad;				SUCCESS
+ di		0,0,0	0,0,1	2	255,255,255		#			#di   ;					SUCCESS
+di		0,0,0	0,0,1	2	255,255,255		#		 sFSSFs S sfsf;				SUCCESS
+difsjkfsj   ;																	FAILURE			;		Unknown parameter: difsjkfsj
+disk di ;																		FAILURE			;		Unknown parameter: disk
+DI;																				FAILURE			;		Unknown parameter: DI
+di   di;																		FAILURE			;		Missing some disk parameter
+di			#0,0,0	0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	#0,0,1	2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,1	#2	255,255,255		#		;						FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,1	2	#255,255,255		#		;					FAILURE			;		Missing some disk parameter
+di			0,0,0	0,0,0	2	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
+di			0,0,0	0,0,1	0	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
+di			0,0,0	0,0,1	-2	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
+
+
+qu		0,0,0	0,0,1	2	3	255,255,255		#		;						SUCCESS
+qu		0,0,0	0,0,1	2	3	255,255,255		#		#;						SUCCESS
+  qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ 	qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+	qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
+ qu		0,0,0	0,0,1	2	3	255,255,255		#		 	#dsadfad;			SUCCESS
+ qu		0,0,0	0,0,1	2	3	255,255,255		#			#qu   ;				SUCCESS
+qu		0,0,0	0,0,1	2	3	255,255,255		#		 sFSSFs S sfsf;			SUCCESS
+qufsjkfsj   ;																	FAILURE			;		Unknown parameter: qufsjkfsj
+quad qu ;																		FAILURE			;		Unknown parameter: quad
+QU;																				FAILURE			;		Unknown parameter: QU
+qu   qu;																		FAILURE			;		Missing some quadrilater parameter
+qu		#0,0,0	0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	#0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,1	#2	3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,1	2	#3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,1	2	3	#255,255,255		#		;					FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,0	2	3	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
+qu		0,0,0	0,0,1	0	3	255,255,255				;						FAILURE			;		Quadrilater width must be a positive value
+qu		0,0,0	0,0,1	-2	3	255,255,255				;						FAILURE			;		Quadrilater width must be a positive value
+qu		0,0,0	0,0,1	2	0	255,255,255				;						FAILURE			;		Quadrilater height must be a positive value
+qu		0,0,0	0,0,1	2	-3	255,255,255				;						FAILURE			;		Quadrilater height must be a positive value
+
+
+bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;					SUCCESS
+bo		0,0,0	0,0,1	2	3	4	255,255,255		#		#;					SUCCESS
+  bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
+ 	bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
+	bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
+ bo		0,0,0	0,0,1	2	3	4	255,255,255		#		 	#dsadfad;		SUCCESS
+ bo		0,0,0	0,0,1	2	3	4	255,255,255		#			#bo   ;			SUCCESS
+bo		0,0,0	0,0,1	2	3	4	255,255,255		#		 sFSSFs S sfsf;		SUCCESS
+bofsjkfsj   ;																	FAILURE			;		Unknown parameter: bofsjkfsj
+box bo ;																		FAILURE			;		Unknown parameter: box
+BO;																				FAILURE			;		Unknown parameter: BO
+bo   bo;																		FAILURE			;		Missing some box parameter
+bo		#0,0,0	0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	#0,0,1	2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	#2	3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	#3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	3	#4	255,255,255		#		;					FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	2	3	4	#255,255,255		#		;				FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,0	2	3	4	255,255,255				;					FAILURE			;		Orientation vector must point somewhere
+bo		0,0,0	0,0,1	0	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	-2	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	2	0	4	255,255,255				;					FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	2	-3	4	255,255,255				;					FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	2	3	0	255,255,255				;					FAILURE			;		Box length must be a positive value
+bo		0,0,0	0,0,1	2	3	-4	255,255,255				;					FAILURE			;		Box length must be a positive value
