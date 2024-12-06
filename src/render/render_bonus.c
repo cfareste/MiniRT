@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 02:43:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:47:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/utils/color/color_operations/color_operations.h"
 #include "utils/iterators/iterators.h"
 #include "render/strategies/strategies.h"
+#include "scene/settings/sky_box/sky_box.h"
 #include <math.h>
 
 static void	compute_strategy(t_render_part *part, t_ray *ray,
@@ -62,6 +63,7 @@ void	*render_part(t_render_part *part)
 
 	get_thread_id(&part->thread, &seed);
 	iterators.j = 0;
+	configure_sky_box(&part->render->scene);
 	while (!is_render_finished(part->render)
 		&& iterators.j < part->img_size.height)
 	{
