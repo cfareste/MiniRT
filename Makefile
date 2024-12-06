@@ -62,7 +62,6 @@ EXPORTS = exports/
 
 
 #----LIBS----#
-LIBRARIES_DEPS = -lm
 
 #----LIBFT----#
 LIBFT_DIR = lib/libft/

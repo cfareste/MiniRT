@@ -62,6 +62,7 @@ EXPORTS = ../../exports/
 
 
 #----LIBS----#
+LIBRARIES_DEPS = -lm
 
 #----MLX----#
 MLX_VERSION = 2.4.1
