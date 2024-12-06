@@ -13,9 +13,12 @@ S	sky:24,43,43.0					#	;	FAILURE			;		Invalid integer number: 43.0
 S	sky:24,43,fadf					#	;	FAILURE			;		Invalid integer number: fadf
 S	sky:24,							#	;	FAILURE			;		Missing color params: 24,
 S	sky:241,241						#	;	FAILURE			;		Missing color params: 241,241
-S	sky:241:241:255					#	;	FAILURE			;		Missing color params: 241			
+S	sky:241:241:255					#	;	FAILURE			;		Missing color params: 241
 S	sky:300,241,255					#	;	FAILURE			;		Color params must be in range [0,255]
 S	sky:-10,241,255					#	;	FAILURE			;		Color params must be in range [0,255]
+S	sky_box:assets/textures/test.png	;	FAILURE			;		assets/textures/test.png: No such file or directory
+S	sky_box:assets/textures/test		;	FAILURE			;		Only .png or .xpm42 are allowed for texture file!
+S	sky_box:assets/textures/test.pngpng	;	FAILURE			;		Only .png or .xpm42 are allowed for texture file!
 L	  0,0,0  	0.2	255,255,255	#		;	SUCCESS
 L	  0,0,0  	0.	255,255,255	#		;	SUCCESS
 L	  0,0,0  	.2	255,255,255	#		;	SUCCESS

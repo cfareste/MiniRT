@@ -42,10 +42,10 @@ print_footer(){
 }
 
 execute_tests(){
-	local tests=$(ls $TEST_GROUP_DIR | grep -vE "norme|*.sh")
+	local tests=$(ls $TEST_GROUP_DIR | grep -vE "norme|test_group.sh")
 	local passed_tests=("")
 	local failed_tests=("")
-	local total_tests=$(ls $TEST_GROUP_DIR | grep -vE "*.sh" | wc -w)
+	local total_tests=$(ls $TEST_GROUP_DIR | grep -vE "test_group.sh" | wc -w)
 	local num_passed=0
 	local num_failed=0
 

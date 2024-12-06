@@ -26,7 +26,7 @@ S	name:!!)$(!DSL:AF_			#		;	SUCCESS
 S   sssky			#					;	FAILURE			;		Unknown scene param: sssky
 S   skyyy								;	FAILURE			;		Unknown scene param: skyyy
 S   skkky								;	FAILURE			;		Unknown scene param: skkky
-S   SKY									;	FAILURE			;		Unknown scene param: SKY	
+S   SKY									;	FAILURE			;		Unknown scene param: SKY
 S   Sky				#					;	FAILURE			;		Unknown scene param: Sky
 S   skY									;	FAILURE			;		Unknown scene param: skY
 S   SkY									;	FAILURE			;		Unknown scene param: SkY
@@ -39,3 +39,6 @@ S   name:Test	name					;	FAILURE			;		Missing params: name
 S   sky:255,255,255	sky					;	FAILURE			;		Missing params: sky
 S   name:Test	name:Test2				;	SUCCESS
 S   sky:255,255,255 sky:255,255,0		;	SUCCESS
+S   sky_box								;	FAILURE			;		Missing params: sky_box
+S   sky_box:							;	FAILURE			;		Missing params: sky_box
+S   sky_box:assets/textures/noche.png	;	SUCCESS

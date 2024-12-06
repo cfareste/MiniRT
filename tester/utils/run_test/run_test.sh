@@ -1,7 +1,7 @@
 #! /bin/bash
 
 start_lazy_kill(){
-	sleep 0.02
+	sleep 0.05
 	pkill -2 $PROGRAM
 }
 
