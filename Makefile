@@ -111,6 +111,7 @@ endif
 vpath %.c	$(SRC):\
 			$(SRC)render:\
 			$(SRC)scene:\
+			$(SRC)scene/selection:\
 			$(SRC)scene/parser:\
 			$(SRC)scene/camera:\
 			$(SRC)scene/camera/helpers:\
@@ -343,7 +344,8 @@ SRCS = miniRT.c \
 	renderer_parts.c \
 	sky_box.c \
 	window_events.c \
-	window_cursor.c
+	window_cursor.c \
+	scene_selection.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

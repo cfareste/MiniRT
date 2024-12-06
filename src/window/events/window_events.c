@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 21:09:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 22:07:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,31 @@
 #include "render/events/render_events.h"
 #include "scene/camera/helpers/camera_helper.h"
 #include "scene/camera/events/camera_events.h"
+#include "scene/selection/scene_selection.h"
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
+	t_figure	*selection;
+
+	selection = get_selection_fig(&window->render.scene);
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
 			close_window(window);
-		if (keydata.key == MLX_KEY_E)
+		else if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
-		if (keydata.key == MLX_KEY_L)
+		else if (keydata.key == MLX_KEY_L)
 			loader_toggle_visibility(window->exporter.loader);
+		else if (!selection && keydata.key == MLX_KEY_P)
+			set_selection_fig(&window->render.scene,
+				window->render.scene.figures);
+	}
+	if (selection)
+	{
+		selection_key_events(&keydata, window);
+		ft_bzero(&window->render.scene.camera->controls,
+			sizeof(t_camera_controls));
+		return ;
 	}
 	render_key_events(&keydata, window);
 	camera_key_events(keydata, window);
