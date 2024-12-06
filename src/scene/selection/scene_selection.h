@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_cursor.h                                    :+:      :+:    :+:   */
+/*   scene_selection.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 19:58:42 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 21:03:25 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/06 21:18:14 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/06 21:34:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <pthread.h>
+#include "window/window.h"
 
-typedef struct s_cursor_pos
-{
-	double	x;
-	double	y;
-}	t_cursor_pos;
+t_figure	*get_selection_fig(t_scene *scene);
 
-typedef struct s_cursor
-{
-	t_cursor_pos	pos;
-	pthread_mutex_t	mutex;
-}	t_cursor;
+void		set_selection_fig(t_scene *scene, t_figure *selection);
 
-void			cursor_update_pos(double x, double y, t_cursor *cursor);
-
-t_cursor_pos	cursor_get_pos(t_cursor *cursor);
-
-void			init_cursor(t_cursor *cursor);
+void		selection_key_events(mlx_key_data_t *keydata, t_window *window);

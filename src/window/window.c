@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 20:22:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 21:33:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,24 @@ void	close_window(t_window *window)
 	mlx_close_window(window->mlx);
 }
 
+static void	init_hooks(t_window *window)
+{
+	mlx_key_hook(window->mlx, (mlx_keyfunc) key_hook, window);
+	mlx_scroll_hook(window->mlx, scroll_hook, window);
+	mlx_resize_hook(window->mlx, (mlx_resizefunc) resize_hook, window);
+	mlx_cursor_hook(window->mlx,
+		(mlx_cursorfunc) cursor_update_pos, &window->cursor);
+	mlx_mouse_hook(window->mlx, (mlx_mousefunc) mouse_hook, window);
+	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
+	mlx_loop_hook(window->mlx, main_loop, window);
+}
+
 void	init_window(t_window *window)
 {
 	pthread_mutex_init(&window->ready, NULL);
 	pthread_mutex_init(&window->jobs.mutex, NULL);
 	pthread_mutex_init(&window->size.mutex, NULL);
+	pthread_mutex_init(&window->render.scene.selection_mutex, NULL);
 	pthread_mutex_lock(&window->ready);
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
@@ -77,12 +90,6 @@ void	init_window(t_window *window)
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);
-	mlx_key_hook(window->mlx, (mlx_keyfunc) key_hook, window);
-	mlx_scroll_hook(window->mlx, scroll_hook, window);
-	mlx_resize_hook(window->mlx, (mlx_resizefunc) resize_hook, window);
-	mlx_cursor_hook(window->mlx, (mlx_cursorfunc) cursor_hook, window);
-	mlx_mouse_hook(window->mlx, (mlx_mousefunc) mouse_hook, window);
-	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
-	mlx_loop_hook(window->mlx, main_loop, window);
+	init_hooks(window);
 	pthread_mutex_unlock(&window->ready);
 }
