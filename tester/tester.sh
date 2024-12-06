@@ -90,6 +90,7 @@ execute_tests(){
 	printf $WHITE"Failed: "$RED"%s\n"$DEF_COLOR "$failed_tests"
 	printf $WHITE"Total: "$GREEN_BOLD"%d"$WHITE" | "$RED_BOLD"%d"$WHITE" | "$YELLOW_BOLD"%d\n"$DEF_COLOR $num_passed $num_failed $total_tests
 	print_footer $num_failed
+	return $num_failed
 }
 
 execute_make(){
@@ -111,8 +112,9 @@ init_tester(){
 	compile_binary
 	create_test_scene
 	execute_tests $@
+	local exit_code=$?
 	remove_test_scene
-	return 0
+	return $exit_code
 }
 
 init_tester $@
