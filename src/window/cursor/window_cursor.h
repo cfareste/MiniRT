@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:58:42 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 20:05:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 21:03:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_cursor
 	pthread_mutex_t	mutex;
 }	t_cursor;
 
-void			cursor_update_pos(t_cursor *cursor, double x, double y);
+void			cursor_update_pos(double x, double y, t_cursor *cursor);
 
 t_cursor_pos	cursor_get_pos(t_cursor *cursor);
 

@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:59:49 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 20:15:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 21:12:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window_cursor.h"
 
-void	cursor_update_pos(t_cursor *cursor, double x, double y)
+void	cursor_update_pos(double x, double y, t_cursor *cursor)
 {
 	pthread_mutex_lock(&cursor->mutex);
 	cursor->pos.x = x;

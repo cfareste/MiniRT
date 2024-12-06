@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 20:22:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 21:06:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	init_window(t_window *window)
 	mlx_key_hook(window->mlx, (mlx_keyfunc) key_hook, window);
 	mlx_scroll_hook(window->mlx, scroll_hook, window);
 	mlx_resize_hook(window->mlx, (mlx_resizefunc) resize_hook, window);
-	mlx_cursor_hook(window->mlx, (mlx_cursorfunc) cursor_hook, window);
+	mlx_cursor_hook(window->mlx,
+		(mlx_cursorfunc) cursor_update_pos, &window->cursor);
 	mlx_mouse_hook(window->mlx, (mlx_mousefunc) mouse_hook, window);
 	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
 	mlx_loop_hook(window->mlx, main_loop, window);

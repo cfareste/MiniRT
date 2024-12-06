@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 20:24:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 21:09:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ void	resize_hook(int32_t width, int32_t height, t_window *window)
 	window->resize.last_resize = 1;
 	window->resize.size.width = width;
 	window->resize.size.height = height;
-}
-
-void	cursor_hook(double xpos, double ypos, t_window *window)
-{
-	cursor_update_pos(&window->cursor, xpos, ypos);
 }
 
 void	mouse_hook(mouse_key_t button, action_t action,
