@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 22:34:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 20:22:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "miniRT.h"
 #include "window/loader/helpers/loader_helper.h"
 #include "render/events/render_events.h"
+#include "events/window_events.h"
 
 static void	main_loop(void *window_)
 {
@@ -51,45 +52,11 @@ static void	main_loop(void *window_)
 	}
 }
 
-static void	close_window(t_window *window)
+void	close_window(t_window *window)
 {
 	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
 	mlx_close_window(window->mlx);
-}
-
-void	key_hook(mlx_key_data_t keydata, t_window *window)
-{
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
-			close_window(window);
-		if (keydata.key == MLX_KEY_E)
-			export_image(&window->exporter, &window->jobs);
-		if (keydata.key == MLX_KEY_L)
-			loader_toggle_visibility(window->exporter.loader);
-	}
-	render_key_events(&keydata, window);
-	camera_key_events(keydata, window);
-}
-
-void	scroll_hook(double xdelta, double ydelta, void *param)
-{
-	t_window		*window;
-
-	(void) xdelta;
-	window = (t_window *) param;
-	if (window->render.blocked || mlx_get_time() - window->last_scroll < 0.2)
-		return ;
-	stop_render(&window->render);
-	if (ydelta <= -1.0)
-		update_camera_fov(window->render.scene.camera, 1);
-	else if (ydelta >= 1.0)
-		update_camera_fov(window->render.scene.camera, -1);
-	else
-		return ;
-	window->last_scroll = mlx_get_time();
-	render(window);
 }
 
 void	init_window(t_window *window)
@@ -105,16 +72,17 @@ void	init_window(t_window *window)
 	window->last_update = mlx_get_time();
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);
+	init_cursor(&window->cursor);
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);
-	mlx_key_hook(window->mlx,
-		(void (*)(mlx_key_data_t keydata, void *)) key_hook, window);
-	mlx_resize_hook(window->mlx,
-		(void (*)(int, int, void *)) window_resized, window);
-	mlx_loop_hook(window->mlx, main_loop, window);
-	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
+	mlx_key_hook(window->mlx, (mlx_keyfunc) key_hook, window);
 	mlx_scroll_hook(window->mlx, scroll_hook, window);
+	mlx_resize_hook(window->mlx, (mlx_resizefunc) resize_hook, window);
+	mlx_cursor_hook(window->mlx, (mlx_cursorfunc) cursor_hook, window);
+	mlx_mouse_hook(window->mlx, (mlx_mousefunc) mouse_hook, window);
+	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
+	mlx_loop_hook(window->mlx, main_loop, window);
 	pthread_mutex_unlock(&window->ready);
 }

@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_helper_bonus.h                              :+:      :+:    :+:   */
+/*   window_events.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:57:00 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 19:44:38 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/06 19:42:26 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/06 20:07:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "MLX42.h"
-#include "window/window.h"
+#include "../window.h"
 
-int		diff_sizes(t_size *a, t_size *b);
+void	key_hook(mlx_key_data_t keydata, t_window *window);
 
-void	put_image(mlx_image_t *image, mlx_t *mlx, pthread_mutex_t *mutex);
+void	scroll_hook(double xdelta, double ydelta, void *param);
+
+void	resize_hook(int32_t width, int32_t height, t_window *window);
+
+void	cursor_hook(double xpos, double ypos, t_window *window);
+
+void	mouse_hook(mouse_key_t button, action_t action,
+			modifier_key_t mods, t_window *window);

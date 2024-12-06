@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_helper_bonus.h                              :+:      :+:    :+:   */
+/*   window_cursor.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:57:00 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 19:44:38 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/06 19:58:42 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/06 20:05:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "MLX42.h"
-#include "window/window.h"
 
-int		diff_sizes(t_size *a, t_size *b);
+#include <pthread.h>
 
-void	put_image(mlx_image_t *image, mlx_t *mlx, pthread_mutex_t *mutex);
+typedef struct s_cursor_pos
+{
+	double	x;
+	double	y;
+}	t_cursor_pos;
+
+typedef struct s_cursor
+{
+	t_cursor_pos	pos;
+	pthread_mutex_t	mutex;
+}	t_cursor;
+
+void			cursor_update_pos(t_cursor *cursor, double x, double y);
+
+t_cursor_pos	cursor_get_pos(t_cursor *cursor);
+
+void			init_cursor(t_cursor *cursor);

@@ -184,6 +184,14 @@ vpath %.c	$(SRC):\
 			$(SRC)window/textures/parser:\
 			$(SRC)window/textures/texture:\
 			$(SRC)window/parser:\
+			$(SRC)window/cursor:\
+			$(SRC)window/events:\
+			$(SRC)window/loader:\
+			$(SRC)window/loader/load:\
+			$(SRC)window/loader/helpers:\
+			$(SRC)window/loader/strategies/progress:\
+			$(SRC)window/loader/strategies/progress/helpers:\
+			$(SRC)window/loader/strategies/text:\
 			$(SRC)render/renderer:\
 			$(SRC)render/renderer/parts:\
 			$(SRC)render/renderer/pixels:\
@@ -218,13 +226,7 @@ vpath %.c	$(SRC):\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
-			$(SRC)exporter/export:\
-			$(SRC)window/loader:\
-			$(SRC)window/loader/load:\
-			$(SRC)window/loader/helpers:\
-			$(SRC)window/loader/strategies/progress:\
-			$(SRC)window/loader/strategies/progress/helpers:\
-			$(SRC)window/loader/strategies/text:
+			$(SRC)exporter/export:
 
 
 #----SHARED----#
@@ -340,6 +342,8 @@ SRCS = miniRT.c \
 	renderer_pixels.c \
 	renderer_parts.c \
 	sky_box.c \
+	window_events.c \
+	window_cursor.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
