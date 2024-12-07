@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/04 21:38:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/06 23:02:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	update_camera(t_camera *camera)
 {
 	update_camera_focus_dis(camera, camera->controls.focus_dist);
 	update_camera_fov(camera, camera->controls.zoom);
-	update_camera_front(camera, wrap_point(0.02 * camera->controls.view_right,
-			0.02 * camera->controls.view_up, 0));
+	update_camera_front(camera, wrap_point(2 * camera->controls.view_right,
+			2 * camera->controls.view_up, 0));
 	update_camera_pos(camera, wrap_point(0.2 * camera->controls.move_right,
 			0.2 * camera->controls.move_up,
 			0.2 * camera->controls.move_front));
