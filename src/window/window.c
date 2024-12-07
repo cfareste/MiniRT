@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 23:07:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/07 15:53:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	main_loop(void *window_)
 
 void	close_window(t_window *window)
 {
+	destroy_composer(&window->composer);
 	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
 	mlx_close_window(window->mlx);
@@ -87,6 +88,8 @@ void	init_window(t_window *window)
 		mlx_set_icon(window->mlx, window->icon);
 	init_cursor(&window->cursor);
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
+	init_composer(&window->composer, &window->render,
+		&window->jobs, &window->loader);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx);

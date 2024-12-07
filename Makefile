@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -O3 -g -fsanitize=address
+CCFLAGS += -Wall -Werror -Wextra -Ofast
 
 
 #----DIRS----#
@@ -227,7 +227,10 @@ vpath %.c	$(SRC):\
 			$(SRC)exporter:\
 			$(SRC)exporter/image:\
 			$(SRC)exporter/helpers:\
-			$(SRC)exporter/export:
+			$(SRC)exporter/export:\
+			$(SRC)composer:\
+			$(SRC)composer/composition:\
+			$(SRC)composer/events:
 
 
 #----SHARED----#
@@ -345,7 +348,10 @@ SRCS = miniRT.c \
 	sky_box.c \
 	window_events.c \
 	window_cursor.c \
-	scene_selection.c
+	scene_selection.c \
+	composer.c \
+	composition.c \
+	composer_events.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 23:09:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/07 02:30:05 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ void	camera_key_events(mlx_key_data_t *keydata, t_window *window)
 {
 	t_camera	*camera;
 
+	if (keydata->modifier > MLX_SHIFT)
+		return ;
 	if (!window->render.blocked
 		&& keydata->action == MLX_PRESS && keydata->key == MLX_KEY_C)
 	{
 		stop_render(&window->render);
-		camera = camera_dup(
-				&window->render.scene.orig_camera,
+		camera = camera_dup(&window->render.scene.orig_camera,
 				&window->render.scene.camera->controls);
 		free(window->render.scene.camera);
 		window->render.scene.camera = camera;
@@ -69,8 +70,8 @@ void	camera_key_events(mlx_key_data_t *keydata, t_window *window)
 	}
 	camera = window->render.scene.camera;
 	camera->controls.moving += set_control(&camera->controls.zoom,
-			&keydata, MLX_KEY_O, MLX_KEY_I);
+			keydata, MLX_KEY_O, MLX_KEY_I);
 	camera->controls.moving += set_control(&camera->controls.focus_dist,
-			&keydata, MLX_KEY_J, MLX_KEY_K);
-	movement_event(&keydata, window->render.scene.camera);
+			keydata, MLX_KEY_J, MLX_KEY_K);
+	movement_event(keydata, window->render.scene.camera);
 }
