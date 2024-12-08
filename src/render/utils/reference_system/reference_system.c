@@ -6,12 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/08 16:24:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
+#include "libft.h"
 #include <math.h>
 
 float	rotate_reference_system(t_vector *normal, t_vector *vec, t_point *point)
@@ -71,4 +72,23 @@ void	rotate_by_axis(t_pointing axis_pointing, float angle, t_vector *res)
 
 	get_world_axis(&axis, axis_pointing);
 	rotate_vector(res, &axis, angle, res);
+}
+
+void	get_vector_angles(t_vector *vec, double *yaw, double *pitch)
+{
+	double		yaw_cosine;
+	double		pitch_cosine;
+	t_vector	projected;
+
+	projected = *vec;
+	projected.y = 0.0f;
+	normalize(&projected);
+	yaw_cosine = ft_fclamp(-projected.z, -1.0, 1.0);
+	pitch_cosine = ft_fclamp(dot(&projected, vec), -1.0, 1.0);
+	*yaw = (acos(yaw_cosine) * (180.0f / M_PI));
+	*pitch = (acos(pitch_cosine) * (180.0f / M_PI));
+	if (vec->x < 0.0)
+		*yaw = 360.0 - *yaw;
+	if (vec->y < 0.0)
+		*pitch *= -1;
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 23:54:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/08 16:20:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,6 @@ void	update_camera_focus_dis(t_camera *camera, double factor)
 	if (!factor)
 		return ;
 	camera->focus_dist += (factor * 0.2);
-}
-
-static void	get_vector_angles(t_vector *vec, double *yaw, double *pitch)
-{
-	double		dots[2];
-	t_vector	projected;
-
-	projected = *vec;
-	projected.y = 0.0f;
-	normalize(&projected);
-	dots[YAW_POS] = ft_fclamp(-projected.z, -1.0, 1.0);
-	dots[PITCH_POS] = ft_fclamp(dot(&projected, vec), -1.0, 1.0);
-	*yaw = (acos(dots[YAW_POS]) * (180.0f / M_PI));
-	*pitch = (acos(dots[PITCH_POS]) * (180.0f / M_PI));
-	if (vec->x < 0.0)
-		*yaw = 360.0 - *yaw;
-	if (vec->y < 0.0)
-		*pitch *= -1;
 }
 
 void	update_camera_front(t_camera *camera, t_point factor)
