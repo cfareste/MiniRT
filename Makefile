@@ -122,6 +122,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/light/utils:\
 			$(SRC)scene/light/ambient_light:\
 			$(SRC)scene/figure:\
+			$(SRC)scene/figure/events:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
@@ -345,7 +346,8 @@ SRCS = miniRT.c \
 	sky_box.c \
 	window_events.c \
 	window_cursor.c \
-	scene_selection.c
+	scene_selection.c \
+	figure_events.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
