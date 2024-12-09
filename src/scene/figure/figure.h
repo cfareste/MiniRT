@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 20:11:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:14:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_figure
 	t_figure	*next;
 }	t_figure;
 
-void		free_figures(t_figure *figures);
+void	free_figure(t_figure *figure);
 
-void		print_figure(t_figure *figure);
+void	free_figures(t_figure *figures);
+
+void	print_figure(t_figure *figure);

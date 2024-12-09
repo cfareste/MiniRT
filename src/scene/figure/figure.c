@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 14:44:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:13:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include "figure.h"
 #include "utils/utils_bonus.h"
 #include "texture/bump_map/bump_map.h"
+
+void	free_figure(t_figure *figure)
+{
+	free(figure->material.material_attrs);
+	free(figure->attrs);
+	free(figure->type);
+	free(figure);
+}
 
 void	free_figures(t_figure *figures)
 {
@@ -23,10 +31,7 @@ void	free_figures(t_figure *figures)
 	{
 		figure = figures;
 		figures = figures->next;
-		free(figure->material.material_attrs);
-		free(figure->attrs);
-		free(figure->type);
-		free(figure);
+		free_figure(figure);
 	}
 }
 
