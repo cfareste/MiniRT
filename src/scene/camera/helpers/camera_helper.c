@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/08 16:20:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:11:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	update_camera_fov(t_camera *camera, int factor)
 
 void	update_camera_pos(t_camera *camera, t_point factor)
 {
+	t_vector	front_dir;
+
 	if (factor.x)
 		translate_point(&camera->position, &camera->right, factor.x,
 			&camera->position);
@@ -36,8 +38,11 @@ void	update_camera_pos(t_camera *camera, t_point factor)
 		camera->position.y += factor.y;
 	if (factor.z)
 	{
-		camera->position.x += camera->front.x * factor.z;
-		camera->position.z += camera->front.z * factor.z;
+		front_dir = camera->front;
+		front_dir.y = 0.0;
+		normalize(&front_dir);
+		camera->position.x += front_dir.x * factor.z;
+		camera->position.z += front_dir.z * factor.z;
 	}
 }
 
@@ -61,7 +66,7 @@ void	update_camera_front(t_camera *camera, t_point factor)
 	else if (yaw >= 360.0)
 		yaw -= 360.0;
 	yaw *= (M_PI / 180.0);
-	pitch = ft_fclamp(pitch, -90, 90) * (M_PI / 180.0);
+	pitch = ft_fclamp(pitch, -89, 89) * (M_PI / 180.0);
 	get_world_axis(&camera->front, FRONT);
 	rotate_by_axis(RIGHT, pitch, &camera->front);
 	rotate_by_axis(UP, -yaw, &camera->front);
