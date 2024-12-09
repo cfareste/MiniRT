@@ -6,13 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/09 19:07:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:02:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene_selection.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "scene/figure/events/figure_events.h"
+#include "render/renderer/renderer_bonus.h"
 #include "libft.h"
 
 t_figure	*get_selection_fig(t_scene *scene)
@@ -70,6 +71,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 			set_selection_fig(&window->render.scene, NULL);
 		else if (keydata->key == MLX_KEY_BACKSPACE)
 		{
+			stop_render(&window->render);
 			delete_selection(&window->render.scene, selection);
 			set_selection_fig(&window->render.scene, NULL);
 		}
