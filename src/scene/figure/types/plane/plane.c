@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 23:39:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/08 20:18:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
+#include "scene/figure/events/figure_events.h"
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_plane_attrs	*attrs;
-
-	attrs = (t_plane_attrs *) param;
-	printf("%f, %f, %f",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
+	handle_figure_rotation(&figure->pl_attrs->orientation, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -76,10 +73,11 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 
 void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
-	plane->print_attrs = print_attrs;
+	plane->print_attrs = NULL;
 	plane->normal = normal;
 	plane->hit = hit;
 	plane->pl_attrs = attrs;
 	plane->position = *position;
 	plane->get_color_pattern = get_color;
+	plane->rotate = rotate;
 }

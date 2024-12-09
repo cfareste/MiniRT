@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:23:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/08 20:54:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@
 #include "scene/figure/types/cylinder/pattern/cylinder_pattern.h"
 #include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
 #include "parser/helpers/parser_helper.h"
+#include "scene/figure/events/figure_events.h"
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_cylinder_attrs	*attrs;
-
-	attrs = (t_cylinder_attrs *) param;
-	printf("%f, %f, %f | %f | %f",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z,
-		attrs->radius, attrs->height);
+	handle_figure_rotation(&figure->cy_attrs->orientation, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -118,10 +114,10 @@ t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
 			parts[FIG_LAST_ATT + 2]) / 2.0f;
 	cylinder->cy_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	normalize(&cylinder->cy_attrs->orientation);
-	cylinder->print_attrs = print_attrs;
 	cylinder->hit = hit;
 	cylinder->normal = normal;
 	cylinder->get_color_pattern = get_color;
+	cylinder->rotate = rotate;
 	check_cylinder_parsing(ctx, cylinder);
 	return (cylinder);
 }

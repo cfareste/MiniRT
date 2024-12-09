@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 21:04:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/08 20:46:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,14 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
 #include "render/utils/reference_system/reference_system.h"
+#include "scene/figure/events/figure_events.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_disk_attrs	*attrs;
-
-	attrs = param;
-	printf("%f | %f, %f, %f", attrs->radius,
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
+	handle_figure_rotation(&figure->di_attrs->orientation, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -85,10 +82,11 @@ t_figure	*parse_disk(t_parser_ctx *ctx, char **parts)
 		&disk->di_attrs->orientation);
 	disk->di_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
 	normalize(&disk->di_attrs->orientation);
-	disk->print_attrs = print_attrs;
+	disk->print_attrs = NULL;
 	disk->hit = hit;
 	disk->normal = normal;
 	disk->get_color_pattern = get_color;
+	disk->rotate = rotate;
 	check_disk_parsing(ctx, disk);
 	return (disk);
 }

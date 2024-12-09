@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:35:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,13 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
+#include "scene/figure/events/figure_events.h"
 #include "parser/helpers/parser_helper.h"
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_cone_attrs	*attrs;
-
-	attrs = (t_cone_attrs *) param;
-	printf("%f, %f, %f | %f | %f ",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z,
-		attrs->radius, attrs->height);
+	handle_figure_rotation(&figure->co_attrs->orientation, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -110,9 +106,9 @@ t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));
 	if (!cone->co_attrs)
 		throw_sys_error("trying to allocate cone attributes");
-	cone->print_attrs = print_attrs;
 	cone->hit = hit;
 	cone->normal = normal;
+	cone->rotate = rotate;
 	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
 		&cone->co_attrs->orientation);
 	cone->co_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;

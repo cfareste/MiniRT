@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 18:43:43 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:36:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	handle_figure_movement(mlx_key_data_t *key_data, t_figure *figure)
 		figure->position.y -= 0.2;
 }
 
-void handle_figure_rotation(t_vector *orientation, t_vector *factor)
+void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
 {
 	double	yaw;
 	double	pitch;
@@ -49,10 +49,12 @@ void handle_figure_rotation(t_vector *orientation, t_vector *factor)
 	get_world_axis(orientation, FRONT);
 	rotate_by_axis(RIGHT, pitch, orientation);
 	rotate_by_axis(UP, -yaw, orientation);
+	normalize(orientation);
 }
 
 static void	get_rotation_factor(keys_t key, t_point *factor)
 {
+	ft_bzero(factor, sizeof(t_point));
 	if (key == MLX_KEY_UP)
 		*factor = wrap_point(0, 5, 0);
 	else if (key == MLX_KEY_DOWN)
@@ -69,8 +71,8 @@ void	handle_figure_event(mlx_key_data_t *key_data, t_figure *figure)
 
 	handle_figure_movement(key_data, figure);
 	get_rotation_factor(key_data->key, &factor);
-	if (ft_strcmp(figure->type, SPHERE_ID) != EQUAL_STRINGS)
-	{
-		handle_figure_rotation(&figure->cy_attrs->orientation, &factor);
-	}
+	if (factor.x == 0.0 && factor.y == 0.0 && factor.z == 0.0)
+		return ;
+	if (figure->rotate)
+		figure->rotate(figure, &factor);
 }
