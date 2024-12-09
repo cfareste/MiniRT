@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 22:40:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 01:26:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,14 @@
 #include "scene/figure/types/box/pattern/box_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
+#include "scene/figure/events/figure_events.h"
 #include "libft.h"
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_box_attrs	*attrs;
-
-	attrs = param;
-	printf("%f, %f, %f | %f | %f | %f",
-		attrs->faces[0].attrs.orientation.x,
-		attrs->faces[0].attrs.orientation.y,
-		attrs->faces[0].attrs.orientation.z,
-		attrs->width, attrs->height, attrs->length);
+	handle_figure_rotation(&figure->bo_attrs->orientation, factor);
+	set_box_faces(figure->bo_attrs, &figure->position);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -105,10 +100,10 @@ t_figure	*parse_box(t_parser_ctx *ctx, char **parts)
 	box->bo_attrs->width = parse_double(ctx, parts[FIG_LAST_ATT + 2]);
 	box->bo_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
 	box->bo_attrs->length = parse_double(ctx, parts[FIG_LAST_ATT + 4]);
-	box->print_attrs = print_attrs;
 	box->hit = hit;
 	box->normal = normal;
 	box->get_color_pattern = get_color;
+	box->rotate = rotate;
 	check_box_parsing(ctx, box);
 	set_box_faces(box->bo_attrs, &box->position);
 	return (box);
