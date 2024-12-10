@@ -6,26 +6,34 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/09 01:36:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:56:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
-#include "scene/figure/figure.h"
+#include "scene/scene.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "libft.h"
 #include <math.h>
 
-static void	handle_figure_movement(mlx_key_data_t *key_data, t_figure *figure)
+static void	handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
+	t_figure *figure)
 {
+	t_point		position;
+	t_vector	projected;
+
+	projected = camera->front;
+	projected.y = 0.0;
+	normalize(&projected);
+	position = figure->position;
 	if (key_data->key == MLX_KEY_W)
-		figure->position.z -= 0.2;
+		translate_point(&position, &projected, 0.2, &figure->position);
 	else if (key_data->key == MLX_KEY_S)
-		figure->position.z += 0.2;
+		translate_point(&position, &projected, -0.2, &figure->position);
 	else if (key_data->key == MLX_KEY_A)
-		figure->position.x -= 0.2;
+		translate_point(&position, &camera->right, -0.2, &figure->position);
 	else if (key_data->key == MLX_KEY_D)
-		figure->position.x += 0.2;
+		translate_point(&position, &camera->right, 0.2, &figure->position);
 	else if (key_data->key == MLX_KEY_SPACE)
 		figure->position.y += 0.2;
 	else if (key_data->key == MLX_KEY_LEFT_SHIFT)
@@ -65,11 +73,12 @@ static void	get_rotation_factor(keys_t key, t_point *factor)
 		*factor = wrap_point(5, 0, 0);
 }
 
-void	handle_figure_event(mlx_key_data_t *key_data, t_figure *figure)
+void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
+	t_figure *figure)
 {
 	t_point	factor;
 
-	handle_figure_movement(key_data, figure);
+	handle_figure_movement(key_data, scene->camera, figure);
 	get_rotation_factor(key_data->key, &factor);
 	if (factor.x == 0.0 && factor.y == 0.0 && factor.z == 0.0)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 17:33:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:44:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 			set_selection_fig(&window->render.scene, NULL);
 		}
 		else
-			handle_figure_event(keydata, selection);
+			handle_figure_event(keydata, &window->render.scene, selection);
 	}
 }
 
