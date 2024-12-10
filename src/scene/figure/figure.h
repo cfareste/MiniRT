@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/09 20:21:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:30:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void		free_figure(t_figure *figure);
 void		free_figures(t_figure *figures);
 
 void		print_figure(t_figure *figure);
+
+t_figure	*new_figure(char *type, t_point *position, t_color *color);
 
 t_figure	*create_default_figure(t_point *position);

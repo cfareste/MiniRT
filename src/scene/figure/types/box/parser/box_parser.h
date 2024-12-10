@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:11:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 13:12:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:25:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@
 
 #include "scene/figure/figure.h"
 
-void	check_box_parsing(t_parser_ctx *ctx, t_figure *box);
+t_figure	*parse_box(t_parser_ctx *ctx, char **parts);

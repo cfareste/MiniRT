@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 20:46:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:32:12 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,20 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	get_base_pattern(figure, &rotated_point, &base_attrs, res);
 }
 
-t_figure	*parse_disk(t_parser_ctx *ctx, char **parts)
+t_figure	*new_disk(t_point *pos, t_color *color, t_disk_attrs *disk_attrs)
 {
 	t_figure	*disk;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 2)
-		throw_parse_err(ctx, "Missing some disk parameter");
-	disk = parse_figure(ctx, parts, FIG_LAST_ATT + 3);
+	disk = new_figure(DISK_ID, pos, color);
 	disk->di_attrs = ft_calloc(1, sizeof(t_disk_attrs));
 	if (!disk->di_attrs)
 		throw_sys_error("trying to allocate disk attributes");
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&disk->di_attrs->orientation);
-	disk->di_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
+	disk->di_attrs->orientation = disk_attrs->orientation;
 	normalize(&disk->di_attrs->orientation);
-	disk->print_attrs = NULL;
+	disk->di_attrs->radius = disk_attrs->radius;
 	disk->hit = hit;
 	disk->normal = normal;
-	disk->get_color_pattern = get_color;
 	disk->rotate = rotate;
-	check_disk_parsing(ctx, disk);
+	disk->get_color_pattern = get_color;
 	return (disk);
 }

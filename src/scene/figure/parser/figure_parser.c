@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 15:25:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:27:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 #include "parser/helpers/parser_helper.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "scene/figure/parser/helpers/figure_parser_helpers.h"
+#include "scene/figure/types/box/parser/box_parser.h"
+#include "scene/figure/types/cone/parser/cone_parser.h"
+#include "scene/figure/types/cylinder/parser/cylinder_parser.h"
+#include "scene/figure/types/disk/parser/disk_parser.h"
+#include "scene/figure/types/plane/parser/plane_parser.h"
+#include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
+#include "scene/figure/types/sphere/parser/sphere_parser.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -71,11 +78,12 @@ static void	parse_material(t_parser_ctx *ctx, char **parts,
 				"Unknown material type: ", parts[0], throw_sys_error, "error"));
 }
 
-static void	parse_optionals(char **params, int i, t_figure *figure,
-				t_parser_ctx *ctx)
+static void	parse_optionals(t_parser_ctx *ctx, t_figure *figure, char **params)
 {
+	int		i;
 	char	**sub_params;
 
+	i = 0;
 	while (params && params[i])
 	{
 		sub_params = safe_ft_split(params[i], ':',
@@ -99,19 +107,9 @@ static void	parse_optionals(char **params, int i, t_figure *figure,
 	}
 }
 
-t_figure	*parse_figure(t_parser_ctx *ctx, char **parts, int color_i)
+void	set_figure_optionals(t_parser_ctx *ctx, t_figure *figure, char **parts)
 {
-	t_figure	*figure;
-
-	figure = ft_calloc(1, sizeof(t_figure));
-	if (!figure)
-		throw_sys_error("trying to allocate new figure");
-	figure->type = ft_strdup(parts[0]);
-	set_figure_defaults(figure);
-	parse_coordinates(ctx, parts[1], &figure->position);
-	parse_color(ctx, parts[color_i], &figure->color);
-	parse_optionals(parts, color_i + 1, figure, ctx);
+	parse_optionals(ctx, figure, parts);
 	adjust_glossiness(figure);
 	check_figure_parsing(ctx, figure);
-	return (figure);
 }

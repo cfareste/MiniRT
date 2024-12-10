@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 20:13:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:52:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,36 +77,31 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 
 void	set_quad(t_figure *quad, t_point *position, t_quadrilater_attrs *attrs)
 {
-	quad->print_attrs = NULL;
-	quad->normal = normal;
-	quad->hit = hit;
 	quad->qu_attrs = attrs;
 	quad->position = *position;
+	quad->hit = hit;
+	quad->normal = normal;
+	quad->rotate = rotate_quadrilater;
 	quad->get_color_pattern = get_color;
 }
 
-t_figure	*parse_quadrilater(t_parser_ctx *ctx, char **parts)
+t_figure	*new_quadrilater(t_point *pos, t_color *color,
+	t_quadrilater_attrs *quad_attrs)
 {
-	t_figure	*quadrilater;
+	t_figure	*quad;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
-		throw_parse_err(ctx, "Missing some quadrilater parameter");
-	quadrilater = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
-	quadrilater->qu_attrs = ft_calloc(1, sizeof(t_quadrilater_attrs));
-	if (!quadrilater->qu_attrs)
-		throw_sys_error("trying to allocate quadrilater attributes");
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&quadrilater->qu_attrs->orientation);
-	quadrilater->qu_attrs->width = parse_double(ctx, parts[FIG_LAST_ATT + 2]);
-	quadrilater->qu_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
-	normalize(&quadrilater->qu_attrs->orientation);
-	quadrilater->print_attrs = NULL;
-	quadrilater->hit = hit;
-	quadrilater->normal = normal;
-	quadrilater->get_color_pattern = get_color;
-	quadrilater->rotate = rotate_quadrilater;
-	check_quadrilater_parsing(ctx, quadrilater);
-	get_axes(&quadrilater->qu_attrs->orientation,
-		&quadrilater->qu_attrs->right, &quadrilater->qu_attrs->up);
-	return (quadrilater);
+	quad = new_figure(QUAD_ID, pos, color);
+	quad->qu_attrs = ft_calloc(1, sizeof(t_quadrilater_attrs));
+	if (!quad->qu_attrs)
+		throw_sys_error("trying to allocate quad attributes");
+	quad->qu_attrs->width = quad_attrs->width;
+	quad->qu_attrs->height = quad_attrs->height;
+	quad->qu_attrs->orientation = quad_attrs->orientation;
+	get_axes(&quad->qu_attrs->orientation, &quad->qu_attrs->right,
+		&quad->qu_attrs->up);
+	quad->hit = hit;
+	quad->normal = normal;
+	quad->rotate = rotate_quadrilater;
+	quad->get_color_pattern = get_color;
+	return (quad);
 }

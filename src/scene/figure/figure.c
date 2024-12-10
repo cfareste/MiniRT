@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/09 20:22:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 22:37:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,23 @@ void	print_figure(t_figure *figure)
 	printf(" | %f, %f, %f | ",
 		figure->color.red, figure->color.green, figure->color.blue);
 	print_texture(&figure->bump_map);
+}
+
+t_figure	*new_figure(char *type, t_point *position, t_color *color)
+{
+	t_figure	*figure;
+
+	figure = ft_calloc(1, sizeof(t_figure));
+	if (!figure)
+		throw_sys_error("trying to allocate new figure");
+	figure->type = ft_strdup(type);
+	if (!figure->type)
+		throw_sys_error("trying to allocate figure type");
+	figure->position = *position;
+	figure->color = *color;
+	figure->glossiness = 256.0;
+	parse_diffuse(&figure->material);
+	return (figure);
 }
 
 t_figure	*create_default_figure(t_point *position)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 20:18:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 01:08:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/events/figure_events.h"
-
-static void	rotate(t_figure *figure, t_point *factor)
-{
-	handle_figure_rotation(&figure->pl_attrs->orientation, factor);
-}
+#include "scene/figure/types/plane/helpers/plane_helpers.h"
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
@@ -73,11 +69,27 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 
 void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
-	plane->print_attrs = NULL;
-	plane->normal = normal;
-	plane->hit = hit;
 	plane->pl_attrs = attrs;
 	plane->position = *position;
+	plane->hit = hit;
+	plane->normal = normal;
+	plane->rotate = rotate_plane;
 	plane->get_color_pattern = get_color;
-	plane->rotate = rotate;
+}
+
+t_figure	*new_plane(t_point *pos, t_color *color, t_plane_attrs *pl_attrs)
+{
+	t_figure	*plane;
+
+	plane = new_figure(PLANE_ID, pos, color);
+	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));
+	if (!plane->pl_attrs)
+		throw_sys_error("trying to allocate plane attributes");
+	plane->pl_attrs->orientation = pl_attrs->orientation;
+	normalize(&plane->pl_attrs->orientation);
+	plane->hit = hit;
+	plane->normal = normal;
+	plane->rotate = rotate_plane;
+	plane->get_color_pattern = get_color;
+	return (plane);
 }

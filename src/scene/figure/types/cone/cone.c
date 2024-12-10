@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/09 01:35:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 01:50:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,27 +96,22 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 		get_cone_body_pattern(figure, &rotated_point, res);
 }
 
-t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
+t_figure	*new_cone(t_point *pos, t_color *color, t_cone_attrs *co_attrs)
 {
 	t_figure	*cone;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
-		throw_parse_err(ctx, "Missing some cone parameter");
-	cone = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
+	translate_point(pos, &co_attrs->orientation, -co_attrs->height / 2.0, pos);
+	cone = new_figure(CONE_ID, pos, color);
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));
 	if (!cone->co_attrs)
 		throw_sys_error("trying to allocate cone attributes");
+	cone->co_attrs->orientation = co_attrs->orientation;
+	normalize(&cone->co_attrs->orientation);
+	cone->co_attrs->radius = co_attrs->radius;
+	cone->co_attrs->height = co_attrs->height;
 	cone->hit = hit;
 	cone->normal = normal;
 	cone->rotate = rotate;
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&cone->co_attrs->orientation);
-	cone->co_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
-	cone->co_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
-	normalize(&cone->co_attrs->orientation);
-	translate_point(&cone->position, &cone->co_attrs->orientation,
-		-cone->co_attrs->height / 2.0, &cone->position);
 	cone->get_color_pattern = get_color;
-	check_cone_parsing(ctx, cone);
 	return (cone);
 }

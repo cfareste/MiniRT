@@ -141,6 +141,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cylinder/pattern:\
 			$(SRC)scene/figure/types/cylinder/texture:\
 			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/plane/helpers:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
 			$(SRC)scene/figure/types/plane/texture:\
@@ -347,7 +348,8 @@ SRCS = miniRT.c \
 	window_events.c \
 	window_cursor.c \
 	scene_selection.c \
-	figure_events.c
+	figure_events.c \
+	plane_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
