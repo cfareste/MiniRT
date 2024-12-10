@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/09 20:45:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:58:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 
 static void	create_figure(t_scene *scene, t_camera *camera)
 {
-	t_point		new_figure_pos;
-	t_figure	*new_figure;
+	t_point			position;
+	t_color			color;
+	t_sphere_attrs	sp_attrs;
+	t_figure		*new_figure;
 
-	translate_point(&camera->position, &camera->front, camera->focus_dist,
-		&new_figure_pos);
-	new_figure = create_default_figure(&new_figure_pos);
-	printf("%p\n", new_figure);
+	translate_point(&camera->position, &camera->front, camera->focus_dist * 4,
+		&position);
+	new_color(1.0, 1.0, 1.0, &color);
+	sp_attrs.radius = 1.0;
+	new_figure = new_sphere(&position, &color, &sp_attrs);
 	new_figure->next = scene->figures;
 	scene->figures = new_figure;
 }

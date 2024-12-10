@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/09 20:02:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 03:00:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 		return ;
 	if (keydata->action == MLX_PRESS)
 	{
-		if (keydata->key == MLX_KEY_P)
+		if (keydata->key == MLX_KEY_F)
 			set_selection_fig(&window->render.scene, NULL);
 		else if (keydata->key == MLX_KEY_BACKSPACE)
 		{

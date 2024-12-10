@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/09 22:37:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:53:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,5 @@ t_figure	*new_figure(char *type, t_point *position, t_color *color)
 	figure->color = *color;
 	figure->glossiness = 256.0;
 	parse_diffuse(&figure->material);
-	return (figure);
-}
-
-t_figure	*create_default_figure(t_point *position)
-{
-	t_figure	*figure;
-	uint32_t	seed;
-
-	figure = ft_calloc(1, sizeof(t_figure));
-	if (!figure)
-		throw_sys_error("error allocating new figure");
-	figure->type = ft_strdup(SPHERE_ID);
-	if (!figure->type)
-		throw_sys_error("error allocating figure type");
-	figure->position = *position;
-	seed = mlx_get_time() * 100000;
-	figure->color.red = get_random_float(&seed);
-	figure->color.green = get_random_float(&seed);
-	figure->color.blue = get_random_float(&seed);
-	figure->color.alpha = 1.0;
-	figure->sp_attrs = ft_calloc(1, sizeof(t_sphere_attrs));
-	if (!figure->sp_attrs)
-		throw_sys_error("error allocating new sphere attributes");
-	figure->sp_attrs->radius = 1.0;
-	figure->material.material_attrs = NULL;
 	return (figure);
 }
