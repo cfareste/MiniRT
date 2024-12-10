@@ -94,6 +94,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/light/utils:\
 			$(SRC)scene/light/ambient_light:\
 			$(SRC)scene/figure:\
+			$(SRC)scene/figure/events:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
@@ -112,6 +113,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/cylinder/pattern:\
 			$(SRC)scene/figure/types/cylinder/texture:\
 			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/plane/helpers:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
 			$(SRC)scene/figure/types/plane/texture:\
@@ -270,7 +272,9 @@ SRCS =	main_test.c \
 		normal_map.c \
 		renderer_pixels.c \
 		sky_box.c \
-		textures_parser.c
+		textures_parser.c \
+		figure_events.c \
+		plane_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
