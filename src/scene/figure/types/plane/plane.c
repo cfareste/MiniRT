@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 01:08:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:38:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	get_vector(point, &figure->position, &rotated_point);
 	angle = rotate_reference_system(&figure->pl_attrs->orientation, NULL,
 			&rotated_point);
-	get_plane_bump_normal(figure, point, res);
+	get_plane_bump_normal(figure, &rotated_point, res);
 	rotate_by_angle(&figure->pl_attrs->orientation, -angle, res);
 }
 

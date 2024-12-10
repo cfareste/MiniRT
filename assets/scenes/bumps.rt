@@ -35,13 +35,13 @@ l	15,7,6		21		255,255,255
 
 # Figures
 # Sphere
-sp	2,1,-2	256	diffuse		2		255,0,255				bm:assets/textures/pillow.png:0.78539816339:opengl
+sp	2,1,-2			2		255,0,255				bm:assets/textures/pillow.png:0.78539816339:opengl
 
 # Cylinder
-cy	0,1,-2	256	diffuse		0,0,1	1	2	240,234,73		bm:assets/textures/metallic_rack.png:0.78539816339:opengl
+cy	0,1,-2			0,0,1	1	2	240,234,73		bm:assets/textures/metallic_rack.png:0.78539816339:opengl
 
 # Cone
-co	4,1,-2	256 diffuse		0,0,1	1	2	176,150,240		bm:assets/textures/tire_track.png:0.78539816339:opengl
+co	4,1,-2			0,0,1	1	2	176,150,240		bm:assets/textures/tire_track.png:0.78539816339:opengl
 
 # Floor (plane)
-pl	2,-1,-2		256 diffuse		0,1,0		200,200,200		bm:assets/textures/pillow.png:2:opengl
+pl	2,-1,-2				0,1,0		200,200,200		bm:assets/textures/pillow.png:2:opengl
