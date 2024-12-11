@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 13:16:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:32:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "scene/figure/events/figure_events.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/figure/events/helpers/figure_events_helpers.h"
+#include "scene/camera/events/camera_events.h"
 #include "libft.h"
 
 t_figure	*get_selection_fig(t_scene *scene)
@@ -70,7 +71,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 	{
 		stop_render(&window->render);
 		if (keydata->key == MLX_KEY_F)
-			set_selection_fig(&window->render.scene, NULL);
+			focus_camera_to_selection(window->render.scene.camera, selection);
 		else if (keydata->key == MLX_KEY_BACKSPACE)
 		{
 			delete_selection(&window->render.scene, selection);
