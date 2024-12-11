@@ -178,6 +178,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/types/box:\
 			$(SRC)scene/figure/types/box/default:\
 			$(SRC)scene/figure/types/box/helpers:\
+			$(SRC)scene/figure/types/box/operations:\
 			$(SRC)scene/figure/types/box/parser:\
 			$(SRC)scene/figure/types/box/pattern:\
 			$(SRC)scene/figure/texture/bump_map:\
@@ -383,7 +384,8 @@ SRCS = miniRT.c \
 	plastic_default.c \
 	glass_default.c \
 	emissive_default.c \
-	vector_rotation.c
+	vector_rotation.c \
+	box_operations.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

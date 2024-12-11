@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:14:22 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 18:54:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:09:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,5 @@ int	get_face_index(t_figure *box, t_point *point)
 	else if (point->z == -box_length_dist)
 		return (5);
 	else
-		return (-1);
+		return (0);
 }

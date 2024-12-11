@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 22:07:10 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:14:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,6 @@ void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 	handle_figure_translation(figure, scene->camera, &translate_factor);
 	if (figure->rotate)
 		figure->rotate(figure, &rotation_factor);
+	if (figure->recalculate)
+		figure->recalculate(figure);
 }

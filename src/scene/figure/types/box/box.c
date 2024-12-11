@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 18:53:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:17:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,9 @@
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "scene/figure/events/figure_events.h"
+#include "scene/figure/types/box/operations/box_operations.h"
 #include "libft.h"
 #include <math.h>
-
-static void	rotate(t_figure *figure, t_point *factor)
-{
-	handle_figure_rotation(&figure->bo_attrs->orientation, factor);
-	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.right, factor);
-	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.up, factor);
-	set_box_faces(figure->bo_attrs, &figure->position);
-}
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
@@ -104,7 +97,8 @@ t_figure	*new_box(t_point *pos, t_color *color, t_box_attrs *box_attrs)
 	set_box_faces(box->bo_attrs, &box->position);
 	box->hit = hit;
 	box->normal = normal;
-	box->rotate = rotate;
+	box->rotate = rotate_box;
+	box->recalculate = recalculate_box;
 	box->get_color_pattern = get_color;
 	return (box);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:53:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:14:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "texture/bump_map/bump_map.h"
 #include "pattern/pattern.h"
 #include "material/material.h"
+#include "scene/camera/camera.h"
 
 typedef struct s_figure
 {
@@ -48,6 +49,7 @@ typedef struct s_figure
 	void		(*get_color_pattern)(t_figure *figure, t_point *point,
 			t_color *res);
 	void		(*print_attrs)(void *attrs);
+	void		(*recalculate)(t_figure *figure);
 	void		(*rotate)(t_figure *figure, t_point *factor);
 	void		(*free)(t_figure *figure);
 	t_figure	*next;
