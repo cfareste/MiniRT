@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:31:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include "MLX42.h"
 #include "scene/scene.h"
+
+void		change_figure_material(t_figure *selection);
 
 t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
 

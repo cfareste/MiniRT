@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:55:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:30:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "render/utils/reference_system/reference_system.h"
 #include "libft.h"
 #include <math.h>
+
+void	change_figure_material(t_figure *selection)
+{
+	t_material	new_material;
+
+	new_material = get_next_material_type(selection);
+	free(selection->material.material_attrs);
+	selection->material = new_material;
+}
 
 t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 {

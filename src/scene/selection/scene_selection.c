@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 00:54:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:16:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 			selection = change_figure_type(&window->render.scene, selection);
 			set_selection_fig(&window->render.scene, selection);
 		}
+		else if (keydata->key == MLX_KEY_M)
+			change_figure_material(selection);
 		else
 			handle_figure_event(keydata, &window->render.scene, selection);
 	}

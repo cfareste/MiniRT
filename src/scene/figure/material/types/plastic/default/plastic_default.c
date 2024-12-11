@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events_helpers.h                            :+:      :+:    :+:   */
+/*   plastic_default.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 00:44:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:30:47 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/11 13:21:29 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/11 13:22:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/material/material.h"
 
-#include "MLX42.h"
-#include "scene/scene.h"
+t_material	new_plastic_default_mat(void)
+{
+	t_plastic_attrs	attrs;
+	t_material		plastic_material;
 
-t_material	get_next_material_type(t_figure *figure);
-
-t_figure	*get_next_figure_type(t_figure *figure);
-
-void		handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
-				t_figure *figure);
-
-void		get_rotation_factor(keys_t key, t_point *factor);
+	attrs.roughness = 0;
+	attrs.specular_index = 0.2;
+	plastic_material = new_plastic_mat(&attrs);
+	return (plastic_material);
+}

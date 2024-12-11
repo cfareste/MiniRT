@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events_helpers.h                            :+:      :+:    :+:   */
+/*   metallic_default.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 00:44:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:30:47 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/11 13:26:28 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/11 13:26:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "MLX42.h"
-#include "scene/scene.h"
+#include "scene/figure/material/material.h"
 
-t_material	get_next_material_type(t_figure *figure);
-
-t_figure	*get_next_figure_type(t_figure *figure);
-
-void		handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
-				t_figure *figure);
-
-void		get_rotation_factor(keys_t key, t_point *factor);
+t_material	new_metallic_default_mat(void);

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:30:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 17:18:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:04:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 #include "render/strategies/shared/strategies_shared.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "libft.h"
+
+static void	modulate_color(t_figure *selected, t_color *color)
+{
+	t_color	modulation;
+
+	if (selected->material.type == DIFFUSE)
+		new_color(0.6, -0.6, -0.6, &modulation);
+	else if (selected->material.type == METALLIC)
+		new_color(-0.6, 0.6, -0.6, &modulation);
+	else if (selected->material.type == PLASTIC)
+		new_color(-0.6, -0.6, 0.6, &modulation);
+	else if (selected->material.type == GLASS)
+		new_color(0.6, -0.6, 0.6, &modulation);
+	else
+		new_color(0.6, 0.6, 0.6, &modulation);
+	sum_colors(color, &modulation, color);
+}
 
 void	compute_normal_map(t_scene *scene, t_ray *ray, t_color *sample_color)
 {
@@ -23,5 +40,5 @@ void	compute_normal_map(t_scene *scene, t_ray *ray, t_color *sample_color)
 	check_collisions(scene, ray, &hit_record);
 	get_normal_color(sample_color, &hit_record.normal);
 	if (scene->selection && scene->selection == hit_record.figure)
-		sum_color_scalar(sample_color, 0.3, sample_color);
+		modulate_color(scene->selection, sample_color);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 12:39:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:31:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,29 @@
 #include "scene/figure/types/plane/default/plane_default.h"
 #include "scene/figure/types/quadrilater/default/quadrilater_default.h"
 #include "scene/figure/types/sphere/default/sphere_default.h"
+#include "scene/figure/material/types/metallic/default/metallic_default.h"
+#include "scene/figure/material/types/plastic/default/plastic_default.h"
+#include "scene/figure/material/types/glass/default/glass_default.h"
+#include "scene/figure/material/types/emissive/default/emissive_default.h"
 #include "libft.h"
 #include <math.h>
+
+t_material	get_next_material_type(t_figure *figure)
+{
+	t_material	next_material;
+
+	if (figure->material.type == DIFFUSE)
+		next_material = new_metallic_default_mat();
+	else if (figure->material.type == METALLIC)
+		next_material = new_plastic_default_mat();
+	else if (figure->material.type == PLASTIC)
+		next_material = new_glass_default_mat();
+	else if (figure->material.type == GLASS)
+		next_material = new_emissive_default_mat();
+	else
+		next_material = new_diffuse_mat();
+	return (next_material);
+}
 
 t_figure	*get_next_figure_type(t_figure *figure)
 {
