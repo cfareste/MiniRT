@@ -6,11 +6,10 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:52:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:39:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
 #include "scene/scene.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/box/default/box_default.h"
