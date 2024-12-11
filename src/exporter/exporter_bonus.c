@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exporter_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:34:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:12:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	init_exporter(t_exporter *exporter, t_render *render, t_jobs *jobs,
 void	destroy_exporter(t_exporter *exporter)
 {
 	set_exporter_active(exporter, 0);
-	pthread_join(exporter->thread, NULL);
+	if (exporter->thread)
+		pthread_join(exporter->thread, NULL);
+	exporter->thread = 0;
 }

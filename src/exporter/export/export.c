@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:41:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:12:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void	*export_routine(t_export *export)
 
 void	exec_export(t_export *export)
 {
-	pthread_join(export->exporter->thread, NULL);
+	if (export->exporter->thread)
+		pthread_join(export->exporter->thread, NULL);
 	if (pthread_create(&export->exporter->thread, NULL,
 			(void *(*)(void *)) export_routine, export) == -1)
 		throw_sys_error("creating export thread");
