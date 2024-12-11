@@ -230,6 +230,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/hit_record:\
 			$(SRC)render/utils/vector:\
 			$(SRC)render/utils/vector/parser:\
+			$(SRC)render/utils/vector/rotation:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
 			$(SRC)render/utils/iterators:\
@@ -381,7 +382,8 @@ SRCS = miniRT.c \
 	metallic_default.c \
 	plastic_default.c \
 	glass_default.c \
-	emissive_default.c
+	emissive_default.c \
+	vector_rotation.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

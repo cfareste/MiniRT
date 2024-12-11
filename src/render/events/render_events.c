@@ -6,12 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 02:58:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:06:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_events.h"
 #include "../renderer/renderer_bonus.h"
+#include "scene/selection/scene_selection.h"
 #include <stdio.h>
 
 static void	create_figure(t_scene *scene, t_camera *camera)
@@ -30,30 +31,31 @@ static void	create_figure(t_scene *scene, t_camera *camera)
 	scene->figures = new_figure;
 }
 
-void	render_key_events(mlx_key_data_t *keydata, t_window *window)
+void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 {
 	if (keydata->action == MLX_PRESS)
 	{
 		if (keydata->key == MLX_KEY_B)
-			window->render.blocked = !window->render.blocked;
-		if (window->render.blocked)
+			win->render.blocked = !win->render.blocked;
+		if (win->render.blocked)
 			return ;
 		if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)
-			render(window);
+			render(win);
 		if (keydata->key == MLX_KEY_N)
 		{
-			create_figure(&window->render.scene, window->render.scene.camera);
-			render(window);
+			create_figure(&win->render.scene, win->render.scene.camera);
+			set_selection_fig(&win->render.scene, win->render.scene.figures);
+			render(win);
 		}
 		else if (keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_3)
 		{
 			if (keydata->key == MLX_KEY_1)
-				window->render.strategy = RAYTRACING;
+				win->render.strategy = RAYTRACING;
 			else if (keydata->key == MLX_KEY_2)
-				window->render.strategy = PATHTRACING;
+				win->render.strategy = PATHTRACING;
 			else if (keydata->key == MLX_KEY_3)
-				window->render.strategy = NORMAL_MAP;
-			render(window);
+				win->render.strategy = NORMAL_MAP;
+			render(win);
 		}
 	}
 }

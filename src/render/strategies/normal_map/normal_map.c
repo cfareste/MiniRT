@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:30:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:04:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:49:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	modulate_color(t_figure *selected, t_color *color)
 	t_color	modulation;
 
 	if (selected->material.type == DIFFUSE)
-		new_color(0.6, -0.6, -0.6, &modulation);
+		new_color(0.5, -0.5, -0.5, &modulation);
 	else if (selected->material.type == METALLIC)
-		new_color(-0.6, 0.6, -0.6, &modulation);
+		new_color(-0.5, 0.5, -0.5, &modulation);
 	else if (selected->material.type == PLASTIC)
-		new_color(-0.6, -0.6, 0.6, &modulation);
+		new_color(-0.5, -0.5, 0.5, &modulation);
 	else if (selected->material.type == GLASS)
-		new_color(0.6, -0.6, 0.6, &modulation);
+		new_color(0.5, -0.5, 0.5, &modulation);
 	else
 		new_color(0.6, 0.6, 0.6, &modulation);
 	sum_colors(color, &modulation, color);

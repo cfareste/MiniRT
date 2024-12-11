@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:22:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:53:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 static void	rotate(t_figure *figure, t_point *factor)
 {
 	handle_figure_rotation(&figure->bo_attrs->orientation, factor);
+	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.right, factor);
+	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.up, factor);
 	set_box_faces(figure->bo_attrs, &figure->position);
 }
 
@@ -94,6 +96,8 @@ t_figure	*new_box(t_point *pos, t_color *color, t_box_attrs *box_attrs)
 		throw_sys_error("trying to allocate box attributes");
 	box->bo_attrs->orientation = box_attrs->orientation;
 	normalize(&box->bo_attrs->orientation);
+	get_axes(&box->bo_attrs->orientation, &box->bo_attrs->faces[0].attrs.right,
+		&box->bo_attrs->faces[0].attrs.up);
 	box->bo_attrs->width = box_attrs->width;
 	box->bo_attrs->height = box_attrs->height;
 	box->bo_attrs->length = box_attrs->length;

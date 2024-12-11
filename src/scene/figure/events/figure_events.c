@@ -6,12 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:30:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:59:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
+#include "render/utils/vector/rotation/vector_rotation.h"
 #include "libft.h"
 #include <math.h>
 
@@ -55,21 +56,12 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 
 void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
 {
-	double	yaw;
-	double	pitch;
-
-	get_vector_angles(orientation, &yaw, &pitch);
-	yaw += factor->x;
-	pitch += factor->y;
-	if (yaw <= 0.0)
-		yaw += 360.0;
-	else if (yaw >= 360.0)
-		yaw -= 360.0;
-	pitch = ft_clamp(pitch, -90, 90) * (M_PI / 180.0);
-	yaw *= M_PI / 180.0;
-	get_world_axis(orientation, FRONT);
-	rotate_by_axis(RIGHT, pitch, orientation);
-	rotate_by_axis(UP, -yaw, orientation);
+	if (factor->x)
+		rotate_x_axis(orientation, factor->x);
+	if (factor->y)
+		rotate_y_axis(orientation, factor->y);
+	if (factor->z)
+		rotate_z_axis(orientation, factor->z);
 	normalize(orientation);
 }
 
@@ -79,7 +71,7 @@ void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 	t_point	factor;
 
 	handle_figure_movement(key_data, scene->camera, figure);
-	get_rotation_factor(key_data->key, &factor);
+	get_rotation_factor(key_data->key, key_data->modifier, &factor);
 	if (factor.x == 0.0 && factor.y == 0.0 && factor.z == 0.0)
 		return ;
 	if (figure->rotate)

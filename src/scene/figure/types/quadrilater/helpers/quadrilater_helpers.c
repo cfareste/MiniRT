@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/09 01:27:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:29:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ float	get_quad_rotated_point(t_vector *quad_normal, t_vector *quad_right,
 void	rotate_quadrilater(t_figure *quad, t_point *factor)
 {
 	handle_figure_rotation(&quad->qu_attrs->orientation, factor);
-	get_axes(&quad->qu_attrs->orientation, &quad->qu_attrs->right,
-		&quad->qu_attrs->up);
+	handle_figure_rotation(&quad->qu_attrs->right, factor);
+	handle_figure_rotation(&quad->qu_attrs->up, factor);
 }

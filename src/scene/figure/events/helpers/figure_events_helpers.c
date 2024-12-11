@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:31:55 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:42:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,22 @@ void	handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
 		figure->position.y -= 0.2;
 }
 
-void	get_rotation_factor(keys_t key, t_point *factor)
+void	get_rotation_factor(keys_t key, modifier_key_t mod, t_point *factor)
 {
+	float	angle;
+
 	ft_bzero(factor, sizeof(t_point));
+	angle = 5 * (M_PI / 180.0);
 	if (key == MLX_KEY_UP)
-		*factor = wrap_point(0, 5, 0);
+		*factor = wrap_point(-angle, 0, 0);
 	else if (key == MLX_KEY_DOWN)
-		*factor = wrap_point(0, -5, 0);
+		*factor = wrap_point(angle, 0, 0);
+	else if (key == MLX_KEY_LEFT && mod == MLX_CONTROL)
+		*factor = wrap_point(0, 0, angle);
+	else if (key == MLX_KEY_RIGHT && mod == MLX_CONTROL)
+		*factor = wrap_point(0, 0, -angle);
 	else if (key == MLX_KEY_LEFT)
-		*factor = wrap_point(-5, 0, 0);
+		*factor = wrap_point(0, -angle, 0);
 	else if (key == MLX_KEY_RIGHT)
-		*factor = wrap_point(5, 0, 0);
+		*factor = wrap_point(0, angle, 0);
 }

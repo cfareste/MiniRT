@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 19:14:22 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 00:04:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:54:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	set_box_faces(t_box_attrs *attrs, t_point *box_pos)
 	t_vector	box_up;
 
 	box_front = attrs->orientation;
-	get_axes(&box_front, &box_right, &box_up);
+	box_right = attrs->faces[0].attrs.right;
+	box_up = attrs->faces[0].attrs.up;
 	set_faces_vectors(attrs, &box_front, &box_right, &box_up);
 	set_faces_dimensions(attrs, attrs->width, attrs->height, attrs->length);
 	set_faces_centers(attrs, box_pos);

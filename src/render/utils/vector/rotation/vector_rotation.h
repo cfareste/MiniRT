@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events_helpers.h                            :+:      :+:    :+:   */
+/*   vector_rotation.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 00:44:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 17:58:08 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/11 18:58:59 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/11 18:59:27 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "MLX42.h"
-#include "scene/scene.h"
+#include "render/utils/vector/vector.h"
 
-t_material	get_next_material_type(t_figure *figure);
+void	rotate_x_axis(t_vector *point, double angle);
 
-t_figure	*get_next_figure_type(t_figure *figure);
+void	rotate_y_axis(t_vector *point, double angle);
 
-void		handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
-				t_figure *figure);
-
-void		get_rotation_factor(keys_t key, modifier_key_t mod,
-				t_point *factor);
+void	rotate_z_axis(t_vector *point, double angle);
