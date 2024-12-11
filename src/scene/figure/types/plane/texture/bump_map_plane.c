@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:49:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:59:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:23:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "scene/figure/texture/texel/texel.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
+#include "libft.h"
 #include <math.h>
 
 static void	remove_point_texture_offset(t_point *point, t_vector *texture_dims)
