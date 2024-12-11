@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 18:42:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:12:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,21 @@ t_figure	*get_next_figure_type(t_figure *figure)
 	return (next_figure);
 }
 
-void	handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
-	t_figure *figure)
+void	get_translation_factor(keys_t key, t_vector *factor)
 {
-	t_point		position;
-	t_vector	projected;
-
-	projected = camera->front;
-	projected.y = 0.0;
-	normalize(&projected);
-	position = figure->position;
-	if (key_data->key == MLX_KEY_W)
-		translate_point(&position, &projected, 0.2, &figure->position);
-	else if (key_data->key == MLX_KEY_S)
-		translate_point(&position, &projected, -0.2, &figure->position);
-	else if (key_data->key == MLX_KEY_A)
-		translate_point(&position, &camera->right, -0.2, &figure->position);
-	else if (key_data->key == MLX_KEY_D)
-		translate_point(&position, &camera->right, 0.2, &figure->position);
-	else if (key_data->key == MLX_KEY_SPACE)
-		figure->position.y += 0.2;
-	else if (key_data->key == MLX_KEY_LEFT_SHIFT)
-		figure->position.y -= 0.2;
+	ft_bzero(factor, sizeof(t_vector));
+	if (key == MLX_KEY_W)
+		*factor = wrap_point(0, 0, 0.2);
+	else if (key == MLX_KEY_S)
+		*factor = wrap_point(0, 0, -0.2);
+	else if (key == MLX_KEY_A)
+		*factor = wrap_point(-0.2, 0, 0);
+	else if (key == MLX_KEY_D)
+		*factor = wrap_point(0.2, 0, 0);
+	else if (key == MLX_KEY_SPACE)
+		*factor = wrap_point(0, 0.2, 0);
+	else if (key == MLX_KEY_LEFT_SHIFT)
+		*factor = wrap_point(0, -0.2, 0);
 }
 
 void	get_rotation_factor(keys_t key, modifier_key_t mod, t_point *factor)

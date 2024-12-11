@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 18:59:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:07:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 
 void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
 {
+	if (factor->x == 0.0 && factor->y == 0.0 && factor->z == 0.0)
+		return ;
 	if (factor->x)
 		rotate_x_axis(orientation, factor->x);
 	if (factor->y)
@@ -65,15 +67,33 @@ void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
 	normalize(orientation);
 }
 
+void	handle_figure_translation(t_figure *figure, t_camera *camera,
+	t_vector *factor)
+{
+	t_point		pos;
+	t_vector	projected;
+
+	projected = camera->front;
+	projected.y = 0.0;
+	normalize(&projected);
+	pos = figure->position;
+	if (factor->x)
+		translate_point(&pos, &camera->right, factor->x, &figure->position);
+	if (factor->y)
+		figure->position.y += factor->y;
+	if (factor->z)
+		translate_point(&pos, &projected, factor->z, &figure->position);
+}
+
 void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 	t_figure *figure)
 {
-	t_point	factor;
+	t_point	translate_factor;
+	t_point	rotation_factor;
 
-	handle_figure_movement(key_data, scene->camera, figure);
-	get_rotation_factor(key_data->key, key_data->modifier, &factor);
-	if (factor.x == 0.0 && factor.y == 0.0 && factor.z == 0.0)
-		return ;
+	get_translation_factor(key_data->key, &translate_factor);
+	get_rotation_factor(key_data->key, key_data->modifier, &rotation_factor);
+	handle_figure_translation(figure, scene->camera, &translate_factor);
 	if (figure->rotate)
-		figure->rotate(figure, &factor);
+		figure->rotate(figure, &rotation_factor);
 }
