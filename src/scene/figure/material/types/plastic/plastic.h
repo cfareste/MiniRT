@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:41:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 17:22:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:42:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ typedef struct s_plastic_attrs
 
 typedef struct s_material	t_material;
 
-void	parse_plastic(t_parser_ctx *ctx, char **attrs_str,
-			t_material *material);
+t_material	new_plastic_mat(t_plastic_attrs *attrs);

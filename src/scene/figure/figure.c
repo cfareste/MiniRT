@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:53:16 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:14:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ t_figure	*new_figure(char *type, t_point *position, t_color *color)
 	figure->position = *position;
 	figure->color = *color;
 	figure->glossiness = 256.0;
-	parse_diffuse(&figure->material);
+	figure->material = new_diffuse_mat();
 	return (figure);
 }

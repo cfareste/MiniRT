@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 02:27:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:14:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 #include "scene/figure/types/plane/parser/plane_parser.h"
 #include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
 #include "scene/figure/types/sphere/parser/sphere_parser.h"
+#include "scene/figure/material/types/metallic/parser/metallic_parser.h"
+#include "scene/figure/material/types/plastic/parser/plastic_parser.h"
+#include "scene/figure/material/types/glass/parser/glass_parser.h"
+#include "scene/figure/material/types/emissive/parser/emissive_parser.h"
 
 int	try_parse_figure(t_parser_ctx *ctx, char **parts, t_figure **figure)
 {
@@ -64,7 +68,7 @@ static void	parse_material(t_parser_ctx *ctx, char **parts,
 	if (!parts[0])
 		throw_parse_err(ctx, "Missing material type");
 	else if (ft_strcmp(parts[0], DIFFUSE_ID) == EQUAL_STRINGS)
-		parse_diffuse(material);
+		*material = new_diffuse_mat();
 	else if (ft_strcmp(parts[0], METALLIC_ID) == EQUAL_STRINGS)
 		parse_metallic(ctx, parts[1], material);
 	else if (ft_strcmp(parts[0], PLASTIC_ID) == EQUAL_STRINGS)

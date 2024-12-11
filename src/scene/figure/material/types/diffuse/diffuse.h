@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 20:59:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:38:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:13:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,4 @@
 
 typedef struct s_material	t_material;
 
-void	parse_diffuse(t_material *material);
+t_material	new_diffuse_mat(void);

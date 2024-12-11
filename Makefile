@@ -132,9 +132,13 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/material/types:\
 			$(SRC)scene/figure/material/types/diffuse:\
 			$(SRC)scene/figure/material/types/emissive:\
+			$(SRC)scene/figure/material/types/emissive/parser:\
 			$(SRC)scene/figure/material/types/glass:\
+			$(SRC)scene/figure/material/types/glass/parser:\
 			$(SRC)scene/figure/material/types/metallic:\
+			$(SRC)scene/figure/material/types/metallic/parser:\
 			$(SRC)scene/figure/material/types/plastic:\
+			$(SRC)scene/figure/material/types/plastic/parser:\
 			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
 			$(SRC)scene/figure/types/cylinder/default:\
@@ -365,7 +369,11 @@ SRCS = miniRT.c \
 	disk_default.c \
 	quadrilater_default.c \
 	box_default.c \
-	figure_events_helpers.c
+	figure_events_helpers.c \
+	metallic_parser.c \
+	plastic_parser.c \
+	glass_parser.c \
+	emissive_parser.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
