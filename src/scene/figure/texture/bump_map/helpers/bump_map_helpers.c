@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:58:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	get_base_bump_normal(t_figure *figure, t_point *point,
 	remove_point_texture_offset(point, &point_ctx, base_attrs, &texture_dims);
 	texel.x = point_ctx.point_arc * (texture->mlx->width / texture_dims.x);
 	texel.y = point->z * (texture->mlx->height / texture_dims.y);
+	texel.x = ft_clamp(texel.x, 0, texture->mlx->width - 1);
+	texel.y = ft_clamp(texel.y, 0, texture->mlx->height - 1);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	get_pixel_normal(pixel, figure->bump_map.format, res);

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:21:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 21:16:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:59:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static void	get_bump_normal(t_figure *figure, t_point *point,
 	remove_point_texture_offset(point, &coords, &texture_dims);
 	texel.x = coords.latitude * (texture->mlx->width / texture_dims.x);
 	texel.y = coords.longitude * (texture->mlx->height / texture_dims.y);
+	texel.x = ft_clamp(texel.x, 0, texture->mlx->width - 1);
+	texel.y = ft_clamp(texel.y, 0, texture->mlx->height - 1);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	get_pixel_normal(pixel, figure->bump_map.format, res);

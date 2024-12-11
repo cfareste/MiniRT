@@ -104,12 +104,16 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/material/types:\
 			$(SRC)scene/figure/material/types/diffuse:\
 			$(SRC)scene/figure/material/types/emissive:\
+			$(SRC)scene/figure/material/types/emissive/default:\
 			$(SRC)scene/figure/material/types/emissive/parser:\
 			$(SRC)scene/figure/material/types/glass:\
+			$(SRC)scene/figure/material/types/glass/default:\
 			$(SRC)scene/figure/material/types/glass/parser:\
 			$(SRC)scene/figure/material/types/metallic:\
+			$(SRC)scene/figure/material/types/metallic/default:\
 			$(SRC)scene/figure/material/types/metallic/parser:\
 			$(SRC)scene/figure/material/types/plastic:\
+			$(SRC)scene/figure/material/types/plastic/default:\
 			$(SRC)scene/figure/material/types/plastic/parser:\
 			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
@@ -298,7 +302,11 @@ SRCS =	main_test.c \
 		metallic_parser.c \
 		plastic_parser.c \
 		glass_parser.c \
-		emissive_parser.c
+		emissive_parser.c \
+		metallic_default.c \
+		plastic_default.c \
+		glass_default.c \
+		emissive_default.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
