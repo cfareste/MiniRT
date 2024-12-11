@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events.h                                    :+:      :+:    :+:   */
+/*   box_default.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/10 23:19:28 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/10 23:55:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/figure.h"
 
-#include "MLX42.h"
-#include "scene/scene.h"
+t_figure	*new_box_default(t_point *pos, t_color *color)
+{
+	t_figure	*box;
+	t_box_attrs	bo_attrs;
 
-t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
-
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-				t_figure *figure);
+	bo_attrs.orientation = wrap_point(0, 0, 1);
+	bo_attrs.width = 1;
+	bo_attrs.height = 1;
+	bo_attrs.length = 1;
+	box = new_box(pos, color, &bo_attrs);
+	return (box);
+}

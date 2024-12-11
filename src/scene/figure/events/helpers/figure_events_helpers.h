@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events.h                                    :+:      :+:    :+:   */
+/*   figure_events_helpers.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/11 00:44:33 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/11 00:48:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "MLX42.h"
 #include "scene/scene.h"
 
-t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
+t_figure	*get_next_figure_type(t_figure *figure);
 
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
+void		handle_figure_movement(mlx_key_data_t *key_data, t_camera *camera,
 				t_figure *figure);
+
+void		get_rotation_factor(keys_t key, t_point *factor);

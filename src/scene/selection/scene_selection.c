@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 17:44:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 00:54:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "render/ray/helpers/ray_helper.h"
 #include "scene/figure/events/figure_events.h"
 #include "render/renderer/renderer_bonus.h"
+#include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "libft.h"
 
 t_figure	*get_selection_fig(t_scene *scene)
@@ -67,12 +68,18 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 		return ;
 	if (keydata->action == MLX_PRESS)
 	{
+		stop_render(&window->render);
 		if (keydata->key == MLX_KEY_F)
 			set_selection_fig(&window->render.scene, NULL);
 		else if (keydata->key == MLX_KEY_BACKSPACE)
 		{
 			delete_selection(&window->render.scene, selection);
 			set_selection_fig(&window->render.scene, NULL);
+		}
+		else if (keydata->key == MLX_KEY_T)
+		{
+			selection = change_figure_type(&window->render.scene, selection);
+			set_selection_fig(&window->render.scene, selection);
 		}
 		else
 			handle_figure_event(keydata, &window->render.scene, selection);

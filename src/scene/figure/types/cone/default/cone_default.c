@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events.h                                    :+:      :+:    :+:   */
+/*   cone_default.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/10 23:15:06 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/10 23:50:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/figure.h"
 
-#include "MLX42.h"
-#include "scene/scene.h"
+t_figure	*new_cone_default(t_point *pos, t_color *color)
+{
+	t_figure		*cone;
+	t_cone_attrs	co_attrs;
 
-t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
-
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-				t_figure *figure);
+	co_attrs.orientation = wrap_point(0, -1, 0);
+	co_attrs.radius = 1;
+	co_attrs.height = 2;
+	cone = new_cone(pos, color, &co_attrs);
+	return (cone);
+}

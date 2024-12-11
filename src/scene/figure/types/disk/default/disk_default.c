@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events.h                                    :+:      :+:    :+:   */
+/*   disk_default.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/10 23:10:53 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/10 23:53:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/figure.h"
 
-#include "MLX42.h"
-#include "scene/scene.h"
+t_figure	*new_disk_default(t_point *pos, t_color *color)
+{
+	t_figure		*disk;
+	t_disk_attrs	di_attrs;
 
-t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
-
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-				t_figure *figure);
+	di_attrs.orientation = wrap_point(0, 1, 0);
+	di_attrs.radius = 1;
+	disk = new_disk(pos, color, &di_attrs);
+	return (disk);
+}

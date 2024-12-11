@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   figure_events.h                                    :+:      :+:    :+:   */
+/*   sphere_default.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 00:51:25 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/10 23:00:33 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/10 23:49:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/figure/figure.h"
 
-#include "MLX42.h"
-#include "scene/scene.h"
+t_figure	*new_sphere_default(t_point *pos, t_color *color)
+{
+	t_figure		*sphere;
+	t_sphere_attrs	sp_attrs;
 
-t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
-
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-				t_figure *figure);
+	sp_attrs.radius = 1;
+	sphere = new_sphere(pos, color, &sp_attrs);
+	return (sphere);
+}
