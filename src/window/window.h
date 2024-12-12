@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 20:08:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:27:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "jobs/jobs.h"
 # include "textures/textures.h"
 # include "cursor/window_cursor.h"
+# include "controls/window_controls.h"
 
 typedef struct s_resize
 {
@@ -53,6 +54,7 @@ typedef struct s_window
 	t_textures		textures;
 	double			last_update;
 	t_cursor		cursor;
+	t_controls		controls;
 }	t_window;
 
 void	init_window(t_window *window);

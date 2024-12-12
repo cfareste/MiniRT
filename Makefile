@@ -212,6 +212,7 @@ vpath %.c	$(SRC):\
 			$(SRC)window/loader/strategies/progress:\
 			$(SRC)window/loader/strategies/progress/helpers:\
 			$(SRC)window/loader/strategies/text:\
+			$(SRC)window/controls:\
 			$(SRC)render/renderer:\
 			$(SRC)render/renderer/parts:\
 			$(SRC)render/renderer/pixels:\
@@ -385,7 +386,8 @@ SRCS = miniRT.c \
 	glass_default.c \
 	emissive_default.c \
 	vector_rotation.c \
-	box_operations.c
+	box_operations.c \
+	window_controls.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

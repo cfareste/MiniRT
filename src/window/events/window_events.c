@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 11:20:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:35:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
 	t_figure	*selection;
 
+	set_controls(&keydata, &window->controls);
 	selection = get_selection_fig(&window->render.scene);
 	if (keydata.action == MLX_PRESS)
 	{
@@ -36,8 +37,6 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 	if (selection)
 	{
 		selection_key_events(&keydata, window);
-		ft_bzero(&window->render.scene.camera->controls,
-			sizeof(t_camera_controls));
 		render(window);
 		return ;
 	}
