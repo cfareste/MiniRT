@@ -6,13 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:54:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:09:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "render/utils/vector/rotation/vector_rotation.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <math.h>
 
@@ -52,42 +53,6 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 	free(old_figure->type);
 	free(old_figure);
 	return (new_figure);
-}
-
-void	rotate_figure(t_vector *orientation, t_camera *camera, t_vector *factor)
-{
-	t_vector	front_projected;
-
-	front_projected = camera->front;
-	front_projected.y = 0;
-	normalize(&front_projected);
-	if (factor->x == 0.0 && factor->y == 0.0 && factor->z == 0.0)
-		return ;
-	if (factor->x)
-		rotate_vector(orientation, &camera->right, factor->x, orientation);
-	if (factor->y)
-		rotate_by_world_axis(UP, factor->y, orientation);
-	if (factor->z)
-		rotate_vector(orientation, &front_projected, factor->z, orientation);
-	normalize(orientation);
-}
-
-static void	translate_figure(t_figure *figure, t_camera *camera,
-	t_vector *factor)
-{
-	t_point		pos;
-	t_vector	projected;
-
-	projected = camera->front;
-	projected.y = 0.0;
-	normalize(&projected);
-	pos = figure->position;
-	if (factor->x)
-		translate_point(&pos, &camera->right, factor->x, &figure->position);
-	if (factor->y)
-		figure->position.y += factor->y;
-	if (factor->z)
-		translate_point(&pos, &projected, factor->z, &figure->position);
 }
 
 void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,

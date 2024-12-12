@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 12:54:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
-#include "scene/figure/events/figure_events.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "parser/helpers/parser_helper.h"
 #include <math.h>
 

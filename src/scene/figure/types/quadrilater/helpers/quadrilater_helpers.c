@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:54:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/point/point.h"
 #include "render/utils/reference_system/reference_system.h"
-#include "scene/figure/events/figure_events.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <math.h>
 
