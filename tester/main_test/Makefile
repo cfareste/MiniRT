@@ -94,6 +94,8 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/light/utils:\
 			$(SRC)scene/light/ambient_light:\
 			$(SRC)scene/figure:\
+			$(SRC)scene/figure/events:\
+			$(SRC)scene/figure/events/helpers:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
@@ -102,35 +104,52 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/material/types:\
 			$(SRC)scene/figure/material/types/diffuse:\
 			$(SRC)scene/figure/material/types/emissive:\
+			$(SRC)scene/figure/material/types/emissive/default:\
+			$(SRC)scene/figure/material/types/emissive/parser:\
 			$(SRC)scene/figure/material/types/glass:\
+			$(SRC)scene/figure/material/types/glass/default:\
+			$(SRC)scene/figure/material/types/glass/parser:\
 			$(SRC)scene/figure/material/types/metallic:\
+			$(SRC)scene/figure/material/types/metallic/default:\
+			$(SRC)scene/figure/material/types/metallic/parser:\
 			$(SRC)scene/figure/material/types/plastic:\
+			$(SRC)scene/figure/material/types/plastic/default:\
+			$(SRC)scene/figure/material/types/plastic/parser:\
 			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
+			$(SRC)scene/figure/types/cylinder/default:\
 			$(SRC)scene/figure/types/cylinder/helpers:\
 			$(SRC)scene/figure/types/cylinder/parser:\
 			$(SRC)scene/figure/types/cylinder/pattern:\
 			$(SRC)scene/figure/types/cylinder/texture:\
 			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/plane/default:\
+			$(SRC)scene/figure/types/plane/helpers:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
 			$(SRC)scene/figure/types/plane/texture:\
 			$(SRC)scene/figure/types/sphere:\
+			$(SRC)scene/figure/types/sphere/default:\
 			$(SRC)scene/figure/types/sphere/parser:\
 			$(SRC)scene/figure/types/sphere/pattern:\
 			$(SRC)scene/figure/types/sphere/texture:\
 			$(SRC)scene/figure/types/sphere/helpers:\
 			$(SRC)scene/figure/types/cone:\
+			$(SRC)scene/figure/types/cone/default:\
 			$(SRC)scene/figure/types/cone/parser:\
 			$(SRC)scene/figure/types/cone/pattern:\
 			$(SRC)scene/figure/types/cone/texture:\
 			$(SRC)scene/figure/types/disk:\
+			$(SRC)scene/figure/types/disk/default:\
 			$(SRC)scene/figure/types/disk/parser:\
 			$(SRC)scene/figure/types/disk/texture:\
 			$(SRC)scene/figure/types/quadrilater:\
+			$(SRC)scene/figure/types/quadrilater/default:\
 			$(SRC)scene/figure/types/quadrilater/helpers:\
 			$(SRC)scene/figure/types/quadrilater/parser:\
 			$(SRC)scene/figure/types/box:\
+			$(SRC)scene/figure/types/box/default:\
+			$(SRC)scene/figure/types/box/operations:\
 			$(SRC)scene/figure/types/box/helpers:\
 			$(SRC)scene/figure/types/box/parser:\
 			$(SRC)scene/figure/types/box/pattern:\
@@ -174,6 +193,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/coordinates:\
 			$(SRC)render/utils/hit_record:\
 			$(SRC)render/utils/vector:\
+			$(SRC)render/utils/vector/rotation:\
 			$(SRC)render/utils/vector/parser:\
 			$(SRC)render/utils/point:\
 			$(SRC)render/utils/reference_system:\
@@ -270,7 +290,27 @@ SRCS =	main_test.c \
 		normal_map.c \
 		renderer_pixels.c \
 		sky_box.c \
-		textures_parser.c
+		textures_parser.c \
+		figure_events.c \
+		figure_events_helpers.c \
+		sphere_default.c \
+		plane_default.c \
+		cylinder_default.c \
+		cone_default.c \
+		disk_default.c \
+		quadrilater_default.c \
+		box_default.c \
+		plane_helpers.c \
+		metallic_parser.c \
+		plastic_parser.c \
+		glass_parser.c \
+		emissive_parser.c \
+		metallic_default.c \
+		plastic_default.c \
+		glass_default.c \
+		emissive_default.c \
+		vector_rotation.c \
+		box_operations.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -104,12 +104,18 @@ compile_binary(){
 
 	print_status $update_pid "$title"
 	wait $update_pid
-	printf $DELETE_LINE"$title: "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR"\n"
+	local compiling_result=$?
+	if [ $compiling_result -eq 0 ]
+	then
+		printf $DELETE_LINE"$title: "$GREEN_BOLD$CORRECT_ICON$DEF_COLOR"\n"
+	fi
+	return $compiling_result
 }
 
 init_tester(){
 	print_header
 	compile_binary
+	if [ $? -ne 0 ]; then return 1; fi
 	create_test_scene
 	execute_tests $@
 	local exit_code=$?

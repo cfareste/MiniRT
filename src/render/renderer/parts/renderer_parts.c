@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_parts.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 23:04:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:13:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	join_parts(t_render_part *parts, int amount)
 	{
 		if (parts[i].thread)
 			pthread_join(parts[i].thread, NULL);
+		parts[i].thread = 0;
 		i++;
 	}
 }

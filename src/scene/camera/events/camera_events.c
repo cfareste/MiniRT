@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 15:10:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 17:31:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 #include "camera_events.h"
 #include "../helpers/camera_helper.h"
 #include "render/renderer/renderer_bonus.h"
+#include "scene/settings/sky_box/sky_box.h"
+#include "libft.h"
+
+void	focus_camera_to_selection(t_camera *camera, t_figure *selection)
+{
+	t_point	pos;
+
+	pos = selection->position;
+	if (ft_strcmp(selection->type, CONE_ID) == EQUAL_STRINGS)
+		translate_point(&pos, &selection->co_attrs->orientation,
+			selection->co_attrs->height / 2.0, &pos);
+	get_vector(&pos, &camera->position, &camera->front);
+	get_axes(&camera->front, &camera->right, &camera->up);
+}
 
 static int	set_control(int8_t *control, mlx_key_data_t *keydata, keys_t pos,
 					keys_t neg)
@@ -73,4 +87,5 @@ void	camera_key_events(mlx_key_data_t keydata, t_window *window)
 	camera->controls.moving += set_control(&camera->controls.focus_dist,
 			&keydata, MLX_KEY_J, MLX_KEY_K);
 	movement_event(&keydata, window->render.scene.camera);
+	configure_sky_box(&window->render.scene);
 }

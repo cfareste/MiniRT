@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/27 00:00:27 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:25:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,4 @@ typedef struct s_box_attrs
 
 typedef struct s_figure	t_figure;
 
-t_figure	*parse_box(t_parser_ctx *ctx, char **parts);
+t_figure	*new_box(t_point *pos, t_color *color, t_box_attrs *box_attrs);

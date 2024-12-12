@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 22:07:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:20:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,18 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 	if (keydata.action == MLX_PRESS)
 	{
 		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
-			close_window(window);
+			return (close_window(window));
 		else if (keydata.key == MLX_KEY_E)
 			export_image(&window->exporter, &window->jobs);
 		else if (keydata.key == MLX_KEY_L)
 			loader_toggle_visibility(window->exporter.loader);
-		else if (!selection && keydata.key == MLX_KEY_P)
-			set_selection_fig(&window->render.scene,
-				window->render.scene.figures);
 	}
 	if (selection)
 	{
 		selection_key_events(&keydata, window);
 		ft_bzero(&window->render.scene.camera->controls,
 			sizeof(t_camera_controls));
+		render(window);
 		return ;
 	}
 	render_key_events(&keydata, window);
@@ -81,5 +79,13 @@ void	mouse_hook(mouse_key_t button, action_t action,
 	(void) mods;
 	cursor_pos = cursor_get_pos(&window->cursor);
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-		printf("Clicked %f, %f\n", cursor_pos.x, cursor_pos.y);
+	{
+		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
+		render(window);
+	}
+	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
+	{
+		set_selection_fig(&window->render.scene, NULL);
+		render(window);
+	}
 }

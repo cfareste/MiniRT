@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:46:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
+#include "scene/figure/events/figure_events.h"
 #include "parser/helpers/parser_helper.h"
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_point *factor)
 {
-	t_cone_attrs	*attrs;
+	t_point		*pos;
+	t_vector	*dir;
 
-	attrs = (t_cone_attrs *) param;
-	printf("%f, %f, %f | %f | %f ",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z,
-		attrs->radius, attrs->height);
+	pos = &figure->position;
+	dir = &figure->co_attrs->orientation;
+	translate_point(pos, dir, figure->co_attrs->height / 2.0, pos);
+	handle_figure_rotation(&figure->co_attrs->orientation, factor);
+	translate_point(pos, dir, -figure->co_attrs->height / 2.0, pos);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -100,27 +103,22 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 		get_cone_body_pattern(figure, &rotated_point, res);
 }
 
-t_figure	*parse_cone(t_parser_ctx *ctx, char **parts)
+t_figure	*new_cone(t_point *pos, t_color *color, t_cone_attrs *co_attrs)
 {
 	t_figure	*cone;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
-		throw_parse_err(ctx, "Missing some cone parameter");
-	cone = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
+	translate_point(pos, &co_attrs->orientation, -co_attrs->height / 2.0, pos);
+	cone = new_figure(CONE_ID, pos, color);
 	cone->co_attrs = ft_calloc(1, sizeof(t_cone_attrs));
 	if (!cone->co_attrs)
 		throw_sys_error("trying to allocate cone attributes");
-	cone->print_attrs = print_attrs;
+	cone->co_attrs->orientation = co_attrs->orientation;
+	normalize(&cone->co_attrs->orientation);
+	cone->co_attrs->radius = co_attrs->radius;
+	cone->co_attrs->height = co_attrs->height;
 	cone->hit = hit;
 	cone->normal = normal;
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&cone->co_attrs->orientation);
-	cone->co_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
-	cone->co_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
-	normalize(&cone->co_attrs->orientation);
-	translate_point(&cone->position, &cone->co_attrs->orientation,
-		-cone->co_attrs->height / 2.0, &cone->position);
+	cone->rotate = rotate;
 	cone->get_color_pattern = get_color;
-	check_cone_parsing(ctx, cone);
 	return (cone);
 }

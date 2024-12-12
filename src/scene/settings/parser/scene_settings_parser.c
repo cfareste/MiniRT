@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:49 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 02:29:16 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:30:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 
 void	parse_sky_box(t_parser_ctx *ctx, char *path, t_scene_settings *settings)
 {
-	char	*parts[5];
+	t_sphere_attrs	sp_attrs;
+	t_point			position;
+	t_color			color;
 
-	parts[0] = "sp";
-	parts[1] = "0,0,0";
-	parts[2] = "1";
-	parts[3] = "255,255,255";
-	parts[4] = NULL;
+	sp_attrs.radius = 1.0;
+	position = wrap_point(0, 0, 0);
+	new_color(1.0, 1.0, 1.0, &color);
 	if (settings->sky_box)
 	{
 		free_figures(settings->sky_box);
 		settings->sky_box = NULL;
 	}
 	check_file(ctx, path);
-	settings->sky_box = parse_sphere(ctx, parts);
+	settings->sky_box = new_sphere(&position, &color, &sp_attrs);
 	settings->sky_box->bump_map.texture = get_texture(ctx->textures, path);
 }
 

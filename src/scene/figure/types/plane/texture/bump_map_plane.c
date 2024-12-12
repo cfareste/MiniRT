@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:49:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 23:40:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:23:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "scene/figure/texture/texel/texel.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
+#include "libft.h"
 #include <math.h>
 
 static void	remove_point_texture_offset(t_point *point, t_vector *texture_dims)
@@ -45,6 +46,8 @@ static void	get_texture_normal(t_figure *figure, t_point *point,
 	remove_point_texture_offset(point, &texture_dims);
 	texel.x = point->x * (texture->mlx->width / texture_dims.x);
 	texel.y = fabs(point->y) * (texture->mlx->height / texture_dims.y);
+	texel.x = ft_clamp(texel.x, 0, texture->mlx->width - 1);
+	texel.y = ft_clamp(texel.y, 0, texture->mlx->height - 1);
 	pixel = texture->mlx->pixels
 		+ ((4 * texture->mlx->width) * texel.y) + (4 * texel.x);
 	get_pixel_normal(pixel, figure->bump_map.format, res);

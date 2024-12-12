@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:34:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 14:46:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:11:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ typedef struct s_emissive_attrs
 
 typedef struct s_material	t_material;
 
-void	parse_emissive(t_parser_ctx *ctx, char *attrs_str,
-			t_material *material);
+t_material	new_emissive_mat(t_emissive_attrs *attrs);

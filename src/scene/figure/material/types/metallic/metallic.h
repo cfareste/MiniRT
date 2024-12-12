@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:43:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 12:48:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:49:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ typedef struct s_metallic_attrs
 
 typedef struct s_material	t_material;
 
-void	parse_metallic(t_parser_ctx *ctx, char *attrs_str,
-			t_material *material);
+t_material	new_metallic_mat(t_metallic_attrs *attrs);

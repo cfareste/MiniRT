@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 23:39:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:38:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,8 @@
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
-
-static void	print_attrs(void *param)
-{
-	t_plane_attrs	*attrs;
-
-	attrs = (t_plane_attrs *) param;
-	printf("%f, %f, %f",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
-}
+#include "scene/figure/events/figure_events.h"
+#include "scene/figure/types/plane/helpers/plane_helpers.h"
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
@@ -60,7 +53,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	get_vector(point, &figure->position, &rotated_point);
 	angle = rotate_reference_system(&figure->pl_attrs->orientation, NULL,
 			&rotated_point);
-	get_plane_bump_normal(figure, point, res);
+	get_plane_bump_normal(figure, &rotated_point, res);
 	rotate_by_angle(&figure->pl_attrs->orientation, -angle, res);
 }
 
@@ -76,10 +69,27 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 
 void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 {
-	plane->print_attrs = print_attrs;
-	plane->normal = normal;
-	plane->hit = hit;
 	plane->pl_attrs = attrs;
 	plane->position = *position;
+	plane->hit = hit;
+	plane->normal = normal;
+	plane->rotate = rotate_plane;
 	plane->get_color_pattern = get_color;
+}
+
+t_figure	*new_plane(t_point *pos, t_color *color, t_plane_attrs *pl_attrs)
+{
+	t_figure	*plane;
+
+	plane = new_figure(PLANE_ID, pos, color);
+	plane->pl_attrs = ft_calloc(1, sizeof(t_plane_attrs));
+	if (!plane->pl_attrs)
+		throw_sys_error("trying to allocate plane attributes");
+	plane->pl_attrs->orientation = pl_attrs->orientation;
+	normalize(&plane->pl_attrs->orientation);
+	plane->hit = hit;
+	plane->normal = normal;
+	plane->rotate = rotate_plane;
+	plane->get_color_pattern = get_color;
+	return (plane);
 }
