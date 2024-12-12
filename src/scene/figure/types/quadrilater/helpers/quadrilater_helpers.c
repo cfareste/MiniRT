@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 11:09:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/point/point.h"
 #include "render/utils/reference_system/reference_system.h"
-#include "scene/figure/events/figure_events.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <math.h>
 
@@ -36,9 +36,9 @@ float	get_quad_rotated_point(t_vector *quad_normal, t_vector *quad_right,
 	return (angle);
 }
 
-void	rotate_quadrilater(t_figure *quad, t_point *factor)
+void	rotate_quadrilater(t_figure *quad, t_camera *camera, t_point *factor)
 {
-	handle_figure_rotation(&quad->qu_attrs->orientation, factor);
-	handle_figure_rotation(&quad->qu_attrs->right, factor);
-	handle_figure_rotation(&quad->qu_attrs->up, factor);
+	rotate_figure(&quad->qu_attrs->orientation, camera, factor);
+	rotate_figure(&quad->qu_attrs->right, camera, factor);
+	rotate_figure(&quad->qu_attrs->up, camera, factor);
 }

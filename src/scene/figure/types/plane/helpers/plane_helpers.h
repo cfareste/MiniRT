@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 01:05:56 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 01:07:03 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:03:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@
 
 #include "scene/figure/figure.h"
 
-void	rotate_plane(t_figure *figure, t_point *factor);
+void	rotate_plane(t_figure *figure, t_camera *camera, t_point *factor);

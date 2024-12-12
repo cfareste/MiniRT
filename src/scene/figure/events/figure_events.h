@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 13:26:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:45:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,3 @@
 void		change_figure_material(t_figure *selection);
 
 t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure);
-
-void		handle_figure_movement(t_figure *figure, t_camera *camera,
-				t_vector *factor);
-
-void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
-
-void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-				t_figure *figure);
-
-void		handle_figure_translation(t_figure *figure, t_camera *camera,
-				t_vector *factor);

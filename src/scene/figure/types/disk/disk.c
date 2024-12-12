@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:32:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
 #include "render/utils/reference_system/reference_system.h"
-#include "scene/figure/events/figure_events.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
 
-static void	rotate(t_figure *figure, t_point *factor)
+static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {
-	handle_figure_rotation(&figure->di_attrs->orientation, factor);
+	rotate_figure(&figure->di_attrs->orientation, camera, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)

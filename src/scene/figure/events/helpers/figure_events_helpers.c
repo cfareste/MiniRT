@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 21:12:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:11:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	get_rotation_factor(keys_t key, modifier_key_t mod, t_point *factor)
 	else if (key == MLX_KEY_DOWN)
 		*factor = wrap_point(angle, 0, 0);
 	else if (key == MLX_KEY_LEFT && mod == MLX_CONTROL)
-		*factor = wrap_point(0, 0, angle);
-	else if (key == MLX_KEY_RIGHT && mod == MLX_CONTROL)
 		*factor = wrap_point(0, 0, -angle);
+	else if (key == MLX_KEY_RIGHT && mod == MLX_CONTROL)
+		*factor = wrap_point(0, 0, angle);
 	else if (key == MLX_KEY_LEFT)
 		*factor = wrap_point(0, -angle, 0);
 	else if (key == MLX_KEY_RIGHT)

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:11:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:42:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_figure
 			t_color *res);
 	void		(*print_attrs)(void *attrs);
 	void		(*recalculate)(t_figure *figure);
-	void		(*rotate)(t_figure *figure, t_point *factor);
+	void		(*rotate)(t_figure *figure, t_camera *camera, t_point *factor);
 	void		(*free)(t_figure *figure);
 	t_figure	*next;
 }	t_figure;

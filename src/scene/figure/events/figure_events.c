@@ -6,13 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:20:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:44:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "render/utils/vector/rotation/vector_rotation.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <math.h>
 
@@ -52,35 +53,4 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 	free(old_figure->type);
 	free(old_figure);
 	return (new_figure);
-}
-
-void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
-{
-	if (factor->x == 0.0 && factor->y == 0.0 && factor->z == 0.0)
-		return ;
-	if (factor->x)
-		rotate_x_axis(orientation, factor->x);
-	if (factor->y)
-		rotate_y_axis(orientation, factor->y);
-	if (factor->z)
-		rotate_z_axis(orientation, factor->z);
-	normalize(orientation);
-}
-
-void	handle_figure_translation(t_figure *figure, t_camera *camera,
-	t_vector *factor)
-{
-	t_point		*pos;
-	t_vector	projected;
-
-	projected = camera->front;
-	projected.y = 0.0;
-	normalize(&projected);
-	pos = &figure->position;
-	if (factor->x)
-		translate_point(pos, &camera->right, factor->x, &figure->position);
-	if (factor->y)
-		figure->position.y += factor->y;
-	if (factor->z)
-		translate_point(pos, &projected, factor->z, &figure->position);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 19:46:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
-#include "scene/figure/events/figure_events.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "parser/helpers/parser_helper.h"
 #include <math.h>
 
-static void	rotate(t_figure *figure, t_point *factor)
+static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {
 	t_point		*pos;
 	t_vector	*dir;
@@ -34,7 +34,7 @@ static void	rotate(t_figure *figure, t_point *factor)
 	pos = &figure->position;
 	dir = &figure->co_attrs->orientation;
 	translate_point(pos, dir, figure->co_attrs->height / 2.0, pos);
-	handle_figure_rotation(&figure->co_attrs->orientation, factor);
+	rotate_figure(&figure->co_attrs->orientation, camera, factor);
 	translate_point(pos, dir, -figure->co_attrs->height / 2.0, pos);
 }
 

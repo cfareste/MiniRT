@@ -98,6 +98,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/events/helpers:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/parser/helpers:\
+			$(SRC)scene/figure/operations:\
 			$(SRC)scene/figure/helpers:\
 			$(SRC)scene/figure/material:\
 			$(SRC)scene/figure/material/helpers:\
@@ -207,7 +208,7 @@ vpath %.c	$(SRC):\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
 			$(SRC)parser/helpers:\
-			$(SRC)window/textures/parser:\
+			$(SRC)window/textures/parser:
 
 #----SHARED----#
 SRCS =	main_test.c \
@@ -310,7 +311,8 @@ SRCS =	main_test.c \
 		glass_default.c \
 		emissive_default.c \
 		vector_rotation.c \
-		box_operations.c
+		box_operations.c \
+		figure_operations.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -124,6 +124,7 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure:\
 			$(SRC)scene/figure/events:\
 			$(SRC)scene/figure/events/helpers:\
+			$(SRC)scene/figure/operations:\
 			$(SRC)scene/figure/parser:\
 			$(SRC)scene/figure/parser/helpers:\
 			$(SRC)scene/figure/helpers:\
@@ -387,7 +388,8 @@ SRCS = miniRT.c \
 	emissive_default.c \
 	vector_rotation.c \
 	box_operations.c \
-	window_controls.c
+	window_controls.c \
+	figure_operations.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

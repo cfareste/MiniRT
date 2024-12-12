@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:40:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:46:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "texture/bump_map/bump_map.h"
 #include "render/utils/random/random.h"
 #include "events/figure_events.h"
+#include "operations/figure_operations.h"
 #include <math.h>
 
 void	free_figure(t_figure *figure)
@@ -70,9 +71,9 @@ void	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
 			fact * controls->view_right,
 			fact * controls->view_up,
 			fact * controls->view_front);
-	handle_figure_translation(figure, camera, &translate_factor);
+	translate_figure(figure, camera, &translate_factor);
 	if (figure->rotate)
-		figure->rotate(figure, &rotation_factor);
+		figure->rotate(figure, camera, &rotation_factor);
 	if (figure->recalculate)
 		figure->recalculate(figure);
 }
