@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 15:54:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:00:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	set_control(int8_t *control, mlx_key_data_t *keydata, keys_t pos,
 
 void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
 {
+	if (keydata->modifier > MLX_SHIFT)
+		return ;
 	controls->moving += set_control(&controls->zoom,
 			keydata, MLX_KEY_O, MLX_KEY_I);
 	controls->moving += set_control(&controls->focus_dist,
