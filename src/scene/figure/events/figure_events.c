@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 22:14:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:44:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,26 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 	return (new_figure);
 }
 
-void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
+void	handle_figure_rotation(t_vector *orientation, t_camera *camera,
+	t_vector *factor)
 {
+	t_vector	front_projected;
+
+	front_projected = camera->front;
+	front_projected.y = 0;
+	normalize(&front_projected);
 	if (factor->x == 0.0 && factor->y == 0.0 && factor->z == 0.0)
 		return ;
 	if (factor->x)
-		rotate_x_axis(orientation, factor->x);
+		rotate_vector(orientation, &camera->right, factor->x, orientation);
 	if (factor->y)
-		rotate_y_axis(orientation, factor->y);
+		rotate_by_world_axis(UP, factor->y, orientation);
 	if (factor->z)
-		rotate_z_axis(orientation, factor->z);
+		rotate_vector(orientation, &front_projected, factor->z, orientation);
 	normalize(orientation);
 }
 
-void	handle_figure_translation(t_figure *figure, t_camera *camera,
+static void	handle_figure_translation(t_figure *figure, t_camera *camera,
 	t_vector *factor)
 {
 	t_point		pos;
@@ -95,7 +101,7 @@ void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 	get_rotation_factor(key_data->key, key_data->modifier, &rotation_factor);
 	handle_figure_translation(figure, scene->camera, &translate_factor);
 	if (figure->rotate)
-		figure->rotate(figure, &rotation_factor);
+		figure->rotate(figure, scene->camera, &rotation_factor);
 	if (figure->recalculate)
 		figure->recalculate(figure);
 }
