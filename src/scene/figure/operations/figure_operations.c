@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 13:04:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:52:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:54:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotate_figure(t_vector *vec, t_camera *camera, t_vector *factor)
 	if (factor->x == 0.0 && factor->y == 0.0 && factor->z == 0.0)
 		return ;
 	if (factor->x)
-		rotate_vector(vec, &camera->right, factor->x, vec);
+		rotate_vector(vec, &camera->right, -factor->x, vec);
 	if (factor->y)
 		rotate_by_world_axis(UP, factor->y, vec);
 	if (factor->z)
