@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:46:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:51:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
 			0.2 * controls->move_up,
 			0.2 * controls->move_front);
 	rotation_factor = wrap_point(
-			fact * controls->view_right,
 			fact * controls->view_up,
+			fact * controls->view_right,
 			fact * controls->view_front);
 	translate_figure(figure, camera, &translate_factor);
 	if (figure->rotate)
