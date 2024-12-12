@@ -3,32 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   composition.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 16:04:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:27:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composition.h"
-
+#include "utils/utils_bonus.h"
 #include "libft.h"
+
+static int	fill_buffer(char **buffer)
+{
+	int	buff_len;
+
+	*buffer = ft_calloc(1, sizeof(char));
+	if (!*buffer)
+		throw_sys_error("tryting to allocate composer buffer");
+	buff_len = 0;
+	return (buff_len);
+}
+
+// static void	dup_render(t_render *render)
+// {
+// 	render->samples;
+// 	render->max_depth;
+// 	render->antialiasing;
+// 	render->strategy;
+// 	render->soft_shadows_radius;
+
+// 	render->scene.settings.name;
+// 	render->scene.settings.sky_color;
+// 	render->scene.settings.sky_box->bump_map.texture;
+
+// 	render->image_mutex;
+// 	render->image->width;
+// 	render->image->height;
+
+// 	render->scene.ambient_light->brightness;
+// 	render->scene.ambient_light->color;
+
+// 	render->scene.lights->position;
+// 	render->scene.lights->brightness;
+// 	render->scene.lights->color;
+
+// 	render->scene.camera->position;
+// 	render->scene.camera->front;
+// 	render->scene.camera->fov;
+// 	render->scene.camera->defocus;
+// 	render->scene.camera->focus_dist;
+// }
 
 void	*composition_routine(t_composition *composition)
 {
-	int	i;
-	int	j;
+	char	*compose_buffer;
+	int		buffer_length;
 
 	if (!composer_is_alive(composition->composer))
 		return (free(composition), NULL);
-	i = 0;
-	while (composer_is_alive(composition->composer) && i < 20000000)
+	// dup_render();
+	buffer_length = fill_buffer(&compose_buffer);
+	if (composer_is_alive(composition->composer))
 	{
-		printf("Composing...\n");
-		j = 0;
-		while (composer_is_alive(composition->composer) && j < 1000)
-			j++;
-		i++;
+
 	}
+	free(compose_buffer);
 	return (free(composition), NULL);
 }

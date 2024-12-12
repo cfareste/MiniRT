@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   composer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:07:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/07 16:08:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:17:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@
 
 #include "libft.h"
 
-void	compose(t_composer *composer)
+void	compose(t_composer *composer, int create_new_file)
 {
 	t_composition	*composition;
 
-	pthread_join(composer->thread, NULL);
+	if (composer->thread)
+		pthread_join(composer->thread, NULL);
+	composer->thread = 0;
 	composer_set_alive(composer, 1);
 	composition = ft_calloc(1, sizeof(t_composition));
 	if (!composition)
 		throw_sys_error("allocating composition");
 	composition->composer = composer;
+	composition->create_new_file = create_new_file;
 	if (composer_is_alive(composer) && pthread_create(&composer->thread, NULL,
 			(void *(*)(void *)) composition_routine, composition) == -1)
 		throw_sys_error("creating compose thread");
@@ -60,5 +63,7 @@ void	composer_set_alive(t_composer *composer, int alive)
 void	destroy_composer(t_composer *composer)
 {
 	composer_set_alive(composer, 0);
-	pthread_join(composer->thread, NULL);
+	if (composer->thread)
+		pthread_join(composer->thread, NULL);
+	composer->thread = 0;
 }

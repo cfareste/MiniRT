@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_selection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 15:32:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:24:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,24 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 	t_figure	*selection;
 
 	selection = get_selection_fig(&window->render.scene);
-	if (!selection)
+	if (!selection || keydata->action != MLX_PRESS
+		|| (keydata->key != MLX_KEY_F && keydata->key != MLX_KEY_T
+			&& keydata->key != MLX_KEY_M && keydata->key != MLX_KEY_BACKSPACE))
 		return ;
-	if (keydata->action == MLX_PRESS)
+	stop_render(&window->render);
+	if (keydata->key == MLX_KEY_F)
+		focus_camera_to_selection(window->render.scene.camera, selection);
+	else if (keydata->key == MLX_KEY_BACKSPACE)
 	{
-		stop_render(&window->render);
-		if (keydata->key == MLX_KEY_F)
-			focus_camera_to_selection(window->render.scene.camera, selection);
-		else if (keydata->key == MLX_KEY_BACKSPACE)
-		{
-			delete_selection(&window->render.scene, selection);
-			set_selection_fig(&window->render.scene, NULL);
-		}
-		else if (keydata->key == MLX_KEY_T)
-			set_selection_fig(&window->render.scene,
-				change_figure_type(&window->render.scene, selection));
-		else if (keydata->key == MLX_KEY_M)
-			change_figure_material(selection);
-		else
-			return ;
-		render(window);
+		delete_selection(&window->render.scene, selection);
+		set_selection_fig(&window->render.scene, NULL);
 	}
+	else if (keydata->key == MLX_KEY_T)
+		set_selection_fig(&window->render.scene,
+			change_figure_type(&window->render.scene, selection));
+	else if (keydata->key == MLX_KEY_M)
+		change_figure_material(selection);
+	render(window);
 }
 
 void	select_figure(t_render *render, double x_pos, double y_pos)
