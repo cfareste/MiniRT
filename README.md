@@ -8,6 +8,7 @@ A small raytracer using MLX, the graphic library of 42.
 ## Set up and run
 ```shell
 git clone https://github.com/cfareste/MiniRT.git \
-&& MiniRT/make \
-&& MiniRT/miniRT assets/scenes/extra_figures.rt;
+&& cd MiniRT \
+&& make \
+&& ./miniRT assets/scenes/extra_figures.rt;
 ```

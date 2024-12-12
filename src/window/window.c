@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/07 15:53:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:44:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@
 #include "window/loader/helpers/loader_helper.h"
 #include "render/events/render_events.h"
 #include "events/window_events.h"
+#include "scene/settings/sky_box/sky_box.h"
+
+static void	control(t_window *window)
+{
+	window->last_update = mlx_get_time();
+	if (window->render.scene.selection)
+		control_figure(window->render.scene.selection,
+			window->render.scene.camera, &window->controls);
+	else
+	{
+		control_camera(window->render.scene.camera, &window->controls);
+		configure_sky_box(&window->render.scene);
+	}
+	render(window);
+}
 
 static void	main_loop(void *window_)
 {
@@ -42,14 +57,9 @@ static void	main_loop(void *window_)
 		render_set_resize(&window->render, 1);
 		render(window);
 	}
-	else if (!window->render.blocked
-		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE
-		&& window->render.scene.camera->controls.moving)
-	{
-		update_camera(window->render.scene.camera);
-		window->last_update = mlx_get_time();
-		render(window);
-	}
+	else if (window->controls.moving && !window->render.blocked
+		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE)
+		control(window);
 }
 
 void	close_window(t_window *window)

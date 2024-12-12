@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loader_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:38:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:14:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	loader_hide(t_loader *loader)
 	loader_set_alive(loader, 0);
 	loader_set_img_enabled(loader, 0);
 	pthread_cancel(loader->thread);
-	pthread_join(loader->thread, NULL);
+	if (loader->thread)
+		pthread_join(loader->thread, NULL);
+	loader->thread = 0;
 }
 
 void	init_loader(t_loader *loader, t_jobs *jobs, mlx_t *mlx, t_size *w_size)

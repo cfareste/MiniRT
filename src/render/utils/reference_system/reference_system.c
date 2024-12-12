@@ -6,12 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:02:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
+#include "libft.h"
 #include <math.h>
 
 float	rotate_reference_system(t_vector *normal, t_vector *vec, t_point *point)
@@ -65,7 +66,8 @@ void	rotate_by_ideal(t_vector *normal, t_vector *ideal, t_vector *res)
 	rotate_vector(res, &axis, angle, res);
 }
 
-void	rotate_by_axis(t_pointing axis_pointing, float angle, t_vector *res)
+void	rotate_by_world_axis(t_pointing axis_pointing, float angle,
+	t_vector *res)
 {
 	t_vector	axis;
 

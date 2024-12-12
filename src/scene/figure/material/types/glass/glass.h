@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:39:30 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 13:46:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:01:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,4 @@ typedef struct s_glass_attrs
 
 typedef struct s_material	t_material;
 
-void	parse_glass(t_parser_ctx *ctx, char **attrs, t_material *material);
+t_material	new_glass_mat(t_glass_attrs *attrs);

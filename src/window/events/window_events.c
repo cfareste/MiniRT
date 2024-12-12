@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/07 15:31:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:47:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,23 @@
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
-	t_figure	*selection;
-
-	selection = get_selection_fig(&window->render.scene);
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
-			close_window(window);
-		else if (keydata.key == MLX_KEY_E)
-			export_image(&window->exporter, &window->jobs);
-		else if (keydata.key == MLX_KEY_L)
-			loader_toggle_visibility(window->exporter.loader);
-		else if (!selection && keydata.key == MLX_KEY_P)
-			set_selection_fig(&window->render.scene,
-				window->render.scene.figures);
-	}
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_ESCAPE)
+		return (close_window(window));
+	set_controls(&keydata, &window->controls);
 	composer_key_events(&keydata, window);
-	if (selection)
-	{
+	if (get_selection_fig(&window->render.scene))
 		selection_key_events(&keydata, window);
-		ft_bzero(&window->render.scene.camera->controls,
-			sizeof(t_camera_controls));
-		return ;
+	else
+	{
+		if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_E)
+			export_image(&window->exporter, &window->jobs);
+		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_L)
+			loader_toggle_visibility(window->exporter.loader);
+		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_Q)
+			close_window(window);
+		render_key_events(&keydata, window);
+		camera_key_events(&keydata, window);
 	}
-	render_key_events(&keydata, window);
-	camera_key_events(&keydata, window);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)
@@ -83,5 +75,13 @@ void	mouse_hook(mouse_key_t button, action_t action,
 	(void) mods;
 	cursor_pos = cursor_get_pos(&window->cursor);
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-		printf("Clicked %f, %f\n", cursor_pos.x, cursor_pos.y);
+	{
+		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
+		render(window);
+	}
+	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
+	{
+		set_selection_fig(&window->render.scene, NULL);
+		render(window);
+	}
 }

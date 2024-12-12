@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:35:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 13:42:32 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:13:42 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@
 #include "scene/figure/material/helpers/material_helpers.h"
 #include "float.h"
 
-void	parse_diffuse(t_material *material)
+t_material	new_diffuse_mat(void)
 {
-	material->type = DIFFUSE;
-	material->material_attrs = NULL;
-	material->scatter = diffuse_scatter;
+	t_material	diffuse_mat;
+
+	diffuse_mat.type = DIFFUSE;
+	diffuse_mat.material_attrs = NULL;
+	diffuse_mat.scatter = diffuse_scatter;
+	return (diffuse_mat);
 }

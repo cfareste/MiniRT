@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/18 15:24:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:43:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,18 @@
 #include "scene.h"
 #include "parser/parser.h"
 
-void	print_scene(t_scene *scene)
+void	add_figure(t_scene *scene, t_camera *camera)
 {
-	t_light		*lights;
-	t_figure	*figures;
+	t_point			position;
+	t_color			color;
+	t_sphere_attrs	sp_attrs;
+	t_figure		*new_figure;
 
-	if (scene->ambient_light)
-	{
-		printf("Ambient ");
-		print_light(scene->ambient_light);
-	}
-	if (scene->camera)
-		print_camera(scene->camera);
-	lights = scene->lights;
-	while (lights)
-	{
-		print_light(lights);
-		lights = lights->next;
-	}
-	if (scene->figures)
-		ft_printf("\nFigures:\n");
-	figures = scene->figures;
-	while (figures)
-	{
-		print_figure(figures);
-		figures = figures->next;
-	}
-	print_scene_settings(&scene->settings);
+	translate_point(&camera->position, &camera->front, camera->focus_dist * 4,
+		&position);
+	new_color(1.0, 1.0, 1.0, &color);
+	sp_attrs.radius = 1.0;
+	new_figure = new_sphere(&position, &color, &sp_attrs);
+	new_figure->next = scene->figures;
+	scene->figures = new_figure;
 }

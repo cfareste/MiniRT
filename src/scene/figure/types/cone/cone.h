@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 01:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/10 02:19:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,4 @@ typedef struct s_cone_attrs
 	t_coordinates	orientation;
 }	t_cone_attrs;
 
-t_figure	*parse_cone(t_parser_ctx *ctx, char **parts);
-
-void		set_cone(t_figure *cone, double radius, double height,
-				t_cone_attrs *attrs);
+t_figure	*new_cone(t_point *pos, t_color *color, t_cone_attrs *co_attrs);

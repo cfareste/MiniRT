@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 17:48:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:07:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "render/utils/color/color_operations/color_operations.h"
 #include "utils/iterators/iterators.h"
 #include "render/strategies/strategies.h"
-#include "scene/settings/sky_box/sky_box.h"
 #include <math.h>
 
 static void	compute_strategy(t_render_part *part, t_ray *ray,
@@ -64,7 +63,6 @@ void	*render_part(t_render_part *part)
 	size_t		i;
 
 	get_thread_id(&part->thread, &seed);
-	configure_sky_box(&part->render->scene);
 	pixels = part->pixels;
 	i = 0;
 	while (!is_render_finished(part->render)

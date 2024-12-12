@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 22:21:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:28:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "scene/figure/material/types/emissive/emissive.h"
 
 #define AIR_REFRACTIVE_INDEX 1.0003
+#define GLASS_REFRACTIVE_INDEX 1.52
 
 typedef struct s_render	t_render;
 

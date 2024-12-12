@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 22:49:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/11 01:13:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	stop_render(t_render *render)
 	if (!render || !render->thread)
 		return ;
 	set_render_finish(render, 1);
-	pthread_join(render->thread, NULL);
+	if (render->thread)
+		pthread_join(render->thread, NULL);
+	render->thread = 0;
 }
 
 void	*render_routine(t_window *window)

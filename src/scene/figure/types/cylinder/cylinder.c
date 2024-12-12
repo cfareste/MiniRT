@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 21:23:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@
 #include "scene/figure/types/cylinder/pattern/cylinder_pattern.h"
 #include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
 #include "parser/helpers/parser_helper.h"
+#include "scene/figure/operations/figure_operations.h"
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {
-	t_cylinder_attrs	*attrs;
-
-	attrs = (t_cylinder_attrs *) param;
-	printf("%f, %f, %f | %f | %f",
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z,
-		attrs->radius, attrs->height);
+	rotate_figure(&figure->cy_attrs->orientation, camera, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -102,26 +98,22 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 		get_cylinder_body_pattern(figure, &rotated_point, res);
 }
 
-t_figure	*parse_cylinder(t_parser_ctx *ctx, char **parts)
+t_figure	*new_cylinder(t_point *pos, t_color *color,
+	t_cylinder_attrs *cy_attrs)
 {
 	t_figure	*cylinder;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 3)
-		throw_parse_err(ctx, "Missing some cylinder parameter");
-	cylinder = parse_figure(ctx, parts, FIG_LAST_ATT + 4);
+	cylinder = new_figure(CYLINDER_ID, pos, color);
 	cylinder->cy_attrs = ft_calloc(1, sizeof(t_cylinder_attrs));
 	if (!cylinder->cy_attrs)
 		throw_sys_error("trying to allocate cylinder attributes");
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&cylinder->cy_attrs->orientation);
-	cylinder->cy_attrs->radius = parse_double(ctx,
-			parts[FIG_LAST_ATT + 2]) / 2.0f;
-	cylinder->cy_attrs->height = parse_double(ctx, parts[FIG_LAST_ATT + 3]);
+	cylinder->cy_attrs->orientation = cy_attrs->orientation;
 	normalize(&cylinder->cy_attrs->orientation);
-	cylinder->print_attrs = print_attrs;
+	cylinder->cy_attrs->radius = cy_attrs->radius;
+	cylinder->cy_attrs->height = cy_attrs->height;
 	cylinder->hit = hit;
 	cylinder->normal = normal;
+	cylinder->rotate = rotate;
 	cylinder->get_color_pattern = get_color;
-	check_cylinder_parsing(ctx, cylinder);
 	return (cylinder);
 }

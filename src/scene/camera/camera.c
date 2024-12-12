@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 23:02:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:29:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,7 @@ void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 		(vp->height * camera->up.z / 2.0);
 }
 
-void	print_camera(t_camera *camera)
-{
-	printf("Camera (%p): \n \
-		Position: %f, %f, %f \n \
-		Front: %f, %f, %f \n \
-		Right: %f, %f, %f \n \
-		Up: %f, %f, %f \n \
-		FOV: %i\n",
-		camera,
-		camera->position.x, camera->position.y, camera->position.z,
-		camera->front.x, camera->front.y, camera->front.z,
-		camera->right.x, camera->right.y, camera->right.z,
-		camera->up.x, camera->up.y, camera->up.z,
-		camera->fov);
-}
-
-t_camera	*camera_dup(t_camera *camera, t_camera_controls *controls)
+t_camera	*camera_dup(t_camera *camera)
 {
 	t_camera	*new;
 
@@ -62,17 +46,18 @@ t_camera	*camera_dup(t_camera *camera, t_camera_controls *controls)
 	if (!new)
 		throw_sys_error("trying to allocate t_camera");
 	*new = *camera;
-	new->controls = *controls;
 	return (new);
 }
 
-void	update_camera(t_camera *camera)
+void	control_camera(t_camera *camera, t_controls *controls)
 {
-	update_camera_focus_dis(camera, camera->controls.focus_dist);
-	update_camera_fov(camera, camera->controls.zoom);
-	update_camera_front(camera, wrap_point(2 * camera->controls.view_right,
-			2 * camera->controls.view_up, 0));
-	update_camera_pos(camera, wrap_point(0.2 * camera->controls.move_right,
-			0.2 * camera->controls.move_up,
-			0.2 * camera->controls.move_front));
+	update_camera_focus_dis(camera, controls->focus_dist);
+	update_camera_fov(camera, controls->zoom);
+	update_camera_front(camera, wrap_point(
+			2 * controls->view_right,
+			2 * controls->view_up, 0));
+	update_camera_pos(camera, wrap_point(
+			0.2 * controls->move_right,
+			0.2 * controls->move_up,
+			0.2 * controls->move_front));
 }

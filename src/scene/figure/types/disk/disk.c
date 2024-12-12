@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 21:04:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:08:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,14 @@
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
 #include "render/utils/reference_system/reference_system.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
 
-static void	print_attrs(void *param)
+static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {
-	t_disk_attrs	*attrs;
-
-	attrs = param;
-	printf("%f | %f, %f, %f", attrs->radius,
-		attrs->orientation.x, attrs->orientation.y, attrs->orientation.z);
+	rotate_figure(&figure->di_attrs->orientation, camera, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
@@ -71,24 +68,20 @@ static void	get_color(t_figure *figure, t_point *point, t_color *res)
 	get_base_pattern(figure, &rotated_point, &base_attrs, res);
 }
 
-t_figure	*parse_disk(t_parser_ctx *ctx, char **parts)
+t_figure	*new_disk(t_point *pos, t_color *color, t_disk_attrs *disk_attrs)
 {
 	t_figure	*disk;
 
-	if (ft_matrix_len(parts) < FIG_ATT_LEN + 2)
-		throw_parse_err(ctx, "Missing some disk parameter");
-	disk = parse_figure(ctx, parts, FIG_LAST_ATT + 3);
+	disk = new_figure(DISK_ID, pos, color);
 	disk->di_attrs = ft_calloc(1, sizeof(t_disk_attrs));
 	if (!disk->di_attrs)
 		throw_sys_error("trying to allocate disk attributes");
-	parse_coordinates(ctx, parts[FIG_LAST_ATT + 1],
-		&disk->di_attrs->orientation);
-	disk->di_attrs->radius = parse_double(ctx, parts[FIG_LAST_ATT + 2]) / 2.0;
+	disk->di_attrs->orientation = disk_attrs->orientation;
 	normalize(&disk->di_attrs->orientation);
-	disk->print_attrs = print_attrs;
+	disk->di_attrs->radius = disk_attrs->radius;
 	disk->hit = hit;
 	disk->normal = normal;
+	disk->rotate = rotate;
 	disk->get_color_pattern = get_color;
-	check_disk_parsing(ctx, disk);
 	return (disk);
 }

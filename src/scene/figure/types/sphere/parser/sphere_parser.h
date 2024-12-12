@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:39:18 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:52:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/09 23:29:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/parser.h"
 #include "scene/figure/figure.h"
 
-void	check_sphere_parsing(t_parser_ctx *ctx, t_figure *sphere);
+t_figure	*parse_sphere(t_parser_ctx *ctx, char **parts);
