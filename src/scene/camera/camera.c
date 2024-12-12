@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:36:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:29:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ t_camera	*camera_dup(t_camera *camera)
 	return (new);
 }
 
-void	update_camera(t_camera *camera, t_controls *controls)
+void	control_camera(t_camera *camera, t_controls *controls)
 {
 	update_camera_focus_dis(camera, controls->focus_dist);
 	update_camera_fov(camera, controls->zoom);
-	update_camera_front(camera, wrap_point(2 * controls->view_right,
+	update_camera_front(camera, wrap_point(
+			2 * controls->view_right,
 			2 * controls->view_up, 0));
-	update_camera_pos(camera, wrap_point(0.2 * controls->move_right,
+	update_camera_pos(camera, wrap_point(
+			0.2 * controls->move_right,
 			0.2 * controls->move_up,
 			0.2 * controls->move_front));
 }

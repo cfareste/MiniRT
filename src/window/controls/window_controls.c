@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 12:30:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:33:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
 			keydata, MLX_KEY_W, MLX_KEY_S);
 	controls->moving += set_control(&controls->move_right,
 			keydata, MLX_KEY_D, MLX_KEY_A);
-	controls->moving += set_control(&controls->rotate_z,
-			keydata, MLX_KEY_E, MLX_KEY_Q);
+	controls->moving += set_control(&controls->view_front,
+			keydata, MLX_KEY_Q, MLX_KEY_E);
 	controls->moving += set_control(&controls->defocus,
 			keydata, MLX_KEY_G, MLX_KEY_H);
 }

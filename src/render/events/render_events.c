@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 19:06:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:47:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 #include "../renderer/renderer_bonus.h"
 #include "scene/selection/scene_selection.h"
 #include <stdio.h>
-
-static void	create_figure(t_scene *scene, t_camera *camera)
-{
-	t_point			position;
-	t_color			color;
-	t_sphere_attrs	sp_attrs;
-	t_figure		*new_figure;
-
-	translate_point(&camera->position, &camera->front, camera->focus_dist * 4,
-		&position);
-	new_color(1.0, 1.0, 1.0, &color);
-	sp_attrs.radius = 1.0;
-	new_figure = new_sphere(&position, &color, &sp_attrs);
-	new_figure->next = scene->figures;
-	scene->figures = new_figure;
-}
 
 void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 {
@@ -43,7 +27,7 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 			render(win);
 		if (keydata->key == MLX_KEY_N)
 		{
-			create_figure(&win->render.scene, win->render.scene.camera);
+			add_figure(&win->render.scene, win->render.scene.camera);
 			set_selection_fig(&win->render.scene, win->render.scene.figures);
 			render(win);
 		}

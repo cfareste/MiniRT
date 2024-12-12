@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 12:14:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:40:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "utils/utils_bonus.h"
 #include "texture/bump_map/bump_map.h"
 #include "render/utils/random/random.h"
+#include "events/figure_events.h"
+#include <math.h>
 
 void	free_figure(t_figure *figure)
 {
@@ -36,16 +38,6 @@ void	free_figures(t_figure *figures)
 	}
 }
 
-void	print_figure(t_figure *figure)
-{
-	printf("%s (%p): %f, %f, %f | ", figure->type, figure,
-		figure->position.x, figure->position.y, figure->position.z);
-	figure->print_attrs(figure->attrs);
-	printf(" | %f, %f, %f | ",
-		figure->color.red, figure->color.green, figure->color.blue);
-	print_texture(&figure->bump_map);
-}
-
 t_figure	*new_figure(char *type, t_point *position, t_color *color)
 {
 	t_figure	*figure;
@@ -61,4 +53,26 @@ t_figure	*new_figure(char *type, t_point *position, t_color *color)
 	figure->glossiness = 256.0;
 	figure->material = new_diffuse_mat();
 	return (figure);
+}
+
+void	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
+{
+	t_point	translate_factor;
+	t_point	rotation_factor;
+	double	fact;
+
+	fact = 4 * (M_PI / 180.0);
+	translate_factor = wrap_point(
+			0.2 * controls->move_right,
+			0.2 * controls->move_up,
+			0.2 * controls->move_front);
+	rotation_factor = wrap_point(
+			fact * controls->view_right,
+			fact * controls->view_up,
+			fact * controls->view_front);
+	handle_figure_translation(figure, camera, &translate_factor);
+	if (figure->rotate)
+		figure->rotate(figure, &rotation_factor);
+	if (figure->recalculate)
+		figure->recalculate(figure);
 }

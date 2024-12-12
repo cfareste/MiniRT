@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 22:14:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:20:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,32 +70,17 @@ void	handle_figure_rotation(t_vector *orientation, t_vector *factor)
 void	handle_figure_translation(t_figure *figure, t_camera *camera,
 	t_vector *factor)
 {
-	t_point		pos;
+	t_point		*pos;
 	t_vector	projected;
 
 	projected = camera->front;
 	projected.y = 0.0;
 	normalize(&projected);
-	pos = figure->position;
+	pos = &figure->position;
 	if (factor->x)
-		translate_point(&pos, &camera->right, factor->x, &figure->position);
+		translate_point(pos, &camera->right, factor->x, &figure->position);
 	if (factor->y)
 		figure->position.y += factor->y;
 	if (factor->z)
-		translate_point(&pos, &projected, factor->z, &figure->position);
-}
-
-void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
-	t_figure *figure)
-{
-	t_point	translate_factor;
-	t_point	rotation_factor;
-
-	get_translation_factor(key_data->key, &translate_factor);
-	get_rotation_factor(key_data->key, key_data->modifier, &rotation_factor);
-	handle_figure_translation(figure, scene->camera, &translate_factor);
-	if (figure->rotate)
-		figure->rotate(figure, &rotation_factor);
-	if (figure->recalculate)
-		figure->recalculate(figure);
+		translate_point(pos, &projected, factor->z, &figure->position);
 }

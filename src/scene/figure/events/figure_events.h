@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure_events.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 20:58:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:26:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,6 @@ void		handle_figure_rotation(t_vector *orientation, t_vector *factor);
 
 void		handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 				t_figure *figure);
+
+void		handle_figure_translation(t_figure *figure, t_camera *camera,
+				t_vector *factor);

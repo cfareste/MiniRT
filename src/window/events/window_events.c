@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 12:35:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:10:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,22 @@
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
-	t_figure	*selection;
-
 	set_controls(&keydata, &window->controls);
-	selection = get_selection_fig(&window->render.scene);
-	if (keydata.action == MLX_PRESS)
-	{
-		if (keydata.key == MLX_KEY_ESCAPE || keydata.key == MLX_KEY_Q)
-			return (close_window(window));
-		else if (keydata.key == MLX_KEY_E)
-			export_image(&window->exporter, &window->jobs);
-		else if (keydata.key == MLX_KEY_L)
-			loader_toggle_visibility(window->exporter.loader);
-	}
-	if (selection)
-	{
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_ESCAPE)
+		close_window(window);
+	else if (get_selection_fig(&window->render.scene))
 		selection_key_events(&keydata, window);
-		render(window);
-		return ;
+	else
+	{
+		if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_E)
+			export_image(&window->exporter, &window->jobs);
+		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_L)
+			loader_toggle_visibility(window->exporter.loader);
+		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_Q)
+			close_window(window);
+		render_key_events(&keydata, window);
+		camera_key_events(keydata, window);
 	}
-	render_key_events(&keydata, window);
-	camera_key_events(keydata, window);
 }
 
 void	scroll_hook(double xdelta, double ydelta, void *param)

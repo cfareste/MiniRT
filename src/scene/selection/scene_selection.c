@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_selection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 17:32:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:49:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 		return ;
 	if (keydata->action == MLX_PRESS)
 	{
-		stop_render(&window->render);
 		if (keydata->key == MLX_KEY_F)
 			focus_camera_to_selection(window->render.scene.camera, selection);
 		else if (keydata->key == MLX_KEY_BACKSPACE)
@@ -85,7 +84,8 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 		else if (keydata->key == MLX_KEY_M)
 			change_figure_material(selection);
 		else
-			handle_figure_event(keydata, &window->render.scene, selection);
+			return ;
+		render(window);
 	}
 }
 

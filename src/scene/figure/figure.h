@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 22:14:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:11:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,6 @@ void		free_figures(t_figure *figures);
 void		print_figure(t_figure *figure);
 
 t_figure	*new_figure(char *type, t_point *position, t_color *color);
+
+void		control_figure(t_figure *figure, t_camera *camera,
+				t_controls *controls);

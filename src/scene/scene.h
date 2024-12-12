@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 21:23:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:43:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ typedef struct s_scene
 	pthread_mutex_t		selection_mutex;
 }	t_scene;
 
-void	print_scene(t_scene *scene);
+void	add_figure(t_scene *scene, t_camera *camera);
 
 #endif

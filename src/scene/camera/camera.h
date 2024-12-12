@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:37:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:04:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,4 @@ void		set_viewport(t_camera *camera, t_viewport *vp, t_size w_size);
 
 t_camera	*camera_dup(t_camera *camera);
 
-void		update_camera(t_camera *camera, t_controls *controls);
+void		control_camera(t_camera *camera, t_controls *controls);
