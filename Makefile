@@ -389,7 +389,8 @@ SRCS = miniRT.c \
 	vector_rotation.c \
 	box_operations.c \
 	window_controls.c \
-	figure_operations.c
+	figure_operations.c \
+	render_helper_update.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

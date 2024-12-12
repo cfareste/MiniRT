@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 12:32:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:50:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "camera_events.h"
 #include "../helpers/camera_helper.h"
 #include "render/renderer/renderer_bonus.h"
+#include "render/helpers/render_helper_bonus.h"
 #include "libft.h"
 
 void	focus_camera_to_selection(t_camera *camera, t_figure *selection)
@@ -40,6 +41,6 @@ void	camera_key_events(mlx_key_data_t keydata, t_window *window)
 				&window->render.scene.orig_camera);
 		free(window->render.scene.camera);
 		window->render.scene.camera = camera;
-		render(window);
+		set_render_update(&window->render, 1);
 	}
 }

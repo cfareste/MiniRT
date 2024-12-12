@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 14:10:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:50:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "scene/camera/helpers/camera_helper.h"
 #include "scene/camera/events/camera_events.h"
 #include "scene/selection/scene_selection.h"
+#include "render/helpers/render_helper_bonus.h"
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
@@ -55,7 +56,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	else
 		return ;
 	window->last_scroll = mlx_get_time();
-	render(window);
+	set_render_update(&window->render, 1);
 }
 
 void	resize_hook(int32_t width, int32_t height, t_window *window)
@@ -75,11 +76,11 @@ void	mouse_hook(mouse_key_t button, action_t action,
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
 		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
-		render(window);
+		set_render_update(&window->render, 1);
 	}
 	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
 	{
 		set_selection_fig(&window->render.scene, NULL);
-		render(window);
+		set_render_update(&window->render, 1);
 	}
 }

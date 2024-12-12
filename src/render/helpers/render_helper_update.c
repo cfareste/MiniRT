@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   render_helper_update.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 17:28:49 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/12 17:13:18 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/12 17:28:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "render_helper_bonus.h"
 
-#include "render/render_bonus.h"
+int	get_render_update(t_render *render)
+{
+	int	update;
 
-int		is_render_finished(t_render *render);
+	pthread_mutex_lock(&render->update_mutex);
+	update = render->update;
+	pthread_mutex_unlock(&render->update_mutex);
+	return (update);
+}
 
-void	set_render_finish(t_render *render, int value);
-
-void	render_set_resize(t_render *render, int value);
-
-int		render_get_resize(t_render *render);
-
-int		get_render_update(t_render *render);
-
-void	set_render_update(t_render *render, int update);
+void	set_render_update(t_render *render, int update)
+{
+	pthread_mutex_lock(&render->update_mutex);
+	render->update = update;
+	pthread_mutex_unlock(&render->update_mutex);
+}

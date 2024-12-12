@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 17:48:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:28:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_render
 	float			soft_shadows_radius;
 	int				resize;
 	pthread_mutex_t	resize_mutex;
+	int				update;
+	pthread_mutex_t	update_mutex;
 }	t_render;
 
 typedef struct s_render_part

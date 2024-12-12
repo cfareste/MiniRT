@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 15:32:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:50:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "scene/camera/events/camera_events.h"
 #include "libft.h"
+#include "render/helpers/render_helper_bonus.h"
 
 t_figure	*get_selection_fig(t_scene *scene)
 {
@@ -84,7 +85,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 			change_figure_material(selection);
 		else
 			return ;
-		render(window);
+		set_render_update(&window->render, 1);
 	}
 }
 

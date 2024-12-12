@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 13:55:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:47:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	control(t_window *window)
 		control_camera(window->render.scene.camera, &window->controls);
 		configure_sky_box(&window->render.scene);
 	}
-	render(window);
+	set_render_update(&window->render, 1);
 }
 
 static void	main_loop(void *window_)
@@ -55,11 +55,16 @@ static void	main_loop(void *window_)
 			window->resize.size.width, window->resize.size.height);
 		loader_set_resize(window->exporter.loader, 1);
 		render_set_resize(&window->render, 1);
-		render(window);
+		set_render_update(&window->render, 1);
 	}
 	else if (window->controls.moving && !window->render.blocked
 		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE)
 		control(window);
+	if (get_render_update(&window->render))
+	{
+		set_render_update(&window->render, 0);
+		render(window);
+	}
 }
 
 void	close_window(t_window *window)

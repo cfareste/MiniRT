@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 15:07:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:12:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	init_render(t_render *render, mlx_t *mlx)
 	pthread_mutex_init(&render->mutex, NULL);
 	pthread_mutex_init(&render->image_mutex, NULL);
 	pthread_mutex_init(&render->resize_mutex, NULL);
+	pthread_mutex_init(&render->update_mutex, NULL);
 	render->resize = 1;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
