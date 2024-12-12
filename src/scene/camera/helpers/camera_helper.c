@@ -6,13 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/09 20:11:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:00:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "camera_helper.h"
 #include "../parser/camera_parser.h"
+#include "render/utils/vector/rotation/vector_rotation.h"
 #include "render/utils/reference_system/reference_system.h"
 #include <math.h>
 
@@ -68,7 +69,7 @@ void	update_camera_front(t_camera *camera, t_point factor)
 	yaw *= (M_PI / 180.0);
 	pitch = ft_fclamp(pitch, -89, 89) * (M_PI / 180.0);
 	get_world_axis(&camera->front, FRONT);
-	rotate_by_axis(RIGHT, pitch, &camera->front);
-	rotate_by_axis(UP, -yaw, &camera->front);
+	rotate_by_world_axis(RIGHT, pitch, &camera->front);
+	rotate_by_world_axis(UP, -yaw, &camera->front);
 	get_axes(&camera->front, &camera->right, &camera->up);
 }

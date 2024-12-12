@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 00:52:18 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:01:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	normal(t_figure *figure, t_point *point, t_vector *res)
 	second_angle = get_quad_rotated_point(&figure->qu_attrs->orientation,
 			&figure->qu_attrs->right, &rotated_point);
 	get_plane_bump_normal(figure, &rotated_point, res);
-	rotate_by_axis(BACK, -second_angle, res);
+	rotate_by_world_axis(BACK, -second_angle, res);
 	rotate_by_angle(&figure->qu_attrs->orientation, -quad_angle, res);
 }
 

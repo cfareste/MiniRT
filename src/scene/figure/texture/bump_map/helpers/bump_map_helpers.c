@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:58:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:01:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	get_base_bump_normal(t_figure *figure, t_point *point,
 	get_pixel_normal(pixel, figure->bump_map.format, res);
 	if (base_attrs->base_distance >= 0.0)
 		return ;
-	rotate_by_axis(UP, M_PI, res);
+	rotate_by_world_axis(UP, M_PI, res);
 }
 
 void	get_pixel_normal(uint8_t *pixel, t_bump_map_format format,

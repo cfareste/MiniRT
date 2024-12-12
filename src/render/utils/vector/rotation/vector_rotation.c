@@ -6,11 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:56:55 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 18:57:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:58:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/utils/vector/vector.h"
+#include "libft.h"
 #include <math.h>
 
 void	rotate_x_axis(t_vector *point, double angle)
@@ -44,4 +45,23 @@ void	rotate_z_axis(t_vector *point, double angle)
 	temp_y = point->y;
 	point->x = (cos(angle) * temp_x) + (-sin(angle) * temp_y);
 	point->y = (sin(angle) * temp_x) + (cos(angle) * temp_y);
+}
+
+void	get_vector_angles(t_vector *vec, double *yaw, double *pitch)
+{
+	double		yaw_cosine;
+	double		pitch_cosine;
+	t_vector	projected;
+
+	projected = *vec;
+	projected.y = 0.0f;
+	normalize(&projected);
+	yaw_cosine = ft_fclamp(-projected.z, -1.0, 1.0);
+	pitch_cosine = ft_fclamp(dot(&projected, vec), -1.0, 1.0);
+	*yaw = (acos(yaw_cosine) * (180.0f / M_PI));
+	*pitch = (acos(pitch_cosine) * (180.0f / M_PI));
+	if (vec->x < 0.0)
+		*yaw = 360.0 - *yaw;
+	if (vec->y < 0.0)
+		*pitch *= -1;
 }

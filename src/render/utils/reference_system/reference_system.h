@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:12 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 16:24:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:02:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	rotate_by_angle(t_vector *normal, float angle, t_vector *res);
 
 void	rotate_by_ideal(t_vector *normal, t_vector *ideal, t_vector *res);
 
-void	rotate_by_axis(t_pointing axis_pointing, float angle, t_vector *res);
-
-void	get_vector_angles(t_vector *vec, double *yaw, double *pitch);
+void	rotate_by_world_axis(t_pointing axis_pointing, float angle,
+			t_vector *res);
