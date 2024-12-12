@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:13:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:05:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:54:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 
 void	rotate_box(t_figure *figure, t_camera *camera, t_point *factor)
 {
-	handle_figure_rotation(&figure->bo_attrs->orientation, camera, factor);
-	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.right, camera,
-		factor);
-	handle_figure_rotation(&figure->bo_attrs->faces[0].attrs.up, camera,
-		factor);
+	rotate_figure(&figure->bo_attrs->orientation, camera, factor);
+	rotate_figure(&figure->bo_attrs->faces[0].attrs.right, camera, factor);
+	rotate_figure(&figure->bo_attrs->faces[0].attrs.up, camera, factor);
 }
 
 void	recalculate_box(t_figure *figure)

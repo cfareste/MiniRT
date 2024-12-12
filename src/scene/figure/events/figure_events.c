@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:44:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:54:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ t_figure	*change_figure_type(t_scene *scene, t_figure *old_figure)
 	return (new_figure);
 }
 
-void	handle_figure_rotation(t_vector *orientation, t_camera *camera,
-	t_vector *factor)
+void	rotate_figure(t_vector *orientation, t_camera *camera, t_vector *factor)
 {
 	t_vector	front_projected;
 
@@ -73,7 +72,7 @@ void	handle_figure_rotation(t_vector *orientation, t_camera *camera,
 	normalize(orientation);
 }
 
-static void	handle_figure_translation(t_figure *figure, t_camera *camera,
+static void	translate_figure(t_figure *figure, t_camera *camera,
 	t_vector *factor)
 {
 	t_point		pos;
@@ -99,7 +98,7 @@ void	handle_figure_event(mlx_key_data_t *key_data, t_scene *scene,
 
 	get_translation_factor(key_data->key, &translate_factor);
 	get_rotation_factor(key_data->key, key_data->modifier, &rotation_factor);
-	handle_figure_translation(figure, scene->camera, &translate_factor);
+	translate_figure(figure, scene->camera, &translate_factor);
 	if (figure->rotate)
 		figure->rotate(figure, scene->camera, &rotation_factor);
 	if (figure->recalculate)

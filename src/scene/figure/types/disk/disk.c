@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:05:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:54:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {
-	handle_figure_rotation(&figure->di_attrs->orientation, camera, factor);
+	rotate_figure(&figure->di_attrs->orientation, camera, factor);
 }
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
