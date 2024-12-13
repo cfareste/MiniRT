@@ -1,6 +1,6 @@
 S name:Material_test sky:160,200,255
-R samples:5 max_depth:9000 antialiasing
-W width:1600 height:900
+R samples:1 max_depth:9000 antialiasing
+W width:1545 height:1078
 A   0.8 255,255,255
 
 L 2,2,3   6   10,10,210

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 17:28:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:45:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ typedef struct s_render
 	pthread_mutex_t	resize_mutex;
 	int				update;
 	pthread_mutex_t	update_mutex;
+	t_jobs			*jobs;
 }	t_render;
 
 typedef struct s_render_part
 {
 	pthread_t	thread;
-	t_size		img_size;
+	t_size		*img_size;
 	t_render	*render;
 	t_pixel		*pixels;
 	size_t		pixels_amount;
@@ -60,4 +61,4 @@ typedef struct s_render_part
 
 void	*render_part(t_render_part *part);
 
-void	init_render(t_render *render, mlx_t *mlx);
+void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs);

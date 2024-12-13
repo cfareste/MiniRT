@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 17:12:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:04:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	t_ray			ray;
 	t_color			pixel_color;
 	t_color			sample_color;
+	int				color;
 
 	k = 0;
 	ft_bzero(&pixel_color, sizeof(t_color));
@@ -51,8 +52,10 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 			break ;
 	}
 	multiply_color_scalar(&sample_color, 1 / (float) k, &pixel_color);
+	color = get_color_value(&pixel_color);
+	ft_printf("image: %p, iter: %p, color: %d\n", part->render->image, iterators, color);
 	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
-		get_color_value(&pixel_color));
+		color);
 }
 
 void	*render_part(t_render_part *part)
@@ -76,13 +79,15 @@ void	*render_part(t_render_part *part)
 	return (NULL);
 }
 
-void	init_render(t_render *render, mlx_t *mlx)
+void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 {
 	pthread_mutex_init(&render->mutex, NULL);
 	pthread_mutex_init(&render->image_mutex, NULL);
 	pthread_mutex_init(&render->resize_mutex, NULL);
 	pthread_mutex_init(&render->update_mutex, NULL);
 	render->resize = 1;
+	render->update = 1;
+	render->jobs = jobs;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
 	mlx_set_instance_depth(render->image->instances

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 21:47:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 21:45:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	init_window(t_window *window)
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
-	init_render(&window->render, window->mlx);
+	init_render(&window->render, window->mlx, &window->jobs);
 	init_hooks(window);
 	pthread_mutex_unlock(&window->ready);
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 23:06:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:48:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	fill_pixels(t_size *img_size, t_pixel **pixels_, size_t *px_amount)
 	size_t	j;
 	t_pixel	*pixels;
 
-	printf("Filling pixels");
+	printf("Filling pixels\n");
 	free(*pixels_);
-	*pixels_ = ft_calloc((img_size->height * img_size->width) + 1,
+	*pixels_ = ft_calloc((img_size->width * img_size->height) + 1,
 			sizeof(t_pixel));
 	if (!*pixels_)
 		throw_sys_error("alloc pixels");

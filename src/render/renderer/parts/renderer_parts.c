@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_parts.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 01:13:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:52:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ static void	join_parts(t_render_part *parts, int amount)
 	}
 }
 
-static void	prepare(t_render *render, t_size img_size, uint32_t *seed)
+static void	prepare(t_render *render, t_size *img_size, uint32_t *seed)
 {
 	render->parts_amount = 10;
 	if (render_get_resize(render))
 	{
-		fill_pixels(&img_size, &render->pixels, &render->px_amount);
+		fill_pixels(img_size, &render->pixels, &render->px_amount);
 		render_set_resize(render, 0);
 	}
 	shuffle_pixels(render->pixels, render->px_amount, seed);
 }
 
-void	render_parts(t_render *render, t_size img_size, uint32_t *seed)
+void	render_parts(t_render *render, t_size *img_size, uint32_t *seed)
 {
 	int				i;
 	t_render_part	*parts;

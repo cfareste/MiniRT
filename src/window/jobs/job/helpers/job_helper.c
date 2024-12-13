@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:13:56 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:16:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 23:01:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg)
 {
 	pthread_mutex_lock(&job->finished_mutex);
-	while (!job->finished && check_proceed(arg))
+	while (!job->finished && check_proceed && check_proceed(arg))
 	{
 		pthread_mutex_unlock(&job->finished_mutex);
 		pthread_mutex_lock(&job->finished_mutex);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:17:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/13 22:47:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,13 @@ static int	run(t_job *job, t_window *window)
 
 	(void) window;
 	resize = (t_resize_wrapper *) job->arg;
-	pthread_mutex_lock(resize->mutex);
+	if (resize->mutex)
+		pthread_mutex_lock(resize->mutex);
+	printf("Size %dx%d\n", resize->nsize.width, resize->nsize.height);
 	mlx_resize_image(resize->image, resize->nsize.width,
 		resize->nsize.height);
-	pthread_mutex_unlock(resize->mutex);
+	if (resize->mutex)
+		pthread_mutex_unlock(resize->mutex);
 	pthread_mutex_lock(&job->finished_mutex);
 	job->finished = 1;
 	pthread_mutex_unlock(&job->finished_mutex);
