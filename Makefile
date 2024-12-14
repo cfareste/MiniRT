@@ -244,6 +244,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/events:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
+			$(SRC)utils/async_flag:\
 			$(SRC)parser:\
 			$(SRC)parser/helpers:\
 			$(SRC)exporter:\
@@ -390,7 +391,8 @@ SRCS = miniRT.c \
 	box_operations.c \
 	window_controls.c \
 	figure_operations.c \
-	render_helper_update.c
+	render_helper_update.c \
+	async_flag.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
@@ -414,7 +416,7 @@ $(BIN_DIR)%.o: %.c Makefile
 	@mkdir -p $(BIN_DIR)
 	@$(CC) $(CCFLAGS) $(INCLUDES) -MMD -c $< -o $@
 
-clean: libft_clean
+clean: libft_clean test_clean
 	@rm -rf $(BIN_DIR)
 	@echo "$(RED)Binaries deleted$(DEF_COLOR)\n"
 
@@ -471,6 +473,9 @@ test:
 min-test:
 	cd tester && ./tester.sh -n
 
+test_clean:
+	$(MAKE) --no-print-directory -C tester/main_test clean
+
 .PHONY: all \
 		clean \
 		fclean \
@@ -486,7 +491,8 @@ min-test:
 		mlx_fclean \
 		norm \
 		test \
-		min-test
+		min-test \
+		test-clean
 
 -include $(DEPS)
 -include $(MDEPS)

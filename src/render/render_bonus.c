@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/13 23:04:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:56:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	render_pixel(t_render_part *part, t_iterators *iterators,
 	}
 	multiply_color_scalar(&sample_color, 1 / (float) k, &pixel_color);
 	color = get_color_value(&pixel_color);
-	ft_printf("image: %p, iter: %p, color: %d\n", part->render->image, iterators, color);
 	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
 		color);
 }
@@ -85,8 +84,10 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	pthread_mutex_init(&render->image_mutex, NULL);
 	pthread_mutex_init(&render->resize_mutex, NULL);
 	pthread_mutex_init(&render->update_mutex, NULL);
+	init_async_flag(&render->cheap, 1);
+	init_async_flag(&render->cheap_strategy, NORMAL_MAP);
+	init_async_flag(&render->dis_cheap_once, 0);
 	render->resize = 1;
-	render->update = 1;
 	render->jobs = jobs;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);

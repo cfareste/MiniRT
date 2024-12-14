@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_helper_bonus.h                              :+:      :+:    :+:   */
+/*   async_flag.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 15:23:56 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/14 14:24:26 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/14 15:23:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#include <pthread.h>
 
-int		is_render_finished(t_render *render);
+typedef struct s_async_flag
+{
+	int				value;
+	pthread_mutex_t	mutex;
+}	t_async_flag;
 
-void	set_render_finish(t_render *render, int value);
+void	init_async_flag(t_async_flag *flag, int value);
 
-void	render_set_resize(t_render *render, int value);
+void	set_async_flag(t_async_flag *flag, int value);
 
-int		render_get_resize(t_render *render);
+int		get_async_flag(t_async_flag *flag);
 
-int		get_render_update(t_render *render);
-
-void	set_render_update(t_render *render, int update);
-
-int		is_render_alive(t_render *render);
+void	toggle_async_flag(t_async_flag *flag);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/13 21:45:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:56:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/vector/vector.h"
 #include "render/utils/coordinates/coordinates.h"
 #include "renderer/pixels/renderer_pixels.h"
+#include "utils/async_flag/async_flag.h"
 
 typedef enum e_strategy
 {
@@ -48,6 +49,9 @@ typedef struct s_render
 	int				update;
 	pthread_mutex_t	update_mutex;
 	t_jobs			*jobs;
+	t_async_flag	cheap;
+	t_async_flag	dis_cheap_once;
+	t_async_flag	cheap_strategy;
 }	t_render;
 
 typedef struct s_render_part

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 21:50:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 15:10:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,33 @@
 #include "scene/selection/scene_selection.h"
 #include "render/helpers/render_helper_bonus.h"
 #include <stdio.h>
+
+static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
+{
+	if (keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_4)
+	{
+		if (keydata->key == MLX_KEY_1)
+		{
+			win->render.strategy = RAYTRACING;
+			set_async_flag(&win->render.cheap_strategy, RAYTRACING);
+		}
+		else if (keydata->key == MLX_KEY_2)
+		{
+			win->render.strategy = PATHTRACING;
+			set_async_flag(&win->render.dis_cheap_once, 1);
+		}
+		else if (keydata->key == MLX_KEY_3)
+		{
+			win->render.strategy = NORMAL_MAP;
+			set_async_flag(&win->render.cheap_strategy, NORMAL_MAP);
+		}
+		else if (keydata->key == MLX_KEY_4)
+			return (toggle_async_flag(&win->render.cheap));
+		else
+			return ;
+		set_render_update(&win->render, 1);
+	}
+}
 
 void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 {
@@ -32,15 +59,6 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 			set_selection_fig(&win->render.scene, win->render.scene.figures);
 			set_render_update(&win->render, 1);
 		}
-		else if (keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_3)
-		{
-			if (keydata->key == MLX_KEY_1)
-				win->render.strategy = RAYTRACING;
-			else if (keydata->key == MLX_KEY_2)
-				win->render.strategy = PATHTRACING;
-			else if (keydata->key == MLX_KEY_3)
-				win->render.strategy = NORMAL_MAP;
-			set_render_update(&win->render, 1);
-		}
+		strategy_events(keydata, win);
 	}
 }

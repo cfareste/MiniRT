@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 17:22:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:30:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/coordinates/coordinates.h"
 #include "utils/size/size.h"
 #include "window/jobs/jobs.h"
+#include "async_flag/async_flag.h"
 #include <pthread.h>
 
 int		correct_file_extension(char *filename, char *extension);

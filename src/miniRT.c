@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/13 21:56:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 14:00:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "window/jobs/jobs.h"
 #include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
+#include "render/helpers/render_helper_bonus.h"
 #include "scene/parser/scene_parser.h"
 #include "scene/settings/sky_box/sky_box.h"
 #include "window/loader/loader_bonus.h"
@@ -52,7 +53,7 @@ static void	*start_routine(void *window_)
 	pthread_mutex_unlock(&window->render.scene.mutex);
 	push_job(&window->jobs, init_title_job(new_job(),
 			ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF)));
-	render(window);
+	set_render_update(&window->render, 1);
 	return (NULL);
 }
 
