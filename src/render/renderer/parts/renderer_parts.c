@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/13 22:52:57 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:13:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	join_parts(t_render_part *parts, int amount)
 	}
 }
 
+// TODO: Move unnecessary to render_routine
 static void	prepare(t_render *render, t_size *img_size, uint32_t *seed)
 {
 	render->parts_amount = 10;
@@ -37,6 +38,8 @@ static void	prepare(t_render *render, t_size *img_size, uint32_t *seed)
 		fill_pixels(img_size, &render->pixels, &render->px_amount);
 		render_set_resize(render, 0);
 	}
+	init_progressive(&render->progressive,
+		get_image_size(render->image, NULL));
 	shuffle_pixels(render->pixels, render->px_amount, seed);
 }
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 15:24:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:29:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,18 @@ static void	render_cheap(t_render *render, t_size *img_size, uint32_t *seed)
 {
 	t_strategy	strategy;
 	t_strategy	cheap_strategy;
+	int			prog_enabled;
 
 	cheap_strategy = get_async_flag(&render->cheap_strategy);
 	if (cheap_strategy == render->strategy
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
 	strategy = render->strategy;
+	prog_enabled = get_async_flag(&render->prog_enabled);
 	render->strategy = cheap_strategy;
+	set_async_flag(&render->prog_enabled, 0);
 	render_parts(render, img_size, seed);
+	set_async_flag(&render->prog_enabled, prog_enabled);
 	render->strategy = strategy;
 }
 
@@ -69,6 +73,11 @@ void	*render_routine(t_window *window)
 	if (is_render_alive(&window->render)
 		&& !get_render_update(&window->render))
 		render_parts(&window->render, &img_size, &seed);
+	set_render_finish(&window->render, 1);
+	pthread_mutex_lock(&window->render.mutex);
+	printf("FINISHED RENDER: %f\n\n",
+		mlx_get_time() - window->render.start_time);
+	pthread_mutex_unlock(&window->render.mutex);
 	return (NULL);
 }
 

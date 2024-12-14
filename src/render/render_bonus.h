@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 14:56:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:50:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "render/utils/coordinates/coordinates.h"
 #include "renderer/pixels/renderer_pixels.h"
 #include "utils/async_flag/async_flag.h"
+#include "progressive/render_progressive.h"
 
 typedef enum e_strategy
 {
@@ -39,7 +40,7 @@ typedef struct s_render
 	size_t			px_amount;
 	int				parts_amount;
 	pthread_mutex_t	trigger;
-	unsigned int	samples;
+	int				samples;
 	int				antialiasing;
 	unsigned int	max_depth;
 	t_strategy		strategy;
@@ -52,15 +53,19 @@ typedef struct s_render
 	t_async_flag	cheap;
 	t_async_flag	dis_cheap_once;
 	t_async_flag	cheap_strategy;
+	t_async_flag	prog_enabled;
+	t_progressive	progressive;
 }	t_render;
 
 typedef struct s_render_part
 {
-	pthread_t	thread;
-	t_size		*img_size;
-	t_render	*render;
-	t_pixel		*pixels;
-	size_t		pixels_amount;
+	pthread_t		thread;
+	t_size			*img_size;
+	t_render		*render;
+	t_pixel			*pixels;
+	size_t			pixels_amount;
+	int				i;
+	unsigned long	j;
 }	t_render_part;
 
 void	*render_part(t_render_part *part);

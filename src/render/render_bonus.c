@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 14:56:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:45:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,49 +31,56 @@ static void	compute_strategy(t_render_part *part, t_ray *ray,
 		compute_normal_map(&part->render->scene, ray, sample_color);
 }
 
-static void	render_pixel(t_render_part *part, t_iterators *iterators,
+static void	render_pixel(t_render_part *part, t_iterators *iter,
 	uint32_t *seed)
 {
-	unsigned int	k;
 	t_ray			ray;
+	t_color			*sample_color;
 	t_color			pixel_color;
-	t_color			sample_color;
-	int				color;
+	t_progressive	*progress;
+	int				samples;
 
-	k = 0;
 	ft_bzero(&pixel_color, sizeof(t_color));
-	ft_bzero(&sample_color, sizeof(t_color));
-	while (k < part->render->samples)
+	samples = 1;
+	sample_color = &pixel_color;
+	if (get_async_flag(&part->render->prog_enabled))
 	{
-		set_ray_from_camera(&ray, part->render, iterators, seed);
-		compute_strategy(part, &ray, &sample_color, seed);
-		k++;
-		if (part->render->strategy == NORMAL_MAP)
-			break ;
+		progress = &part->render->progressive;
+		sample_color = progress->colors[iter->i] + iter->j;
+		samples = part->i + 1;
 	}
-	multiply_color_scalar(&sample_color, 1 / (float) k, &pixel_color);
-	color = get_color_value(&pixel_color);
-	mlx_put_pixel(part->render->image, iterators->i, iterators->j,
-		color);
+	set_ray_from_camera(&ray, part->render, iter, seed);
+	compute_strategy(part, &ray, sample_color, seed);
+	multiply_color_scalar(sample_color, 1 / (float) samples, &pixel_color);
+	mlx_put_pixel(part->render->image, iter->i, iter->j,
+		get_color_value(&pixel_color));
 }
 
+// TODO: Remove alpha from buffer
 void	*render_part(t_render_part *part)
 {
 	uint32_t	seed;
-	t_pixel		*pixels;
-	t_iterators	iterators;
-	size_t		i;
+	t_iterators	px_iter;
 
 	get_thread_id(&part->thread, &seed);
-	pixels = part->pixels;
-	i = 0;
+	part->i = part->render->progressive.i;
 	while (!is_render_finished(part->render)
-		&& i < part->pixels_amount)
+		&& (part->render->samples < 0 || part->i < part->render->samples)
+		&& part->render->samples < INT_MAX)
 	{
-		iterators.i = pixels[i].x;
-		iterators.j = pixels[i].y;
-		render_pixel(part, &iterators, &seed);
-		i++;
+		part->j = 0;
+		while (!is_render_finished(part->render)
+			&& part->j < part->pixels_amount)
+		{
+			px_iter.i = part->pixels[part->j].x;
+			px_iter.j = part->pixels[part->j].y;
+			render_pixel(part, &px_iter, &seed);
+			part->j++;
+		}
+		if (!get_async_flag(&part->render->prog_enabled))
+			break ;
+		printf("Sample %d\n", part->i);
+		part->i++;
 	}
 	return (NULL);
 }
@@ -87,6 +94,7 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	init_async_flag(&render->cheap, 1);
 	init_async_flag(&render->cheap_strategy, NORMAL_MAP);
 	init_async_flag(&render->dis_cheap_once, 0);
+	init_async_flag(&render->prog_enabled, 1);
 	render->resize = 1;
 	render->jobs = jobs;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);

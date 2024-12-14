@@ -15,8 +15,8 @@ R   samples;																	FAILURE			;		Missing params: samples
 R   raytracer;																	FAILURE			;		Unknown render param: raytracer
 R   samples:20   ;																SUCCESS
 R   samples:   ;																FAILURE			;		Missing params: samples
-R   samples:0   ;																FAILURE			;		At least 1 sample is required
-R   samples:-414   ;															FAILURE			;		At least 1 sample is required
+R   samples:0   ;																SUCCESS			;		At least 1 sample is required
+R   samples:-414   ;															SUCCESS			;		At least 1 sample is required
 R   max_depth   ;																FAILURE			;		Missing params: max_depth
 R   max_depth:   ;	 															FAILURE			;		Missing params: max_depth
 R   max_depth:0   ;																FAILURE			;		Max depth must be greater than 0
