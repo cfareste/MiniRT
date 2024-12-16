@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/16 20:36:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 21:11:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	pthread_mutex_init(&render->resize_mutex, NULL);
 	pthread_mutex_init(&render->update_mutex, NULL);
 	init_async_flag(&render->cheap, 1);
-	init_async_flag(&render->cheap_strategy, NORMAL_MAP);
+	init_async_flag(&render->cheap_strategy, RAYTRACING);
 	init_async_flag(&render->dis_cheap_once, 0);
 	init_async_flag(&render->prog_enabled, 1);
 	init_async_flag(&render->blocked, 0);
