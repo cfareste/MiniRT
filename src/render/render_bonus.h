@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 17:23:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:15:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_render
 	size_t			px_amount;
 	int				parts_amount;
 	pthread_mutex_t	trigger;
-	int				samples;
+	unsigned long	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
 	t_strategy		strategy;

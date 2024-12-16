@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 19:05:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:58:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 static void	check_parsing(t_parser_ctx *ctx, t_render *render)
 {
-	if (render->samples < 0 || render->samples > INT_MAX)
-		throw_parse_err(ctx, "samples must be in range [0, INT_MAX]");
+	if (render->samples < 0)
+		throw_parse_err(ctx, "samples must be in range [0, ULONG_MAX]");
 	else if (render->max_depth < 1 || render->max_depth > INT_MAX)
 		throw_parse_err(ctx, "Max depth must be greater than 0");
 	else if (render->soft_shadows_radius < 0)
@@ -41,7 +41,7 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 			throw_sys_error, "trying to split render elem params");
 	if (ft_strcmp(args[0], SAMPLES_KEY) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
-		render->samples = parse_int(ctx, args[1]);
+		render->samples = parse_ulong(ctx, args[1]);
 	else if (ft_strcmp(args[0], ANTIALIASING_KEY) == EQUAL_STRINGS)
 		render->antialiasing = 1;
 	else if (ft_strcmp(args[0], MAX_DEPTH_KEY) == EQUAL_STRINGS

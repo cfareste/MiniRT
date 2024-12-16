@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:15:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 14:37:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 20:56:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ int	parse_int(t_parser_ctx *ctx, char *str)
 	if (!ft_isnum(str))
 		throw_parse_err(ctx, ft_strjoin("Invalid integer number: ", str));
 	return (ft_atoi(str));
+}
+
+unsigned long	parse_ulong(t_parser_ctx *ctx, char *str)
+{
+	long long	num;
+
+	num = ft_atoll(str);
+	if (!ft_isnum(str) || num < 0)
+		throw_parse_err(ctx, ft_strjoin("Invalid unsigned long number: ", str));
+	return ((unsigned long) num);
 }
 
 int	ensure_params_amount(t_parser_ctx *ctx, char **args, int amount)

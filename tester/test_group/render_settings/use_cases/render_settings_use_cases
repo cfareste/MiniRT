@@ -16,7 +16,7 @@ R   raytracer;																	FAILURE			;		Unknown render param: raytracer
 R   samples:20   ;																SUCCESS
 R   samples:   ;																FAILURE			;		Missing params: samples
 R   samples:0   ;																SUCCESS
-R   samples:-414   ;															FAILURE			;		samples must be in range [0, INT_MAX]
+R   samples:-414   ;															FAILURE			;		Invalid unsigned long number: -414
 R   max_depth   ;																FAILURE			;		Missing params: max_depth
 R   max_depth:   ;	 															FAILURE			;		Missing params: max_depth
 R   max_depth:0   ;																FAILURE			;		Max depth must be greater than 0
