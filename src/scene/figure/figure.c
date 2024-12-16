@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:46:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:37:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ t_figure	*new_figure(char *type, t_point *position, t_color *color)
 	return (figure);
 }
 
-void	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
+int	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
 {
 	t_point	translate_factor;
 	t_point	rotation_factor;
 	double	fact;
 
+	if (!controls->moving)
+		return (0);
 	fact = 4 * (M_PI / 180.0);
 	translate_factor = wrap_point(
 			0.2 * controls->move_right,
@@ -76,4 +78,5 @@ void	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
 		figure->rotate(figure, camera, &rotation_factor);
 	if (figure->recalculate)
 		figure->recalculate(figure);
+	return (1);
 }

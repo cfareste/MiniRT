@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/13 21:45:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:50:46 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,23 @@
 
 static void	control(t_window *window)
 {
-	window->last_update = mlx_get_time();
+	int	update;
+
+	update = 0;
 	if (window->render.scene.selection)
-		control_figure(window->render.scene.selection,
-			window->render.scene.camera, &window->controls);
+		update = control_figure(window->render.scene.selection,
+				window->render.scene.camera, &window->controls);
 	else
 	{
-		control_camera(window->render.scene.camera, &window->controls);
-		configure_sky_box(&window->render.scene);
+		update = control_camera(window->render.scene.camera, &window->controls);
+		if (update)
+			configure_sky_box(&window->render.scene);
 	}
-	set_render_update(&window->render, 1);
+	if (update)
+	{
+		window->last_update = mlx_get_time();
+		set_render_update(&window->render, 1);
+	}
 }
 
 static void	main_loop(void *window_)
@@ -57,7 +64,8 @@ static void	main_loop(void *window_)
 		render_set_resize(&window->render, 1);
 		set_render_update(&window->render, 1);
 	}
-	else if (window->controls.moving && !window->render.blocked
+	else if (window->controls.moving
+		&& !get_async_flag(&window->render.blocked)
 		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE)
 		control(window);
 	if (get_render_update(&window->render))

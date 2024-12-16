@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/13 21:14:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:49:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,26 @@ t_camera	*camera_dup(t_camera *camera)
 	return (new);
 }
 
-void	control_camera(t_camera *camera, t_controls *controls)
+static int	check_camera_moving(t_controls *controls)
 {
+	int	moving;
+
+	moving = 0;
+	moving |= controls->move_up != 0;
+	moving |= controls->move_right != 0;
+	moving |= controls->move_front != 0;
+	moving |= controls->view_up != 0;
+	moving |= controls->view_right != 0;
+	moving |= controls->zoom != 0;
+	moving |= controls->focus_dist != 0;
+	moving |= controls->defocus != 0;
+	return (moving);
+}
+
+int	control_camera(t_camera *camera, t_controls *controls)
+{
+	if (!check_camera_moving(controls))
+		return (0);
 	update_camera_focus_dis(camera, controls->focus_dist);
 	update_camera_fov(camera, controls->zoom);
 	update_camera_front(camera, wrap_point(
@@ -60,4 +78,5 @@ void	control_camera(t_camera *camera, t_controls *controls)
 			0.2 * controls->move_right,
 			0.2 * controls->move_up,
 			0.2 * controls->move_front));
+	return (1);
 }

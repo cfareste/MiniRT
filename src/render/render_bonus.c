@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 21:45:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:23:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	init_async_flag(&render->cheap_strategy, NORMAL_MAP);
 	init_async_flag(&render->dis_cheap_once, 0);
 	init_async_flag(&render->prog_enabled, 1);
+	init_async_flag(&render->blocked, 0);
 	render->resize = 1;
 	render->jobs = jobs;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);

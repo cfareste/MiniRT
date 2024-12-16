@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 21:50:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:26:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	select_figure(t_render *render, double x_pos, double y_pos)
 	t_iterators		pixel;
 	t_hit_record	hit_record;
 
+	if (get_async_flag(&render->blocked))
+		return ;
 	seed = 0;
 	pixel.i = (int) x_pos;
 	pixel.j = (int) y_pos;

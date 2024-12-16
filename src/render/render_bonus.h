@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 17:50:17 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:23:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef enum e_strategy
 
 typedef struct s_render
 {
-	int				blocked;
+	t_async_flag	blocked;
 	t_scene			scene;
 	mlx_image_t		*image;
 	pthread_mutex_t	image_mutex;

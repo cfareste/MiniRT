@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 21:50:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:31:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 			export_image(&window->exporter, &window->jobs);
 		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_L)
 			loader_toggle_visibility(window->exporter.loader);
-		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_Q)
-			close_window(window);
 		render_key_events(&keydata, window);
 		camera_key_events(keydata, window);
 	}
@@ -46,7 +44,8 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 	(void) xdelta;
 	window = (t_window *) param;
-	if (window->render.blocked || mlx_get_time() - window->last_scroll < 0.2)
+	if (get_async_flag(&window->render.blocked)
+		|| mlx_get_time() - window->last_scroll < 0.2)
 		return ;
 	stop_render(&window->render);
 	if (ydelta <= -1.0)
@@ -73,7 +72,9 @@ void	mouse_hook(mouse_key_t button, action_t action,
 
 	(void) mods;
 	cursor_pos = cursor_get_pos(&window->cursor);
-	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
+	if (get_async_flag(&window->render.blocked))
+		return ;
+	else if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
 		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
 		set_render_update(&window->render, 1);

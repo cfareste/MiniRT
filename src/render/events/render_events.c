@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 15:10:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:28:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,18 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 	if (keydata->action == MLX_PRESS)
 	{
 		if (keydata->key == MLX_KEY_B)
-			win->render.blocked = !win->render.blocked;
-		if (win->render.blocked)
+			toggle_async_flag(&win->render.blocked);
+		if (get_async_flag(&win->render.blocked))
 			return ;
-		if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)
+		else if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)
 			set_render_update(&win->render, 1);
-		if (keydata->key == MLX_KEY_N)
+		else if (keydata->key == MLX_KEY_N)
 		{
 			add_figure(&win->render.scene, win->render.scene.camera);
 			set_selection_fig(&win->render.scene, win->render.scene.figures);
 			set_render_update(&win->render, 1);
 		}
-		strategy_events(keydata, win);
+		else
+			strategy_events(keydata, win);
 	}
 }

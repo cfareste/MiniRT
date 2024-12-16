@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:42:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:34:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void		print_figure(t_figure *figure);
 
 t_figure	*new_figure(char *type, t_point *position, t_color *color);
 
-void		control_figure(t_figure *figure, t_camera *camera,
+int			control_figure(t_figure *figure, t_camera *camera,
 				t_controls *controls);
