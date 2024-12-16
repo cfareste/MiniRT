@@ -1,6 +1,6 @@
 # SETTINGS
 S name:Bumps sky:214,34,255
-R samples:1 raytracing
+R antialiasing
 W width:1300 height:1300
 # SN Bumps
 # SA 1
