@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exporter_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 01:12:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:27:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 void	export_image(t_exporter *exporter, t_jobs *jobs)
 {
-	if (!is_render_finished(exporter->render))
-		return ;
 	push_job(jobs, init_export_job(new_job(), new_export(exporter)));
 }
 
