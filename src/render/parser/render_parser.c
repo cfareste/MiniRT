@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 16:15:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:05:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 static void	check_parsing(t_parser_ctx *ctx, t_render *render)
 {
-	if (render->samples > INT_MAX)
-		throw_parse_err(ctx, "Too many samples");
+	if (render->samples < 0 || render->samples > INT_MAX)
+		throw_parse_err(ctx, "samples must be in range [0, INT_MAX]");
 	else if (render->max_depth < 1 || render->max_depth > INT_MAX)
 		throw_parse_err(ctx, "Max depth must be greater than 0");
 	else if (render->soft_shadows_radius < 0)
@@ -81,7 +81,7 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 
 void	set_render_defaults(t_render *render)
 {
-	render->samples = -1;
+	render->samples = 0;
 	render->antialiasing = 0;
 	render->strategy = PATHTRACING;
 	render->max_depth = 4;

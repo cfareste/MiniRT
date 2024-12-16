@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/16 17:23:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/16 19:00:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*render_part(t_render_part *part)
 	get_thread_id(&part->thread, &seed);
 	part->i = part->render->progressive.i;
 	while (!is_render_finished(part->render)
-		&& (part->render->samples < 0 || part->i < part->render->samples)
+		&& (part->render->samples == 0 || part->i < part->render->samples)
 		&& part->render->samples < INT_MAX)
 	{
 		part->j = 0;
