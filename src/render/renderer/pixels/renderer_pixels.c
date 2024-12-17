@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 14:31:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 18:13:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ void	shuffle_pixels(t_pixel *array, size_t n, uint32_t *seed)
 
 void	fill_pixels(t_size *img_size, t_pixel **pixels_, size_t *px_amount)
 {
-	size_t	i;
-	size_t	j;
-	t_pixel	*pixels;
+	t_iterators	iter;
+	t_pixel		*pixels;
 
 	printf("Filling pixels\n");
 	free(*pixels_);
@@ -50,17 +49,16 @@ void	fill_pixels(t_size *img_size, t_pixel **pixels_, size_t *px_amount)
 		throw_sys_error("alloc pixels");
 	pixels = *pixels_;
 	*px_amount = 0;
-	i = 0;
-	while (i < img_size->width)
+	iter.i = 0;
+	while (iter.i < img_size->width)
 	{
-		j = 0;
-		while (j < img_size->height)
+		iter.j = 0;
+		while (iter.j < img_size->height)
 		{
-			pixels[*px_amount].x = i;
-			pixels[*px_amount].y = j;
+			pixels[*px_amount] = iter;
 			(*px_amount)++;
-			j++;
+			iter.j++;
 		}
-		i++;
+		iter.i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 21:29:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:12:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*render_routine(t_window *window)
 		render_parts(&window->render, &img_size, &seed);
 	set_render_finish(&window->render, 1);
 	pthread_mutex_lock(&window->render.mutex);
-	printf("FINISHED RENDER: %f\n\n",
+	printf("FINISHED RENDER: %.3f\n\n",
 		mlx_get_time() - window->render.start_time);
 	pthread_mutex_unlock(&window->render.mutex);
 	return (NULL);
