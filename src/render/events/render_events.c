@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 17:28:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:23:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 	if (keydata->action == MLX_PRESS)
 	{
 		if (keydata->key == MLX_KEY_B)
-			toggle_async_flag(&win->render.blocked);
+		{
+			if (!composer_is_alive(&win->composer))
+				toggle_async_flag(&win->render.blocked);
+		}
 		if (get_async_flag(&win->render.blocked))
 			return ;
 		else if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)

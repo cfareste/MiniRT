@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 14:45:09 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:31:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	*composition_routine(t_composition *composition)
 	{
 		(void) NULL;
 	}
+	composer_set_alive(composition->composer, 0);
 	free(compose_buffer);
 	return (free(composition), NULL);
 }
