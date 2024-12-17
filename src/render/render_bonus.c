@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 19:04:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:15:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 	set_ray_from_camera(&ray, part->render, iter, seed);
 	compute_strategy(part, &ray, sample_color, seed);
 	multiply_color_scalar(sample_color,
-		1 / (float) (part->i + 1), &pixel_color);
+		1 / (float)(part->i + 1), &pixel_color);
 	mlx_put_pixel(part->render->image, iter->i, iter->j,
 		get_color_value(&pixel_color));
 }
@@ -84,7 +84,7 @@ void	*render_part(t_render_part *part)
 				render_pixel(part, &px_iter, &seed);
 			part->j++;
 		}
-		// printf("Sample %lu\n", part->i);
+		printf("Sample %lu\n", part->i);
 		part->i++;
 	}
 	return (NULL);
