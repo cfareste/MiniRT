@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/16 21:11:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:53:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	render_pixel(t_render_part *part, t_iterators *iter,
 	t_ray			ray;
 	t_color			*sample_color;
 	t_color			pixel_color;
-	t_progressive	*progress;
 	int				samples;
 
 	ft_bzero(&pixel_color, sizeof(t_color));
@@ -45,8 +44,8 @@ static void	render_pixel(t_render_part *part, t_iterators *iter,
 	sample_color = &pixel_color;
 	if (get_async_flag(&part->render->prog_enabled))
 	{
-		progress = &part->render->progressive;
-		sample_color = progress->colors[iter->i] + iter->j;
+		sample_color = part->render->progressive.colors
+			+ (iter->i * part->img_size->height) + iter->j;
 		samples = part->i + 1;
 	}
 	set_ray_from_camera(&ray, part->render, iter, seed);
@@ -65,8 +64,7 @@ void	*render_part(t_render_part *part)
 	get_thread_id(&part->thread, &seed);
 	part->i = part->render->progressive.i;
 	while (!is_render_finished(part->render)
-		&& (part->render->samples == 0
-			|| (unsigned long) part->i < part->render->samples))
+		&& (part->render->samples == 0 || part->i < part->render->samples))
 	{
 		part->j = 0;
 		while (!is_render_finished(part->render)
@@ -79,7 +77,7 @@ void	*render_part(t_render_part *part)
 		}
 		if (!get_async_flag(&part->render->prog_enabled))
 			break ;
-		printf("Sample %d\n", part->i);
+		printf("Sample %lu\n", part->i);
 		part->i++;
 	}
 	return (NULL);

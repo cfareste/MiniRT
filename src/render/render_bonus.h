@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 20:15:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:32:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_render_part
 	t_render		*render;
 	t_pixel			*pixels;
 	size_t			pixels_amount;
-	int				i;
+	unsigned long	i;
 	unsigned long	j;
 }	t_render_part;
 
