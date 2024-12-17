@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:39 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 19:48:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:45:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 
 typedef struct s_progressive
 {
-	unsigned long	i;
-	t_size			size;
 	t_color			*colors;
 }	t_progressive;
 
