@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 17:32:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:28:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef enum e_strategy
 	RAYTRACING,
 	NORMAL_MAP
 }	t_strategy;
+
+typedef struct s_render_part	t_render_part;
 
 typedef struct s_render
 {
@@ -55,6 +57,7 @@ typedef struct s_render
 	t_async_flag	cheap_strategy;
 	t_async_flag	prog_enabled;
 	t_progressive	progressive;
+	t_render_part	*parts;
 }	t_render;
 
 typedef struct s_render_part

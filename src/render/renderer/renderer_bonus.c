@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 19:12:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 21:42:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stop_render(t_render *render)
 	render->thread = 0;
 }
 
-static void	render_cheap(t_render *render, t_size *img_size, uint32_t *seed)
+static void	render_cheap(t_render *render)
 {
 	t_strategy	strategy;
 	t_strategy	cheap_strategy;
@@ -48,7 +48,7 @@ static void	render_cheap(t_render *render, t_size *img_size, uint32_t *seed)
 	prog_enabled = get_async_flag(&render->prog_enabled);
 	render->strategy = cheap_strategy;
 	set_async_flag(&render->prog_enabled, 0);
-	render_parts(render, img_size, seed);
+	render_parts(render);
 	set_async_flag(&render->prog_enabled, prog_enabled);
 	render->strategy = strategy;
 }
@@ -64,18 +64,19 @@ void	*render_routine(t_window *window)
 		return (NULL);
 	img_size = get_image_size(window->render.image,
 			&window->render.image_mutex);
+	prepare_parts(&window->render, &img_size, &seed);
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport,
 		&img_size);
 	if (is_render_alive(&window->render)
 		&& get_async_flag(&window->render.cheap))
-		render_cheap(&window->render, &img_size, &seed);
+		render_cheap(&window->render);
 	if (is_render_alive(&window->render)
 		&& !get_render_update(&window->render))
-		render_parts(&window->render, &img_size, &seed);
+		render_parts(&window->render);
 	set_render_finish(&window->render, 1);
 	pthread_mutex_lock(&window->render.mutex);
-	printf("FINISHED RENDER: %.3f\n\n",
+	printf("Finished render in %.3f seconds\n\n",
 		mlx_get_time() - window->render.start_time);
 	pthread_mutex_unlock(&window->render.mutex);
 	return (NULL);

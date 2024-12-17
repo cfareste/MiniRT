@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 14:33:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/17 19:45:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include "render/events/render_events.h"
 #include "events/window_events.h"
 #include "scene/settings/sky_box/sky_box.h"
+#include "render/renderer/parts/renderer_parts.h"
 
 static void	control(t_window *window)
 {
@@ -80,6 +81,7 @@ void	close_window(t_window *window)
 	destroy_composer(&window->composer);
 	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
+	destroy_parts(window->render.parts, window->render.parts_amount);
 	mlx_close_window(window->mlx);
 }
 
