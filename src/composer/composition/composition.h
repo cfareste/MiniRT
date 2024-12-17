@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_events.h                                    :+:      :+:    :+:   */
+/*   composition.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:34:29 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 15:44:39 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/12 17:51:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "MLX42.h"
-#include "window/window.h"
+#include "../composer.h"
 
-void	focus_camera_to_selection(t_camera *camera, t_figure *selection);
+typedef struct s_composition
+{
+	t_composer	*composer;
 
-void	camera_key_events(mlx_key_data_t *keydata, t_window *window);
+	int			create_new_file;
+}	t_composition;
+
+void	*composition_routine(t_composition *composition);

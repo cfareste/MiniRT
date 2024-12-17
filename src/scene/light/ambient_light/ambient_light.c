@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambient_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 23:24:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:54:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static void	get_sky_box_color(t_figure *figure, t_point *point,
 	color->red = *pixel / 255.0;
 	color->green = *(pixel + 1) / 255.0;
 	color->blue = *(pixel + 2) / 255.0;
-	color->alpha = 1.0;
 }
 
 void	get_sky_color(t_scene *scene, t_ray *ray, t_light *ambient_light,
@@ -97,5 +96,4 @@ void	get_sky_color(t_scene *scene, t_ray *ray, t_light *ambient_light,
 		scene_sky_color = scene->settings.sky_color;
 	multiply_color_scalar(&scene_sky_color, ambient_light->brightness,
 		sky_color);
-	sky_color->alpha = 1.0;
 }

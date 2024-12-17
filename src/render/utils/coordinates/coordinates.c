@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 00:54:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/07 14:54:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	parse_coordinates(t_parser_ctx *ctx, char *str,
 	if (!parts)
 		throw_sys_error("ft_split coordinates");
 	if (!parts[0] || !parts[1] || !parts[2])
+	{
+		ctx->cursor = parts[0];
 		throw_parse_err(ctx, "Missing some coordinates param");
+	}
 	coordinates->x = parse_double(ctx, parts[0]);
 	coordinates->y = parse_double(ctx, parts[1]);
 	coordinates->z = parse_double(ctx, parts[2]);
