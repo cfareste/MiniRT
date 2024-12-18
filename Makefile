@@ -261,6 +261,9 @@ vpath %.c	$(SRC):\
 			$(SRC)exporter/export:\
 			$(SRC)composer:\
 			$(SRC)composer/composition:\
+			$(SRC)composer/composition/helpers/figures:\
+			$(SRC)composer/composition/helpers/lights:\
+			$(SRC)composer/composition/helpers/settings:\
 			$(SRC)composer/events:
 
 
@@ -415,7 +418,10 @@ SRCS = miniRT.c \
 	disk_composer.c \
 	plane_composer.c \
 	quadrilater_composer.c \
-	sphere_composer.c
+	sphere_composer.c \
+	composition_figures_helpers.c \
+	composition_lights_helpers.c \
+	composition_settings_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

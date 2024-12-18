@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   composition.h                                      :+:      :+:    :+:   */
+/*   composition_lights_helpers.h                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:33:33 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/18 17:35:53 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/18 17:38:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../composer.h"
 
-typedef struct s_composition
-{
-	t_composer	*composer;
+#include "composer/composer.h"
 
-	int			create_new_file;
-}	t_composition;
+int	fill_ambient(t_composer *composer, t_light *ambiental, char **buffer);
 
-void	*composition_routine(t_composition *composition);
+int	fill_lights(t_composer *composer, t_light *lights, char **buffer);

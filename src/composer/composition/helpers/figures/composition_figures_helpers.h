@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   composition.h                                      :+:      :+:    :+:   */
+/*   composition_figures_helpers.h                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:33:33 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/18 17:32:12 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/18 17:34:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../composer.h"
 
-typedef struct s_composition
-{
-	t_composer	*composer;
+#define MATERIAL_TITLE "mat:"
+#define GLOSSINESS_TITLE "gl:"
+#define PATTERN_TITLE "cd:"
+#define BUMP_MAP_TITLE "bm:"
 
-	int			create_new_file;
-}	t_composition;
+#include "composer/composer.h"
 
-void	*composition_routine(t_composition *composition);
+int	fill_figures(t_composer *composer, t_figure *figures, char **buffer);
