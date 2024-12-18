@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 21:43:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:41:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../helpers/render_helper_bonus.h"
 #include "../../utils/thread/thread.h"
 #include "renderer_parts.h"
+#include "../../progressive/helpers/progressive_helper.h"
 
 static void	join_parts(t_render_part *parts, int amount)
 {
@@ -36,51 +37,62 @@ void	destroy_parts(t_render_part *parts, int amount)
 	free(parts);
 }
 
-void	fill_parts(t_render *render, t_size *img_size)
+t_render_part	*fill_parts(t_render *render, t_size *img_size)
 {
-	int	i;
+	int				i;
+	t_render_part	*parts;
 
-	free(render->parts);
-	render->parts = ft_calloc(render->parts_amount, sizeof(t_render_part));
-	if (!render->parts)
+	parts = ft_calloc(render->parts_amount + 1, sizeof(t_render_part));
+	if (!parts)
 		throw_sys_error("ft_calloc in rendering");
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		render->parts[i].render = render;
-		render->parts[i].img_size = img_size;
-		render->parts[i].pixels_amount = render->px_amount
+		parts[i].render = render;
+		parts[i].img_size = img_size;
+		parts[i].pixels_amount = render->px_amount
 			/ render->parts_amount;
-		render->parts[i].pixels = render->pixels
-			+ (render->parts[i].pixels_amount * i);
+		parts[i].pixels = render->pixels
+			+ (parts[i].pixels_amount * i);
 		i++;
 	}
+	return (parts);
 }
 
-void	prepare_parts(t_render *render, t_size *img_size, uint32_t *seed)
+static void	prepare_parts(t_render *render, t_size *img_size,
+				uint32_t *seed, int persist)
 {
+	int	resize;
+
+	resize = render_get_resize(render);
 	render->parts_amount = 10;
-	if (render_get_resize(render))
+	if (resize)
 	{
-		fill_pixels(img_size, &render->pixels, &render->px_amount);
 		render_set_resize(render, 0);
+		fill_pixels(img_size, &render->pixels, &render->px_amount);
+		restart_progress(render->progress, img_size, render);
 	}
-	shuffle_pixels(render->pixels, render->px_amount, seed);
-	init_progressive(&render->progressive, img_size);
-	fill_parts(render, img_size);
+	if (!persist)
+	{
+		reset_progress(render->progress, img_size, render->parts_amount);
+		shuffle_pixels(render->pixels, render->px_amount, seed);
+	}
 }
 
-void	render_parts(t_render *render)
+void	render_parts(t_render *render, t_size *img_size,
+			uint32_t *seed, int persist)
 {
 	int	i;
 
+	prepare_parts(render, img_size, seed, persist);
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		if (pthread_create(&render->parts[i].thread, NULL,
-				(void *(*)(void *)) render_part, render->parts + i) == -1)
+		if (pthread_create(&render->progress[render->strategy].parts[i].thread,
+				NULL, (void *(*)(void *)) render_part,
+			render->progress[render->strategy].parts + i) == -1)
 			throw_sys_error("creating render part thread");
 		i++;
 	}
-	join_parts(render->parts, render->parts_amount);
+	join_parts(render->progress[render->strategy].parts, render->parts_amount);
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 19:28:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:51:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@
 #include "renderer/pixels/renderer_pixels.h"
 #include "utils/async_flag/async_flag.h"
 #include "progressive/render_progressive.h"
-
-typedef enum e_strategy
-{
-	PATHTRACING,
-	RAYTRACING,
-	NORMAL_MAP
-}	t_strategy;
+#include "strategies/strategies.h"
 
 typedef struct s_render_part	t_render_part;
 
@@ -56,8 +50,8 @@ typedef struct s_render
 	t_async_flag	dis_cheap_once;
 	t_async_flag	cheap_strategy;
 	t_async_flag	prog_enabled;
-	t_progressive	progressive;
-	t_render_part	*parts;
+	t_progressive	progress[STRATEGIES_AMOUNT];
+	t_async_flag	persist_prog;
 }	t_render;
 
 typedef struct s_render_part

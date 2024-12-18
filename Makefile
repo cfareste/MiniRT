@@ -243,6 +243,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render/renders:\
 			$(SRC)render/events:\
 			$(SRC)render/progressive:\
+			$(SRC)render/progressive/helpers:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
 			$(SRC)utils/async_flag:\
@@ -400,7 +401,8 @@ SRCS = miniRT.c \
 	figure_operations.c \
 	render_helper_update.c \
 	async_flag.c \
-	render_progressive.c
+	render_progressive.c \
+	progressive_helper.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

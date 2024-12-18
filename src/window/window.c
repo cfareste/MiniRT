@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 19:45:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:07:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #include "events/window_events.h"
 #include "scene/settings/sky_box/sky_box.h"
 #include "render/renderer/parts/renderer_parts.h"
+#include "render/progressive/helpers/progressive_helper.h"
 
 static void	control(t_window *window)
 {
@@ -81,7 +82,6 @@ void	close_window(t_window *window)
 	destroy_composer(&window->composer);
 	destroy_exporter(&window->exporter);
 	stop_render(&window->render);
-	destroy_parts(window->render.parts, window->render.parts_amount);
 	mlx_close_window(window->mlx);
 }
 
@@ -93,7 +93,7 @@ static void	set_hooks(t_window *window)
 	mlx_cursor_hook(window->mlx,
 		(mlx_cursorfunc) cursor_update_pos, &window->cursor);
 	mlx_mouse_hook(window->mlx, (mlx_mousefunc) mouse_hook, window);
-	mlx_close_hook(window->mlx, (void (*)(void *)) close_window, window);
+	mlx_close_hook(window->mlx, (mlx_closefunc) close_window, window);
 	mlx_loop_hook(window->mlx, main_loop, window);
 }
 

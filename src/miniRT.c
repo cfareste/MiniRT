@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 14:00:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:05:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
 #include "window/loader/loader_bonus.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
 #include "utils/utils_bonus.h"
+#include "render/progressive/helpers/progressive_helper.h"
 
 void	destroy(t_window *window)
 {
 	mlx_delete_texture(window->icon);
 	mlx_terminate(window->mlx);
 	destroy_jobs(&window->jobs);
+	clean_progress(window->render.progress);
 	destroy_scene_settings(&window->render.scene.settings);
 	free_textures(&window->textures);
 	free(window->render.scene.ambient_light);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 19:15:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:59:09 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 	t_color			pixel_color;
 
 	ft_bzero(&pixel_color, sizeof(t_color));
-	sample_color = part->render->progressive.colors
+	sample_color = part->render->progress[part->render->strategy].colors
 		+ (iter->i * part->img_size->height) + iter->j;
 	set_ray_from_camera(&ray, part->render, iter, seed);
 	compute_strategy(part, &ray, sample_color, seed);
@@ -70,12 +70,11 @@ void	*render_part(t_render_part *part)
 
 	get_thread_id(&part->thread, &seed);
 	prog_enabled = get_async_flag(&part->render->prog_enabled);
-	while (!is_render_finished(part->render) && (prog_enabled || part->i < 1)
+	while (is_render_alive(part->render) && (prog_enabled || part->i < 1)
 		&& (part->render->samples == 0 || part->i < part->render->samples))
 	{
-		part->j = 0;
-		while (!is_render_finished(part->render)
-			&& part->j < part->pixels_amount)
+		part->j = part->j * (part->j != part->pixels_amount);
+		while (is_render_alive(part->render) && part->j < part->pixels_amount)
 		{
 			px_iter = part->pixels[part->j];
 			if (prog_enabled)
@@ -87,6 +86,7 @@ void	*render_part(t_render_part *part)
 		printf("Sample %lu\n", part->i);
 		part->i++;
 	}
+	part->i -= part->j != part->pixels_amount;
 	return (NULL);
 }
 
@@ -101,6 +101,7 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	init_async_flag(&render->dis_cheap_once, 0);
 	init_async_flag(&render->prog_enabled, 1);
 	init_async_flag(&render->blocked, 0);
+	init_async_flag(&render->persist_prog, 0);
 	render->resize = 1;
 	render->jobs = jobs;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);

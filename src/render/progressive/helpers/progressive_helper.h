@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_progressive.h                               :+:      :+:    :+:   */
+/*   progressive_helper.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 15:40:39 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:41:04 by arcanava         ###   ########.fr       */
+/*   Created: 2024/12/18 14:59:52 by arcanava          #+#    #+#             */
+/*   Updated: 2024/12/18 17:00:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "utils/size/size.h"
-#include "render/utils/color/color.h"
-#include "../strategies/strategy.h"
+#include "render/render_bonus.h"
 
-typedef struct s_render_part	t_render_part;
+void	clean_progress(t_progressive progress[STRATEGIES_AMOUNT]);
 
-typedef struct s_progressive
-{
-	t_color			*colors;
-	t_render_part	*parts;
-}	t_progressive;
+void	restart_progress(t_progressive progress[STRATEGIES_AMOUNT],
+			t_size *img_size, t_render *render);
 
-void	init_progressive(t_progressive *prog,
-			t_size *size, t_render_part *parts);
-
-void	reset_progress(t_progressive *prog, t_size *size, int parts_amount);
+void	reset_progress(t_progressive progress[STRATEGIES_AMOUNT],
+			t_size *size, int parts_amount);

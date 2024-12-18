@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strategies.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 20:57:18 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 18:35:30 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:33:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/strategies/raytracing/raytracing.h"
-#include "render/strategies/pathtracing/pathtracing.h"
-#include "render/strategies/normal_map/normal_map.h"
+#include "strategy.h"
+#include "raytracing/raytracing.h"
+#include "pathtracing/pathtracing.h"
+#include "normal_map/normal_map.h"
