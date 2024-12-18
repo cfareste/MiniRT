@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 15:12:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:48:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "render/utils/color/color.h"
 #include <pthread.h>
 
-#define SEP '\t'
+#define SEP 9
 
 int		correct_file_extension(char *filename, char *extension);
 

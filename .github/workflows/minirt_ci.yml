@@ -8,7 +8,7 @@ jobs:
     name: norminette
     steps:
     - uses: actions/checkout@v4
-    - uses: alexandregv/norminette-action@v3
+    - uses: alexandregv/norminette-action@v4
       with:
         flags: '.'
   tests:
