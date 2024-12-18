@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 01:56:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:30:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 #define SKY_BOX_TITLE "sky_box:"
 #define WIN_WIDTH_TITLE "width:"
 #define WIN_HEIGHT_TITLE "height:"
+#define MATERIAL_TITLE "mat:"
 #define GLOSSINESS_TITLE "gl:"
-#define COLOR_DISRUPTION_TITLE "cd:"
+#define PATTERN_TITLE "cd:"
 #define BUMP_MAP_TITLE "bm:"
 
 typedef struct s_composition

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 11:40:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,25 @@ static int	scatter(t_render *render, t_scatter_params *params,
 	return (1);
 }
 
+static char	*compose_plastic(t_material *material)
+{
+	char	*str;
+
+	str = NULL;
+	join_format_str(&str, "plastic:",
+		ft_dtoa(material->plastic_attrs->specular_index, 3), ':');
+	join_format_str(&str, NULL, ft_dtoa(material->plastic_attrs->roughness, 3),
+		':');
+	return (str);
+}
+
 t_material	new_plastic_mat(t_plastic_attrs *attrs)
 {
 	t_material	plastic_mat;
 
 	plastic_mat.type = PLASTIC;
 	plastic_mat.scatter = scatter;
+	plastic_mat.compose = compose_plastic;
 	plastic_mat.plastic_attrs = ft_calloc(1, sizeof(t_plastic_attrs));
 	if (!plastic_mat.plastic_attrs)
 		throw_sys_error("trying to allocate plastic attributes");

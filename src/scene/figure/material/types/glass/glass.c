@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 12:00:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,25 @@ static int	scatter(t_render *render, t_scatter_params *params,
 	return (1);
 }
 
+static char	*compose_glass(t_material *material)
+{
+	char	*str;
+
+	str = NULL;
+	join_format_str(&str, "glass:",
+		ft_dtoa(material->glass_attrs->refractive_index, 3), ':');
+	join_format_str(&str, NULL, ft_dtoa(material->glass_attrs->transparency, 3),
+		':');
+	return (str);
+}
+
 t_material	new_glass_mat(t_glass_attrs *attrs)
 {
 	t_material	glass_mat;
 
 	glass_mat.type = GLASS;
 	glass_mat.scatter = scatter;
+	glass_mat.compose = compose_glass;
 	glass_mat.glass_attrs = ft_calloc(1, sizeof(t_glass_attrs));
 	if (!glass_mat.glass_attrs)
 		throw_sys_error("trying to allocate glass attributes");

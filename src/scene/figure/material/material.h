@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:28:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:48:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ typedef struct s_material
 	};
 	int				(*scatter)(t_render *render, t_scatter_params *params,
 			t_color *direct_light, uint32_t *seed);
+	char			*(*compose)(t_material *material);
 }	t_material;
