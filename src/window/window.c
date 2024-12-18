@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 18:07:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:39:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	init_window(t_window *window)
 	init_cursor(&window->cursor);
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
 	init_composer(&window->composer, &window->render,
-		&window->jobs, &window->loader);
+		&window->jobs, &window->filename);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx, &window->jobs);

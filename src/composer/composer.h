@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:06:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 17:13:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:42:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_composer
 	pthread_mutex_t	alive_mutex;
 	t_render		*render;
 	t_jobs			*jobs;
-	t_loader		*loader;
+	char			**filename_ref;
 }	t_composer;
 
-void	init_composer(t_composer *composer, t_render *render,
-			t_jobs *jobs, t_loader *loader);
+void	init_composer(t_composer *composer, t_render *render, t_jobs *jobs,
+			char **filename_ref);
 
 void	compose(t_composer *composer, int create_new_file);
 

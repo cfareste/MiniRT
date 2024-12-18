@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 13:08:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:45:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/operations/figure_operations.h"
+#include "scene/figure/types/disk/composer/disk_composer.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
@@ -82,6 +83,7 @@ t_figure	*new_disk(t_point *pos, t_color *color, t_disk_attrs *disk_attrs)
 	disk->hit = hit;
 	disk->normal = normal;
 	disk->rotate = rotate;
+	disk->compose = compose_disk;
 	disk->get_color_pattern = get_color;
 	return (disk);
 }

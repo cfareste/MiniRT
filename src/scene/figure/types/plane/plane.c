@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 15:38:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:49:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/events/figure_events.h"
 #include "scene/figure/types/plane/helpers/plane_helpers.h"
+#include "scene/figure/types/plane/composer/plane_composer.h"
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {
@@ -74,6 +75,7 @@ void	set_plane(t_figure *plane, t_point *position, t_plane_attrs *attrs)
 	plane->hit = hit;
 	plane->normal = normal;
 	plane->rotate = rotate_plane;
+	plane->compose = compose_plane;
 	plane->get_color_pattern = get_color;
 }
 
@@ -90,6 +92,7 @@ t_figure	*new_plane(t_point *pos, t_color *color, t_plane_attrs *pl_attrs)
 	plane->hit = hit;
 	plane->normal = normal;
 	plane->rotate = rotate_plane;
+	plane->compose = compose_plane;
 	plane->get_color_pattern = get_color;
 	return (plane);
 }

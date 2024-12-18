@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:26:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:55:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/figure/types/sphere/parser/sphere_parser.h"
 #include "scene/figure/types/sphere/pattern/sphere_pattern.h"
 #include "scene/figure/types/sphere/texture/bump_map_sphere.h"
+#include "scene/figure/types/sphere/composer/sphere_composer.h"
 #include "parser/helpers/parser_helper.h"
 
 static void	print_attrs(void *param)
@@ -84,6 +85,7 @@ t_figure	*new_sphere(t_point *pos, t_color *color, t_sphere_attrs *sp_attrs)
 	sphere->hit = hit;
 	sphere->normal = normal;
 	sphere->print_attrs = print_attrs;
+	sphere->compose = compose_sphere;
 	sphere->get_color_pattern = get_color;
 	return (sphere);
 }

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 22:17:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:13:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "scene/figure/events/figure_events.h"
 #include "scene/figure/types/box/operations/box_operations.h"
+#include "scene/figure/types/box/composer/box_composer.h"
 #include "libft.h"
 #include <math.h>
 
@@ -98,6 +99,7 @@ t_figure	*new_box(t_point *pos, t_color *color, t_box_attrs *box_attrs)
 	box->hit = hit;
 	box->normal = normal;
 	box->rotate = rotate_box;
+	box->compose = compose_box;
 	box->recalculate = recalculate_box;
 	box->get_color_pattern = get_color;
 	return (box);

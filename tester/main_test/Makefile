@@ -208,7 +208,14 @@ vpath %.c	$(SRC):\
 			$(SRC)utils/size:\
 			$(SRC)parser:\
 			$(SRC)parser/helpers:\
-			$(SRC)window/textures/parser:
+			$(SRC)window/textures/parser:\
+			$(SRC)scene/figure/types/cylinder/composer:\
+			$(SRC)scene/figure/types/plane/composer:\
+			$(SRC)scene/figure/types/sphere/composer:\
+			$(SRC)scene/figure/types/cone/composer:\
+			$(SRC)scene/figure/types/disk/composer:\
+			$(SRC)scene/figure/types/quadrilater/composer:\
+			$(SRC)scene/figure/types/box/composer:\
 
 #----SHARED----#
 SRCS =	main_test.c \
@@ -312,7 +319,15 @@ SRCS =	main_test.c \
 		emissive_default.c \
 		vector_rotation.c \
 		box_operations.c \
-		figure_operations.c
+		figure_operations.c \
+		box_composer.c \
+		cone_composer.c \
+		cylinder_composer.c \
+		disk_composer.c \
+		plane_composer.c \
+		quadrilater_composer.c \
+		sphere_composer.c \
+		string_utils.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/16 17:34:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:12:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_figure
 	void		(*print_attrs)(void *attrs);
 	void		(*recalculate)(t_figure *figure);
 	void		(*rotate)(t_figure *figure, t_camera *camera, t_point *factor);
+	char		*(*compose)(t_figure *figure);
 	void		(*free)(t_figure *figure);
 	t_figure	*next;
 }	t_figure;
@@ -58,8 +59,6 @@ typedef struct s_figure
 void		free_figure(t_figure *figure);
 
 void		free_figures(t_figure *figures);
-
-void		print_figure(t_figure *figure);
 
 t_figure	*new_figure(char *type, t_point *position, t_color *color);
 

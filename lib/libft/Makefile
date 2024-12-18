@@ -35,6 +35,7 @@ SRCS = ft_isdigit.c \
 		ft_isdigit.c \
 		ft_isprint.c \
 		ft_itoa.c \
+		ft_ultoa.c \
 		ft_memchr.c \
 		ft_memcmp.c \
 		ft_memcpy.c \
@@ -81,7 +82,9 @@ SRCS = ft_isdigit.c \
 		ft_sort.c \
 		ft_override_val.c \
 		ft_strings.c \
-		ft_matrix.c
+		ft_matrix.c \
+		push.c \
+		ft_dtoa.c
 
 OBJS = $(SRCS:%.c=$(BINDIR)/%.o)
 DEPS = $(SRCS:%.c=%.d)

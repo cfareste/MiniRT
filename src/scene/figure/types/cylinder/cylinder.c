@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 13:08:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:41:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/operations/figure_operations.h"
+#include "scene/figure/types/cylinder/composer/cylinder_composer.h"
 #include <math.h>
 
 static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
@@ -114,6 +115,7 @@ t_figure	*new_cylinder(t_point *pos, t_color *color,
 	cylinder->hit = hit;
 	cylinder->normal = normal;
 	cylinder->rotate = rotate;
+	cylinder->compose = compose_cylinder;
 	cylinder->get_color_pattern = get_color;
 	return (cylinder);
 }

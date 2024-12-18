@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   composition.h                                      :+:      :+:    :+:   */
+/*   cone_composer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 18:02:37 by cfidalgo         ###   ########.fr       */
+/*   Created: 2024/12/18 14:31:35 by cfidalgo          #+#    #+#             */
+/*   Updated: 2024/12/18 15:33:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include "../composer.h"
+#include "scene/figure/figure.h"
+#include "utils/utils_bonus.h"
+#include "libft.h"
 
-typedef struct s_composition
+char	*compose_cone(t_figure *figure)
 {
-	t_composer	*composer;
-	int			create_new_file;
-}	t_composition;
+	char	*str;
 
-void	*composition_routine(t_composition *composition);
+	str = NULL;
+	join_format_str(&str, NULL, coordtoa(&figure->co_attrs->orientation), SEP);
+	join_format_str(&str, NULL, ft_dtoa(figure->co_attrs->radius * 2, 3), SEP);
+	join_format_str(&str, NULL, ft_dtoa(figure->co_attrs->height, 3), SEP);
+	return (str);
+}
