@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 17:47:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:53:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,10 @@ void	throw_mlx_error(t_jobs *jobs, char *msg, const char *mlx_msg)
 	push_job(jobs, init_destroy_job(new_job()));
 }
 
-void	load_textures(t_loader *loader, t_textures *textures,
-				t_jobs *jobs)
+void	load_textures(t_textures *textures, t_jobs *jobs)
 {
 	t_texture	*texture;
 
-	(void) loader;
 	texture = textures->texture;
 	while (texture)
 	{

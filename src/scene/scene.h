@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:46 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:43:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:52:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_scene
 	t_camera			orig_camera;
 	t_light				*lights;
 	t_figure			*figures;
-	int					ready;
 	pthread_mutex_t		mutex;
 	t_figure			*selection;
 	pthread_mutex_t		selection_mutex;

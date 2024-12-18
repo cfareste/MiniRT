@@ -49,11 +49,8 @@ static void	*start_routine(void *window_)
 	window = (t_window *) window_;
 	push_job(&window->jobs, init_title_job(new_job(),
 			ft_strdup("Loading textures...")));
-	load_textures(&window->loader, &window->textures, &window->jobs);
+	load_textures(&window->textures, &window->jobs);
 	configure_sky_box(&window->render.scene);
-	pthread_mutex_lock(&window->render.scene.mutex);
-	window->render.scene.ready = 1;
-	pthread_mutex_unlock(&window->render.scene.mutex);
 	push_job(&window->jobs, init_title_job(new_job(),
 			ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF)));
 	set_render_update(&window->render, 1);
