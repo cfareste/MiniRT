@@ -6,24 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 02:01:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:44:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composition.h"
 #include "utils/utils_bonus.h"
 #include "libft.h"
-
-static void	join_buff_string(char **buffer, char *title, char *str, char sep)
-{
-	if (!str)
-		throw_sys_error("allocating composer setting in buffer");
-	if (title)
-		push_str(buffer, title, throw_sys_error, "joining buffer with title");
-	push_str(buffer, str, throw_sys_error, "joining buffer with string");
-	push_char(buffer, sep, throw_sys_error, "joining space char with buffer");
-	free(str);
-}
 
 static char	*get_strategy_name(t_strategy strategy)
 {
@@ -36,63 +25,15 @@ static char	*get_strategy_name(t_strategy strategy)
 	return (strategy_name);
 }
 
-static char	*colortoa(t_color *color)
-{
-	char	*red_str;
-	char	*green_str;
-	char	*blue_str;
-	char	*color_str;
-
-	red_str = ft_itoa(color->red * 255);
-	green_str = ft_itoa(color->green * 255);
-	blue_str = ft_itoa(color->blue * 255);
-	if (!red_str || !green_str || !blue_str)
-		throw_sys_error("allocating color components strings");
-	color_str = NULL;
-	push_str(&color_str, red_str, throw_sys_error, "pushing color component");
-	push_char(&color_str, ',', throw_sys_error, "pushing color component");
-	push_str(&color_str, green_str, throw_sys_error, "pushing color component");
-	push_char(&color_str, ',', throw_sys_error, "pushing color component");
-	push_str(&color_str, blue_str, throw_sys_error, "pushing color component");
-	free(red_str);
-	free(green_str);
-	free(blue_str);
-	return (color_str);
-}
-
-static char	*coordtoa(t_coordinates *coords)
-{
-	char	*x_str;
-	char	*y_str;
-	char	*z_str;
-	char	*coords_str;
-
-	x_str = ft_dtoa(coords->x, 3);
-	y_str = ft_dtoa(coords->y, 3);
-	z_str = ft_dtoa(coords->z, 3);
-	if (!x_str || !y_str || !z_str)
-		throw_sys_error("allocating coordinates components strings");
-	coords_str = NULL;
-	push_str(&coords_str, x_str, throw_sys_error, "pushing coords component");
-	push_char(&coords_str, ',', throw_sys_error, "pushing coords component");
-	push_str(&coords_str, y_str, throw_sys_error, "pushing coords component");
-	push_char(&coords_str, ',', throw_sys_error, "pushing coords component");
-	push_str(&coords_str, z_str, throw_sys_error, "pushing coords component");
-	free(x_str);
-	free(y_str);
-	free(z_str);
-	return (coords_str);
-}
-
 static int	fill_render(t_composer *composer, t_render *render, char **buffer)
 {
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "R ", throw_sys_error, "pushing render setting string");
 	if (render->samples)
-		join_buff_string(buffer, SAMPLES_TITLE, ft_ultoa(render->samples), ' ');
+		join_format_str(buffer, SAMPLES_TITLE, ft_ultoa(render->samples), SEP);
 	if (render->max_depth != 4)
-		join_buff_string(buffer, MAX_DEPTH_TITLE, ft_ultoa(render->max_depth),
+		join_format_str(buffer, MAX_DEPTH_TITLE, ft_ultoa(render->max_depth),
 			' ');
 	if (render->antialiasing)
 		push_str(buffer, "antialiasing ",
@@ -101,7 +42,7 @@ static int	fill_render(t_composer *composer, t_render *render, char **buffer)
 		push_str(buffer, get_strategy_name(render->strategy),
 			throw_sys_error, "pushing strategy string to buffer");
 	if (render->soft_shadows_radius)
-		join_buff_string(buffer, SOFT_SHADOWS_TITLE, ft_ultoa(render->samples),
+		join_format_str(buffer, SOFT_SHADOWS_TITLE, ft_ultoa(render->samples),
 			' ');
 	push_char(buffer, '\n', throw_sys_error, "joining newline with buffer");
 	return (0);
@@ -112,13 +53,13 @@ static int	fill_scene(t_composer *composer, t_scene *scene, char **buffer)
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "S ", throw_sys_error, "pushing scene setting string");
-	join_buff_string(buffer, SCENE_NAME_TITLE, ft_strdup(scene->settings.name),
+	join_format_str(buffer, SCENE_NAME_TITLE, ft_strdup(scene->settings.name),
 		' ');
-	join_buff_string(buffer, SKY_TITLE, colortoa(&scene->settings.sky_color),
+	join_format_str(buffer, SKY_TITLE, colortoa(&scene->settings.sky_color),
 		' ');
 	if (scene->settings.sky_box)
-		join_buff_string(buffer, SKY_BOX_TITLE,
-			ft_strdup(scene->settings.sky_box->bump_map.texture->path), ' ');
+		join_format_str(buffer, SKY_BOX_TITLE,
+			ft_strdup(scene->settings.sky_box->bump_map.texture->path), SEP);
 	push_char(buffer, '\n', throw_sys_error, "joining newline with buffer");
 	return (0);
 }
@@ -128,9 +69,9 @@ static int	fill_window(t_composer *composer, t_render *render, char **buffer)
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "W ", throw_sys_error, "pushing window setting string");
-	join_buff_string(buffer, WIN_WIDTH_TITLE, ft_ultoa(render->image->width),
+	join_format_str(buffer, WIN_WIDTH_TITLE, ft_ultoa(render->image->width),
 		' ');
-	join_buff_string(buffer, WIN_HEIGHT_TITLE, ft_ultoa(render->image->height),
+	join_format_str(buffer, WIN_HEIGHT_TITLE, ft_ultoa(render->image->height),
 		'\n');
 	return (0);
 }
@@ -141,8 +82,8 @@ static int	fill_ambiental(t_composer *composer, t_light *ambiental,
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "A ", throw_sys_error, "pushing ambiental setting string");
-	join_buff_string(buffer, NULL, ft_dtoa(ambiental->brightness, 3), ' ');
-	join_buff_string(buffer, NULL, colortoa(&ambiental->color), '\n');
+	join_format_str(buffer, NULL, ft_dtoa(ambiental->brightness, 3), SEP);
+	join_format_str(buffer, NULL, colortoa(&ambiental->color), '\n');
 	return (0);
 }
 
@@ -156,10 +97,10 @@ static int	fill_lights(t_composer *composer, t_light *lights, char **buffer)
 	while (light && composer_is_alive(composer))
 	{
 		push_char(buffer, light->type, throw_sys_error, "pushing light type");
-		push_char(buffer, ' ', throw_sys_error, "pushing whitespace");
-		join_buff_string(buffer, NULL, coordtoa(&light->position), ' ');
-		join_buff_string(buffer, NULL, ft_dtoa(light->brightness, 2), ' ');
-		join_buff_string(buffer, NULL, colortoa(&light->color), '\n');
+		push_char(buffer, SEP, throw_sys_error, "pushing whitespace");
+		join_format_str(buffer, NULL, coordtoa(&light->position), SEP);
+		join_format_str(buffer, NULL, ft_dtoa(light->brightness, 2), SEP);
+		join_format_str(buffer, NULL, colortoa(&light->color), '\n');
 		light = light->next;
 	}
 	return (0);
@@ -170,19 +111,20 @@ static int	fill_camera(t_composer *composer, t_camera *camera, char **buffer)
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "C ", throw_sys_error, "pushing camera setting string");
-	join_buff_string(buffer, NULL, coordtoa(&camera->position), ' ');
-	join_buff_string(buffer, NULL, coordtoa(&camera->front), ' ');
-	join_buff_string(buffer, NULL, ft_itoa(camera->fov), ' ');
+	join_format_str(buffer, NULL, coordtoa(&camera->position), SEP);
+	join_format_str(buffer, NULL, coordtoa(&camera->front), SEP);
+	join_format_str(buffer, NULL, ft_itoa(camera->fov), SEP);
 	if (camera->defocus != 0.0)
-		join_buff_string(buffer, NULL, ft_dtoa(camera->defocus, 3), ' ');
+		join_format_str(buffer, NULL, ft_dtoa(camera->defocus, 3), SEP);
 	if (camera->focus_dist != 1.0)
-		join_buff_string(buffer, NULL, ft_dtoa(camera->focus_dist, 3), ' ');
+		join_format_str(buffer, NULL, ft_dtoa(camera->focus_dist, 3), SEP);
 	push_char(buffer, '\n', throw_sys_error, "joining newline with buffer");
 	return (0);
 }
 
 static int	fill_figures(t_composer *composer, t_figure *figures, char **buffer)
 {
+	t_point		center;
 	t_figure	*figure;
 
 	if (!composer_is_alive(composer))
@@ -191,22 +133,27 @@ static int	fill_figures(t_composer *composer, t_figure *figures, char **buffer)
 	while (figure && composer_is_alive(composer))
 	{
 		push_str(buffer, figure->type, throw_sys_error, "pushing figure type");
-		push_char(buffer, ' ', throw_sys_error, "pushing whitespace");
-		join_buff_string(buffer, NULL, coordtoa(&figure->position), ' ');
-		join_buff_string(buffer, NULL, colortoa(&figure->color), ' ');
+		push_char(buffer, SEP, throw_sys_error, "pushing whitespace");
+		center = figure->position;
+		if (ft_strcmp(figure->type, CONE_ID) == EQUAL_STRINGS)
+			translate_point(&center, &figure->co_attrs->orientation,
+				figure->co_attrs->height / 2.0, &center);
+		join_format_str(buffer, NULL, coordtoa(&center), SEP);
+		join_format_str(buffer, NULL, figure->compose(figure), '\0');
+		join_format_str(buffer, NULL, colortoa(&figure->color), SEP);
 		if (figure->glossiness != 256)
-			join_buff_string(buffer, GLOSSINESS_TITLE,
-				ft_dtoa(figure->glossiness, 3), ' ');
+			join_format_str(buffer, GLOSSINESS_TITLE,
+				ft_dtoa(figure->glossiness, 3), SEP);
 		if (figure->pattern.dimension)
 		{
 			push_str(buffer, COLOR_DISRUPTION_TITLE,
 				throw_sys_error, "pushing cd to buffer");
-			join_buff_string(buffer, NULL,
+			join_format_str(buffer, NULL,
 				colortoa(&figure->pattern.colors[0]), ':');
-			join_buff_string(buffer, NULL,
+			join_format_str(buffer, NULL,
 				colortoa(&figure->pattern.colors[1]), ':');
-			join_buff_string(buffer, NULL,
-				ft_dtoa(figure->pattern.dimension, 8), ' ');
+			join_format_str(buffer, NULL,
+				ft_dtoa(figure->pattern.dimension, 8), SEP);
 		}
 		if (figure->bump_map.texture)
 		{
@@ -215,7 +162,7 @@ static int	fill_figures(t_composer *composer, t_figure *figures, char **buffer)
 			push_str(buffer, figure->bump_map.texture->path,
 				throw_sys_error, "pushing texture path to buffer");
 			push_char(buffer, ':', throw_sys_error, "pushing separator");
-			join_buff_string(buffer, NULL,
+			join_format_str(buffer, NULL,
 				ft_dtoa(figure->bump_map.width_dim, 8), ':');
 			if (figure->bump_map.format != OPENGL)
 				push_str(buffer, "directx",

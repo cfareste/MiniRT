@@ -146,37 +146,44 @@ vpath %.c	$(SRC):\
 			$(SRC)scene/figure/material/types/plastic/parser:\
 			$(SRC)scene/figure/helpers/base_attributes:\
 			$(SRC)scene/figure/types/cylinder:\
+			$(SRC)scene/figure/types/cylinder/composer:\
 			$(SRC)scene/figure/types/cylinder/default:\
 			$(SRC)scene/figure/types/cylinder/helpers:\
 			$(SRC)scene/figure/types/cylinder/parser:\
 			$(SRC)scene/figure/types/cylinder/pattern:\
 			$(SRC)scene/figure/types/cylinder/texture:\
 			$(SRC)scene/figure/types/plane:\
+			$(SRC)scene/figure/types/plane/composer:\
 			$(SRC)scene/figure/types/plane/default:\
 			$(SRC)scene/figure/types/plane/helpers:\
 			$(SRC)scene/figure/types/plane/parser:\
 			$(SRC)scene/figure/types/plane/pattern:\
 			$(SRC)scene/figure/types/plane/texture:\
 			$(SRC)scene/figure/types/sphere:\
+			$(SRC)scene/figure/types/sphere/composer:\
 			$(SRC)scene/figure/types/sphere/default:\
 			$(SRC)scene/figure/types/sphere/parser:\
 			$(SRC)scene/figure/types/sphere/pattern:\
 			$(SRC)scene/figure/types/sphere/texture:\
 			$(SRC)scene/figure/types/sphere/helpers:\
 			$(SRC)scene/figure/types/cone:\
+			$(SRC)scene/figure/types/cone/composer:\
 			$(SRC)scene/figure/types/cone/default:\
 			$(SRC)scene/figure/types/cone/parser:\
 			$(SRC)scene/figure/types/cone/pattern:\
 			$(SRC)scene/figure/types/cone/texture:\
 			$(SRC)scene/figure/types/disk:\
+			$(SRC)scene/figure/types/disk/composer:\
 			$(SRC)scene/figure/types/disk/default:\
 			$(SRC)scene/figure/types/disk/parser:\
 			$(SRC)scene/figure/types/disk/texture:\
 			$(SRC)scene/figure/types/quadrilater:\
+			$(SRC)scene/figure/types/quadrilater/composer:\
 			$(SRC)scene/figure/types/quadrilater/default:\
 			$(SRC)scene/figure/types/quadrilater/helpers:\
 			$(SRC)scene/figure/types/quadrilater/parser:\
 			$(SRC)scene/figure/types/box:\
+			$(SRC)scene/figure/types/box/composer:\
 			$(SRC)scene/figure/types/box/default:\
 			$(SRC)scene/figure/types/box/helpers:\
 			$(SRC)scene/figure/types/box/operations:\
@@ -400,7 +407,15 @@ SRCS = miniRT.c \
 	figure_operations.c \
 	render_helper_update.c \
 	async_flag.c \
-	render_progressive.c
+	render_progressive.c \
+	string_utils.c \
+	box_composer.c \
+	cone_composer.c \
+	cylinder_composer.c \
+	disk_composer.c \
+	plane_composer.c \
+	quadrilater_composer.c \
+	sphere_composer.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

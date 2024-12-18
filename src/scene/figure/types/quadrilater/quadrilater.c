@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 11:01:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:53:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
 #include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
+#include "scene/figure/types/quadrilater/composer/quadrilater_composer.h"
 #include "libft.h"
 #include <stdio.h>
 #include <math.h>
@@ -82,6 +83,7 @@ void	set_quad(t_figure *quad, t_point *position, t_quadrilater_attrs *attrs)
 	quad->hit = hit;
 	quad->normal = normal;
 	quad->rotate = rotate_quadrilater;
+	quad->compose = compose_quadrilater;
 	quad->get_color_pattern = get_color;
 }
 
@@ -102,6 +104,7 @@ t_figure	*new_quadrilater(t_point *pos, t_color *color,
 	quad->hit = hit;
 	quad->normal = normal;
 	quad->rotate = rotate_quadrilater;
+	quad->compose = compose_quadrilater;
 	quad->get_color_pattern = get_color;
 	return (quad);
 }

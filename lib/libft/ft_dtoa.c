@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 01:25:33 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:05:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*get_integer_part(double n)
 	aux = ft_itoa(n);
 	if (!aux)
 		return (NULL);
-	if (n >= 0.0)
+	if (n <= -1.0 || n >= 0.0)
 		return (aux);
 	integer_part = ft_strjoin("-", aux);
 	free(aux);
