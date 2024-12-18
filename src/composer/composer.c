@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:07:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 18:17:07 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:57:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	compose(t_composer *composer, int create_new_file)
 		throw_sys_error("creating compose thread");
 }
 
-void	init_composer(t_composer *composer, t_render *render,
-			t_jobs *jobs, t_loader *loader)
+void	init_composer(t_composer *composer, t_render *render, t_jobs *jobs,
+			char **filename_ref)
 {
 	pthread_mutex_init(&composer->alive_mutex, NULL);
 	composer->render = render;
 	composer->jobs = jobs;
-	composer->loader = loader;
+	composer->filename_ref = filename_ref;
 }
 
 int	composer_is_alive(t_composer *composer)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 14:33:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:59:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	init_window(t_window *window)
 	init_cursor(&window->cursor);
 	init_loader(&window->loader, &window->jobs, window->mlx, &window->size);
 	init_composer(&window->composer, &window->render,
-		&window->jobs, &window->loader);
+		&window->jobs, &window->filename);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx, &window->jobs);

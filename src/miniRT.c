@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/14 14:00:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:51:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	destroy(t_window *window)
 	free(window->render.scene.ambient_light);
 	free(window->render.scene.camera);
 	free(window->render.pixels);
+	free(window->filename);
 	free_lights(window->render.scene.lights);
 	free_figures(window->render.scene.figures);
 }

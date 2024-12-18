@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:27:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:33:33 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:02:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 typedef struct s_composition
 {
 	t_composer	*composer;
-
 	int			create_new_file;
 }	t_composition;
 
