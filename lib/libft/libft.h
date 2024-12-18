@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/22 01:07:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:38:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 
 char		*ft_ltoa(long n);
+
+char		*ft_ultoa(unsigned long n);
+
+char		*ft_dtoa(double n, int precision);
 
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
@@ -189,5 +193,9 @@ void		ft_jump_spaces(char **str);
 int			ft_matrix_len(char **matrix);
 
 void		write_str(char *dst, char *src, int	*i);
+
+void		push_char(char	**str, char c, void (*f)(char *), char *msg);
+
+void		push_str(char **s1, char *s2, void (*f)(char *), char *msg);
 
 #endif
