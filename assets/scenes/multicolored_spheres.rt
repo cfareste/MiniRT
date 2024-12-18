@@ -1,7 +1,7 @@
 A	0.07 255,255,255
 S name:hey
 # R samples:1000 antialiasing max_depth:8
-R raytracing max_depth:800
+R antialiasing max_depth:8
 
 W width:500 height:800
 
