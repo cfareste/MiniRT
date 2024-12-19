@@ -5,21 +5,7 @@ S name:Checkerboard sky:194,231,255
 A			0.5			255,255,255
 
 # Camera
-# Cylinder cameras:
-	# Diagonal angle
-	# C	0,1,0	1,0,-1	130
-
-	# Up angle
-	# C	2,4,-2	0,-1,0	130
-
-	# Semi up - semi front
 	C	2,2,1	0,-0.5,-1	130
-
-	# Semi up - semi back
-	# C	2,2,-4	0,-0.5,1	130
-
-	# Front
-	# C	2,1,0	0,0,-1	130
 
 # Light
 L	2,3,0		1		255,255,255

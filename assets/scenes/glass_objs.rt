@@ -1,0 +1,23 @@
+S name:Material_test sky:160,200,255
+R max_depth:8 antialiasing
+W width:1545 height:1078
+A   0.8 255,255,255
+
+L 2,2,3   6   10,10,210
+
+# Cameras
+C 0,5,12 0,-0.5,-1 60
+
+# Diffuse
+sp -5,0,0		2			250,250,250 mat:glass:1.52:1
+sp -3,0,0		2			250,250,250 mat:glass:1.52:0.8
+sp -1,0,0		2			250,250,250 mat:glass:1.52:0.6
+sp 1,0,0		2			250,250,250 mat:glass:1.52:0.4
+sp 3,0,0		2			250,250,250 mat:glass:1.52:0.2
+sp 5,0,0		2			250,250,250 mat:glass:1.52:0
+
+# Emissive
+sp 2,10,-4	2	255,255,255 			mat:emissive:8
+
+# Floor
+pl 0,-1,0	0,1,0	200,100,100		cd:250,215,160:236,112,99:1
