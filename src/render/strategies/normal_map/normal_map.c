@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:30:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 15:03:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:13:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	compute_normal_map(t_scene *scene, t_ray *ray, t_color *sample_color)
 	t_hit_record	hit_record;
 	t_color			px_color;
 
-	ft_bzero(&hit_record, sizeof(t_hit_record));
 	check_collisions(scene, ray, &hit_record);
 	get_normal_color(&px_color, &hit_record.normal);
 	if (scene->selection && scene->selection == hit_record.figure)

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 18:40:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:13:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	compute_raytracing(t_render *render, t_ray *ray, t_color *sample_color,
 
 	params.seed = seed;
 	params.render = render;
-	ft_bzero(&hit_record, sizeof(t_hit_record));
 	check_collisions(&render->scene, ray, &hit_record);
 	process_lighting(&params, ray, &hit_record, sample_color);
 }

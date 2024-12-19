@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_selection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 14:33:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:13:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	select_figure(t_render *render, double x_pos, double y_pos)
 	seed = 0;
 	pixel.i = (int) x_pos;
 	pixel.j = (int) y_pos;
-	ft_bzero(&hit_record, sizeof(t_hit_record));
 	set_ray_from_camera(&ray, render, &pixel, &seed);
 	check_collisions(&render->scene, &ray, &hit_record);
 	set_selection_fig(&render->scene, hit_record.figure);

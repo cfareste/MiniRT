@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -Ofast
+CCFLAGS += -Wall -Werror -Wextra -Ofast -g -fsanitize=address
 
 
 #----DIRS----#

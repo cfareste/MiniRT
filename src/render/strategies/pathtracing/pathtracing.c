@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 18:27:42 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:13:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	compute_pathtracing(t_render *render, t_ray *ray, t_color *sample_color,
 	params.ray = ray;
 	while (i < render->max_depth)
 	{
-		ft_bzero(&params.hit_record, sizeof(t_hit_record));
 		ft_bzero(&lighting, sizeof(t_color));
 		check_collisions(&render->scene, ray, &params.hit_record);
 		if (missed_ray(render, &params, &energy, &depth_color)
