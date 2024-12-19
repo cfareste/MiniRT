@@ -51,7 +51,7 @@ endif
 
 #----COMPILER----#
 CC = cc
-CCFLAGS += -Wall -Werror -Wextra -Ofast
+CCFLAGS += -Wall -Werror -Wextra -Ofast# -g -fsanitize=address
 
 
 #----DIRS----#
@@ -409,7 +409,6 @@ SRCS = miniRT.c \
 	box_operations.c \
 	window_controls.c \
 	figure_operations.c \
-	render_helper_update.c \
 	async_flag.c \
 	render_progressive.c \
 	progressive_helper.c \

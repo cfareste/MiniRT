@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 14:33:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:17:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 			change_figure_type(&window->render.scene, selection));
 	else if (keydata->key == MLX_KEY_M)
 		change_figure_material(selection);
-	set_render_update(&window->render, 1);
+	set_async_flag(&window->render.update, 1);
 }
 
 void	select_figure(t_render *render, double x_pos, double y_pos)

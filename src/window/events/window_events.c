@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 14:34:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:17:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	else
 		return ;
 	window->last_scroll = mlx_get_time();
-	set_render_update(&window->render, 1);
+	set_async_flag(&window->render.update, 1);
 }
 
 void	resize_hook(int32_t width, int32_t height, t_window *window)
@@ -79,11 +79,11 @@ void	mouse_hook(mouse_key_t button, action_t action,
 	else if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
 		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
-		set_render_update(&window->render, 1);
+		set_async_flag(&window->render.update, 1);
 	}
 	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
 	{
 		set_selection_fig(&window->render.scene, NULL);
-		set_render_update(&window->render, 1);
+		set_async_flag(&window->render.update, 1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 15:06:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:19:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	control(t_window *window)
 	if (update)
 	{
 		window->last_update = mlx_get_time();
-		set_render_update(&window->render, 1);
+		set_async_flag(&window->render.update, 1);
 	}
 }
 
@@ -64,15 +64,15 @@ static void	main_loop(void *window_)
 			window->resize.size.width, window->resize.size.height);
 		loader_set_resize(window->exporter.loader, 1);
 		render_set_resize(&window->render, 1);
-		set_render_update(&window->render, 1);
+		set_async_flag(&window->render.update, 1);
 	}
 	else if (window->controls.moving
 		&& !get_async_flag(&window->render.blocked)
 		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE)
 		control(window);
-	if (get_render_update(&window->render))
+	if (get_async_flag(&window->render.update))
 	{
-		set_render_update(&window->render, 0);
+		set_async_flag(&window->render.update, 0);
 		render(window);
 	}
 }

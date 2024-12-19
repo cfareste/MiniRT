@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:37:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:19:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	*render_routine(t_window *window)
 		&& get_async_flag(&window->render.cheap))
 		render_cheap(&window->render, &img_size, &seed);
 	if (is_render_alive(&window->render)
-		&& !get_render_update(&window->render))
+		&& !get_async_flag(&window->render.update))
 		render_parts(&window->render, &img_size, &seed, persist);
 	set_render_finish(&window->render, 1);
 	printf("Finished render in %.3f seconds\n\n",
