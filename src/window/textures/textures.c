@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 21:53:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:04:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	load_textures(t_textures *textures, t_jobs *jobs)
 {
 	t_texture	*texture;
 
+	printf("Loading textures...\n");
 	texture = textures->texture;
 	while (texture)
 	{

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 20:39:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:06:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	init_window(t_window *window)
 	pthread_mutex_lock(&window->ready);
 	window->icon = mlx_load_png(ICON_PATH);
 	window->mlx = mlx_init(window->size.width, window->size.height,
-			PROGRAM_NAME, true);
+			ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF),
+			true);
 	window->last_scroll = mlx_get_time();
 	window->last_update = mlx_get_time();
 	if (window->icon)
