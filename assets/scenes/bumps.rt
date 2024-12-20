@@ -2,30 +2,12 @@
 S name:Bumps sky:214,34,255
 R antialiasing
 W width:1300 height:1300
-# SN Bumps
-# SA 1
-# SS 1
-# SSC	194,231,255
-# SRT 1
+
 # Ambient
 A			0.2		255,255,255
 
 # Camera
-# Cylinder cameras:
-	# Diagonal angle
-	# C	0,1,0	1,0,-1	130
-
-	# Up angle
-	# C	2,4,-2	0,-1,0	130
-
-	# Semi up - semi front
 	C	2,2,1	0,-0.5,-1	130
-
-	# Semi up - semi back
-	# C	2,2,-5	0,-0.5,1	130
-
-	# Front
-	# C	2,1,2	0,0,-1	130
 
 # Light
 L	2,4,-2		4		255,255,255
@@ -35,7 +17,7 @@ l	15,7,6		21		255,255,255
 
 # Figures
 # Sphere
-sp	2,1,-2			2		255,0,255				bm:assets/textures/pillow.png:0.78539816339:opengl
+sp	2,1,-2			2		220,50,220				bm:assets/textures/pillow.png:0.78539816339:opengl
 
 # Cylinder
 cy	0,1,-2			0,0,1	1	2	240,234,73		bm:assets/textures/metallic_rack.png:0.78539816339:opengl

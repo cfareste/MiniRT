@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:25:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:38:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "render/strategies/raytracing/helpers/raytracing_helpers.h"
 #include "render/strategies/pathtracing/helpers/pathtracing_helpers.h"
 #include "strategies_shared.h"
+#include "libft.h"
 #include <math.h>
 
 static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
@@ -83,7 +84,9 @@ void	sample_lights(t_sample_lights_params *params, t_hit_record *hit_record,
 void	check_collisions(t_scene *scene, t_ray *ray, t_hit_record *hit_record)
 {
 	t_figure	*figure;
+	t_vector	hit_vector;
 
+	ft_bzero(hit_record, sizeof(t_hit_record));
 	hit_record->distance = FLT_MAX;
 	figure = scene->figures;
 	while (figure)
@@ -96,6 +99,13 @@ void	check_collisions(t_scene *scene, t_ray *ray, t_hit_record *hit_record)
 		return ;
 	translate_point(&ray->origin, &ray->direction, hit_record->distance,
 		&hit_record->point);
+	if (scene->settings.sky_box)
+	{
+		get_vector(&hit_record->point, &scene->camera->position, &hit_vector);
+		if (sqrt(dot(&hit_vector, &hit_vector))
+			>= scene->settings.sky_box->sp_attrs->radius)
+			return (ft_bzero(hit_record, sizeof(t_hit_record)));
+	}
 	hit_record->figure->normal(hit_record->figure, &hit_record->point,
 		&hit_record->normal);
 }

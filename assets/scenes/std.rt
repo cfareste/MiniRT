@@ -1,5 +1,5 @@
 S name:Standard
-R samples:200 max_depth:8 antialiasing	soft_shadows:1
+R max_depth:8 antialiasing	soft_shadows:1
 W width:1600 height:900
 
 A   0.1 255,255,255

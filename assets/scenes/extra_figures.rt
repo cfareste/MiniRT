@@ -1,5 +1,5 @@
 S name:Extra_figures
-R samples:20 max_depth:8 antialiasing
+R max_depth:8 antialiasing
 W width:1600 height:900
 
 A   0.6 255,255,255
@@ -9,7 +9,7 @@ L  0,3,3   5    255,255,255
 C 	0,5,10	 0,-0.5,-1 	60		0.0	1.0
 
 di		-3,0,0			0,0,1		2 			250,250,250			mat:metallic:0
-bo		0,0,0			-1,0,1		2	2	2	250,250,250			mat:metallic:0				bm:assets/textures/metallic_rack.png:0.8
-qu		3,0,0			0,0,1		2	2		250,250,250			mat:metallic:0
+bo		0,0.01,0		1,0,1		1,0,-1		2	2	2	250,250,250			mat:metallic:0				bm:assets/textures/metallic_rack.png:0.8
+qu		3,0,0		1,0,0		0,1,0		2	2		250,250,250			mat:metallic:0
 
 pl 0,-1,0	   0,1,0     250,100,100	mat:diffuse		cd:250,215,160:236,112,99:1

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 21:17:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:44:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	select_figure(t_render *render, double x_pos, double y_pos)
 	seed = 0;
 	pixel.i = (int) x_pos;
 	pixel.j = (int) y_pos;
-	ft_bzero(&hit_record, sizeof(t_hit_record));
 	set_ray_from_camera(&ray, render, &pixel, &seed);
 	check_collisions(&render->scene, &ray, &hit_record);
 	set_selection_fig(&render->scene, hit_record.figure);
