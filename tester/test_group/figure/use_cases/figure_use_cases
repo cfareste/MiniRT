@@ -104,14 +104,14 @@ di			0,0,0	0,0,1	0	255,255,255				;						FAILURE			;		Disk diameter must be a po
 di			0,0,0	0,0,1	-2	255,255,255				;						FAILURE			;		Disk diameter must be a positive value
 
 
-qu		0,0,0	0,0,1	2	3	255,255,255		#		;						SUCCESS
-qu		0,0,0	0,0,1	2	3	255,255,255		#		#;						SUCCESS
-  qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
- 	qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
-	qu		0,0,0	0,0,1	2	3	255,255,255		#		;					SUCCESS
- qu		0,0,0	0,0,1	2	3	255,255,255		#		 	#dsadfad;			SUCCESS
- qu		0,0,0	0,0,1	2	3	255,255,255		#			#qu   ;				SUCCESS
-qu		0,0,0	0,0,1	2	3	255,255,255		#		 sFSSFs S sfsf;			SUCCESS
+qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		;				SUCCESS
+qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		#;				SUCCESS
+  qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		;			SUCCESS
+ 	qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		;			SUCCESS
+	qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		;			SUCCESS
+ qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		 	#dsadfad;	SUCCESS
+ qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#			#qu   ;		SUCCESS
+qu		0,0,0	0,0,1	0,1,0	2	3	255,255,255		#		 sFSSFs S sfsf;	SUCCESS
 qufsjkfsj   ;																	FAILURE			;		Unknown parameter: qufsjkfsj
 quad qu ;																		FAILURE			;		Unknown parameter: quad
 QU;																				FAILURE			;		Unknown parameter: QU
@@ -121,21 +121,24 @@ qu		0,0,0	#0,0,1	2	3	255,255,255		#		;						FAILURE			;		Missing some quadrilate
 qu		0,0,0	0,0,1	#2	3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
 qu		0,0,0	0,0,1	2	#3	255,255,255		#		;						FAILURE			;		Missing some quadrilater parameter
 qu		0,0,0	0,0,1	2	3	#255,255,255		#		;					FAILURE			;		Missing some quadrilater parameter
-qu		0,0,0	0,0,0	2	3	255,255,255				;						FAILURE			;		Orientation vector must point somewhere
-qu		0,0,0	0,0,1	0	3	255,255,255				;						FAILURE			;		Quadrilater width must be a positive value
-qu		0,0,0	0,0,1	-2	3	255,255,255				;						FAILURE			;		Quadrilater width must be a positive value
-qu		0,0,0	0,0,1	2	0	255,255,255				;						FAILURE			;		Quadrilater height must be a positive value
-qu		0,0,0	0,0,1	2	-3	255,255,255				;						FAILURE			;		Quadrilater height must be a positive value
+qu		0,0,0	0,0,1	0,1,0 	2	#3	255,255,255		#		;				FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,1	0,1,0 	2	3	#255,255,255		#		;			FAILURE			;		Missing some quadrilater parameter
+qu		0,0,0	0,0,0	0,1,0	2	3	255,255,255		#		;				FAILURE			;		Orientation vector must point somewhere
+qu		0,0,0	0,0,1	0,0,0	2	3	255,255,255		#		;				FAILURE			;		Orientation vector must point somewhere
+qu		0,0,0	0,0,1	0,1,0	0	3	255,255,255				;				FAILURE			;		Quadrilater width must be a positive value
+qu		0,0,0	0,0,1	0,1,0	-2	3	255,255,255				;				FAILURE			;		Quadrilater width must be a positive value
+qu		0,0,0	0,0,1	0,1,0	2	0	255,255,255				;				FAILURE			;		Quadrilater height must be a positive value
+qu		0,0,0	0,0,1	0,1,0	2	-3	255,255,255				;				FAILURE			;		Quadrilater height must be a positive value
 
 
-bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;					SUCCESS
-bo		0,0,0	0,0,1	2	3	4	255,255,255		#		#;					SUCCESS
-  bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
- 	bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
-	bo		0,0,0	0,0,1	2	3	4	255,255,255		#		;				SUCCESS
- bo		0,0,0	0,0,1	2	3	4	255,255,255		#		 	#dsadfad;		SUCCESS
- bo		0,0,0	0,0,1	2	3	4	255,255,255		#			#bo   ;			SUCCESS
-bo		0,0,0	0,0,1	2	3	4	255,255,255		#		 sFSSFs S sfsf;		SUCCESS
+bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		;			SUCCESS
+bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		#;			SUCCESS
+  bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		;		SUCCESS
+ 	bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		;		SUCCESS
+	bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		;		SUCCESS
+ bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#		 	;		SUCCESS
+ bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#			;		SUCCESS
+bo		0,0,0	0,0,1	0,1,0	2	3	4	255,255,255		#			;		SUCCESS
 bofsjkfsj   ;																	FAILURE			;		Unknown parameter: bofsjkfsj
 box bo ;																		FAILURE			;		Unknown parameter: box
 BO;																				FAILURE			;		Unknown parameter: BO
@@ -146,10 +149,13 @@ bo		0,0,0	0,0,1	#2	3	4	255,255,255		#		;					FAILURE			;		Missing some box param
 bo		0,0,0	0,0,1	2	#3	4	255,255,255		#		;					FAILURE			;		Missing some box parameter
 bo		0,0,0	0,0,1	2	3	#4	255,255,255		#		;					FAILURE			;		Missing some box parameter
 bo		0,0,0	0,0,1	2	3	4	#255,255,255		#		;				FAILURE			;		Missing some box parameter
-bo		0,0,0	0,0,0	2	3	4	255,255,255				;					FAILURE			;		Orientation vector must point somewhere
-bo		0,0,0	0,0,1	0	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
-bo		0,0,0	0,0,1	-2	3	4	255,255,255				;					FAILURE			;		Box width must be a positive value
-bo		0,0,0	0,0,1	2	0	4	255,255,255				;					FAILURE			;		Box height must be a positive value
-bo		0,0,0	0,0,1	2	-3	4	255,255,255				;					FAILURE			;		Box height must be a positive value
-bo		0,0,0	0,0,1	2	3	0	255,255,255				;					FAILURE			;		Box length must be a positive value
-bo		0,0,0	0,0,1	2	3	-4	255,255,255				;					FAILURE			;		Box length must be a positive value
+bo		0,0,0	0,0,1	0,1,0	2	3	#4	255,255,255		#		;			FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,1	0,1,0	2	3	4	#255,255,255		#		;		FAILURE			;		Missing some box parameter
+bo		0,0,0	0,0,0	0,0,1	2	3	4	255,255,255				;			FAILURE			;		Orientation vector must point somewhere
+bo		0,0,0	0,0,1	0,0,0	2	3	4	255,255,255				;			FAILURE			;		Orientation vector must point somewhere
+bo		0,0,0	0,0,1	0,1,0	0	3	4	255,255,255				;			FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	0,1,0	-2	3	4	255,255,255				;			FAILURE			;		Box width must be a positive value
+bo		0,0,0	0,0,1	0,1,0	2	0	4	255,255,255				;			FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	0,1,0	2	-3	4	255,255,255				;			FAILURE			;		Box height must be a positive value
+bo		0,0,0	0,0,1	0,1,0	2	3	0	255,255,255				;			FAILURE			;		Box length must be a positive value
+bo		0,0,0	0,0,1	0,1,0	2	3	-4	255,255,255				;			FAILURE			;		Box length must be a positive value
