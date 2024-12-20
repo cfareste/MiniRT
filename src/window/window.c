@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 14:08:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:17:58 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ void	init_window(t_window *window)
 	pthread_mutex_init(&window->size.mutex, NULL);
 	pthread_mutex_init(&window->render.scene.selection_mutex, NULL);
 	window->icon = mlx_load_png(ICON_PATH);
-	title = safe_ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF, throw_sys_error, "allocating title");
+	title = safe_ft_strjoin(window->render.scene.settings.name,
+			PROGRAM_NAME_SUFF, throw_sys_error, "allocating title");
 	window->mlx = mlx_init(window->size.width, window->size.height,
 			title, true);
 	free(title);

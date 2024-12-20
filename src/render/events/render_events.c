@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 22:04:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:18:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 	}
 }
 
+static void	pause_and_play(t_render *render)
+{
+	if (is_render_alive(render))
+		stop_render(render);
+	else
+	{
+		set_async_flag(&render->persist_prog, 1);
+		set_async_flag(&render->dis_cheap_once, 1);
+		set_async_flag(&render->update, 1);
+	}
+}
+
 void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 {
 	if (keydata->action == MLX_PRESS)
@@ -56,11 +68,7 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 		else if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)
 			set_async_flag(&win->render.update, 1);
 		else if (keydata->key == MLX_KEY_P)
-		{
-			stop_render(&win->render);
-			set_async_flag(&win->render.persist_prog, 1);
-			toggle_async_flag(&win->render.update);
-		}
+			pause_and_play(&win->render);
 		else if (keydata->key == MLX_KEY_N)
 		{
 			add_figure(&win->render.scene, win->render.scene.camera);
