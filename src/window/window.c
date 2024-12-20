@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 21:19:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:08:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,16 @@ static void	set_hooks(t_window *window)
 
 void	init_window(t_window *window)
 {
-	pthread_mutex_init(&window->ready, NULL);
+	char	*title;
+
 	pthread_mutex_init(&window->jobs.mutex, NULL);
 	pthread_mutex_init(&window->size.mutex, NULL);
 	pthread_mutex_init(&window->render.scene.selection_mutex, NULL);
-	pthread_mutex_lock(&window->ready);
 	window->icon = mlx_load_png(ICON_PATH);
+	title = safe_ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF, throw_sys_error, "allocating title");
 	window->mlx = mlx_init(window->size.width, window->size.height,
-			ft_strjoin(window->render.scene.settings.name, PROGRAM_NAME_SUFF),
-			true);
+			title, true);
+	free(title);
 	window->last_scroll = mlx_get_time();
 	window->last_update = mlx_get_time();
 	if (window->icon)
@@ -120,5 +121,4 @@ void	init_window(t_window *window)
 		&window->jobs, &window->loader);
 	init_render(&window->render, window->mlx, &window->jobs);
 	set_hooks(window);
-	pthread_mutex_unlock(&window->ready);
 }
