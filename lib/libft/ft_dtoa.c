@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 16:50:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:25:54 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static double ft_round(double n)
+static double	ft_round(double n)
 {
 	double	decimal_part;
 
