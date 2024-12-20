@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 15:51:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:56:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	*render_part(t_render_part *part)
 		part->i++;
 	}
 	part->i -= part->j != part->pixels_amount;
-	printf("Samples %lu\n", part->i);
+	printf("Part %.2d-> %lu samples\n", part->id, part->i);
 	return (NULL);
 }
 

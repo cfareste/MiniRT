@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 21:07:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:54:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_render
 
 typedef struct s_render_part
 {
+	int				id;
 	pthread_t		thread;
 	t_size			*img_size;
 	t_render		*render;

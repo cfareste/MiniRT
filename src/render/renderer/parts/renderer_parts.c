@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:41:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:54:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_render_part	*fill_parts(t_render *render, t_size *img_size)
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
+		parts[i].id = i + 1;
 		parts[i].render = render;
 		parts[i].img_size = img_size;
 		parts[i].pixels_amount = render->px_amount
