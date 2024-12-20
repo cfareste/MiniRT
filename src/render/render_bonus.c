@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 16:27:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:28:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	*render_prog_part(t_render_part *part)
 	while (is_render_alive(part->render)
 		&& (part->i < part->render->samples || part->render->samples == 0))
 	{
-		part->j = part->j * (part->j != part->pixels_amount);
+		if (part->j == part->pixels_amount)
+			part->j = 0;
 		while (is_render_alive(part->render) && part->j < part->pixels_amount)
 		{
 			px_iter = part->pixels[part->j];
@@ -97,7 +98,8 @@ void	*render_prog_part(t_render_part *part)
 		}
 		part->i++;
 	}
-	part->i -= part->j != part->pixels_amount;
+	if (part->j != part->pixels_amount)
+		part->i--;
 	printf("Part %.2d-> %lu samples\n", part->id, part->i);
 	return (NULL);
 }
