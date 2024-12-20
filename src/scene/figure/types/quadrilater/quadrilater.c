@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:53:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:04:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,13 @@ t_figure	*new_quadrilater(t_point *pos, t_color *color,
 		throw_sys_error("trying to allocate quad attributes");
 	quad->qu_attrs->width = quad_attrs->width;
 	quad->qu_attrs->height = quad_attrs->height;
-	quad->qu_attrs->orientation = quad_attrs->orientation;
-	get_axes(&quad->qu_attrs->orientation, &quad->qu_attrs->right,
-		&quad->qu_attrs->up);
+	quad->qu_attrs->right = quad_attrs->right;
+	quad->qu_attrs->up = quad_attrs->up;
+	normalize(&quad->qu_attrs->right);
+	normalize(&quad->qu_attrs->up);
+	cross(&quad->qu_attrs->right, &quad->qu_attrs->up,
+		&quad->qu_attrs->orientation);
+	normalize(&quad->qu_attrs->orientation);
 	quad->hit = hit;
 	quad->normal = normal;
 	quad->rotate = rotate_quadrilater;

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:13:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:06:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,13 @@ t_figure	*new_box(t_point *pos, t_color *color, t_box_attrs *box_attrs)
 	box->bo_attrs = ft_calloc(1, sizeof(t_box_attrs));
 	if (!box->bo_attrs)
 		throw_sys_error("trying to allocate box attributes");
-	box->bo_attrs->orientation = box_attrs->orientation;
+	box->bo_attrs->faces[0].attrs.right = box_attrs->faces[0].attrs.right;
+	box->bo_attrs->faces[0].attrs.up = box_attrs->faces[0].attrs.up;
+	normalize(&box->bo_attrs->faces[0].attrs.right);
+	normalize(&box->bo_attrs->faces[0].attrs.up);
+	cross(&box->bo_attrs->faces[0].attrs.right,
+		&box->bo_attrs->faces[0].attrs.up, &box->bo_attrs->orientation);
 	normalize(&box->bo_attrs->orientation);
-	get_axes(&box->bo_attrs->orientation, &box->bo_attrs->faces[0].attrs.right,
-		&box->bo_attrs->faces[0].attrs.up);
 	box->bo_attrs->width = box_attrs->width;
 	box->bo_attrs->height = box_attrs->height;
 	box->bo_attrs->length = box_attrs->length;
