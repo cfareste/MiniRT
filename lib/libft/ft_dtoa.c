@@ -6,27 +6,41 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 15:05:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:50:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static double ft_round(double n)
+{
+	double	decimal_part;
+
+	decimal_part = n - (int) n;
+	if (decimal_part >= 0.5)
+		n += 1.0 - decimal_part;
+	else
+		n -= decimal_part;
+	return (n);
+}
+
 static int	get_decimal_value(double n, int precision)
 {
 	int	i;
-	int	exponent;
+	int	decimal_part;
 
 	if (n < 0.0)
 		n *= -1;
 	i = 0;
-	exponent = 1;
-	while (i < precision)
-	{
-		exponent *= 10;
-		i++;
-	}
-	return ((n - (int) n) * exponent);
+	n = n - (int) n;
+	while (i++ < precision)
+		n *= 10;
+	decimal_part = ft_round(n);
+	if (!decimal_part)
+		return (decimal_part);
+	while (decimal_part % 10 == 0)
+		decimal_part /= 10;
+	return (decimal_part);
 }
 
 static char	*get_integer_part(double n)
@@ -34,7 +48,7 @@ static char	*get_integer_part(double n)
 	char	*aux;
 	char	*integer_part;
 
-	aux = ft_itoa(n);
+	aux = ft_ltoa(n);
 	if (!aux)
 		return (NULL);
 	if (n <= -1.0 || n >= 0.0)
@@ -56,7 +70,9 @@ char	*ft_dtoa(double n, int precision)
 	if (!integer_part)
 		return (NULL);
 	decimal_value = get_decimal_value(n, precision);
-	decimal_part = ft_itoa(decimal_value);
+	if (!decimal_value)
+		return (integer_part);
+	decimal_part = ft_ultoa(decimal_value);
 	if (!decimal_part)
 		return (free(integer_part), NULL);
 	aux = ft_strjoin(integer_part, ".");
