@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 15:54:29 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:27:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,22 @@ static void	prepare_parts(t_render *render, t_size *img_size,
 void	render_parts(t_render *render, t_size *img_size,
 			uint32_t *seed, int persist)
 {
-	int	i;
+	int		i;
+	void	*(*part_routine)(t_render_part *);
 
 	prepare_parts(render, img_size, seed, persist);
+	part_routine = render_prog_part;
+	if (get_async_flag(&render->prog_enabled))
+	{
+		part_routine = render_part;
+		printf("Progressive enabled\n");
+		set_async_flag(&render->prog_enabled, 0);
+	}
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
 		if (pthread_create(&render->progress[render->strategy].parts[i].thread,
-				NULL, (void *(*)(void *)) render_part,
+				NULL, (void *(*)(void *))  part_routine,
 			render->progress[render->strategy].parts + i) == -1)
 			throw_sys_error("creating render part thread");
 		i++;

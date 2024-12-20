@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 15:56:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:27:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,33 @@ void	*render_part(t_render_part *part)
 {
 	uint32_t	seed;
 	t_iterators	px_iter;
-	int			prog_enabled;
 
+	printf("Rendering normal\n");
 	get_thread_id(&part->thread, &seed);
-	prog_enabled = get_async_flag(&part->render->prog_enabled);
-	while (is_render_alive(part->render) && (prog_enabled || part->i < 1)
-		&& (part->render->samples == 0 || part->i < part->render->samples))
+	part->j = part->j * (part->j != part->pixels_amount);
+	while (is_render_alive(part->render) && part->j < part->pixels_amount)
+	{
+		render_pixel(part, &px_iter, &seed);
+		part->j++;
+	}
+	return (NULL);
+}
+
+void	*render_prog_part(t_render_part *part)
+{
+	uint32_t	seed;
+	t_iterators	px_iter;
+
+	printf("Rendering prog_part\n");
+	get_thread_id(&part->thread, &seed);
+	while (is_render_alive(part->render)
+		&& (part->i < part->render->samples || part->render->samples == 0))
 	{
 		part->j = part->j * (part->j != part->pixels_amount);
 		while (is_render_alive(part->render) && part->j < part->pixels_amount)
 		{
 			px_iter = part->pixels[part->j];
-			if (prog_enabled)
-				render_prog_pixel(part, &px_iter, &seed);
-			else
-				render_pixel(part, &px_iter, &seed);
+			render_prog_pixel(part, &px_iter, &seed);
 			part->j++;
 		}
 		part->i++;

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 15:54:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:27:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,5 @@ typedef struct s_render_part
 void	*render_part(t_render_part *part);
 
 void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs);
+
+void	*render_prog_part(t_render_part *part);
