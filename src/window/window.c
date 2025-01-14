@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 14:17:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:32:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static void	main_loop(void *window_)
 
 	window = (t_window *) window_;
 	exec_jobs(&window->jobs, window);
-	if (window->resize.last_resize
+	if (window->resize.to_resize
 		&& diff_sizes(&window->size, &window->resize.size))
 	{
-		window->resize.last_resize = 0;
+		window->resize.to_resize = 0;
 		set_size(&window->size,
 			window->resize.size.width, window->resize.size.height);
 		loader_set_resize(window->exporter.loader, 1);
-		render_set_resize(&window->render, 1);
+		set_async_flag(&window->render.resize, 1);
 		set_async_flag(&window->render.update, 1);
 	}
 	else if (window->controls.moving
@@ -120,6 +120,6 @@ void	init_window(t_window *window)
 		&window->jobs, &window->filename);
 	init_exporter(&window->exporter, &window->render,
 		&window->jobs, &window->loader);
-	init_render(&window->render, window->mlx, &window->jobs);
+	init_render(&window->render, window->mlx);
 	set_hooks(window);
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 14:08:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:58:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 typedef struct s_resize
 {
 	t_size	size;
-	double	last_resize;
+	int		to_resize;
 }	t_resize;
 
 typedef struct s_window

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 15:54:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,13 @@ typedef struct s_render
 	t_pixel			*pixels;
 	size_t			px_amount;
 	int				parts_amount;
-	pthread_mutex_t	trigger;
 	unsigned long	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
 	t_strategy		strategy;
 	float			soft_shadows_radius;
-	int				resize;
-	pthread_mutex_t	resize_mutex;
+	t_async_flag	resize;
 	t_async_flag	update;
-	pthread_mutex_t	update_mutex;
-	t_jobs			*jobs;
 	t_async_flag	cheap;
 	t_async_flag	dis_cheap_once;
 	t_async_flag	cheap_strategy;
@@ -68,4 +64,4 @@ typedef struct s_render_part
 
 void	*render_part(t_render_part *part);
 
-void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs);
+void	init_render(t_render *render, mlx_t *mlx);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 15:56:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,10 @@ void	*render_part(t_render_part *part)
 	return (NULL);
 }
 
-void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
+void	init_render(t_render *render, mlx_t *mlx)
 {
 	pthread_mutex_init(&render->mutex, NULL);
 	pthread_mutex_init(&render->image_mutex, NULL);
-	pthread_mutex_init(&render->resize_mutex, NULL);
-	pthread_mutex_init(&render->update_mutex, NULL);
 	init_async_flag(&render->cheap, 1);
 	init_async_flag(&render->cheap_strategy, RAYTRACING);
 	init_async_flag(&render->dis_cheap_once, 0);
@@ -103,8 +101,8 @@ void	init_render(t_render *render, mlx_t *mlx, t_jobs *jobs)
 	init_async_flag(&render->blocked, 0);
 	init_async_flag(&render->persist_prog, 0);
 	init_async_flag(&render->update, 1);
-	render->resize = 1;
-	render->jobs = jobs;
+	init_async_flag(&render->resize, 1);
+	render->parts_amount = 10;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
 	mlx_set_instance_depth(render->image->instances

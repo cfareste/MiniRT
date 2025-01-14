@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 21:22:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:30:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int	main(int argc, char **argv)
 			"usage: ./miniRT assets/scenes/scene.rt\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
 	parse(&window, argv[1]);
-	load_textures(&window.textures, &window.jobs);
-	configure_sky_box(&window.render.scene);
 	init_window(&window);
 	mlx_loop(window.mlx);
 	return (destroy(&window), EXIT_SUCCESS);

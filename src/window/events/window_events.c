@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 21:17:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:57:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 
 void	resize_hook(int32_t width, int32_t height, t_window *window)
 {
-	window->resize.last_resize = 1;
+	window->resize.to_resize = 1;
 	window->resize.size.width = width;
 	window->resize.size.height = height;
 }

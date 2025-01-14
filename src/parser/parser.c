@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:52:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:48:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/parser/scene_parser.h"
 #include "parser/helpers/parser_helper.h"
 #include "render/parser/render_parser.h"
+#include "scene/settings/sky_box/sky_box.h"
 #include <fcntl.h>
 
 static void	check_parsing(t_parser_ctx *ctx, t_window *window)
@@ -92,4 +93,6 @@ void	parse(t_window *window, char *filename)
 	parse_from_fd(&ctx, fd, window);
 	close(fd);
 	check_parsing(&ctx, window);
+	load_textures(&window->textures, &window->jobs);
+	configure_sky_box(&window->render.scene);
 }
