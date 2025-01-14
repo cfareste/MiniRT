@@ -202,7 +202,6 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/thread:\
 			$(SRC)render/utils/random:\
 			$(SRC)render/parser:\
-			$(SRC)render/renders:\
 			$(SRC)render/events:\
 			$(SRC)utils:\
 			$(SRC)utils/size:\
@@ -282,7 +281,6 @@ SRCS =	main_test.c \
 		raytracing_helpers.c \
 		pathtracing_helpers.c \
 		material_helpers.c \
-		renders.c \
 		job_helper.c\
 		figure_parser_helpers.c \
 		disk.c \

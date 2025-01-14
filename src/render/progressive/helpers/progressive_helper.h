@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:59:52 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:00:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:16:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 #include "render/render_bonus.h"
 
-void	clean_progress(t_progressive progress[STRATEGIES_AMOUNT]);
+void	clean_progress(t_rend_prog progress[STRATEGIES_AMOUNT]);
 
-void	restart_progress(t_progressive progress[STRATEGIES_AMOUNT],
+void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
 			t_size *img_size, t_render *render);
 
-void	reset_progress(t_progressive progress[STRATEGIES_AMOUNT],
+void	reset_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
 			t_size *size, int parts_amount);

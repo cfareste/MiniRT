@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 11:58:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:44:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define ICON_PATH "assets/images/icon.png"
 # define KEY_REPEAT_RATE 0.04
 
-# include "MLX42.h"
 # include "render/render_bonus.h"
 # include "utils/size/size.h"
 # include "exporter/exporter_bonus.h"

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 21:19:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:49:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stop_render(t_render *render)
 	render->thread = 0;
 }
 
-void	render_cheap(t_render *render, t_size *img_size, uint32_t *seed)
+void	render_cheap(t_render *render, uint32_t *seed)
 {
 	t_strategy	strategy;
 	t_strategy	cheap_strategy;
@@ -48,7 +48,7 @@ void	render_cheap(t_render *render, t_size *img_size, uint32_t *seed)
 	prog_enabled = get_async_flag(&render->prog_enabled);
 	render->strategy = cheap_strategy;
 	set_async_flag(&render->prog_enabled, 0);
-	render_parts(render, img_size, seed, 0);
+	render_parts(render, seed, 0);
 	set_async_flag(&render->prog_enabled, prog_enabled);
 	render->strategy = strategy;
 }
@@ -72,10 +72,10 @@ void	*render_routine(t_window *window)
 		&img_size);
 	if (is_render_alive(&window->render)
 		&& get_async_flag(&window->render.cheap))
-		render_cheap(&window->render, &img_size, &seed);
+		render_cheap(&window->render, &seed);
 	if (is_render_alive(&window->render)
 		&& !get_async_flag(&window->render.update))
-		render_parts(&window->render, &img_size, &seed, persist);
+		render_parts(&window->render, &seed, persist);
 	set_render_finish(&window->render, 1);
 	printf("Finished render in %.3f seconds\n\n",
 		mlx_get_time() - window->render.start_time);

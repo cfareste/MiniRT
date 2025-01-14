@@ -247,7 +247,6 @@ vpath %.c	$(SRC):\
 			$(SRC)render/utils/thread:\
 			$(SRC)render/utils/random:\
 			$(SRC)render/parser:\
-			$(SRC)render/renders:\
 			$(SRC)render/events:\
 			$(SRC)render/progressive:\
 			$(SRC)render/progressive/helpers:\
@@ -358,7 +357,6 @@ SRCS = miniRT.c \
 	pathtracing_helpers.c \
 	material_helpers.c \
 	load.c \
-	renders.c \
 	loader_helper.c \
 	image_resize_job.c \
 	loader_progress.c \

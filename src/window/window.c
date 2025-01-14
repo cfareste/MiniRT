@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 12:32:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:23:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	close_window(t_window *window)
 {
 	destroy_composer(&window->composer);
 	destroy_exporter(&window->exporter);
-	stop_render(&window->render);
+	destroy_render(&window->render);
 	mlx_close_window(window->mlx);
 }
 

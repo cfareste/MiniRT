@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 12:31:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:42:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ typedef struct s_render
 	int				finished;
 	pthread_mutex_t	mutex;
 	double			start_time;
-	t_pixel			*pixels;
 	size_t			px_amount;
-	int				parts_amount;
 	unsigned long	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
@@ -46,18 +44,21 @@ typedef struct s_render
 	t_async_flag	dis_cheap_once;
 	t_async_flag	cheap_strategy;
 	t_async_flag	prog_enabled;
-	t_progressive	progress[STRATEGIES_AMOUNT];
+	t_rend_prog		progress[STRATEGIES_AMOUNT];
 	t_async_flag	persist_prog;
+	t_pixel			*pixels;
+	t_render_part	*parts;
+	int				parts_amount;
 }	t_render;
 
 typedef struct s_render_part
 {
 	int				id;
 	pthread_t		thread;
-	t_size			*img_size;
 	t_render		*render;
 	t_pixel			*pixels;
 	size_t			pixels_amount;
+	unsigned int	img_height;
 	unsigned long	i;
 	unsigned long	j;
 }	t_render_part;
@@ -65,3 +66,5 @@ typedef struct s_render_part
 void	*render_part(t_render_part *part);
 
 void	init_render(t_render *render, mlx_t *mlx);
+
+void	destroy_render(t_render *render);
