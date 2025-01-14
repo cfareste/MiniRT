@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 18:10:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "renderer_parts.h"
 #include "../../progressive/helpers/progressive_helper.h"
 
-static void	join_parts(t_render_part *parts, int amount, t_rend_prog *progress)
+void	join_parts(t_render_part *parts, int amount, t_rend_prog *progress)
 {
 	int	i;
 
@@ -73,40 +73,33 @@ void	set_parts(t_render *render)
 	}
 }
 
-static void	prepare_parts(t_render *render, uint32_t *seed, int persist)
+// TODO: Prepare this parts at the begining of the routine!
+static void	prepare_parts(t_render *render, uint32_t *seed)
 {
 	t_size	img_size;
 
 	img_size = get_image_size(render->image, &render->image_mutex);
 	if (get_async_flag(&render->resize))
 	{
-		set_async_flag(&render->resize, 0);
 		fill_pixels(img_size, &render->pixels, &render->px_amount);
-		restart_progress(render->progress, &img_size, render);
+		update_parts(render, &img_size);
 	}
-	else if (!persist)
-		reset_progress(render->progress, &img_size, render->parts_amount);
-	else
-		return ;
 	shuffle_pixels(render->pixels, render->px_amount, seed);
 }
 
-void	render_parts(t_render *render, uint32_t *seed, int persist)
+void	render_parts(t_render *render, uint32_t *seed)
 {
 	int	i;
 
-	prepare_parts(render, seed, persist);
+	prepare_parts(render, seed);
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		render->parts[i].i = render->progress[render->strategy].iter->i;
-		render->parts[i].j = render->progress[render->strategy].iter->j;
 		if (pthread_create(&render->parts[i].thread,
 				NULL, (void *(*)(void *)) render_part,
 			render->parts + i) == -1)
 			throw_sys_error("creating render part thread");
 		i++;
 	}
-	join_parts(render->parts, render->parts_amount,
-		render->progress + render->strategy);
+	join_parts(render->parts, render->parts_amount, NULL);
 }
