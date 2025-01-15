@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:59:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 17:43:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:54:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	reset_progress(t_rend_prog progress[STRATEGIES_AMOUNT], t_size *size,
 }
 
 void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
-			t_size *img_size, t_render *render)
+			t_size *img_size)
 {
 	int	i;
 
@@ -51,7 +51,6 @@ void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
 		init_progressive(progress + i, img_size);
 		i++;
 	}
-	update_parts(render, img_size);
 }
 
 void	clean_progress(t_rend_prog progress[STRATEGIES_AMOUNT])

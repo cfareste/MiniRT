@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 13:36:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:58:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stop_render(t_render *render)
 	render->thread = 0;
 }
 
-void	render_cheap(t_render *render, uint32_t *seed)
+static void	render_cheap(t_render *render, uint32_t *seed)
 {
 	t_strategy	cheap_strategy;
 
@@ -44,7 +44,23 @@ void	render_cheap(t_render *render, uint32_t *seed)
 		|| cheap_strategy == render->strategy
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
-	render_parts(render, seed, cheap_strategy);
+	shuffle_pixels(render->pixels, render->px_amount, seed);
+	render_parts(render, cheap_strategy);
+}
+
+static void	prepare(int *persist, t_render *render,
+				uint32_t *seed, t_size *img_size)
+{
+	*img_size = get_image_size(render->image, &render->image_mutex);
+	*persist = get_async_flag(&render->persist_prog);
+	set_async_flag(&render->persist_prog, 0);
+	get_thread_id(&render->thread, seed);
+	*seed *= mlx_get_time();
+	if (get_async_flag(&render->resize))
+	{
+		fill_pixels(*img_size, &render->pixels, &render->px_amount);
+		update_parts(render, img_size);
+	}
 }
 
 void	*render_routine(t_window *window)
@@ -53,14 +69,9 @@ void	*render_routine(t_window *window)
 	uint32_t	seed;
 	int			persist;
 
-	persist = get_async_flag(&window->render.persist_prog);
-	set_async_flag(&window->render.persist_prog, 0);
-	get_thread_id(&window->render.thread, &seed);
-	seed *= mlx_get_time();
+	prepare(&persist, &window->render, &seed, &img_size);
 	if (is_render_finished(&window->render))
 		return (NULL);
-	img_size = get_image_size(window->render.image,
-			&window->render.image_mutex);
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport,
 		&img_size);

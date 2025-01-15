@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 13:16:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:56:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,11 @@ void	set_parts(t_render *render)
 	}
 }
 
-// TODO: Prepare this parts at the begining of the routine!
-static void	prepare_parts(t_render *render, uint32_t *seed)
-{
-	t_size	img_size;
-
-	img_size = get_image_size(render->image, &render->image_mutex);
-	if (get_async_flag(&render->resize))
-	{
-		fill_pixels(img_size, &render->pixels, &render->px_amount);
-		update_parts(render, &img_size);
-	}
-	shuffle_pixels(render->pixels, render->px_amount, seed);
-}
-
-void	render_parts(t_render *render, uint32_t *seed, t_strategy strategy)
+void	render_parts(t_render *render, t_strategy strategy)
 {
 	int	i;
 
 	render->curr_strategy = strategy;
-	prepare_parts(render, seed);
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
