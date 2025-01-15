@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 19:09:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:11:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ static void	*render_prog_part(t_render_part *part)
 {
 	uint32_t	seed;
 	t_iterators	px_iter;
-	int			prog_enabled;
 
 	get_thread_id(&part->thread, &seed);
-	prog_enabled = get_async_flag(&part->render->prog_enabled);
 	while (is_render_alive(part->render)
 		&& (part->render->samples == 0 || part->i < part->render->samples))
 	{
