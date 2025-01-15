@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 14:18:07 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:21:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../renderer/renderer_bonus.h"
 #include "scene/selection/scene_selection.h"
 #include "render/helpers/render_helper_bonus.h"
+#include "scene/selection/helpers/scene_selection_helpers.h"
 #include <stdio.h>
 
 static void	strategy_events(mlx_key_data_t *keydata, t_window *win)

@@ -112,6 +112,7 @@ vpath %.c	$(SRC):\
 			$(SRC)render:\
 			$(SRC)scene:\
 			$(SRC)scene/selection:\
+			$(SRC)scene/selection/helpers:\
 			$(SRC)scene/parser:\
 			$(SRC)scene/camera:\
 			$(SRC)scene/camera/helpers:\
@@ -420,7 +421,8 @@ SRCS = miniRT.c \
 	sphere_composer.c \
 	composition_figures_helpers.c \
 	composition_lights_helpers.c \
-	composition_settings_helpers.c
+	composition_settings_helpers.c \
+	scene_selection_helpers.c
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

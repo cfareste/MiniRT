@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 16:48:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:19:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,35 @@
 #include "scene/camera/events/camera_events.h"
 #include "libft.h"
 #include "render/helpers/render_helper_bonus.h"
+#include "scene/selection/helpers/scene_selection_helpers.h"
 
-t_figure	*get_selection_fig(t_scene *scene)
+void	deselect_figure(t_render *render)
 {
-	t_figure	*selection;
-
-	pthread_mutex_lock(&scene->selection_mutex);
-	selection = scene->selection;
-	pthread_mutex_unlock(&scene->selection_mutex);
-	return (selection);
+	render->strategy = get_async_flag(&render->prev_strategy);
+	set_async_flag(&render->dis_cheap_once, 1);
+	set_selection_fig(&render->scene, NULL);
 }
 
-void	set_selection_fig(t_scene *scene, t_figure *selection)
+void	select_figure(t_render *render, double x_pos, double y_pos)
 {
-	pthread_mutex_lock(&scene->selection_mutex);
-	scene->selection = selection;
-	pthread_mutex_unlock(&scene->selection_mutex);
+	t_ray			ray;
+	uint32_t		seed;
+	t_iterators		pixel;
+	t_hit_record	hit_record;
+
+	if (get_async_flag(&render->blocked))
+		return ;
+	seed = 0;
+	pixel.i = (int) x_pos;
+	pixel.j = (int) y_pos;
+	set_ray_from_camera(&ray, render, &pixel, &seed);
+	check_collisions(&render->scene, &ray, &hit_record);
+	set_selection_fig(&render->scene, hit_record.figure);
+	set_async_flag(&render->prev_strategy, render->strategy);
+	render->strategy = NORMAL_MAP;
 }
 
-void	delete_selection(t_scene *scene, t_figure *selected)
+static void	delete_selection(t_scene *scene, t_figure *selected)
 {
 	t_figure	*figures;
 	t_figure	*prev;
@@ -85,23 +95,6 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 	else if (keydata->key == MLX_KEY_M)
 		change_figure_material(selection);
 	else if (keydata->key == MLX_KEY_ENTER)
-		set_selection_fig(&window->render.scene, NULL);
+		deselect_figure(&window->render);
 	set_async_flag(&window->render.update, 1);
-}
-
-void	select_figure(t_render *render, double x_pos, double y_pos)
-{
-	t_ray			ray;
-	uint32_t		seed;
-	t_iterators		pixel;
-	t_hit_record	hit_record;
-
-	if (get_async_flag(&render->blocked))
-		return ;
-	seed = 0;
-	pixel.i = (int) x_pos;
-	pixel.j = (int) y_pos;
-	set_ray_from_camera(&ray, render, &pixel, &seed);
-	check_collisions(&render->scene, &ray, &hit_record);
-	set_selection_fig(&render->scene, hit_record.figure);
 }

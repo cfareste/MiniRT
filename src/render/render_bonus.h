@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 13:14:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:53:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_render
 	unsigned int	max_depth;
 	t_strategy		strategy;
 	t_strategy		curr_strategy;
+	t_async_flag	prev_strategy;
 	float			soft_shadows_radius;
 	t_async_flag	resize;
 	t_async_flag	update;

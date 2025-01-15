@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 11:57:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:22:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "scene/selection/scene_selection.h"
 #include "composer/events/composer_events.h"
 #include "render/helpers/render_helper_bonus.h"
+#include "scene/selection/helpers/scene_selection_helpers.h"
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)
 {
@@ -74,16 +75,16 @@ void	mouse_hook(mouse_key_t button, action_t action,
 
 	(void) mods;
 	cursor_pos = cursor_get_pos(&window->cursor);
-	if (get_async_flag(&window->render.blocked))
+	if (get_async_flag(&window->render.blocked) || action != MLX_PRESS
+		|| (button != MLX_MOUSE_BUTTON_LEFT
+			&& button != MLX_MOUSE_BUTTON_RIGHT))
 		return ;
 	else if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
 		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
-		set_async_flag(&window->render.update, 1);
+		set_async_flag(&window->render.dis_cheap_once, 1);
 	}
 	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
-	{
-		set_selection_fig(&window->render.scene, NULL);
-		set_async_flag(&window->render.update, 1);
-	}
+		deselect_figure(&window->render);
+	set_async_flag(&window->render.update, 1);
 }
