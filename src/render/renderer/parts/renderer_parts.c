@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 19:13:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:16:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ static void	prepare_parts(t_render *render, uint32_t *seed)
 	shuffle_pixels(render->pixels, render->px_amount, seed);
 }
 
-void	render_parts(t_render *render, uint32_t *seed)
+void	render_parts(t_render *render, uint32_t *seed, t_strategy strategy)
 {
 	int	i;
 
+	render->curr_strategy = strategy;
 	prepare_parts(render, seed);
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)

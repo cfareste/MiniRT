@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 18:52:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:15:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 void	render_strategy(t_render_part *part, t_ray *ray,
 	t_color *sample_color, uint32_t *seed)
 {
-	if (part->render->strategy == RAYTRACING)
+	if (part->render->curr_strategy == RAYTRACING)
 		compute_raytracing(part->render, ray, sample_color, seed);
-	else if (part->render->strategy == PATHTRACING)
+	else if (part->render->curr_strategy == PATHTRACING)
 		compute_pathtracing(part->render, ray, sample_color, seed);
-	else if (part->render->strategy == NORMAL_MAP)
+	else if (part->render->curr_strategy == NORMAL_MAP)
 		compute_normal_map(&part->render->scene, ray, sample_color);
 }
 

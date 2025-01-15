@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 19:05:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:36:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,15 @@ void	stop_render(t_render *render)
 
 void	render_cheap(t_render *render, uint32_t *seed)
 {
-	t_strategy	strategy;
 	t_strategy	cheap_strategy;
-	int			prog_enabled;
 
 	cheap_strategy = get_async_flag(&render->cheap_strategy);
-	if (cheap_strategy == render->strategy
+	if (!is_render_alive(render)
+		|| !get_async_flag(&render->cheap)
+		|| cheap_strategy == render->strategy
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
-	strategy = render->strategy;
-	prog_enabled = get_async_flag(&render->prog_enabled);
-	render->strategy = cheap_strategy;
-	set_async_flag(&render->prog_enabled, 0);
-	render_parts(render, seed);
-	set_async_flag(&render->prog_enabled, prog_enabled);
-	render->strategy = strategy;
+	render_parts(render, seed, cheap_strategy);
 }
 
 void	*render_routine(t_window *window)
@@ -70,12 +64,11 @@ void	*render_routine(t_window *window)
 	set_viewport(window->render.scene.camera,
 		&window->render.scene.camera->viewport,
 		&img_size);
-	if (is_render_alive(&window->render)
-		&& get_async_flag(&window->render.cheap))
-		render_cheap(&window->render, &seed);
+	render_cheap(&window->render, &seed);
 	if (is_render_alive(&window->render)
 		&& !get_async_flag(&window->render.update))
-		render_prog_parts(&window->render, &seed, persist);
+		render_prog_parts(&window->render, &seed, persist,
+			window->render.strategy);
 	set_render_finish(&window->render, 1);
 	printf("Finished render in %.3f seconds\n\n",
 		mlx_get_time() - window->render.start_time);

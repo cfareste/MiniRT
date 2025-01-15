@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:39 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 19:08:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:29:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	reset_progress(t_rend_prog *prog, t_size *size, int parts_amount);
 void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 			uint32_t *seed);
 
-void	render_prog_parts(t_render *render, uint32_t *seed, int persist);
+void	render_prog_parts(t_render *render, uint32_t *seed, int persist,
+			t_strategy strategy);
