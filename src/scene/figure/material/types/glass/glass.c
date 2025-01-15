@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:58:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static char	*compose_glass(t_material *material)
 	join_format_str(&str, "glass:",
 		ft_dtoa(material->glass_attrs->refractive_index, 3), ':');
 	join_format_str(&str, NULL, ft_dtoa(material->glass_attrs->transparency, 3),
-		':');
+		SEP);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:59:17 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*compose_plastic(t_material *material)
 	join_format_str(&str, "plastic:",
 		ft_dtoa(material->plastic_attrs->specular_index, 3), ':');
 	join_format_str(&str, NULL, ft_dtoa(material->plastic_attrs->roughness, 3),
-		':');
+		SEP);
 	return (str);
 }
 

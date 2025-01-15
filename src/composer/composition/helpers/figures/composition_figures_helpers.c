@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:32:27 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:33:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:58:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	fill_bump_map(t_bump_map *bump_map, t_texture *texture,
 	join_format_str(buffer, NULL, ft_dtoa(bump_map->width_dim, 8), ':');
 	if (bump_map->format != OPENGL)
 		push_str(buffer, "directx", throw_sys_error, "pushing texture format");
+	else
+		push_str(buffer, "opengl", throw_sys_error, "pushing texture format");
 }
 
 static int	fill_optional(t_composer *composer, t_figure *figure, char **buffer)

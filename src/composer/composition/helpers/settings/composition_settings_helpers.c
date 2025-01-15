@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:31:54 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 21:45:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	fill_render(t_composer *composer, t_render *render, char **buffer)
 		push_str(buffer, get_strategy_name(render->strategy),
 			throw_sys_error, "pushing strategy string to buffer");
 	if (render->soft_shadows_radius)
-		join_format_str(buffer, SOFT_SHADOWS_TITLE, ft_ultoa(render->samples),
-			' ');
+		join_format_str(buffer, SOFT_SHADOWS_TITLE,
+			ft_dtoa(render->soft_shadows_radius, 3), ' ');
 	push_char(buffer, '\n', throw_sys_error, "joining newline with buffer");
 	return (0);
 }
