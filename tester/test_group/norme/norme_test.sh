@@ -16,7 +16,7 @@ print_norme_result(){
 }
 
 execute_norminette(){
-	norminette $SRC | grep -v "OK!" > $temp_file &
+	norminette $SRC lib/libft | grep -v "OK!" > $temp_file &
 }
 
 test_norme(){

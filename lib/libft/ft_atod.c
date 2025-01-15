@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:58:57 by arcanava          #+#    #+#             */
-/*   Updated: 2024/10/28 19:36:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:00:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int	is_negative(char *str)
 
 static void	sum_decimals(char *str, double *num, int is_negative)
 {
-	long long	mod;
-	int			i;
+	double	mod;
+	int		i;
 
-	i = -1;
+	i = 0;
 	mod = 1;
-	while (str[++i])
+	while (str[i++])
 		mod *= 10;
 	if (is_negative)
 		*num -= (double) ft_atoll(str) / mod;
