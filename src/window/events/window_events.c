@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:22:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:12:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ void	mouse_hook(mouse_key_t button, action_t action,
 			&& button != MLX_MOUSE_BUTTON_RIGHT))
 		return ;
 	else if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-	{
 		select_figure(&window->render, cursor_pos.x, cursor_pos.y);
-		set_async_flag(&window->render.dis_cheap_once, 1);
-	}
 	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
 		deselect_figure(&window->render);
 	set_async_flag(&window->render.update, 1);

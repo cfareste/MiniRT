@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:19:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:12:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@
 
 void	deselect_figure(t_render *render)
 {
-	render->strategy = get_async_flag(&render->prev_strategy);
-	set_async_flag(&render->dis_cheap_once, 1);
+	set_async_flag(&render->cheap_strategy,
+		get_async_flag(&render->prev_strategy));
 	set_selection_fig(&render->scene, NULL);
+	set_async_flag(&render->prog_enabled,
+		get_async_flag(&render->prev_prog_enabled));
 }
 
 void	select_figure(t_render *render, double x_pos, double y_pos)
@@ -42,8 +44,12 @@ void	select_figure(t_render *render, double x_pos, double y_pos)
 	set_ray_from_camera(&ray, render, &pixel, &seed);
 	check_collisions(&render->scene, &ray, &hit_record);
 	set_selection_fig(&render->scene, hit_record.figure);
-	set_async_flag(&render->prev_strategy, render->strategy);
-	render->strategy = NORMAL_MAP;
+	set_async_flag(&render->prev_strategy,
+		get_async_flag(&render->cheap_strategy));
+	set_async_flag(&render->cheap_strategy, NORMAL_MAP);
+	set_async_flag(&render->prev_prog_enabled,
+		get_async_flag(&render->prog_enabled));
+	set_async_flag(&render->prog_enabled, 0);
 }
 
 static void	delete_selection(t_scene *scene, t_figure *selected)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 13:36:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:20:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	render_cheap(t_render *render, uint32_t *seed)
 	cheap_strategy = get_async_flag(&render->cheap_strategy);
 	if (!is_render_alive(render)
 		|| !get_async_flag(&render->cheap)
-		|| cheap_strategy == render->strategy
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
 	render_parts(render, seed, cheap_strategy);
@@ -66,7 +65,8 @@ void	*render_routine(t_window *window)
 		&img_size);
 	render_cheap(&window->render, &seed);
 	if (is_render_alive(&window->render)
-		&& !get_async_flag(&window->render.update))
+		&& !get_async_flag(&window->render.update)
+		&& get_async_flag(&window->render.prog_enabled))
 		render_prog_parts(&window->render, &seed, persist,
 			window->render.strategy);
 	set_render_finish(&window->render, 1);
