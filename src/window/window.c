@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 17:23:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:41:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ static void	control(t_window *window)
 	{
 		update = control_camera(window->render.scene.camera, &window->controls);
 		if (update)
+		{
+			set_viewport(window->render.scene.camera,
+				&window->render.scene.camera->viewport,
+				get_image_size(window->render.image,
+					&window->render.image_mutex));
 			configure_sky_box(&window->render.scene);
+		}
 	}
 	if (update)
 	{

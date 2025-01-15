@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/16 17:49:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:25:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 #include "helpers/camera_helper.h"
 #include <math.h>
 
-void	set_viewport(t_camera *camera, t_viewport *vp, t_size *w_size)
+void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 {
 	float	viewport_fov;
 
 	viewport_fov = tan((camera->fov * 0.5) * M_PI / 180);
 	vp->width = 2.0 * viewport_fov * camera->focus_dist;
-	vp->height = vp->width / (w_size->width / (float) w_size->height);
-	vp->x_unit = vp->width / (float) w_size->width;
-	vp->y_unit = vp->height / (float) w_size->height;
+	vp->height = vp->width / (w_size.width / (float) w_size.height);
+	vp->x_unit = vp->width / (float) w_size.width;
+	vp->y_unit = vp->height / (float) w_size.height;
 	translate_point(&camera->position, &camera->front, camera->focus_dist,
 		&vp->center);
 	vp->start.x = vp->center.x - (vp->width * camera->right.x / 2.0) + \

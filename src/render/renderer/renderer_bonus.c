@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 17:58:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:36:34 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ static void	prepare(int *persist, t_render *render,
 	{
 		fill_pixels(*img_size, &render->pixels, &render->px_amount);
 		update_parts(render, img_size);
+		set_viewport(render->scene.camera,
+			&render->scene.camera->viewport,
+			*img_size);
 	}
 }
 
@@ -72,9 +75,6 @@ void	*render_routine(t_window *window)
 	prepare(&persist, &window->render, &seed, &img_size);
 	if (is_render_finished(&window->render))
 		return (NULL);
-	set_viewport(window->render.scene.camera,
-		&window->render.scene.camera->viewport,
-		&img_size);
 	render_cheap(&window->render, &seed);
 	if (is_render_alive(&window->render)
 		&& !get_async_flag(&window->render.update))
