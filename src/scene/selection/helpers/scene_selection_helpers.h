@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene_selection.h                                  :+:      :+:    :+:   */
+/*   scene_selection_helpers.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 21:18:14 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:17:39 by cfidalgo         ###   ########.fr       */
+/*   Created: 2025/01/15 17:06:28 by cfidalgo          #+#    #+#             */
+/*   Updated: 2025/01/15 17:12:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "scene/scene.h"
 
-#include "window/window.h"
+t_figure	*get_selection_fig(t_scene *scene);
 
-void	deselect_figure(t_render *render);
-
-void	selection_key_events(mlx_key_data_t *keydata, t_window *window);
-
-void	select_figure(t_render *render, double x_pos, double y_pos);
+void		set_selection_fig(t_scene *scene, t_figure *selection);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 18:36:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:45:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	render_cheap(t_render *render, uint32_t *seed)
 	cheap_strategy = get_async_flag(&render->cheap_strategy);
 	if (!is_render_alive(render)
 		|| !get_async_flag(&render->cheap)
-		|| cheap_strategy == render->strategy
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
 	shuffle_pixels(render->pixels, render->px_amount, seed);
@@ -77,7 +76,8 @@ void	*render_routine(t_window *window)
 		return (NULL);
 	render_cheap(&window->render, &seed);
 	if (is_render_alive(&window->render)
-		&& !get_async_flag(&window->render.update))
+		&& !get_async_flag(&window->render.update)
+		&& get_async_flag(&window->render.prog_enabled))
 		render_prog_parts(&window->render, &seed, persist,
 			window->render.strategy);
 	set_render_finish(&window->render, 1);
