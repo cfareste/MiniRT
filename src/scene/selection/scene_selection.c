@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_selection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:11:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	deselect_figure(t_render *render)
 void	select_figure(t_render *render, double x_pos, double y_pos)
 {
 	t_ray			ray;
-	uint32_t		seed;
+	uint64_t		seed;
 	t_iterators		pixel;
 	t_hit_record	hit_record;
 

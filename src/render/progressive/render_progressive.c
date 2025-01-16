@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:58:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:25:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_progressive(t_rend_prog *prog, t_size *size)
 }
 
 void	render_prog_pixel(t_render_part *part, t_iterators *iter,
-	uint32_t *seed)
+	uint64_t *seed)
 {
 	t_ray			ray;
 	t_color			*sample_color;
@@ -49,7 +49,7 @@ void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 
 static void	*render_prog_part(t_render_part *part)
 {
-	uint32_t	seed;
+	uint64_t	seed;
 	t_iterators	px_iter;
 
 	get_thread_id(&part->thread, &seed);
@@ -70,7 +70,7 @@ static void	*render_prog_part(t_render_part *part)
 	return (NULL);
 }
 
-static void	prepare_parts(t_render *render, uint32_t *seed, int persist)
+static void	prepare_parts(t_render *render, uint64_t *seed, int persist)
 {
 	t_size	img_size;
 
@@ -87,7 +87,7 @@ static void	prepare_parts(t_render *render, uint32_t *seed, int persist)
 	shuffle_pixels(render->pixels, render->px_amount, seed);
 }
 
-void	render_prog_parts(t_render *render, uint32_t *seed, int persist,
+void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
 			t_strategy strategy)
 {
 	int	i;

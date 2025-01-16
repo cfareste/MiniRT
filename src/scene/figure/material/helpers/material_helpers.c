@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:36:51 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ float	get_fresnel_effect(float index, float cos)
 }
 
 void	randomize_ray_direction(t_vector *ideal_bounce_direction,
-	t_point *hit_point, uint32_t *seed, t_vector *res)
+	t_point *hit_point, uint64_t *seed, t_vector *res)
 {
 	t_point		ray_direction_point;
 	t_vector	random_direction;
@@ -46,7 +46,7 @@ void	randomize_ray_direction(t_vector *ideal_bounce_direction,
 }
 
 int	diffuse_scatter(t_render *render, t_scatter_params *params,
-	t_color *direct_light, uint32_t *seed)
+	t_color *direct_light, uint64_t *seed)
 {
 	t_vector				new_ray_direction;
 	t_sample_lights_params	sample_lights_params;
@@ -63,7 +63,7 @@ int	diffuse_scatter(t_render *render, t_scatter_params *params,
 }
 
 void	divert_ray_direction(t_vector *ray_dir, float roughness,
-	uint32_t *seed, t_vector *res)
+	uint64_t *seed, t_vector *res)
 {
 	t_vector	rnd_point;
 
@@ -74,7 +74,7 @@ void	divert_ray_direction(t_vector *ray_dir, float roughness,
 }
 
 int	metallic_scatter(t_render *render, t_scatter_params *params,
-	t_color *direct_light, uint32_t *seed)
+	t_color *direct_light, uint64_t *seed)
 {
 	t_metallic_attrs		*metallic_attrs;
 	t_vector				new_ray_direction;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:52:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:13:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,4 @@ void	init_render(t_render *render, mlx_t *mlx);
 void	destroy_render(t_render *render);
 
 void	render_strategy(t_render_part *part, t_ray *ray,
-			t_color *sample_color, uint32_t *seed);
+			t_color *sample_color, uint64_t *seed);

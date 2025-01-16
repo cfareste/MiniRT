@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 18:45:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:25:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stop_render(t_render *render)
 	render->thread = 0;
 }
 
-static void	render_cheap(t_render *render, uint32_t *seed)
+static void	render_cheap(t_render *render, uint64_t *seed)
 {
 	t_strategy	cheap_strategy;
 
@@ -48,7 +48,7 @@ static void	render_cheap(t_render *render, uint32_t *seed)
 }
 
 static void	prepare(int *persist, t_render *render,
-				uint32_t *seed, t_size *img_size)
+				uint64_t *seed, t_size *img_size)
 {
 	*img_size = get_image_size(render->image, &render->image_mutex);
 	*persist = get_async_flag(&render->persist_prog);
@@ -68,7 +68,7 @@ static void	prepare(int *persist, t_render *render,
 void	*render_routine(t_window *window)
 {
 	t_size		img_size;
-	uint32_t	seed;
+	uint64_t	seed;
 	int			persist;
 
 	prepare(&persist, &window->render, &seed, &img_size);

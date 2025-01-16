@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:35:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/05 21:39:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:13:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdint.h>
 #include <math.h>
 
-uint32_t	get_random(uint32_t *seed)
+uint64_t	get_random(uint64_t *seed)
 {
 	*seed ^= *seed << 13;
 	*seed ^= *seed >> 17;
@@ -22,15 +22,15 @@ uint32_t	get_random(uint32_t *seed)
 	return (*seed);
 }
 
-float	get_random_float(uint32_t *seed)
+float	get_random_float(uint64_t *seed)
 {
 	*seed ^= *seed << 13;
 	*seed ^= *seed >> 17;
 	*seed ^= *seed << 5;
-	return (*seed / (float) UINT32_MAX);
+	return (*seed / (float) UINT64_MAX);
 }
 
-void	get_random_point_in_disk(uint32_t *seed, t_vector *vec)
+void	get_random_point_in_disk(uint64_t *seed, t_vector *vec)
 {
 	while (42)
 	{
@@ -42,13 +42,13 @@ void	get_random_point_in_disk(uint32_t *seed, t_vector *vec)
 	}
 }
 
-void	get_random_point_in_square(uint32_t *seed, t_vector *vec)
+void	get_random_point_in_square(uint64_t *seed, t_vector *vec)
 {
 	vec->x = get_random_float(seed) - 0.5;
 	vec->y = get_random_float(seed) - 0.5;
 }
 
-void	get_random_point_in_sphere(uint32_t *seed, t_point *point)
+void	get_random_point_in_sphere(uint64_t *seed, t_point *point)
 {
 	while (42)
 	{

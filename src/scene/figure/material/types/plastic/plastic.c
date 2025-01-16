@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plastic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "scene/figure/material/helpers/material_helpers.h"
 #include <math.h>
 
-static int	is_metallic_scatter(float specular_index, float cos, uint32_t *seed)
+static int	is_metallic_scatter(float specular_index, float cos, uint64_t *seed)
 {
 	float	diffuse_scatter_probability;
 	float	fresnel_effect_probability;
@@ -33,7 +33,7 @@ static int	is_metallic_scatter(float specular_index, float cos, uint32_t *seed)
 }
 
 static int	scatter(t_render *render, t_scatter_params *params,
-	t_color *direct_light, uint32_t *seed)
+	t_color *direct_light, uint64_t *seed)
 {
 	t_metallic_attrs	attrs;
 	t_vector			reversed_ray_dir;

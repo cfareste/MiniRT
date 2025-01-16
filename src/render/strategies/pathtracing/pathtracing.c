@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathtracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 23:13:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	missed_ray(t_render *render, t_scatter_params *params,
 }
 
 void	compute_pathtracing(t_render *render, t_ray *ray, t_color *sample_color,
-	uint32_t *seed)
+	uint64_t *seed)
 {
 	t_scatter_params	params;
 	t_color				energy;

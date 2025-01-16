@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 13:15:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:25:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <math.h>
 
 void	render_strategy(t_render_part *part, t_ray *ray,
-	t_color *sample_color, uint32_t *seed)
+	t_color *sample_color, uint64_t *seed)
 {
 	if (part->render->curr_strategy == RAYTRACING)
 		compute_raytracing(part->render, ray, sample_color, seed);
@@ -36,7 +36,7 @@ void	render_strategy(t_render_part *part, t_ray *ray,
 }
 
 static void	render_pixel(t_render_part *part, t_iterators *iter,
-	uint32_t *seed)
+	uint64_t *seed)
 {
 	t_ray			ray;
 	t_color			pixel_color;
@@ -50,7 +50,7 @@ static void	render_pixel(t_render_part *part, t_iterators *iter,
 
 void	*render_part(t_render_part *part)
 {
-	uint32_t	seed;
+	uint64_t	seed;
 	t_iterators	px_iter;
 
 	get_thread_id(&part->thread, &seed);
@@ -82,6 +82,7 @@ void	init_render(t_render *render, mlx_t *mlx)
 	init_async_flag(&render->persist_prog, 0);
 	init_async_flag(&render->update, 1);
 	init_async_flag(&render->resize, 1);
+	render->thread = 0;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
 	mlx_set_instance_depth(render->image->instances
