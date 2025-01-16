@@ -1,13 +1,13 @@
-A	0.07 255,255,255
+A	1 255,255,255
 S name:hey
 # R antialiasing max_depth:8
-R antialiasing max_depth:8
+R antialiasing max_depth:800
 
 W width:500 height:800
 
 #C	-4,2,-1	3,-.5,-.3	90
 #C	0,0,4	0,0,-1	90
-	C	4,6,4	-0.7,-1,-1	35 2 34
+	C	4,6,4	-0.7,-1,-1	35	2	8.4	
 # C	0,168,80	0,-1,-0.5	4 180
 
 l	0,8,-5	12	255,179,67
