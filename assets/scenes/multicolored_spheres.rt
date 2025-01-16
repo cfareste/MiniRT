@@ -1,4 +1,4 @@
-A	1 255,255,255
+A	0.07 255,255,255
 S name:hey
 # R antialiasing max_depth:8
 R antialiasing max_depth:800
