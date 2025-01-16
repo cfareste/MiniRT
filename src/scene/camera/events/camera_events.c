@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 21:17:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:52:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	camera_key_events(mlx_key_data_t *keydata, t_window *window)
 		camera = camera_dup(&window->render.scene.orig_camera);
 		free(window->render.scene.camera);
 		window->render.scene.camera = camera;
+		// set_async_flag(&window->render.resize, 1);
 		set_async_flag(&window->render.update, 1);
 	}
 }
