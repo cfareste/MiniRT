@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:14:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 21:39:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		render->parts[i].i = render->progress[render->strategy].iter->i;
-		render->parts[i].j = render->progress[render->strategy].iter->j;
+		render->parts[i].i = render->progress[render->strategy].iter[i].i;
+		render->parts[i].j = render->progress[render->strategy].iter[i].j;
 		if (pthread_create(&render->parts[i].thread,
 				NULL, (void *(*)(void *)) render_prog_part,
 			render->parts + i) == -1)
