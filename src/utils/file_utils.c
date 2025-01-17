@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 19:44:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:03:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*get_unique_filename(char *filename, int version)
 
 	if (version > 0)
 	{
-		unique_tok = ft_strdup("(");
+		unique_tok = ft_strdup("_");
 		if (!unique_tok)
 			throw_sys_error("ain't find it funny");
 		token = ft_ltoa(version);
@@ -59,7 +59,6 @@ static char	*get_unique_filename(char *filename, int version)
 			throw_sys_error("error creating unique token");
 		push_str(&unique_tok, token, throw_sys_error, "ain't find it funny");
 		free(token);
-		push_char(&unique_tok, ')', throw_sys_error, "ain't find it funny");
 	}
 	else
 		unique_tok = ft_strdup("");

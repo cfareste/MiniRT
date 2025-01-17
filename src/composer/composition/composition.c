@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 19:57:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:10:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,43 @@
 #include "libft.h"
 #include <fcntl.h>
 
+static int	is_file_id(char *str)
+{
+	int	i;
+
+	if (!str || str[0] == '.')
+		return (0);
+	i = 0;
+	while (str[i] && str[i] != '.')
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static int	open_rt_file(char **filename_ref, int create_new_file)
 {
 	int		fd;
 	char	*new_filename;
-	char	*parenthesis_pos;
+	char	*underline_pos;
 	char	*new_path;
+	char	*extension;
 
 	if (create_new_file == MODIFY_EXISTING)
 	{
 		fd = open(*filename_ref, O_TRUNC | O_WRONLY);
 		return (fd);
 	}
-	parenthesis_pos = ft_strrchr(*filename_ref, '(');
-	if (parenthesis_pos)
-		(*filename_ref)[parenthesis_pos - *filename_ref] = '\0';
-	new_filename = get_file_name(*filename_ref, FILE_EXTENSION);
+	extension = FILE_EXTENSION;
+	underline_pos = ft_strrchr(*filename_ref, '_');
+	if (underline_pos && is_file_id(underline_pos + 1))
+	{
+		(*filename_ref)[underline_pos - *filename_ref] = '\0';
+		extension = "";
+	}
+	new_filename = get_file_name(*filename_ref, extension);
 	new_path = set_file_name(new_filename, FILE_EXTENSION, "assets/scenes/", 0);
 	free(*filename_ref);
 	free(new_filename);
@@ -80,6 +101,8 @@ void	*composition_routine(t_composition *composition)
 	}
 	composer_set_alive(composition->composer, 0);
 	set_async_flag(&composition->composer->render->blocked, 0);
+	printf("Saved file as %s\n", *composition->composer->filename_ref);
 	free(compose_buffer);
-	return (free(composition), NULL);
+	free(composition);
+	return (NULL);
 }

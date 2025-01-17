@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/20 18:25:54 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:11:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,21 @@ static double	ft_round(double n)
 	return (n);
 }
 
-static int	get_decimal_value(double n, int precision)
+static double	get_decimal_value(double n, int precision)
 {
-	int	i;
-	int	decimal_part;
+	int		i;
+	double	decimal_value;
 
 	if (n < 0.0)
 		n *= -1;
 	i = 0;
-	n = n - (int) n;
+	n = n - (unsigned long long) n;
+	if (n >= 0.99999)
+		n -= 0.001;
 	while (i++ < precision)
 		n *= 10;
-	decimal_part = ft_round(n);
-	if (!decimal_part)
-		return (decimal_part);
-	while (decimal_part % 10 == 0)
-		decimal_part /= 10;
-	return (decimal_part);
+	decimal_value = ft_round(n);
+	return (decimal_value);
 }
 
 static char	*get_integer_part(double n)
@@ -58,9 +56,38 @@ static char	*get_integer_part(double n)
 	return (integer_part);
 }
 
+static char	*get_decimal_part(double decimal_value, int precision)
+{
+	int					i;
+	char				*aux;
+	char				*zeros_aux;
+	char				*decimal_part;
+	unsigned long long	parsed_decimal;
+
+	parsed_decimal = decimal_value;
+	i = 0;
+	while (parsed_decimal > 0)
+	{
+		parsed_decimal /= 10;
+		i++;	
+	}
+	zeros_aux = ft_calloc((precision - i) + 1, sizeof(char));
+	if (!zeros_aux)
+		return (NULL);
+	precision -= i;
+	i = 0;
+	while (i < precision)
+		zeros_aux[i++] = '0';
+	aux = ft_ultoa((unsigned long long) decimal_value);
+	if (!aux)
+		return (free(zeros_aux), NULL);
+	decimal_part = ft_strjoin(zeros_aux, aux);
+	return (free(zeros_aux), free(aux), decimal_part);
+}
+
 char	*ft_dtoa(double n, int precision)
 {
-	int		decimal_value;
+	double	decimal_value;
 	char	*integer_part;
 	char	*decimal_part;
 	char	*aux;
@@ -72,7 +99,7 @@ char	*ft_dtoa(double n, int precision)
 	decimal_value = get_decimal_value(n, precision);
 	if (!decimal_value)
 		return (integer_part);
-	decimal_part = ft_ultoa(decimal_value);
+	decimal_part = get_decimal_part(decimal_value, precision);
 	if (!decimal_part)
 		return (free(integer_part), NULL);
 	aux = ft_strjoin(integer_part, ".");
