@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:52:18 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/06 22:52:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:26:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,4 @@
 #include <stdint.h>
 #include <pthread.h>
 
-void	get_thread_id(pthread_t *thread, uint32_t *id);
+void	get_thread_id(pthread_t *thread, uint64_t *id);

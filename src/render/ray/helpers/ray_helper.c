@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 23:04:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <math.h>
 
 static void	set_viewport_coords(t_coordinates *vp_coords, t_render *render,
-				t_iterators *iterators, uint32_t *seed)
+				t_iterators *iterators, uint64_t *seed)
 {
 	t_vector	offset;
 	t_camera	*camera;
@@ -47,7 +47,7 @@ static void	set_viewport_coords(t_coordinates *vp_coords, t_render *render,
 }
 
 static void	randomize_ray_origin(t_point *origin, t_vector *defocus_right,
-				t_vector *defocus_up, uint32_t *seed)
+				t_vector *defocus_up, uint64_t *seed)
 {
 	t_vector	offset;
 
@@ -58,7 +58,7 @@ static void	randomize_ray_origin(t_point *origin, t_vector *defocus_right,
 }
 
 void	set_ray_from_camera(t_ray *ray, t_render *render,
-			t_iterators *iterators, uint32_t *seed)
+			t_iterators *iterators, uint64_t *seed)
 {
 	t_coordinates	vp_coords;
 	t_camera		*camera;

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/14 15:57:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:13:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-void	shuffle_pixels(t_pixel *array, size_t n, uint32_t *seed)
+void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)
 {
 	size_t		i;
 	size_t		j;
@@ -28,7 +28,7 @@ void	shuffle_pixels(t_pixel *array, size_t n, uint32_t *seed)
 	i = 0;
 	while (i < n - 1)
 	{
-		j = i + get_random(seed) / (UINT32_MAX / (n - i) + 1);
+		j = i + get_random(seed) / (UINT64_MAX / (n - i) + 1);
 		aux = array[j];
 		array[j] = array[i];
 		array[i] = aux;

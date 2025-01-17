@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 15:48:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:15:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ typedef struct s_material
 		t_emissive_attrs	*emissive_attrs;
 	};
 	int				(*scatter)(t_render *render, t_scatter_params *params,
-			t_color *direct_light, uint32_t *seed);
+			t_color *direct_light, uint64_t *seed);
 	char			*(*compose)(t_material *material);
 }	t_material;

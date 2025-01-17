@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   glass.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 21:58:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:38:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <math.h>
 
 static void	refractive_scatter(t_scatter_params *params, float cos,
-	float index_ratio, uint32_t *seed)
+	float index_ratio, uint64_t *seed)
 {
 	t_vector	perpendicular;
 	t_vector	parallel;
@@ -44,7 +44,7 @@ static void	refractive_scatter(t_scatter_params *params, float cos,
 	set_ray(params->ray, &params->hit_record.point, &new_ray_direction);
 }
 
-static int	is_metallic_scatter(float cos, float index, uint32_t *seed)
+static int	is_metallic_scatter(float cos, float index, uint64_t *seed)
 {
 	float	sin;
 	float	refractive_scatter_probability;
@@ -58,7 +58,7 @@ static int	is_metallic_scatter(float cos, float index, uint32_t *seed)
 }
 
 static int	scatter(t_render *render, t_scatter_params *params,
-	t_color *direct_light, uint32_t *seed)
+	t_color *direct_light, uint64_t *seed)
 {
 	int					is_front_face;
 	float				cos;

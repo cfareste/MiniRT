@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategies_shared.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:55:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/29 17:24:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:11:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_sample_lights_params
 {
 	t_render	*render;
-	uint32_t	*seed;
+	uint64_t	*seed;
 }	t_sample_lights_params;
 
 void	sample_lights(t_sample_lights_params *params, t_hit_record *hit_record,

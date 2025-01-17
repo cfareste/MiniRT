@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   metallic.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:08:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "scene/figure/material/helpers/material_helpers.h"
 
 static int	scatter(t_render *render, t_scatter_params *params,
-	t_color *direct_light, uint32_t *seed)
+	t_color *direct_light, uint64_t *seed)
 {
 	params->attrs = params->hit_record.figure->material.metallic_attrs;
 	return (metallic_scatter(render, params, direct_light, seed));

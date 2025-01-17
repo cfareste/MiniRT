@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategies_shared.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/19 23:38:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:06:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static void	compute_direct_lighting(t_render *render,
 	distance = sqrt(dot(&point_to_light, &point_to_light));
 	direct_lighting->diffuse.distance = distance;
 	direct_lighting->specular.distance = distance;
-	if (render->strategy == PATHTRACING)
+	if (render->curr_strategy == PATHTRACING)
 		pt_compute_direct_light_comps(direct_lighting, light, color);
-	else if (render->strategy == RAYTRACING)
+	else if (render->curr_strategy == RAYTRACING)
 		rt_compute_direct_light_comps(direct_lighting, light, color);
 }
 

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:24:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 15:23:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:44:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,4 @@ void	set_async_flag(t_async_flag *flag, int value);
 
 int		get_async_flag(t_async_flag *flag);
 
-void	toggle_async_flag(t_async_flag *flag);
+int		toggle_async_flag(t_async_flag *flag);
