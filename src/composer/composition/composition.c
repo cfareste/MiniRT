@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 13:10:22 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:11:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ static int	fill_buffer(t_composer *composer, char **buffer)
 	return (ft_strlen(*buffer));
 }
 
+static void	write_file(int fd, t_composer *composer, char *buff, int buff_len)
+{
+	write(fd, buff, buff_len);
+	close(fd);
+	composer->render->scene.orig_camera = *composer->render->scene.camera;
+	printf("Saved file as %s\n", *composer->filename_ref);
+}
+
 void	*composition_routine(t_composition *composition)
 {
 	char	*compose_buffer;
@@ -92,16 +100,14 @@ void	*composition_routine(t_composition *composition)
 	{
 		fd = open_rt_file(composition->composer->filename_ref,
 				composition->create_new_file);
-		if (fd == -1)
-			throw_sys_error("opening composing file");
-		write(fd, compose_buffer, buffer_length);
-		close(fd);
-		composition->composer->render->scene.orig_camera
-			= *composition->composer->render->scene.camera;
+		if (fd != -1)
+			write_file(fd, composition->composer, compose_buffer,
+				buffer_length);
+		else
+			ft_printff(STDERR_FILENO, "Error\nFailed to save file\n");
 	}
 	composer_set_alive(composition->composer, 0);
 	set_async_flag(&composition->composer->render->blocked, 0);
-	printf("Saved file as %s\n", *composition->composer->filename_ref);
 	free(compose_buffer);
 	free(composition);
 	return (NULL);

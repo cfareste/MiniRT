@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 01:12:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:17:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 	return (iter[1]);
 }
 
+static void	write_image(int fd, t_export *export, char *buff, int buff_len)
+{
+	ft_printff(fd,
+		"P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
+		export->image->size.width, export->image->size.height, 255);
+	write(fd, buff, buff_len);
+	close(fd);
+}
+
 static void	file_from_export(char *path, t_export *export)
 {
 	int		px_amount;
@@ -76,13 +85,10 @@ static void	file_from_export(char *path, t_export *export)
 	if (is_exporter_active(export->exporter))
 	{
 		fd = open(path, O_CREAT | O_WRONLY, 0644);
-		if (fd == -1)
-			throw_sys_error(path);
-		ft_printff(fd,
-			"P3\n# This is an amethyst miniRT screenshot!\n%d %d\n%d\n",
-			export->image->size.width, export->image->size.height, 255);
-		write(fd, file_buff, j);
-		close(fd);
+		if (fd != -1)
+			write_image(fd, export, file_buff, j);
+		else
+			ft_printff(STDERR_FILENO, "Error\nFailed to export image\n");
 	}
 	free(file_buff);
 	destroy_image(export->image);
