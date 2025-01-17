@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 20:12:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:50:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,19 @@
 
 static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 {
-	if (keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_4)
+	t_strategy	new;
+	new = keydata->key - MLX_KEY_1;
+	if (new != win->render.strategy
+		&& keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_3)
 	{
-		if (keydata->key == MLX_KEY_1)
-		{
-			win->render.strategy = RAYTRACING;
-			set_async_flag(&win->render.cheap_strategy, RAYTRACING);
-		}
-		else if (keydata->key == MLX_KEY_2)
-			win->render.strategy = PATHTRACING;
-		else if (keydata->key == MLX_KEY_3)
-		{
-			win->render.strategy = NORMAL_MAP;
-			set_async_flag(&win->render.cheap_strategy, NORMAL_MAP);
-		}
-		else if (keydata->key == MLX_KEY_4)
-			return (toggle_async_flag(&win->render.cheap));
-		else
-			return ;
+		set_async_flag(&win->render.cheap_strategy, win->render.strategy);
+		win->render.strategy = new;
 		set_async_flag(&win->render.dis_cheap_once, 1);
 		set_async_flag(&win->render.persist_prog, 1);
 		set_async_flag(&win->render.update, 1);
 	}
+	else if (keydata->key == MLX_KEY_4)
+		toggle_async_flag(&win->render.cheap);
 }
 
 static void	pause_and_play(t_render *render)
