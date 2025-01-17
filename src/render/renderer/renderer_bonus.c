@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:25:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:13:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	prepare(int *persist, t_render *render,
 {
 	*img_size = get_image_size(render->image, &render->image_mutex);
 	*persist = get_async_flag(&render->persist_prog);
+	if (!*persist)
+		set_async_flag(&render->reset, 1);
 	set_async_flag(&render->persist_prog, 0);
 	get_thread_id(&render->thread, seed);
 	*seed *= mlx_get_time();

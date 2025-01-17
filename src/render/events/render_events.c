@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 13:13:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:54:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 	t_strategy	new;
 
 	new = keydata->key - MLX_KEY_1;
-	if (new != win->render.strategy
-		&& keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_3)
+	if (new >= 0 && new < STRATEGIES_AMOUNT)
 	{
-		set_async_flag(&win->render.cheap_strategy, win->render.strategy);
-		win->render.strategy = new;
-		set_async_flag(&win->render.dis_cheap_once, 1);
+		if (get_async_flag(&win->render.prog_enabled))
+		{
+			set_async_flag(&win->render.cheap_strategy, win->render.strategy);
+			set_async_flag(&win->render.dis_cheap_once, 1);
+			win->render.strategy = new;
+		}
+		else
+			set_async_flag(&win->render.cheap_strategy, new);
 		set_async_flag(&win->render.persist_prog, 1);
 		set_async_flag(&win->render.update, 1);
 	}
@@ -37,10 +41,8 @@ static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 			set_async_flag(&win->render.prog_enabled, 1);
 	}
 	else if (keydata->key == MLX_KEY_5)
-	{
 		if (!toggle_async_flag(&win->render.prog_enabled))
 			set_async_flag(&win->render.cheap, 1);
-	}
 }
 
 static void	pause_and_play(t_render *render)

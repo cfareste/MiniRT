@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/16 18:11:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:06:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "libft.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
+#include "utils/utils_bonus.h"
 
 void	deselect_figure(t_render *render)
 {
@@ -89,7 +90,8 @@ void	selection_key_events(mlx_key_data_t *keydata, t_window *window)
 		return ;
 	stop_render(&window->render);
 	if (keydata->key == MLX_KEY_F)
-		focus_camera_to_selection(window->render.scene.camera, selection);
+		focus_camera_to_selection(window->render.scene.camera, selection,
+			get_image_size(window->render.image, &window->render.image_mutex));
 	else if (keydata->key == MLX_KEY_BACKSPACE)
 	{
 		delete_selection(&window->render.scene, selection);

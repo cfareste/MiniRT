@@ -6,18 +6,20 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/16 18:27:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:09:37 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "camera_events.h"
+#include "utils/utils_bonus.h"
 #include "../helpers/camera_helper.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
 #include "libft.h"
 
-void	focus_camera_to_selection(t_camera *camera, t_figure *selection)
+void	focus_camera_to_selection(t_camera *camera, t_figure *selection,
+			t_size img_size)
 {
 	t_point	pos;
 
@@ -27,6 +29,7 @@ void	focus_camera_to_selection(t_camera *camera, t_figure *selection)
 			selection->co_attrs->height / 2.0, &pos);
 	get_vector(&pos, &camera->position, &camera->front);
 	get_axes(&camera->front, &camera->right, &camera->up);
+	set_viewport(camera, &camera->viewport, img_size);
 }
 
 void	camera_key_events(mlx_key_data_t *keydata, t_window *window)
@@ -42,7 +45,8 @@ void	camera_key_events(mlx_key_data_t *keydata, t_window *window)
 		camera = camera_dup(&window->render.scene.orig_camera);
 		free(window->render.scene.camera);
 		window->render.scene.camera = camera;
-		set_async_flag(&window->render.resize, 1);
+		set_viewport(camera, &camera->viewport,
+			get_image_size(window->render.image, &window->render.image_mutex));
 		set_async_flag(&window->render.update, 1);
 	}
 }
