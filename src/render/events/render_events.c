@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 20:50:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:12:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 {
 	t_strategy	new;
+
 	new = keydata->key - MLX_KEY_1;
 	if (new != win->render.strategy
 		&& keydata->key >= MLX_KEY_1 && keydata->key <= MLX_KEY_3)
