@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 18:57:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:14:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ static void	prepare_parts(t_render *render, uint64_t *seed, int persist)
 		restart_progress(render->progress, &img_size);
 		shuffle_pixels(render->pixels, render->px_amount, seed);
 	}
-	else if (!persist || get_async_flag(&render->reset))
+	else if (!persist)
 	{
-		set_async_flag(&render->reset, 0);
 		reset_progress(render->progress, &img_size, render->parts_amount);
 		shuffle_pixels(render->pixels, render->px_amount, seed);
 	}

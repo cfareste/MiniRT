@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/17 18:56:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 20:14:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	init_render(t_render *render, mlx_t *mlx)
 	init_async_flag(&render->blocked, 0);
 	init_async_flag(&render->persist_prog, 0);
 	init_async_flag(&render->update, 1);
-	init_async_flag(&render->reset, 0);
 	init_async_flag(&render->resize, 1);
 	render->thread = 0;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
