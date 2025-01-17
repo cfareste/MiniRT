@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 18:11:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:25:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	*get_decimal_part(double decimal_value, int precision)
 	while (parsed_decimal > 0)
 	{
 		parsed_decimal /= 10;
-		i++;	
+		i++;
 	}
 	zeros_aux = ft_calloc((precision - i) + 1, sizeof(char));
 	if (!zeros_aux)
