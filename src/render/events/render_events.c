@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 12:12:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:13:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,15 @@ static void	strategy_events(mlx_key_data_t *keydata, t_window *win)
 		set_async_flag(&win->render.update, 1);
 	}
 	else if (keydata->key == MLX_KEY_4)
-		toggle_async_flag(&win->render.cheap);
+	{
+		if (!toggle_async_flag(&win->render.cheap))
+			set_async_flag(&win->render.prog_enabled, 1);
+	}
+	else if (keydata->key == MLX_KEY_5)
+	{
+		if (!toggle_async_flag(&win->render.prog_enabled))
+			set_async_flag(&win->render.cheap, 1);
+	}
 }
 
 static void	pause_and_play(t_render *render)

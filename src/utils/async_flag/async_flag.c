@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 14:25:35 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/14 14:41:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:45:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ int	get_async_flag(t_async_flag *flag)
 	return (value);
 }
 
-void	toggle_async_flag(t_async_flag *flag)
+int	toggle_async_flag(t_async_flag *flag)
 {
+	int	val;
+
 	pthread_mutex_lock(&flag->mutex);
 	flag->value = !flag->value;
+	val = flag->value;
 	pthread_mutex_unlock(&flag->mutex);
+	return (val);
 }
