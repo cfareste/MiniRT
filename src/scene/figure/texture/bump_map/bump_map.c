@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 02:05:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:13:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ void	check_file(t_parser_ctx *ctx, char *path)
 	if (correct_file_extension(path, ".png")
 		|| correct_file_extension(path, ".xpm42"))
 	{
-		if (access(path, F_OK | R_OK))
+		if (access(path, F_OK))
 			throw_parse_err(ctx, safe_ft_strjoin(err_pref,
-					strerror(errno), throw_sys_error,
+					strerror(ENOENT), throw_sys_error,
 					"Dynamic memory broken! texture.c:42"));
+		if (access(path, R_OK))
+			throw_parse_err(ctx, safe_ft_strjoin(err_pref,
+					strerror(EACCES), throw_sys_error,
+					"Dynamic memory broken! texture.c:42"));	
 	}
 	else
 		throw_parse_err(ctx,
