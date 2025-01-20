@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/17 20:15:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:52:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ void	stop_render(t_render *render)
 
 static void	render_cheap(t_render *render, uint64_t *seed)
 {
-	t_strategy	cheap_strategy;
-
-	cheap_strategy = get_async_flag(&render->cheap_strategy);
 	if (!is_render_alive(render)
 		|| !get_async_flag(&render->cheap)
 		|| get_async_flag(&render->dis_cheap_once))
 		return (set_async_flag(&render->dis_cheap_once, 0));
 	shuffle_pixels(render->pixels, render->px_amount, seed);
-	render_parts(render, cheap_strategy);
+	render_parts(render, get_async_flag(&render->cheap_strategy));
 }
 
 static void	prepare(int *persist, t_render *render,

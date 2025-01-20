@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   settings_helpers.h                                 :+:      :+:    :+:   */
+/*   composition_settings_helpers.h                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:30:38 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:46:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #define SAMPLES_TITLE "samples:"
 #define MAX_DEPTH_TITLE "max_depth:"
+#define ANTIALIASING_TITLE "antialiasing:"
 #define SOFT_SHADOWS_TITLE "soft_shadows:"
 #define SCENE_NAME_TITLE "name:"
 #define SKY_TITLE "sky:"
