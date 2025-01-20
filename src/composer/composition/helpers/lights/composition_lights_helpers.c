@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:35:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 17:38:07 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:01:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	fill_lights(t_composer *composer, t_light *lights, char **buffer)
 	{
 		push_char(buffer, light->type, throw_sys_error, "pushing light type");
 		push_char(buffer, SEP, throw_sys_error, "pushing whitespace");
-		join_format_str(buffer, NULL, coordtoa(&light->position), SEP);
+		join_format_str(buffer, NULL, coordtoa(&light->position, 3), SEP);
 		join_format_str(buffer, NULL, ft_dtoa(light->brightness, 2), SEP);
 		join_format_str(buffer, NULL, colortoa(&light->color), '\n');
 		light = light->next;

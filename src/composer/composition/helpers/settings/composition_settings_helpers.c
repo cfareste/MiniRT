@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 11:56:38 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:01:57 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	fill_camera(t_composer *composer, t_camera *camera, char **buffer)
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "C ", throw_sys_error, "pushing camera setting string");
-	join_format_str(buffer, NULL, coordtoa(&camera->position), SEP);
-	join_format_str(buffer, NULL, coordtoa(&camera->front), SEP);
+	join_format_str(buffer, NULL, coordtoa(&camera->position, 3), SEP);
+	join_format_str(buffer, NULL, coordtoa(&camera->front, 3), SEP);
 	join_format_str(buffer, NULL, ft_itoa(camera->fov), SEP);
 	if (camera->defocus != 0.0)
 		join_format_str(buffer, NULL, ft_dtoa(camera->defocus, 3), SEP);

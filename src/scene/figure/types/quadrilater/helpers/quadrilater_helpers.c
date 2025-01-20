@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 13:08:52 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:36:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 #include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
 #include <math.h>
+
+static void	round_point(t_point *point, int precision)
+{
+	float	factor;
+
+	factor = pow(10, precision);
+	while (precision > 2)
+	{
+		point->x = round(point->x * factor) / factor;
+		point->y = round(point->y * factor) / factor;
+		point->z = round(point->z * factor) / factor;
+		precision--;
+	}
+}
 
 float	get_quad_rotated_point(t_vector *quad_normal, t_vector *quad_right,
 	t_point *rotated_point)
@@ -30,9 +44,7 @@ float	get_quad_rotated_point(t_vector *quad_normal, t_vector *quad_right,
 		rotate_by_world_axis(BACK, angle, rotated_point);
 	else if (right_rotated.y < 0.0)
 		rotate_by_world_axis(BACK, angle * -1, rotated_point);
-	rotated_point->x = round(rotated_point->x * 10000.0) / 10000.0;
-	rotated_point->y = round(rotated_point->y * 10000.0) / 10000.0;
-	rotated_point->z = round(rotated_point->z * 10000.0) / 10000.0;
+	round_point(rotated_point, 4);
 	return (angle);
 }
 

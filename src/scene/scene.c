@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:43:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:41:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_figure(t_scene *scene, t_camera *camera)
 
 	translate_point(&camera->position, &camera->front, camera->focus_dist * 4,
 		&position);
-	new_color(1.0, 1.0, 1.0, &color);
+	new_color(0.86, 0.86, 0.86, &color);
 	sp_attrs.radius = 1.0;
 	new_figure = new_sphere(&position, &color, &sp_attrs);
 	new_figure->next = scene->figures;

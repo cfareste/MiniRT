@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:21:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:59:41 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:01:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ char	*colortoa(t_color *color)
 	return (color_str);
 }
 
-char	*coordtoa(t_coordinates *coords)
+char	*coordtoa(t_coordinates *coords, int precision)
 {
 	char	*x_str;
 	char	*y_str;
 	char	*z_str;
 	char	*coords_str;
 
-	x_str = ft_dtoa(coords->x, 3);
-	y_str = ft_dtoa(coords->y, 3);
-	z_str = ft_dtoa(coords->z, 3);
+	x_str = ft_dtoa(coords->x, precision);
+	y_str = ft_dtoa(coords->y, precision);
+	z_str = ft_dtoa(coords->z, precision);
 	if (!x_str || !y_str || !z_str)
 		throw_sys_error("allocating coordinates components strings");
 	coords_str = NULL;
