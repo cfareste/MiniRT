@@ -218,7 +218,6 @@ vpath %.c	$(SRC):\
 
 #----SHARED----#
 SRCS =	main_test.c \
-		errors.c \
 		file_utils.c \
 		light.c \
 		color.c \
@@ -325,7 +324,8 @@ SRCS =	main_test.c \
 		plane_composer.c \
 		quadrilater_composer.c \
 		sphere_composer.c \
-		string_utils.c
+		string_utils.c \
+		
 
 OBJS = $(SRCS:%.c=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)

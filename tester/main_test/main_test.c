@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:47:43 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 18:47:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:56:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 #include "window/loader/loader_bonus.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
 #include "utils/utils_bonus.h"
+
+void	throw_sys_error(char *msg)
+{
+	perror(msg);
+	exit(EXIT_FAILURE);
+}
 
 void	destroy(t_window *window)
 {

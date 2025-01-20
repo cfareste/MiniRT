@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 19:40:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:56:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 #include "window/jobs/job/helpers/job_helper.h"
 #include <string.h>
 #include <errno.h>
-
-void	throw_error(char *msg)
-{
-	ft_printff(STDERR_FILENO, "%s: %s\n",
-		PROGRAM_NAME, msg);
-	exit(EXIT_FAILURE);
-}
 
 void	throw_sys_error(char *msg)
 {
