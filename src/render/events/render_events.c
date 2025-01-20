@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 13:58:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:16:03 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ static void	pause_and_play(t_render *render)
 	else
 	{
 		set_async_flag(&render->persist_prog, 1);
-		set_async_flag(&render->dis_cheap_once, 1);
+		if (!get_async_flag(&render->prog_enabled))
+			set_async_flag(&render->dis_cheap_once, 1);
 		set_async_flag(&render->update, 1);
 	}
 }
