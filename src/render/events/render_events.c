@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:23:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:29:24 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,10 @@ void	render_key_events(mlx_key_data_t *keydata, t_window *win)
 		return ;
 	else if (keydata->key == MLX_KEY_R || keydata->key == MLX_KEY_F5)
 	{
-		set_async_flag(&win->render.dis_cheap_once, 1);
+		if (get_async_flag(&win->render.prog_enabled))
+			set_async_flag(&win->render.dis_cheap_once, 1);
+		set_async_flag(&win->render.resize, 1);
+		set_async_flag(&win->render.persist_prog, 0);
 		set_async_flag(&win->render.update, 1);
 	}
 	else if (keydata->key == MLX_KEY_P)
