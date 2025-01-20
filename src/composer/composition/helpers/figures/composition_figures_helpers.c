@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:32:27 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 21:58:23 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:01:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	fill_figures(t_composer *composer, t_figure *figures, char **buffer)
 		if (ft_strcmp(figure->type, CONE_ID) == EQUAL_STRINGS)
 			translate_point(&center, &figure->co_attrs->orientation,
 				figure->co_attrs->height / 2.0, &center);
-		join_format_str(buffer, NULL, coordtoa(&center), SEP);
+		join_format_str(buffer, NULL, coordtoa(&center, 3), SEP);
 		join_format_str(buffer, NULL, figure->compose(figure), '\0');
 		join_format_str(buffer, NULL, colortoa(&figure->color), SEP);
 		if (fill_optional(composer, figure, buffer))

@@ -1,5 +1,5 @@
 S name:SkyBox sky_box:assets/textures/noche.png
-R samples:20 max_depth:8 antialiasing	soft_shadows:1
+R samples:20 max_depth:8
 W width:1600 height:900
 
 A   1 255,255,255

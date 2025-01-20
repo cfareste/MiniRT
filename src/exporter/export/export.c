@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:41:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:10:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	file_from_export(char *path, t_export *export)
 		if (fd != -1)
 			write_image(fd, export, file_buff, j);
 		else
-			ft_printff(STDERR_FILENO, "Error\nFailed to export image\n");
+			perror("Error\nFailed to export file");
 	}
 	free(file_buff);
 	destroy_image(export->image);

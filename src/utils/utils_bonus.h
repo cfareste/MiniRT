@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 20:48:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:00:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ char	*set_file_name(char *filename, char *extension,
 
 char	*colortoa(t_color *color);
 
-char	*coordtoa(t_coordinates *coords);
+char	*coordtoa(t_coordinates *coords, int precision);
 
 void	join_format_str(char **buffer, char *prefix, char *str, char separator);

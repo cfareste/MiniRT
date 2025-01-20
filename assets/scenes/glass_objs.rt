@@ -1,5 +1,5 @@
 S name:Material_test sky:160,200,255
-R max_depth:8 antialiasing
+R max_depth:8 
 W width:1545 height:1078
 A   0.8 255,255,255
 

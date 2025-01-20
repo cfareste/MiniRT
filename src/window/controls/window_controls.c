@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window_controls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 16:00:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:38:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "window_controls.h"
 
 static int	set_control(int8_t *control, mlx_key_data_t *keydata, keys_t pos,
@@ -35,9 +36,26 @@ static int	set_control(int8_t *control, mlx_key_data_t *keydata, keys_t pos,
 	return (mod);
 }
 
-void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
+static int	check_modifiers(mlx_key_data_t *keydata, t_controls *controls)
 {
 	if (keydata->modifier > MLX_SHIFT)
+	{
+		ft_bzero(controls, sizeof(t_controls));
+		controls->pressed_modifier = 1;
+		return (0);
+	}
+	if (controls->pressed_modifier)
+	{
+		if (keydata->action == MLX_RELEASE)
+			controls->pressed_modifier = 0;
+		return (0);
+	}
+	return (1);
+}
+
+void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
+{
+	if (!check_modifiers(keydata, controls))
 		return ;
 	controls->moving += set_control(&controls->zoom,
 			keydata, MLX_KEY_O, MLX_KEY_I);

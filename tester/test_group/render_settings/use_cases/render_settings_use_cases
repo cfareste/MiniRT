@@ -27,12 +27,14 @@ R   raytracing:0   ;															SUCCESS
 R   raytracing:a   ;															SUCCESS
 R   normal_map:a   ;															SUCCESS
 R   normal_map   ;																SUCCESS
-R   antialiasing   ;															SUCCESS
 R   normal_map:0   ;															SUCCESS
 R   antialiasing:0   ;															SUCCESS
-R   antialiasing:a   ;															SUCCESS
+R   antialiasing:1   ;															SUCCESS
+R   antialiasing:1491 ;															SUCCESS
+R   antialiasing   ;															FAILURE			;		Missing params: antialiasing
+R   antialiasing:a   ;															FAILURE			;		Invalid integer number: a
 R   soft_shadows:   ;															FAILURE			;		Missing params: soft_shadows
 R   soft_shadows   ;															FAILURE			;		Missing params: soft_shadows
 R   soft_shadows:-12   ;														FAILURE			;		Soft shadow radius must be a positive value
 R   soft_shadows:0   ;															SUCCESS
-R   antialiasing samples:2 raytracing normal_map soft_shadows:0 max_depth:8 ;	SUCCESS
+R   antialiasing:2 samples:2 raytracing normal_map soft_shadows:0 max_depth:8 ;	SUCCESS
