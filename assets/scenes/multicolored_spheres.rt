@@ -1,7 +1,7 @@
 A	0.07 255,255,255
 S name:hey
-# R antialiasing max_depth:8
-R antialiasing max_depth:800
+# R max_depth:8
+R max_depth:800
 
 W width:500 height:800
 

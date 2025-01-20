@@ -1,4 +1,4 @@
-R samples:200	max_depth:8 antialiasing 
+R samples:200	max_depth:8 
 S name:Pathtracer sky:160,200,255 sky_box:assets/textures/montmelo.png	
 W width:1442 height:900
 A 0.9	255,255,255
