@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:16:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:07:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_job	t_job;
 typedef struct s_job
 {
 	t_job_type			type;
-	void				*mlx;
+	mlx_t				*mlx;
 	void				*arg;
 	int					required;
 	int					(*run)(t_job *, t_window *);

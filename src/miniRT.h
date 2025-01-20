@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:08 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 19:35:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:15:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 
 # include "window/window.h"
 
-void	destroy(t_window *window);
+void	main_destroy(t_window *window);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 19:44:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:54:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ void	put_image(mlx_image_t *image, mlx_t *mlx, pthread_mutex_t *mutex)
 		mlx_resize_image(image, mlx->width, mlx->height);
 	if (mutex)
 		pthread_mutex_unlock(mutex);
+}
+
+t_window	*get_window(t_window *window)
+{
+	static t_window	*ctx = NULL;
+
+	if (window)
+		ctx = window;
+	return (ctx);
 }

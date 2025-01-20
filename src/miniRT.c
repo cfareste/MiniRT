@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 12:44:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:43:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #include "render/progressive/helpers/progressive_helper.h"
 #include "scene/settings/sky_box/sky_box.h"
 
-void	destroy(t_window *window)
+void	main_destroy(t_window *window)
 {
 	mlx_delete_texture(window->icon);
 	mlx_terminate(window->mlx);
@@ -50,10 +50,11 @@ int	main(int argc, char **argv)
 		return (ft_printff(STDERR_FILENO, "Wrong arguments! " \
 			"usage: ./miniRT assets/scenes/scene.rt\n"), EXIT_FAILURE);
 	ft_bzero(&window, sizeof(t_window));
+	get_window(&window);
 	parse(&window, argv[1]);
 	load_textures(&window.textures, &window.jobs);
 	configure_sky_box(&window.render.scene);
 	init_window(&window);
 	mlx_loop(window.mlx);
-	return (destroy(&window), EXIT_SUCCESS);
+	return (main_destroy(&window), EXIT_SUCCESS);
 }
