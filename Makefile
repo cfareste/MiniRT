@@ -74,7 +74,7 @@ MLX_VERSION = 2.4.1
 MLX_URL = https://github.com/codam-coding-college/MLX42/archive/refs/tags/v2.4.1.tar.gz
 MLX_DIR = lib/mlx
 MLX_BUILD_DIR = $(MLX_DIR)/build
-MLX_COMP_FLAGS = -DGLFW_FETCH=1 -DDEBUG=1
+MLX_COMP_FLAGS = -DGLFW_FETCH=1 #-DDEBUG=1
 MLX_LIB = $(MLX_BUILD_DIR)/libmlx42.a
 INCLUDES += -I$(MLX_DIR)/include/MLX42
 LIBRARIES += -L$(MLX_BUILD_DIR)

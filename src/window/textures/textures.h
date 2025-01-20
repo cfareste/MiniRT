@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:28:21 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 21:53:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:07:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ t_texture	*get_texture(t_textures *textures, char *path);
 
 void		free_textures(t_textures *textures);
 
-void		load_textures(t_textures *textures, t_jobs *jobs);
+void		load_textures(t_textures *textures);

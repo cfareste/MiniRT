@@ -3,19 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 19:03:59 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:18:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
 #include "textures.h"
 #include "window/loader/loader_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
+#include "utils/utils_bonus.h"
 #include "window/jobs/job/types/destroy/destroy_job.h"
+#include "window/jobs/job/helpers/job_helper.h"
+
+static void	throw_mlx_error(const char *msg)
+{
+	t_window	*window;
+
+	window = get_window(NULL);
+	if (window->mlx)
+		wait_job(push_job(&window->jobs, init_destroy_job(new_job())),
+			NULL, NULL);
+	ft_printff(STDERR_FILENO, "%s\n", msg);
+	exit(EXIT_FAILURE);
+}
 
 void	print_textures(t_textures *textures)
 {
@@ -49,14 +63,7 @@ void	free_textures(t_textures *textures)
 	}
 }
 
-void	throw_mlx_error(t_jobs *jobs, char *msg, const char *mlx_msg)
-{
-	ft_printff(STDERR_FILENO, "%s: %s: %s\n",
-		PROGRAM_NAME, msg, mlx_msg);
-	push_job(jobs, init_destroy_job(new_job()));
-}
-
-void	load_textures(t_textures *textures, t_jobs *jobs)
+void	load_textures(t_textures *textures)
 {
 	t_texture	*texture;
 
@@ -68,13 +75,13 @@ void	load_textures(t_textures *textures, t_jobs *jobs)
 		{
 			texture->mlx = mlx_load_png(texture->path);
 			if (!texture->mlx)
-				throw_mlx_error(jobs, texture->path, mlx_strerror(MLX_INVPNG));
+				throw_mlx_error(mlx_strerror(MLX_INVPNG));
 		}
 		else if (correct_file_extension(texture->path, ".xpm42"))
 		{
 			texture->xpm = mlx_load_xpm42(texture->path);
 			if (!texture->xpm)
-				throw_mlx_error(jobs, texture->path, mlx_strerror(MLX_INVXPM));
+				throw_mlx_error(mlx_strerror(MLX_INVXPM));
 			texture->mlx = &texture->xpm->texture;
 		}
 		texture = texture->next;

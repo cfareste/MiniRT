@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 19:43:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:07:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&window, sizeof(t_window));
 	get_window(&window);
 	parse(&window, argv[1]);
-	load_textures(&window.textures, &window.jobs);
+	load_textures(&window.textures);
 	configure_sky_box(&window.render.scene);
 	init_window(&window);
 	mlx_loop(window.mlx);

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 19:56:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 20:06:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		correct_file_extension(char *filename, char *extension);
 void	throw_sys_error(char *msg);
 
 char	*get_file_name(char *filename, char *extension);
-
-void	throw_mlx_error(t_jobs *jobs, char *msg, const char *mlx_msg);
 
 t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex);
 
