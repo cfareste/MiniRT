@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/19 15:04:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:03:59 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	load_textures(t_textures *textures, t_jobs *jobs)
 		{
 			texture->mlx = mlx_load_png(texture->path);
 			if (!texture->mlx)
-				throw_mlx_error(jobs, texture->path, mlx_strerror(mlx_errno));
+				throw_mlx_error(jobs, texture->path, mlx_strerror(MLX_INVPNG));
 		}
 		else if (correct_file_extension(texture->path, ".xpm42"))
 		{
 			texture->xpm = mlx_load_xpm42(texture->path);
 			if (!texture->xpm)
-				throw_mlx_error(jobs, texture->path, mlx_strerror(mlx_errno));
+				throw_mlx_error(jobs, texture->path, mlx_strerror(MLX_INVXPM));
 			texture->mlx = &texture->xpm->texture;
 		}
 		texture = texture->next;
