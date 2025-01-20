@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/17 20:15:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:29:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ static void	prepare(int *persist, t_render *render,
 		fill_pixels(*img_size, &render->pixels, &render->px_amount);
 		update_parts(render, img_size);
 		set_viewport(render->scene.camera,
-			&render->scene.camera->viewport,
-			*img_size);
+			&render->scene.camera->viewport, *img_size);
 	}
 }
 

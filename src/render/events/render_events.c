@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 13:29:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:58:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 static void	switch_strategy(t_render *render, t_strategy new)
 {
 	t_strategy	old;
+	int			prog_enabled;
 
 	old = render->strategy;
-	if (get_async_flag(&render->prog_enabled))
+	prog_enabled = get_async_flag(&render->prog_enabled);
+	if (prog_enabled)
 	{
 		set_async_flag(&render->cheap_strategy, render->strategy);
 		set_async_flag(&render->dis_cheap_once, 1);
@@ -30,8 +32,9 @@ static void	switch_strategy(t_render *render, t_strategy new)
 	}
 	else
 		set_async_flag(&render->cheap_strategy, new);
-	if (old != new)
+	if (old != new || !prog_enabled)
 	{
+		stop_render(render);
 		set_async_flag(&render->persist_prog, 1);
 		set_async_flag(&render->update, 1);
 	}
