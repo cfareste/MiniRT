@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:11:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/20 18:09:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,12 @@ static int	fill_buffer(t_composer *composer, char **buffer)
 
 static void	write_file(int fd, t_composer *composer, char *buff, int buff_len)
 {
-	write(fd, buff, buff_len);
+	if (write(fd, buff, buff_len) == -1)
+	{
+		perror("Error\nFailed to write on file");
+		close(fd);
+		return ;
+	}
 	close(fd);
 	composer->render->scene.orig_camera = *composer->render->scene.camera;
 	printf("Saved file as %s\n", *composer->filename_ref);
@@ -104,7 +109,7 @@ void	*composition_routine(t_composition *composition)
 			write_file(fd, composition->composer, compose_buffer,
 				buffer_length);
 		else
-			ft_printff(STDERR_FILENO, "Error\nFailed to save file\n");
+			perror("Error\nFailed to save file");
 	}
 	composer_set_alive(composition->composer, 0);
 	set_async_flag(&composition->composer->render->blocked, 0);
