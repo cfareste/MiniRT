@@ -504,17 +504,6 @@ test:
 min-test:
 	cd tester && ./tester.sh -n
 
-test_headers:
-	printf "$(BLUE)Checking $(WHITE_BOLD)headers protection$(BLUE)...$(DEF_COLOR)\n"
-	total_headers=$$(find src -type f -name *.h | wc -l); \
-	headers_with_prot=$$(grep -rEl "#pragma once|#ifndef" --include="*.h" src | wc -l); \
-	if [ $$total_headers -eq $$headers_with_prot ]; \
-	then \
-		printf "$(GREEN)[✓] All headers protected!\n"; \
-	else \
-		printf "$(RED_REGULAR)"; grep -rEL "#pragma once|#ifndef" --include="*.h" src; printf "$(DEF_COLOR)"; \
-	fi
-
 test_clean:
 	$(MAKE) --no-print-directory -C tester/main_test clean
 

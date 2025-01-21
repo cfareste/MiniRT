@@ -10,6 +10,7 @@ set -o nounset
 . ./utils/string/string.sh --source-only
 . ./test_group/test_group.sh --source-only
 . ./test_group/norme/norme_test.sh --source-only
+. ./test_group/headers_protection/headers_protection_test.sh --source-only
 . ./test_group/scene_settings/scene_settings_test.sh --source-only
 . ./test_group/render_settings/render_settings_test.sh --source-only
 . ./test_group/window_settings/window_settings_test.sh --source-only
@@ -42,7 +43,7 @@ print_footer(){
 }
 
 execute_tests(){
-	local tests=$(ls $TEST_GROUP_DIR | grep -vE "norme|test_group.sh")
+	local tests=$(ls $TEST_GROUP_DIR | grep -vE "norme|headers_protection|test_group.sh")
 	local passed_tests=("")
 	local failed_tests=("")
 	local total_tests=$(ls $TEST_GROUP_DIR | grep -vE "test_group.sh" | wc -w)
@@ -63,6 +64,17 @@ execute_tests(){
 		fi
 	else
 		((total_tests--))
+	fi
+
+	(cd .. && test_headers_protection)
+	if [ $? -eq 0 ]
+	then
+		passed_tests+=("headers_protection")
+		((num_passed++))
+	else
+		failed_tests+=("headers_protection")
+		((num_failed++))
+		echo
 	fi
 
 	for test in $tests
