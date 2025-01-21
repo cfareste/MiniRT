@@ -6,9 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 02:38:35 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/06 02:39:44 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:52:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "scene/scene.h"
 

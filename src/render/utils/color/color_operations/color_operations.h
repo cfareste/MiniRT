@@ -6,9 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:07:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 17:17:33 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:52:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "render/utils/color/color.h"
 
