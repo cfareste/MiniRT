@@ -6,6 +6,7 @@ DEF_COLOR = \033[0m
 WHITE_BOLD = \033[1;39m
 BLACK = \033[1;30m
 RED = \033[1;31m
+RED_REGULAR = \033[0;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
 BLUE = \033[1;34m
@@ -492,16 +493,27 @@ mlx_fclean:
 	rm -rf $(MLX_DIR)
 
 norm:
-	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(SRC)$(BLUE)...$(DEF_COLOR)\n"
-	norminette $(SRC) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
-	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(DEF_COLOR)\n"
-	norminette $(LIBFT_DIR) | grep -v "OK" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(SRC)$(BLUE)...$(RED_REGULAR)\n"
+	norminette $(SRC) | grep -v "OK" && printf "$(DEF_COLOR)" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
+	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(RED_REGULAR)\n"
+	norminette $(LIBFT_DIR) | grep -v "OK" && printf "$(DEF_COLOR)" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
 
 test:
 	cd tester && ./tester.sh
 
 min-test:
 	cd tester && ./tester.sh -n
+
+test_headers:
+	printf "$(BLUE)Checking $(WHITE_BOLD)headers protection$(BLUE)...$(DEF_COLOR)\n"
+	total_headers=$$(find src -type f -name *.h | wc -l); \
+	headers_with_prot=$$(grep -rEl "#pragma once|#ifndef" --include="*.h" src | wc -l); \
+	if [ $$total_headers -eq $$headers_with_prot ]; \
+	then \
+		printf "$(GREEN)[✓] All headers protected!\n"; \
+	else \
+		printf "$(RED_REGULAR)"; grep -rEL "#pragma once|#ifndef" --include="*.h" src; printf "$(DEF_COLOR)"; \
+	fi
 
 test_clean:
 	$(MAKE) --no-print-directory -C tester/main_test clean
