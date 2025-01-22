@@ -22,7 +22,7 @@ int	ft_clamp(int value, int min, int max)
 double	ft_clampd(double value, double min, double max)
 {
 	if (value < min)
-		value = max;
+		value = min;
 	else if (value > max)
 		value = max;
 	return (value);

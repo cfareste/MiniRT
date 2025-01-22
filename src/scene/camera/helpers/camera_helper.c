@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/12 11:00:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:49:57 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "render/utils/vector/rotation/vector_rotation.h"
 #include "render/utils/reference_system/reference_system.h"
 #include <math.h>
+#include <limits.h>
 
 void	update_camera_fov(t_camera *camera, int factor)
 {
@@ -51,7 +52,8 @@ void	update_camera_focus_dis(t_camera *camera, double factor)
 {
 	if (!factor)
 		return ;
-	camera->focus_dist += (factor * 0.2);
+	camera->focus_dist = ft_clampd(
+			camera->focus_dist + (factor * 0.2), 1, DBL_MAX);
 }
 
 void	update_camera_front(t_camera *camera, t_point factor)
