@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:48:19 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 13:48:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:46:08 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_render_args
 {
 	int			persist;
 	int			resize;
+	int			prog_resize;
 	int			prog_enabled;
 	t_strategy	strategy;
 	t_strategy	cheap_strategy;

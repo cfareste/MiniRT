@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:17:13 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:49:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ static void	prepare_parts(t_render_args *args, t_render *render, uint64_t *seed)
 	t_size	img_size;
 
 	img_size = get_image_size(render->image, &render->image_mutex);
-	if (args->resize)
+	if (render->prog_resize)
 	{
 		restart_progress(render->progress, &img_size);
 		shuffle_pixels(render->pixels, render->px_amount, seed);
+		render->prog_resize = 0;
 	}
 	else if (!args->persist)
 	{

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:09:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:47:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_render
 	t_async_flag	prev_strategy;
 	float			soft_shadows_radius;
 	t_async_flag	resize;
+	int				prog_resize;
 	t_async_flag	update;
 	t_async_flag	cheap;
 	t_async_flag	dis_cheap_once;

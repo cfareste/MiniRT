@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:24:49 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:49:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 void	stop_render(t_render *render)
 {
-	if (!render || !render->thread)
+	if (!render)
 		return ;
 	set_render_finish(render, 1);
 	if (render->thread)
@@ -42,7 +42,10 @@ static void	set_args(t_render_args *args, t_render *render)
 		set_async_flag(&render->persist_prog, 0);
 	args->resize = get_async_flag(&render->resize);
 	if (args->resize)
+	{
 		set_async_flag(&render->resize, 0);
+		render->prog_resize = 1;
+	}
 	args->prog_enabled = get_async_flag(&render->prog_enabled);
 	args->strategy = get_async_flag(&render->strategy);
 	args->cheap_enabled = get_async_flag(&render->cheap);
@@ -79,7 +82,7 @@ static void	*render_routine(t_render *render)
 	t_render_args	args;
 
 	prepare(&args, render, &seed);
-	if (is_render_alive(render) && args.cheap_enabled && !args.dis_cheap_once)
+	if (args.cheap_enabled && !args.dis_cheap_once)
 		render_parts(render, args.cheap_strategy, &seed);
 	if (is_render_alive(render) && args.prog_enabled)
 		render_prog_parts(&args, render, &seed);
@@ -97,6 +100,6 @@ void	render(t_render *render)
 	render->start_time = mlx_get_time();
 	if (is_render_alive(render)
 		&& pthread_create(&render->thread, NULL,
-			(void *(*)(void*)) render_routine, render))
+			(void *(*)(void*)) render_routine, render) == -1)
 		throw_sys_error("creating new render thread");
 }

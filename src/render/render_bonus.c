@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:06:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:47:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,12 @@ void	init_render(t_render *render, mlx_t *mlx)
 	init_async_flag(&render->persist_prog, 0);
 	init_async_flag(&render->update, 1);
 	init_async_flag(&render->resize, 1);
+	render->prog_resize = 0;
 	render->thread = 0;
 	render->image = mlx_new_image(mlx, mlx->width, mlx->height);
 	put_image(render->image, mlx, NULL);
 	mlx_set_instance_depth(render->image->instances
 		+ render->image->count - 1, 0);
 	render->parts_amount = PARTS_AMOUNT;
-	fill_pixels(get_image_size(render->image, NULL),
-		&render->pixels, &render->px_amount);
 	set_parts(render);
 }

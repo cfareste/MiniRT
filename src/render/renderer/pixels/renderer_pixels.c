@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 16:16:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:30:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,15 @@ void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)
 }
 
 // TODO: Test times with realloc
-void	fill_pixels(t_size img_size, t_pixel **pixels_, size_t *px_amount)
+void	fill_pixels(t_size img_size, t_pixel **pixels, size_t *px_amount)
 {
 	t_iterators	iter;
-	t_pixel		*pixels;
 
-	free(*pixels_);
-	*pixels_ = ft_calloc((img_size.width * img_size.height) + 1,
+	free(*pixels);
+	*pixels = ft_calloc((img_size.width * img_size.height) + 1,
 			sizeof(t_pixel));
-	if (!*pixels_)
+	if (!*pixels)
 		throw_sys_error("alloc pixels");
-	pixels = *pixels_;
 	*px_amount = 0;
 	iter.i = 0;
 	while (iter.i < img_size.width)
@@ -55,7 +53,7 @@ void	fill_pixels(t_size img_size, t_pixel **pixels_, size_t *px_amount)
 		iter.j = 0;
 		while (iter.j < img_size.height)
 		{
-			pixels[*px_amount] = iter;
+			(*pixels)[*px_amount] = iter;
 			(*px_amount)++;
 			iter.j++;
 		}

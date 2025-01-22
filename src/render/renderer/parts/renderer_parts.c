@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:23:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:31:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	update_parts(t_render *render, t_size *img_size)
 	int	i;
 
 	i = 0;
-	while (!is_render_finished(render) && i < render->parts_amount)
+	while (i < render->parts_amount)
 	{
 		render->parts[i].img_height = img_size->height;
 		render->parts[i].pixels_amount = render->px_amount
@@ -67,14 +67,6 @@ void	set_parts(t_render *render)
 	{
 		render->parts[i].id = i + 1;
 		render->parts[i].render = render;
-		render->parts[i].img_height = render->image->height;
-		render->parts[i].pixels_amount = render->px_amount
-			/ render->parts_amount;
-		render->parts[i].pixels = render->pixels
-			+ (render->parts[i].pixels_amount * i);
-		if (i == render->parts_amount - 1)
-			render->parts[i].pixels_amount += render->px_amount
-				% render->parts_amount;
 		i++;
 	}
 }
