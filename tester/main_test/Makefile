@@ -291,7 +291,6 @@ SRCS =	main_test.c \
 		box_parser.c \
 		quadrilater_helpers.c \
 		box_pattern.c \
-		normal_map.c \
 		renderer_pixels.c \
 		sky_box.c \
 		textures_parser.c \
