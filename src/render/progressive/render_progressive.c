@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 21:39:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:48:01 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 	t_color			pixel_color;
 
 	ft_bzero(&pixel_color, sizeof(t_color));
-	sample_color = part->render->progress[part->render->strategy].colors
-		+ (iter->i * part->img_height) + iter->j;
+	sample_color = part->render->progress[get_async_flag(&part->render->strategy)]
+		.colors + (iter->i * part->img_height) + iter->j;
 	set_ray_from_camera(&ray, part->render, iter, seed);
 	render_strategy(part, &ray, sample_color, seed);
 	multiply_color_scalar(sample_color,
@@ -98,8 +98,8 @@ void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		render->parts[i].i = render->progress[render->strategy].iter[i].i;
-		render->parts[i].j = render->progress[render->strategy].iter[i].j;
+		render->parts[i].i = render->progress[strategy].iter[i].i;
+		render->parts[i].j = render->progress[strategy].iter[i].j;
 		if (pthread_create(&render->parts[i].thread,
 				NULL, (void *(*)(void *)) render_prog_part,
 			render->parts + i) == -1)
@@ -107,5 +107,5 @@ void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
 		i++;
 	}
 	join_parts(render->parts, render->parts_amount,
-		render->progress + render->strategy);
+		render->progress + strategy);
 }

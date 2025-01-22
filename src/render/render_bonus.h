@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:14:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:40:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_render
 	unsigned long	samples;
 	int				antialiasing;
 	unsigned int	max_depth;
-	t_strategy		strategy;
+	t_async_flag	strategy;
 	t_strategy		curr_strategy;
 	t_async_flag	prev_strategy;
 	float			soft_shadows_radius;

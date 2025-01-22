@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   composition_settings_helpers.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 14:01:57 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:45:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ static char	*get_strategy_name(t_strategy strategy)
 
 int	fill_render(t_composer *composer, t_render *render, char **buffer)
 {
+	t_strategy	strategy;
+
+	strategy = get_async_flag(&render->strategy);
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "R ", throw_sys_error, "pushing render setting string");
@@ -38,8 +41,8 @@ int	fill_render(t_composer *composer, t_render *render, char **buffer)
 	if (!render->antialiasing)
 		push_str(buffer, "antialiasing:0\t",
 			throw_sys_error, "pushing antialiasing");
-	if (render->strategy)
-		push_str(buffer, get_strategy_name(render->strategy),
+	if (strategy != PATHTRACING)
+		push_str(buffer, get_strategy_name(strategy),
 			throw_sys_error, "pushing strategy string to buffer");
 	if (render->soft_shadows_radius != 1.0)
 		join_format_str(buffer, SOFT_SHADOWS_TITLE,

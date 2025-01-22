@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 19:49:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:41:53 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*render_routine(t_window *window)
 		&& !get_async_flag(&window->render.update)
 		&& get_async_flag(&window->render.prog_enabled))
 		render_prog_parts(&window->render, &seed, persist,
-			window->render.strategy);
+			get_async_flag(&window->render.strategy));
 	set_render_finish(&window->render, 1);
 	printf("Finished render in %.3f seconds\n\n",
 		mlx_get_time() - window->render.start_time);

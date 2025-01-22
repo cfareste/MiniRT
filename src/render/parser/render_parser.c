@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 12:14:18 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:42:18 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		&& ensure_params_amount(ctx, args, 1))
 		render->max_depth = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
-		render->strategy = RAYTRACING;
+		set_async_flag(&render->strategy, RAYTRACING);
 	else if (ft_strcmp(args[0], NORMAL_MAP_KEY) == EQUAL_STRINGS)
-		render->strategy = NORMAL_MAP;
+		set_async_flag(&render->strategy, NORMAL_MAP);
 	else if (ft_strcmp(args[0], SOFT_SHADOWS_KEY) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
 		render->soft_shadows_radius = parse_double(ctx, args[1]);
@@ -82,7 +82,6 @@ void	set_render_defaults(t_render *render)
 {
 	render->samples = 0;
 	render->antialiasing = 1;
-	render->strategy = PATHTRACING;
 	render->max_depth = 4;
 	render->soft_shadows_radius = 1;
 }
