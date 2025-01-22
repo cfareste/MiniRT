@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 12:43:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:00:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	switch_strategy(t_render *render, t_strategy new)
 		set_async_flag(&render->cheap_strategy, new);
 	if (old != new || !prog_enabled)
 	{
-		stop_render(render);
 		set_async_flag(&render->persist_prog, 1);
 		set_async_flag(&render->update, 1);
 	}
@@ -72,6 +71,7 @@ static void	pause_and_play(t_render *render)
 
 static void	create_new_figure(t_render *render)
 {
+	stop_render(render);
 	add_figure(&render->scene, render->scene.camera);
 	set_selection_fig(&render->scene, render->scene.figures);
 	set_async_flag(&render->prev_strategy,

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 13:41:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:02:48 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	control(t_window *window)
 	int	update;
 
 	update = 0;
+	stop_render(&window->render);
 	if (window->render.scene.selection)
 		update = control_figure(window->render.scene.selection,
 				window->render.scene.camera, &window->controls);
