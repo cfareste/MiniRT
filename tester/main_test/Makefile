@@ -280,7 +280,6 @@ SRCS =	main_test.c \
 		raytracing_helpers.c \
 		pathtracing_helpers.c \
 		material_helpers.c \
-		job_helper.c\
 		figure_parser_helpers.c \
 		disk.c \
 		disk_parser.c \

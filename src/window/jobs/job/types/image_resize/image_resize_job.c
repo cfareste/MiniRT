@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 13:16:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:53:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,13 @@
 static	void	destroy(t_job *job)
 {
 	free(job->arg);
-	pthread_mutex_destroy(&job->finished_mutex);
-	pthread_mutex_destroy(&job->to_free_mutex);
+	job->arg = NULL;
 	free(job);
 }
 
 static	void	free_job(t_job *job)
 {
-	if (!job->to_free)
-		job_set_to_free(job, 1);
-	else
-		job->destroy(job);
+	job->destroy(job);
 }
 
 static int	run(t_job *job, t_window *window)
@@ -45,9 +41,6 @@ static int	run(t_job *job, t_window *window)
 		resize->nsize.height);
 	if (resize->mutex)
 		pthread_mutex_unlock(resize->mutex);
-	pthread_mutex_lock(&job->finished_mutex);
-	job->finished = 1;
-	pthread_mutex_unlock(&job->finished_mutex);
 	return (1);
 }
 
@@ -68,13 +61,12 @@ static t_resize_wrapper	*wrap_resize(t_size	nsize, mlx_image_t *image,
 t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image,
 			pthread_mutex_t *mutex)
 {
-	pthread_mutex_init(&job->finished_mutex, NULL);
-	pthread_mutex_init(&job->to_free_mutex, NULL);
 	job->type = IMG_RESIZE_JOB;
 	job->arg = wrap_resize(nsize, image, mutex);
 	job->required = 1;
 	job->run = run;
 	job->free = free_job;
 	job->destroy = destroy;
+	job->to_free = 0;
 	return (job);
 }

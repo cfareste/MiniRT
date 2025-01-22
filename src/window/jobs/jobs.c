@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 22:11:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:55:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	remove_job(t_jobs *jobs, t_job *job)
 	else
 		jobs->job = old->next;
 	jobs->amount--;
-	old->free(old);
+	if (old->to_free)
+		old->free(old);
+	else
+		set_async_flag(&old->removed, 1);
 	return (1);
 }
 

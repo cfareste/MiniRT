@@ -6,13 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 16:07:17 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:52:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "MLX42.h"
+#include "utils/async_flag/async_flag.h"
 #include <pthread.h>
 
 typedef enum job_type
@@ -37,10 +38,8 @@ typedef struct s_job
 	int					(*run)(t_job *, t_window *);
 	void				(*free)(t_job *);
 	void				(*destroy)(t_job *);
-	int					finished;
-	pthread_mutex_t		finished_mutex;
 	int					to_free;
-	pthread_mutex_t		to_free_mutex;
+	t_async_flag		removed;
 	t_job				*next;
 }	t_job;
 
