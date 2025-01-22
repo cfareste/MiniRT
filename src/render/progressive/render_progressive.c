@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:11:43 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:17:13 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	*render_prog_part(t_render_part *part)
 
 	get_thread_id(&part->thread, &seed);
 	while (is_render_alive(part->render)
-		&& (part->render->samples == 0 || part->i < part->render->samples))
+		&& part->i < part->render->samples)
 	{
 		if (part->j >= part->pixels_amount)
 			part->j = 0;
