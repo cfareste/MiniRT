@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_parts.h                                   :+:      :+:    :+:   */
+/*   renderer_args.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 22:48:10 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:23:34 by arcanava         ###   ########.fr       */
+/*   Created: 2025/01/22 13:48:19 by arcanava          #+#    #+#             */
+/*   Updated: 2025/01/22 13:48:40 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../../render_bonus.h"
+#include "../strategies/strategy.h"
 
-void	render_parts(t_render *render, t_strategy strategy, uint64_t *seed);
-
-void	set_parts(t_render *render);
-
-void	update_parts(t_render *render, t_size *img_size);
-
-void	join_parts(t_render_part *parts, int amount, t_rend_prog *progress);
+typedef struct s_render_args
+{
+	int			persist;
+	int			resize;
+	int			prog_enabled;
+	t_strategy	strategy;
+	t_strategy	cheap_strategy;
+	int			cheap_enabled;
+	int			dis_cheap_once;
+}	t_render_args;

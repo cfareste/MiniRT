@@ -6,10 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 12:41:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:24:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "renderer_bonus.h"
 #include "miniRT.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
@@ -34,67 +35,68 @@ void	stop_render(t_render *render)
 	render->thread = 0;
 }
 
-static void	render_cheap(t_render *render, uint64_t *seed)
+static void	set_args(t_render_args *args, t_render *render)
 {
-	if (!is_render_alive(render)
-		|| !get_async_flag(&render->cheap)
-		|| get_async_flag(&render->dis_cheap_once))
-		return (set_async_flag(&render->dis_cheap_once, 0));
-	shuffle_pixels(render->pixels, render->px_amount, seed);
-	render_parts(render, get_async_flag(&render->cheap_strategy));
+	args->persist = get_async_flag(&render->persist_prog);
+	if (args->persist)
+		set_async_flag(&render->persist_prog, 0);
+	args->resize = get_async_flag(&render->resize);
+	if (args->resize)
+		set_async_flag(&render->resize, 0);
+	args->prog_enabled = get_async_flag(&render->prog_enabled);
+	args->strategy = get_async_flag(&render->strategy);
+	args->cheap_enabled = get_async_flag(&render->cheap);
+	args->dis_cheap_once = get_async_flag(&render->dis_cheap_once);
+	if (args->dis_cheap_once)
+		set_async_flag(&render->dis_cheap_once, 0);
+	args->cheap_strategy = get_async_flag(&render->cheap_strategy);
 }
 
-static void	prepare(int *persist, t_render *render,
-				uint64_t *seed, t_size *img_size)
-{
-	*img_size = get_image_size(render->image, &render->image_mutex);
-	*persist = get_async_flag(&render->persist_prog);
-	set_async_flag(&render->persist_prog, 0);
-	get_thread_id(&render->thread, seed);
-	*seed *= mlx_get_time();
-	if (get_async_flag(&render->resize))
-	{
-		fill_pixels(*img_size, &render->pixels, &render->px_amount);
-		update_parts(render, img_size);
-		set_viewport(render->scene.camera,
-			&render->scene.camera->viewport, *img_size);
-	}
-}
-
-void	*render_routine(t_window *window)
-{
-	t_size		img_size;
-	uint64_t	seed;
-	int			persist;
-
-	prepare(&persist, &window->render, &seed, &img_size);
-	if (is_render_finished(&window->render))
-		return (NULL);
-	render_cheap(&window->render, &seed);
-	if (is_render_alive(&window->render)
-		&& !get_async_flag(&window->render.update)
-		&& get_async_flag(&window->render.prog_enabled))
-		render_prog_parts(&window->render, &seed, persist,
-			get_async_flag(&window->render.strategy));
-	set_render_finish(&window->render, 1);
-	printf("Finished render in %.3f seconds\n\n",
-		mlx_get_time() - window->render.start_time);
-	return (NULL);
-}
-
-void	render(t_window *window_)
+static void	prepare(t_render_args *args, t_render *render,
+				uint64_t *seed)
 {
 	t_window	*window;
 
-	window = (t_window *) window_;
-	stop_render(&window->render);
-	set_render_finish(&window->render, 0);
+	window = get_window(NULL);
+	get_thread_id(&render->thread, seed);
+	*seed *= mlx_get_time();
+	set_args(args, render);
+	if (args->resize)
+	{
+		wait_job(push_job(&window->jobs, init_img_resize_job(new_job(),
+					window->size, render->image, NULL)),
+			(int (*)(void *)) is_render_alive, render);
+		fill_pixels(window->size, &render->pixels, &render->px_amount);
+		update_parts(render, &window->size);
+		set_viewport(render->scene.camera,
+			&render->scene.camera->viewport, window->size);
+	}
+}
+
+static void	*render_routine(t_render *render)
+{
+	uint64_t		seed;
+	t_render_args	args;
+
+	prepare(&args, render, &seed);
+	if (is_render_alive(render) && args.cheap_enabled && !args.dis_cheap_once)
+		render_parts(render, args.cheap_strategy, &seed);
+	if (is_render_alive(render) && args.prog_enabled)
+		render_prog_parts(&args, render, &seed);
+	set_render_finish(render, 1);
+	printf("Finished render in %.3f seconds\n\n",
+		mlx_get_time() - render->start_time);
+	return (NULL);
+}
+
+void	render(t_render *render)
+{
+	stop_render(render);
+	set_render_finish(render, 0);
 	printf("RENDERING\n");
-	window->render.start_time = mlx_get_time();
-	mlx_resize_image(window->render.image,
-		window->mlx->width, window->mlx->height);
-	if (is_render_alive(&window->render)
-		&& pthread_create(&window->render.thread, NULL,
-			(void *(*)(void*)) render_routine, window))
+	render->start_time = mlx_get_time();
+	if (is_render_alive(render)
+		&& pthread_create(&render->thread, NULL,
+			(void *(*)(void*)) render_routine, render))
 		throw_sys_error("creating new render thread");
 }

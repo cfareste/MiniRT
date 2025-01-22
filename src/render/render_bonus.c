@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 12:40:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:06:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 #include "renderer/renderer_bonus.h"
 #include <math.h>
 
-void	render_strategy(t_render_part *part, t_ray *ray,
+void	render_strategy(t_render *render, t_ray *ray,
 	t_color *sample_color, uint64_t *seed)
 {
-	if (part->render->curr_strategy == RAYTRACING)
-		compute_raytracing(part->render, ray, sample_color, seed);
-	else if (part->render->curr_strategy == PATHTRACING)
-		compute_pathtracing(part->render, ray, sample_color, seed);
-	else if (part->render->curr_strategy == NORMAL_MAP)
-		compute_normal_map(&part->render->scene, ray, sample_color);
+	if (render->curr_strategy == RAYTRACING)
+		compute_raytracing(render, ray, sample_color, seed);
+	else if (render->curr_strategy == PATHTRACING)
+		compute_pathtracing(render, ray, sample_color, seed);
+	else if (render->curr_strategy == NORMAL_MAP)
+		compute_normal_map(&render->scene, ray, sample_color);
 }
 
 static void	render_pixel(t_render_part *part, t_iterators *iter,
@@ -43,7 +43,7 @@ static void	render_pixel(t_render_part *part, t_iterators *iter,
 
 	ft_bzero(&pixel_color, sizeof(t_color));
 	set_ray_from_camera(&ray, part->render, iter, seed);
-	render_strategy(part, &ray, &pixel_color, seed);
+	render_strategy(part->render, &ray, &pixel_color, seed);
 	mlx_put_pixel(part->render->image, iter->i, iter->j,
 		get_color_value(&pixel_color));
 }

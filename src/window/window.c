@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 18:41:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:41:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	main_loop(void *window_)
 	if (get_async_flag(&window->render.update))
 	{
 		set_async_flag(&window->render.update, 0);
-		render(window);
+		render(&window->render);
 	}
 }
 

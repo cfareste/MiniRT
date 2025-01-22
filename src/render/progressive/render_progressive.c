@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 12:48:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 	t_color			pixel_color;
 
 	ft_bzero(&pixel_color, sizeof(t_color));
-	sample_color = part->render->progress[get_async_flag(&part->render->strategy)]
+	sample_color = part->render->progress[part->render->curr_strategy]
 		.colors + (iter->i * part->img_height) + iter->j;
 	set_ray_from_camera(&ray, part->render, iter, seed);
-	render_strategy(part, &ray, sample_color, seed);
+	render_strategy(part->render, &ray, sample_color, seed);
 	multiply_color_scalar(sample_color,
 		1 / (float)(part->i + 1), &pixel_color);
 	mlx_put_pixel(part->render->image, iter->i, iter->j,
@@ -70,36 +70,34 @@ static void	*render_prog_part(t_render_part *part)
 	return (NULL);
 }
 
-static void	prepare_parts(t_render *render, uint64_t *seed, int persist)
+static void	prepare_parts(t_render_args *args, t_render *render, uint64_t *seed)
 {
 	t_size	img_size;
 
 	img_size = get_image_size(render->image, &render->image_mutex);
-	if (get_async_flag(&render->resize))
+	if (args->resize)
 	{
-		set_async_flag(&render->resize, 0);
 		restart_progress(render->progress, &img_size);
 		shuffle_pixels(render->pixels, render->px_amount, seed);
 	}
-	else if (!persist)
+	else if (!args->persist)
 	{
 		reset_progress(render->progress, &img_size, render->parts_amount);
 		shuffle_pixels(render->pixels, render->px_amount, seed);
 	}
 }
 
-void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
-			t_strategy strategy)
+void	render_prog_parts(t_render_args *args, t_render *render, uint64_t *seed)
 {
 	int	i;
 
-	render->curr_strategy = strategy;
-	prepare_parts(render, seed, persist);
+	render->curr_strategy = args->strategy;
+	prepare_parts(args, render, seed);
 	i = 0;
 	while (!is_render_finished(render) && i < render->parts_amount)
 	{
-		render->parts[i].i = render->progress[strategy].iter[i].i;
-		render->parts[i].j = render->progress[strategy].iter[i].j;
+		render->parts[i].i = render->progress[args->strategy].iter[i].i;
+		render->parts[i].j = render->progress[args->strategy].iter[i].j;
 		if (pthread_create(&render->parts[i].thread,
 				NULL, (void *(*)(void *)) render_prog_part,
 			render->parts + i) == -1)
@@ -107,5 +105,5 @@ void	render_prog_parts(t_render *render, uint64_t *seed, int persist,
 		i++;
 	}
 	join_parts(render->parts, render->parts_amount,
-		render->progress + strategy);
+		render->progress + args->strategy);
 }

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 13:14:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:23:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,14 @@ void	set_parts(t_render *render)
 	}
 }
 
-void	render_parts(t_render *render, t_strategy strategy)
+void	render_parts(t_render *render, t_strategy strategy, uint64_t *seed)
 {
 	int	i;
 
+	shuffle_pixels(render->pixels, render->px_amount, seed);
 	render->curr_strategy = strategy;
 	i = 0;
-	while (!is_render_finished(render) && i < render->parts_amount)
+	while (is_render_alive(render) && i < render->parts_amount)
 	{
 		if (pthread_create(&render->parts[i].thread,
 				NULL, (void *(*)(void *)) render_part,

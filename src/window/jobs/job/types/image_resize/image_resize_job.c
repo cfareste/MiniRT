@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 18:53:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:16:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_job	*init_img_resize_job(t_job *job, t_size	nsize, mlx_image_t *image,
 {
 	pthread_mutex_init(&job->finished_mutex, NULL);
 	pthread_mutex_init(&job->to_free_mutex, NULL);
-	job->type = EXPORT_JOB;
+	job->type = IMG_RESIZE_JOB;
 	job->arg = wrap_resize(nsize, image, mutex);
 	job->required = 1;
 	job->run = run;

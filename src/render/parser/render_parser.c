@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 12:42:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:27:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static int	try_parse_render_elem(t_parser_ctx *ctx, char *arg,
 		&& ensure_params_amount(ctx, args, 1))
 		render->max_depth = parse_int(ctx, args[1]);
 	else if (ft_strcmp(args[0], RAYTRACING_KEY) == EQUAL_STRINGS)
-		set_async_flag(&render->strategy, RAYTRACING);
+		render->strategy.value = RAYTRACING;
 	else if (ft_strcmp(args[0], NORMAL_MAP_KEY) == EQUAL_STRINGS)
-		set_async_flag(&render->strategy, NORMAL_MAP);
+		render->strategy.value = NORMAL_MAP;
 	else if (ft_strcmp(args[0], SOFT_SHADOWS_KEY) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))
 		render->soft_shadows_radius = parse_double(ctx, args[1]);

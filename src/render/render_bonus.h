@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 12:40:15 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:09:39 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	init_render(t_render *render, mlx_t *mlx);
 
 void	destroy_render(t_render *render);
 
-void	render_strategy(t_render_part *part, t_ray *ray,
+void	render_strategy(t_render *render, t_ray *ray,
 			t_color *sample_color, uint64_t *seed);
