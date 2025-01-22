@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:21:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:59:17 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:54:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	get_polar_coordinates(t_point *point, t_figure *sphere,
 	normalize(&latitude_normal);
 	normalize(&point_normal);
 	projected_radius = sqrt(pow(point->x, 2) + pow(point->z, 2));
-	longitude_angle = acos(ft_fclamp(dot(&point_normal, &latitude_normal),
+	longitude_angle = acos(ft_clampd(dot(&point_normal, &latitude_normal),
 				-1.0, 1.0));
-	latitude_angle = acos(ft_fclamp(latitude_normal.z, -1.0, 1.0));
+	latitude_angle = acos(ft_clampd(latitude_normal.z, -1.0, 1.0));
 	coords->latitude = latitude_angle * projected_radius;
 	coords->longitude = longitude_angle * sphere->sp_attrs->radius;
 }

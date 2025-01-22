@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_cone.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:24:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:59:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:53:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static float	get_point_angle(t_point *point)
 	center_to_point = *point;
 	center_to_point.z = 0;
 	normalize(&center_to_point);
-	center_to_point.y = ft_fclamp(center_to_point.y, -1.0, 1.0);
+	center_to_point.y = ft_clampd(center_to_point.y, -1.0, 1.0);
 	angle = acos(center_to_point.y);
 	return (angle);
 }

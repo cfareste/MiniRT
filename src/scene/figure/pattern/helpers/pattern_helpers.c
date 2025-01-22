@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pattern_helpers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:05:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 21:57:13 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:52:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_base_pattern(t_figure *figure, t_point *point, t_base_attrs *attrs,
 	normalize(&point_to_base);
 	params.point_pattern_dim = params.point_radius
 		* (figure->pattern.dimension / attrs->radius);
-	point_to_base.y = ft_fclamp(point_to_base.y, -1.0, 1.0);
+	point_to_base.y = ft_clampd(point_to_base.y, -1.0, 1.0);
 	pattern_x_index = (int)(fabs(acos(point_to_base.y) * params.point_radius)
 			/ params.point_pattern_dim);
 	pattern_y_index = (int)((fabs(params.point_base_height)

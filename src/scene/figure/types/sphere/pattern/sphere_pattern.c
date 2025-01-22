@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_pattern.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:35:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 18:09:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:54:16 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	get_polar_coordinates(t_point *point, t_figure *sphere,
 	normalize(&latitude_normal);
 	normalize(&point_normal);
 	projected_radius = sqrt(pow(point->x, 2) + pow(point->z, 2));
-	coords->longitude = acos(ft_fclamp(dot(&point_normal, &latitude_normal),
+	coords->longitude = acos(ft_clampd(dot(&point_normal, &latitude_normal),
 				-1.0, 1.0))
 		* sphere->sp_attrs->radius;
-	coords->latitude = acos(ft_fclamp(-latitude_normal.z, -1.0, 1.0))
+	coords->latitude = acos(ft_clampd(-latitude_normal.z, -1.0, 1.0))
 		* projected_radius;
 }
 

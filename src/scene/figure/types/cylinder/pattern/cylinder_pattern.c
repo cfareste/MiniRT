@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_pattern.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:00:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/11 00:52:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:53:15 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_cylinder_body_pattern(t_figure *figure, t_point *point,
 	point_arc_vector = *point;
 	point_arc_vector.z = 0.0f;
 	normalize(&point_arc_vector);
-	point_arc_vector.y = ft_fclamp(point_arc_vector.y, -1.0, 1.0);
+	point_arc_vector.y = ft_clampd(point_arc_vector.y, -1.0, 1.0);
 	angle = acos(point_arc_vector.y);
 	x_index_square = (int)(fabs(angle * figure->cy_attrs->radius)
 			/ figure->pattern.dimension);

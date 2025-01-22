@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:49:57 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:52:25 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	update_camera_front(t_camera *camera, t_point factor)
 	else if (yaw >= 360.0)
 		yaw -= 360.0;
 	yaw *= (M_PI / 180.0);
-	pitch = ft_fclamp(pitch, -89, 89) * (M_PI / 180.0);
+	pitch = ft_clampd(pitch, -89, 89) * (M_PI / 180.0);
 	get_world_axis(&camera->front, FRONT);
 	rotate_by_world_axis(RIGHT, pitch, &camera->front);
 	rotate_by_world_axis(UP, -yaw, &camera->front);

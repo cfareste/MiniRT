@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:56:55 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 10:58:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:52:14 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	get_vector_angles(t_vector *vec, double *yaw, double *pitch)
 	projected = *vec;
 	projected.y = 0.0f;
 	normalize(&projected);
-	yaw_cosine = ft_fclamp(-projected.z, -1.0, 1.0);
-	pitch_cosine = ft_fclamp(dot(&projected, vec), -1.0, 1.0);
+	yaw_cosine = ft_clampd(-projected.z, -1.0, 1.0);
+	pitch_cosine = ft_clampd(dot(&projected, vec), -1.0, 1.0);
 	*yaw = (acos(yaw_cosine) * (180.0f / M_PI));
 	*pitch = (acos(pitch_cosine) * (180.0f / M_PI));
 	if (vec->x < 0.0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quadrilater_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 13:36:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:53:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float	get_quad_rotated_point(t_vector *quad_normal, t_vector *quad_right,
 
 	right_rotated = *quad_right;
 	rotate_reference_system(quad_normal, &right_rotated, rotated_point);
-	right_rotated.x = ft_fclamp(right_rotated.x, -1.0, 1.0);
+	right_rotated.x = ft_clampd(right_rotated.x, -1.0, 1.0);
 	angle = acos(-right_rotated.x);
 	if (right_rotated.y > 0.0)
 		rotate_by_world_axis(BACK, angle, rotated_point);

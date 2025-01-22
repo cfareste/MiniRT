@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_pattern.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:02:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/13 20:27:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:52:55 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static float	get_vector_arc_height(t_point *point)
 	point_arc_vector = *point;
 	point_arc_vector.z = 0.0f;
 	normalize(&point_arc_vector);
-	return (ft_fclamp(point_arc_vector.y, -1.0, 1.0));
+	return (ft_clampd(point_arc_vector.y, -1.0, 1.0));
 }
 
 void	get_cone_body_pattern(t_figure *figure, t_point *point, t_color *res)

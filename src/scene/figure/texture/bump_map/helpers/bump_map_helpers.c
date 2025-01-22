@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 11:01:39 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:52:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	set_base_point_attrs(t_point *point,
 	base_to_point.z = 0.0;
 	point_ctx->point_radius = sqrt(dot(&base_to_point, &base_to_point));
 	normalize(&base_to_point);
-	base_to_point.y = ft_fclamp(base_to_point.y, -1.0, 1.0);
+	base_to_point.y = ft_clampd(base_to_point.y, -1.0, 1.0);
 	point_ctx->point_arc = acos(base_to_point.y) * point_ctx->point_radius;
 	point_ctx->point_base_height = radius - point_ctx->point_radius;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_cylinder.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:19 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 11:01:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:53:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static float	get_point_angle(t_point *point)
 	center_to_point = *point;
 	center_to_point.z = 0;
 	normalize(&center_to_point);
-	center_to_point.y = ft_fclamp(center_to_point.y, -1.0, 1.0);
+	center_to_point.y = ft_clampd(center_to_point.y, -1.0, 1.0);
 	angle = acos(center_to_point.y);
 	return (angle);
 }
