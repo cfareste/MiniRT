@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 20:08:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:16:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
 #include "window/controls/window_controls.h"
-#include <float.h>
+#include "float.h"
 #include <limits.h>
 
 typedef struct s_viewport
