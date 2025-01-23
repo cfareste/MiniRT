@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 12:06:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:09:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,12 @@
 #include "window.h"
 #include "utils/utils_bonus.h"
 #include "helpers/window_helper_bonus.h"
-#include "scene/settings/scene_settings.h"
 #include "render/renderer/renderer_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
 #include "exporter/exporter_bonus.h"
-#include "scene/camera/helpers/camera_helper.h"
-#include "scene/camera/events/camera_events.h"
-#include "jobs/job/job.h"
 #include "miniRT.h"
 #include "window/loader/helpers/loader_helper.h"
-#include "render/events/render_events.h"
 #include "events/window_events.h"
 #include "scene/settings/sky_box/sky_box.h"
-#include "render/renderer/parts/renderer_parts.h"
-#include "render/progressive/helpers/progressive_helper.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
 
 static void	control(t_window *window)

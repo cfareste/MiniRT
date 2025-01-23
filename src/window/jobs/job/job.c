@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   job.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 16:39:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:07:25 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "job.h"
 #include "utils/utils_bonus.h"
 #include "libft.h"
-#include <pthread.h>
 
 static int	run(t_job *job, t_window *window)
 {

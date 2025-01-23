@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   loader_progress.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:16:37 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:19:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:59:03 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "utils/iterators/iterators.h"
-#include "loader_progress.h"
 #include "../../helpers/loader_helper.h"
+#include "window/loader/strategies/progress/helpers/loader_progress_helper.h"
 
 void	paint_pixel(t_iterators *it, t_loader *loader,
 			uint32_t	current)

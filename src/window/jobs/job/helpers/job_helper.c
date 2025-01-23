@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   job_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 21:13:56 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 16:53:53 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:22:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "job_helper.h"
+#include "window/jobs/job/job.h"
 #include "utils/async_flag/async_flag.h"
-
-#include "libft.h"
 
 void	wait_job(t_job *job, int (*check_proceed)(void *arg), void *arg)
 {

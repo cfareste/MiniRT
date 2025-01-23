@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   loader_progress_helper.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:05:47 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 12:35:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:57:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "loader_progress_helper.h"
+#include "../../../loader_bonus.h"
 
 double	get_progress_factor(t_progress *progress)
 {

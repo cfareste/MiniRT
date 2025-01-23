@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_resize_job.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:51:12 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 16:53:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:12:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "../../job.h"
 #include "image_resize_job.h"
 #include "utils/size/size.h"
-#include "window/jobs/job/helpers/job_helper.h"
 
 static	void	destroy(t_job *job)
 {

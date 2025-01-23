@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 20:07:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:51:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 #include "window/window.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "window/jobs/jobs.h"
-#include "window/jobs/job/types/title/title_job.h"
-#include "render/renderer/renderer_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
-#include "scene/parser/scene_parser.h"
-#include "window/loader/loader_bonus.h"
-#include "exporter/helpers/exporter_helper_bonus.h"
-#include "utils/utils_bonus.h"
 #include "render/progressive/helpers/progressive_helper.h"
 #include "scene/settings/sky_box/sky_box.h"
 

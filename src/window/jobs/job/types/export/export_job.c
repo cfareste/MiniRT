@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_job.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 21:49:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:16:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "export_job.h"
 #include "window/window.h"
 #include "exporter/helpers/exporter_helper_bonus.h"
-#include "exporter/exporter_bonus.h"
 #include <stdlib.h>
-
-#include "libft.h"
 
 static	void	destroy(t_job *job)
 {

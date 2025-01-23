@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   window_helper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:58 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 15:54:57 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:25:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "utils/utils_bonus.h"
 #include "MLX42.h"
-#include "render/renderer/renderer_bonus.h"
+#include "utils/size/size.h"
+#include "window/window.h"
+#include <pthread.h>
 
 int	diff_sizes(t_size *a, t_size *b)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   anon_job.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:05:35 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/10 21:05:24 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:20:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "anon_job.h"
+#include "window/jobs/job/job.h"
 
 t_job	*init_anon_job(t_job *job, int (*run)(t_job *, t_window *), void *arg)
 {
