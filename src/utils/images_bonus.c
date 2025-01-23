@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   images_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:49 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/21 19:51:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:42:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "MLX42.h"
 #include "utils/size/size.h"
-#include "window/helpers/window_helper_bonus.h"
 #include <pthread.h>
 
 t_size	get_image_size(mlx_image_t *image, pthread_mutex_t *mutex)
