@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 14:32:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:31:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	control_figure(t_figure *figure, t_camera *camera, t_controls *controls)
 	t_point	rotation_factor;
 	double	fact;
 
-	if (!controls->moving)
+	if (!controls->moving_figure)
 		return (0);
 	fact = 4 * (M_PI / 180.0);
 	translate_factor = wrap_point(

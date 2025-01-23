@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:18:48 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 15:59:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:06:50 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef int8_t	t_control;
 typedef struct s_controls
 {
 	int			moving;
+	int			moving_figure;
 	int			pressed_modifier;
 	t_control	move_up;
 	t_control	move_right;

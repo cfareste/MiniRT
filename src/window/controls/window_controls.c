@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 10:13:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:42:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ static int	check_modifiers(mlx_key_data_t *keydata, t_controls *controls)
 	return (1);
 }
 
-void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
+static void	set_camera_controls(mlx_key_data_t *keydata, t_controls *controls)
 {
-	if (!check_modifiers(keydata, controls))
-		return ;
 	controls->moving += set_control(&controls->zoom,
 			keydata, MLX_KEY_O, MLX_KEY_I);
 	controls->moving += set_control(&controls->focus_dist,
@@ -71,8 +69,30 @@ void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
 			keydata, MLX_KEY_W, MLX_KEY_S);
 	controls->moving += set_control(&controls->move_right,
 			keydata, MLX_KEY_D, MLX_KEY_A);
-	controls->moving += set_control(&controls->view_front,
-			keydata, MLX_KEY_E, MLX_KEY_Q);
 	controls->moving += set_control(&controls->defocus,
 			keydata, MLX_KEY_G, MLX_KEY_H);
+}
+
+static void	set_figure_controls(mlx_key_data_t *keydata, t_controls *controls)
+{
+	controls->moving_figure += set_control(&controls->view_up,
+			keydata, MLX_KEY_UP, MLX_KEY_DOWN);
+	controls->moving_figure += set_control(&controls->view_right,
+			keydata, MLX_KEY_RIGHT, MLX_KEY_LEFT);
+	controls->moving_figure += set_control(&controls->move_up,
+			keydata, MLX_KEY_SPACE, MLX_KEY_LEFT_SHIFT);
+	controls->moving_figure += set_control(&controls->move_front,
+			keydata, MLX_KEY_W, MLX_KEY_S);
+	controls->moving_figure += set_control(&controls->move_right,
+			keydata, MLX_KEY_D, MLX_KEY_A);
+	controls->moving_figure += set_control(&controls->view_front,
+			keydata, MLX_KEY_E, MLX_KEY_Q);
+}
+
+void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
+{
+	if (!check_modifiers(keydata, controls))
+		return ;
+	set_camera_controls(keydata, controls);
+	set_figure_controls(keydata, controls);
 }

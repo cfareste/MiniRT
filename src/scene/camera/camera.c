@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 18:25:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:30:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,9 @@ t_camera	*camera_dup(t_camera *camera)
 	return (new);
 }
 
-static int	check_camera_moving(t_controls *controls)
-{
-	int	moving;
-
-	moving = 0;
-	moving |= controls->move_up != 0;
-	moving |= controls->move_right != 0;
-	moving |= controls->move_front != 0;
-	moving |= controls->view_up != 0;
-	moving |= controls->view_right != 0;
-	moving |= controls->zoom != 0;
-	moving |= controls->focus_dist != 0;
-	moving |= controls->defocus != 0;
-	return (moving);
-}
-
 int	control_camera(t_camera *camera, t_controls *controls)
 {
-	if (!check_camera_moving(controls))
+	if (!controls->moving)
 		return (0);
 	update_camera_focus_dis(camera, controls->focus_dist);
 	update_camera_fov(camera, controls->zoom);

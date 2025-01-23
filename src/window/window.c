@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 18:02:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:06:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #include "scene/settings/sky_box/sky_box.h"
 #include "render/renderer/parts/renderer_parts.h"
 #include "render/progressive/helpers/progressive_helper.h"
+#include "scene/selection/helpers/scene_selection_helpers.h"
 
 static void	control(t_window *window)
 {
@@ -73,7 +74,9 @@ static void	main_loop(void *window_)
 		set_async_flag(&window->render.resize, 1);
 		set_async_flag(&window->render.update, 1);
 	}
-	else if (window->controls.moving
+	else if ((window->controls.moving
+			|| (get_selection_fig(&window->render.scene)
+				&& window->controls.moving_figure))
 		&& !get_async_flag(&window->render.blocked)
 		&& mlx_get_time() - window->last_update > KEY_REPEAT_RATE)
 		control(window);
