@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 12:45:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:58:36 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fill_render(t_composer *composer, t_render *render, char **buffer)
 	if (!composer_is_alive(composer))
 		return (1);
 	push_str(buffer, "R ", throw_sys_error, "pushing render setting string");
-	if (render->samples)
+	if (render->samples && render->samples != (unsigned long) -1)
 		join_format_str(buffer, SAMPLES_TITLE, ft_ultoa(render->samples), SEP);
 	if (render->max_depth != 4)
 		join_format_str(buffer, MAX_DEPTH_TITLE, ft_ultoa(render->max_depth),
