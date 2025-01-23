@@ -6,12 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:11 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/25 20:41:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:40:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "float.h"
 #include "scene/figure/figure.h"
 #include "render/utils/reference_system/reference_system.h"
 #include <math.h>

@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   material_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:38:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render_bonus.h"
-#include "render/utils/point/point.h"
 #include "render/utils/random/random.h"
 #include "render/strategies/shared/strategies_shared.h"
 #include <math.h>

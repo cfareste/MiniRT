@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   box_operations.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:13:26 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:47:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:53:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/figure/figure.h"
 #include "scene/figure/operations/figure_operations.h"
 #include "scene/figure/types/box/helpers/box_helpers.h"
 

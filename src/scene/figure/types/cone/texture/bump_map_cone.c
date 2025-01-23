@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_cone.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 19:24:28 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:53:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:32:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/figure/figure.h"
 #include "scene/figure/texture/texel/texel.h"
-#include "scene/figure/types/cone/helpers/cone_helpers.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
 #include "libft.h"

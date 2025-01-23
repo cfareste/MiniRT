@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   glass.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:50:15 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/17 20:38:08 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:23:27 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parser/parser.h"
 #include "utils/utils_bonus.h"
-#include "render/render_bonus.h"
-#include "scene/figure/material/material.h"
 #include "render/strategies/shared/strategies_shared.h"
 #include "scene/figure/material/helpers/material_helpers.h"
 #include "render/utils/random/random.h"

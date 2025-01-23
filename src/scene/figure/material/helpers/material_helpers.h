@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   material_helpers.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:21:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:37:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "render/utils/point/point.h"
 
 float	get_fresnel_effect(float index, float cos);
 

@@ -6,16 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 11:31:05 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:09:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "figure.h"
 #include "utils/utils_bonus.h"
-#include "texture/bump_map/bump_map.h"
-#include "render/utils/random/random.h"
-#include "events/figure_events.h"
 #include "operations/figure_operations.h"
 #include <math.h>
 

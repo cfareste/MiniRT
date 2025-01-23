@@ -6,13 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:47:43 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 01:43:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:59:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "../bump_map.h"
 #include "scene/figure/figure.h"
 #include "scene/figure/helpers/base_attributes/base_attributes.h"
 

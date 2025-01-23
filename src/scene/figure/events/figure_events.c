@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   figure_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:44:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:42:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/events/helpers/figure_events_helpers.h"
-#include "render/utils/reference_system/reference_system.h"
-#include "render/utils/vector/rotation/vector_rotation.h"
-#include "scene/figure/operations/figure_operations.h"
 #include "libft.h"
-#include <math.h>
 
 void	change_figure_material(t_figure *selection)
 {

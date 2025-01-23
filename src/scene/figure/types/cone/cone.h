@@ -6,16 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 02:19:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:26:46 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #define CONE_ID "co"
-
-#include "render/utils/coordinates/coordinates.h"
-#include "scene/figure/figure.h"
 
 typedef struct s_cone_attrs
 {

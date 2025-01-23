@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 19:57:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:59:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bump_map.h"
 #include "utils/utils_bonus.h"
-#include "window/textures/textures.h"
 #include "parser/helpers/parser_helper.h"
 #include <string.h>
 #include <errno.h>

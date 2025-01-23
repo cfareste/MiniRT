@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   quadrilater_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:57:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:53:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:56:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/point/point.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/operations/figure_operations.h"
 #include "libft.h"

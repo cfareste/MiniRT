@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   figure_events.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 13:58:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 14:45:16 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:41:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "MLX42.h"
-#include "scene/scene.h"
-#include "scene/camera/camera.h"
 
 void		change_figure_material(t_figure *selection);
 

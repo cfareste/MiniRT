@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:06:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 18:42:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:37:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "MLX42.h"
 #include "render/render_bonus.h"
+#include "window/jobs/jobs.h"
 #include <pthread.h>
 
 #define MODIFY_EXISTING 0

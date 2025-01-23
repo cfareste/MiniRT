@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_cylinder.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:31:19 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:53:21 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:16:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/figure/figure.h"
 #include "scene/figure/texture/texel/texel.h"
-#include "scene/figure/texture/bump_map/bump_map.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
 #include "libft.h"

@@ -6,12 +6,10 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:39:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/10 02:30:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:44:22 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser/parser.h"
-#include "scene/figure/figure.h"
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "libft.h"

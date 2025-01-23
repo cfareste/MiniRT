@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_helpers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:44:36 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:52:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:00:52 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../bump_map.h"
-#include "scene/figure/figure.h"
 #include "scene/figure/texture/texel/texel.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/helpers/base_attributes/base_attributes.h"

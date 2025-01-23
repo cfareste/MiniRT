@@ -6,15 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:43:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 11:49:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:14:53 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #define METALLIC_ID "metallic"
-
-#include "parser/parser.h"
 
 typedef struct s_metallic_attrs
 {
