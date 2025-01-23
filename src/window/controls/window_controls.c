@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 11:42:07 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:04:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	set_camera_controls(mlx_key_data_t *keydata, t_controls *controls)
 	controls->moving += set_control(&controls->zoom,
 			keydata, MLX_KEY_O, MLX_KEY_I);
 	controls->moving += set_control(&controls->focus_dist,
-			keydata, MLX_KEY_J, MLX_KEY_K);
+			keydata, MLX_KEY_K, MLX_KEY_J);
 	controls->moving += set_control(&controls->view_up,
 			keydata, MLX_KEY_UP, MLX_KEY_DOWN);
 	controls->moving += set_control(&controls->view_right,
@@ -70,7 +70,7 @@ static void	set_camera_controls(mlx_key_data_t *keydata, t_controls *controls)
 	controls->moving += set_control(&controls->move_right,
 			keydata, MLX_KEY_D, MLX_KEY_A);
 	controls->moving += set_control(&controls->defocus,
-			keydata, MLX_KEY_G, MLX_KEY_H);
+			keydata, MLX_KEY_H, MLX_KEY_G);
 }
 
 static void	set_figure_controls(mlx_key_data_t *keydata, t_controls *controls)

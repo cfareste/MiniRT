@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 18:25:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:43:08 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct s_camera
 	t_vector			defocus_up;
 }	t_camera;
 
-void		print_camera(t_camera *camera);
-
 void		set_viewport(t_camera *camera, t_viewport *vp, t_size w_size);
 
 t_camera	*camera_dup(t_camera *camera);
+
+void		calculate_defocus_components(t_camera *camera);
 
 int			control_camera(t_camera *camera, t_controls *controls);

@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:42:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 15:09:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:42:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ static void	check_parsing(t_parser_ctx *ctx, t_camera *camera)
 		throw_parse_err(ctx, "Defocus radius must be a positive value");
 	if (camera->focus_dist <= 0)
 		throw_parse_err(ctx, "Focus distance must be a positive value");
-}
-
-static void	calculate_defocus_components(t_camera *camera)
-{
-	float	defocus_radius;
-
-	defocus_radius = tan(camera->defocus * 0.5 * M_PI / 180.0)
-		* camera->focus_dist;
-	multiply_vector_scalar(&camera->right, defocus_radius,
-		&camera->defocus_right);
-	multiply_vector_scalar(&camera->up, defocus_radius,
-		&camera->defocus_up);
 }
 
 void	parse_camera(t_parser_ctx *ctx, char **parts, t_camera **camera)
