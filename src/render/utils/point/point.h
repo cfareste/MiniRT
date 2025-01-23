@@ -6,14 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:04 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/22 00:58:19 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:20:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 
 typedef t_coordinates	t_point;
 

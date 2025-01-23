@@ -6,15 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 18:30:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 17:42:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:13:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/scene.h"
+#include "normal_map.h"
 #include "render/strategies/shared/strategies_shared.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
-#include "libft.h"
 
 static void	modulate_color(t_figure *selected, t_color *color)
 {

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:39 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 13:48:55 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:02:27 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "utils/size/size.h"
 #include "utils/iterators/iterators.h"
 #include "render/utils/color/color.h"
-#include "../strategies/strategy.h"
 #include "../renderer/parts/render_parts_amount.h"
 #include "../renderer/renderer_args.h"
 

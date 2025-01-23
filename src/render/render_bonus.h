@@ -6,15 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:57:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:47:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:25:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 #include "MLX42.h"
 #include "scene/scene.h"
-#include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 #include "renderer/pixels/renderer_pixels.h"
 #include "utils/async_flag/async_flag.h"
 #include "progressive/render_progressive.h"

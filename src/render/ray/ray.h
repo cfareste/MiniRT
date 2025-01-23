@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/27 20:53:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:06:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_bounds
 {

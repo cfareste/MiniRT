@@ -6,16 +6,16 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:18:23 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:14:41 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render_bonus.h"
+#include "pathtracing.h"
+#include "libft.h"
 #include "scene/figure/helpers/figure_helpers.h"
 #include "scene/light/ambient_light/ambient_light.h"
 #include "render/strategies/shared/strategies_shared.h"
 #include "render/utils/color/color_operations/color_operations.h"
-#include "libft.h"
 
 static void	get_ambient_light(t_scene *scene, t_ray *ray,
 	t_color *energy, t_color *final_color)

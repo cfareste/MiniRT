@@ -6,13 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/04 19:13:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:21:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
-#include <stdio.h>
+#include "point.h"
 
 void	translate_point(t_point *point, t_vector *direction, float scalar,
 	t_point *res)

@@ -6,12 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:27:05 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/17 15:31:46 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:43:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composer_events.h"
-#include "../composer.h"
 
 void	composer_key_events(mlx_key_data_t *keydata, t_window *window)
 {

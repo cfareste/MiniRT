@@ -6,18 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 20:06:48 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:17:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/scene.h"
-#include "scene/light/utils/light_utils.h"
+#include "strategies_shared.h"
 #include "render/ray/helpers/ray_helper.h"
-#include "render/helpers/render_helper_bonus.h"
-#include "render/utils/color/color_operations/color_operations.h"
 #include "render/strategies/raytracing/helpers/raytracing_helpers.h"
 #include "render/strategies/pathtracing/helpers/pathtracing_helpers.h"
-#include "strategies_shared.h"
 #include "libft.h"
 #include <math.h>
 

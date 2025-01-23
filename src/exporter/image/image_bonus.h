@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:09:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:09:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:28:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #include "MLX42.h"
 #include "utils/size/size.h"
-#include <stdint.h>
-#include <pthread.h>
 
 typedef struct s_image
 {

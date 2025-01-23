@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:24:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/08 17:17:27 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:18:26 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "render/utils/color/color.h"
+#include "color_operations.h"
 
 void	sum_color_scalar(t_color *color, float scalar, t_color *res)
 {

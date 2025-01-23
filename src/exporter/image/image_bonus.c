@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:12:16 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/07 13:09:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:54:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "image_bonus.h"
+#include "libft.h"
 #include "utils/utils_bonus.h"
 
 static uint8_t	*pixels_dup(uint8_t	*pixels, int amount)

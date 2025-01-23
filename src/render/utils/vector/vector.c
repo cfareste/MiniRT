@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:18 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/26 14:39:09 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:24:17 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
+#include "vector.h"
 #include <math.h>
 
 void	rotate_vector(t_vector *vec, t_vector *axis, float angle,

@@ -6,15 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:19:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:00:56 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "render_parser.h"
+#include "libft.h"
 #include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
-#include <limits.h>
 
 static void	check_parsing(t_parser_ctx *ctx, t_render *render)
 {

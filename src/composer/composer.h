@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   composer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:06:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 18:42:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:48:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "MLX42.h"
-#include "render/render_bonus.h"
-#include <pthread.h>
-
 #define MODIFY_EXISTING 0
 #define CREATE_FILE 1
+
+#include "render/render_bonus.h"
+
 
 typedef struct s_composer
 {

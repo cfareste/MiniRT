@@ -6,14 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:49:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:03:52 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "render_progressive.h"
 #include "utils/utils_bonus.h"
 #include "libft.h"
-#include "render_progressive.h"
-#include "../strategies/strategies.h"
 #include "../ray/helpers/ray_helper.h"
 #include "../utils/color/color_operations/color_operations.h"
 #include "../utils/thread/thread.h"

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reference_system.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 11:02:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:22:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
-#include "libft.h"
+#include "reference_system.h"
 #include <math.h>
 
 float	rotate_reference_system(t_vector *normal, t_vector *vec, t_point *point)

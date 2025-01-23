@@ -6,12 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:35:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:13:20 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:21:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/utils/point/point.h"
-#include <stdint.h>
+#include "random.h"
 #include <math.h>
 
 uint64_t	get_random(uint64_t *seed)

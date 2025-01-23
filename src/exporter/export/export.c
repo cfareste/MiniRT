@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 18:10:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:50:51 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils_bonus.h"
-#include "libft.h"
 #include "export.h"
-#include "render/helpers/render_helper_bonus.h"
+#include "libft.h"
+#include "utils/utils_bonus.h"
 #include "../helpers/exporter_helper_bonus.h"
 #include "window/loader/strategies/progress/loader_progress.h"
 #include <fcntl.h>

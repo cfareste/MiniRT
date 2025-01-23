@@ -6,16 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 19:30:30 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:10:23 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "renderer_pixels.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "renderer_pixels.h"
 #include "render/utils/random/random.h"
-#include <stdio.h>
-#include <limits.h>
 
 void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)
 {

@@ -6,13 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/17 14:53:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:18:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "render/utils/vector/vector.h"
-#include "render/utils/coordinates/coordinates.h"
 
 typedef struct s_color
 {

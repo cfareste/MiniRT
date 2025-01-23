@@ -6,15 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:47:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:29:35 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/scene.h"
-#include "render/ray/helpers/ray_helper.h"
-#include "utils/iterators/iterators.h"
+#include "raytracing.h"
 #include "../shared/strategies_shared.h"
-#include "render/helpers/render_helper_bonus.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "scene/light/ambient_light/ambient_light.h"
 #include "scene/light/utils/light_utils.h"

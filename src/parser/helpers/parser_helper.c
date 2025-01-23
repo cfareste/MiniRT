@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:15:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 20:56:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:56:49 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser_helper.h"
 #include "libft.h"
-#include "../parser.h"
 #include "utils/utils_bonus.h"
 
 void	throw_parse_err(t_parser_ctx *ctx, char *error_msg)

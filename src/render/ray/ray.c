@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:43 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/19 13:00:23 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:07:02 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "float.h"
-#include "render/utils/vector/vector.h"
 
 void	set_ray(t_ray *ray, t_point *origin, t_vector *direction)
 {

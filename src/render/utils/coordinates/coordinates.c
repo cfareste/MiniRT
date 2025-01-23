@@ -6,18 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/07 14:54:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:20:12 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "coordinates.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "coordinates.h"
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
-#include "parser/parser.h"
 #include "parser/helpers/parser_helper.h"
-#include <math.h>
 
 void	parse_coordinates(t_parser_ctx *ctx, char *str,
 			t_coordinates *coordinates)

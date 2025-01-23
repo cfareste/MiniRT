@@ -6,13 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:53:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:30:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:22:50 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "thread.h"
 #include "utils/utils_bonus.h"
-#include <stdint.h>
-#include <pthread.h>
 
 #ifdef DARWIN
 

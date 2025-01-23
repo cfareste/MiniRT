@@ -6,19 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/16 19:27:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:56:05 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exporter_bonus.h"
-#include "libft.h"
-#include "utils/utils_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
-#include "image/image_bonus.h"
 #include "helpers/exporter_helper_bonus.h"
 #include "window/jobs/job/types/export/export_job.h"
-#include "export/export.h"
-#include <limits.h>
 
 void	export_image(t_exporter *exporter, t_jobs *jobs)
 {

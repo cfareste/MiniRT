@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:55:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:11:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:16:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "scene/scene.h"
+#include "render/render_bonus.h"
 
 typedef struct s_sample_lights_params
 {

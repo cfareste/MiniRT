@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   composition_lights_helpers.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:35:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 14:01:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:40:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "composer/composer.h"
+#include "composition_lights_helpers.h"
 #include "utils/utils_bonus.h"
 #include "libft.h"
 

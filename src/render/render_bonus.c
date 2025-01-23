@@ -6,23 +6,18 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 19:47:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:27:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "render_bonus.h"
 #include "libft.h"
 #include "helpers/render_helper_bonus.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "render/utils/thread/thread.h"
-#include "render/utils/color/color_operations/color_operations.h"
-#include "utils/iterators/iterators.h"
-#include "render/strategies/strategies.h"
 #include "renderer/parts/renderer_parts.h"
-#include "utils/utils_bonus.h"
-#include "renderer/parts/render_parts_amount.h"
 #include "renderer/renderer_bonus.h"
-#include <math.h>
 
 void	render_strategy(t_render *render, t_ray *ray,
 	t_color *sample_color, uint64_t *seed)

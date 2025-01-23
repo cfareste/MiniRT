@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   composition_figures_helpers.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:32:27 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 14:01:33 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:39:54 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "composer/composer.h"
 #include "utils/utils_bonus.h"
 #include "composition_figures_helpers.h"
 #include "libft.h"

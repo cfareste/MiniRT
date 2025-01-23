@@ -6,24 +6,19 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 19:49:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:12:38 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer_bonus.h"
-#include "miniRT.h"
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "window/window.h"
 #include "window/helpers/window_helper_bonus.h"
-#include "render/render_bonus.h"
 #include "render/helpers/render_helper_bonus.h"
-#include "window/jobs/job/types/title/title_job.h"
 #include "window/jobs/job/types/image_resize/image_resize_job.h"
 #include "window/jobs/job/helpers/job_helper.h"
 #include "../utils/thread/thread.h"
 #include "parts/renderer_parts.h"
-#include <pthread.h>
 
 void	stop_render(t_render *render)
 {
