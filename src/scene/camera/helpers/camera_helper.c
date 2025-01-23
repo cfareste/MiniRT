@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:52:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:49:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@
 
 void	update_camera_fov(t_camera *camera, int factor)
 {
-	int	new_fov;
-
 	if (!factor)
 		return ;
-	new_fov = camera->fov + factor;
-	if (new_fov <= 180 && new_fov >= 0)
-		camera->fov = new_fov;
+	camera->fov = ft_clampd(camera->fov + factor, 0, 180);
 }
 
 void	update_camera_pos(t_camera *camera, t_point factor)
@@ -54,6 +50,15 @@ void	update_camera_focus_dis(t_camera *camera, double factor)
 		return ;
 	camera->focus_dist = ft_clampd(
 			camera->focus_dist + (factor * 0.2), 1, DBL_MAX);
+}
+
+void	update_camera_defocus_rad(t_camera *camera, double factor)
+{
+	if (!factor)
+		return ;
+	camera->defocus = ft_clampd(
+			camera->defocus + (factor * 0.2), 0, DBL_MAX);
+	calculate_defocus_components(camera);
 }
 
 void	update_camera_front(t_camera *camera, t_point factor)

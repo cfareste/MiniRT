@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 11:30:53 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:42:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,24 @@ t_camera	*camera_dup(t_camera *camera)
 	return (new);
 }
 
+void	calculate_defocus_components(t_camera *camera)
+{
+	float	defocus_radius;
+
+	defocus_radius = tan(camera->defocus * 0.5 * M_PI / 180.0)
+		* camera->focus_dist;
+	multiply_vector_scalar(&camera->right, defocus_radius,
+		&camera->defocus_right);
+	multiply_vector_scalar(&camera->up, defocus_radius,
+		&camera->defocus_up);
+}
+
 int	control_camera(t_camera *camera, t_controls *controls)
 {
 	if (!controls->moving)
 		return (0);
 	update_camera_focus_dis(camera, controls->focus_dist);
+	update_camera_defocus_rad(camera, controls->defocus);
 	update_camera_fov(camera, controls->zoom);
 	update_camera_front(camera, wrap_point(
 			2 * controls->view_right,
