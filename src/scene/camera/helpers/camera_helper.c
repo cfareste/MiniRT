@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   camera_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:02:59 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 12:49:10 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:06:07 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "camera_helper.h"
-#include "../parser/camera_parser.h"
+#include "libft.h"
 #include "render/utils/vector/rotation/vector_rotation.h"
 #include "render/utils/reference_system/reference_system.h"
 #include <math.h>
-#include <limits.h>
 
 void	update_camera_fov(t_camera *camera, int factor)
 {

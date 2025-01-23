@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 12:42:43 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:10:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "camera.h"
+#include "libft.h"
 #include "utils/utils_bonus.h"
-#include "render/utils/point/point.h"
-#include "render/utils/vector/vector.h"
-#include "parser/camera_parser.h"
 #include "helpers/camera_helper.h"
 #include <math.h>
 

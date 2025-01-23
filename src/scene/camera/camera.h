@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 12:43:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:08:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 #include "utils/size/size.h"
 #include "render/utils/point/point.h"
 #include "render/utils/vector/vector.h"
-#include "parser/parser.h"
-#include "float.h"
 #include "window/controls/window_controls.h"
+#include <float.h>
 #include <limits.h>
 
 typedef struct s_viewport

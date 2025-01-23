@@ -6,16 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 15:09:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:04:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "camera_events.h"
 #include "utils/utils_bonus.h"
-#include "../helpers/camera_helper.h"
 #include "render/renderer/renderer_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
 #include "libft.h"
 
 void	focus_camera_to_selection(t_camera *camera, t_figure *selection,
