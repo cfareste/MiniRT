@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:10:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/15 17:11:23 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:00:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render_bonus.h"
+#include "scene/scene.h"
 
 t_figure	*get_selection_fig(t_scene *scene)
 {

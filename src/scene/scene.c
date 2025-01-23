@@ -6,14 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 13:41:43 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:51:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "utils/utils_bonus.h"
 #include "scene.h"
-#include "parser/parser.h"
 
 void	add_figure(t_scene *scene, t_camera *camera)
 {

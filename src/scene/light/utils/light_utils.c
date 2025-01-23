@@ -6,13 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:33 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 14:40:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:06:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/render_bonus.h"
 #include "render/ray/ray.h"
-#include "render/utils/vector/vector.h"
 #include "render/utils/color/color_operations/color_operations.h"
 #include "libft.h"
 #include "light_utils.h"

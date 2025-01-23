@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/10/28 17:43:40 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:03:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIGHT_H
 # define LIGHT_H
 
-# include "float.h"
 # include "render/utils/color/color.h"
 # include "render/utils/point/point.h"
-# include "render/utils/coordinates/coordinates.h"
 
 typedef enum e_light_types
 {

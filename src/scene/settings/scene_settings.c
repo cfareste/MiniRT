@@ -6,14 +6,15 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 17:37:14 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:53:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "libft.h"
 #include "utils/utils_bonus.h"
 #include "scene_settings.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void	print_scene_settings(t_scene_settings *settings)
 {

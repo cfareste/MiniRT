@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 17:25:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:54:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,4 @@
 #include "../scene_settings.h"
 
 int		try_parse_scene_setting(t_parser_ctx *ctx, char **params,
-			t_scene_settings *settings);
-
-void	parse_scene_settings(t_parser_ctx *ctx, char **params,
 			t_scene_settings *settings);
