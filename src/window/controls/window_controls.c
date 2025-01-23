@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_controls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 12:21:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 18:16:06 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:13:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	set_controls(mlx_key_data_t *keydata, t_controls *controls)
 	controls->moving += set_control(&controls->move_right,
 			keydata, MLX_KEY_D, MLX_KEY_A);
 	controls->moving += set_control(&controls->view_front,
-			keydata, MLX_KEY_X, MLX_KEY_Z);
+			keydata, MLX_KEY_E, MLX_KEY_Q);
 	controls->moving += set_control(&controls->defocus,
 			keydata, MLX_KEY_G, MLX_KEY_H);
 }

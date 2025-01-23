@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:26 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:13:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	key_hook(mlx_key_data_t keydata, t_window *window)
 		selection_key_events(&keydata, window);
 	else
 	{
-		if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_E)
+		if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_X)
 			export_image(&window->exporter, &window->jobs);
 		else if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_L)
 			loader_toggle_visibility(window->exporter.loader);
