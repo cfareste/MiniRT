@@ -277,6 +277,7 @@ SRCS =	main_test.c \
 		render_parser.c \
 		window_parser.c \
 		camera_helper.c \
+		camera.c \
 		raytracing_helpers.c \
 		pathtracing_helpers.c \
 		material_helpers.c \

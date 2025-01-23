@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:06:53 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 15:48:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:32:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #define CREATE_FILE 1
 
 #include "render/render_bonus.h"
-
 
 typedef struct s_composer
 {
