@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 16:03:42 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT_bonus.h"
 #include "parser_bonus.h"
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "window/parser/window_parser_bonus.h"
 #include "scene/parser/scene_parser_bonus.h"
 #include "parser/helpers/parser_helper_bonus.h"

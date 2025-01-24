@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window/window_bonus.h"
-#include "exporter/helpers/exporter_helper_bonus_bonus.h"
+#include "exporter/helpers/exporter_helper_bonus.h"
 #include <stdlib.h>
 
 static	void	destroy(t_job *job)

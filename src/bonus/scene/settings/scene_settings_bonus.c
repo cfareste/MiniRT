@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "scene_settings_bonus.h"
 #include <stdio.h>
 #include <stdlib.h>

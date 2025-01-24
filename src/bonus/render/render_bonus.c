@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus_bonus.c                               :+:      :+:    :+:   */
+/*   render_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_bonus_bonus.h"
+#include "render_bonus.h"
 #include "libft.h"
-#include "helpers/render_helper_bonus_bonus.h"
-#include "window/helpers/window_helper_bonus_bonus.h"
+#include "helpers/render_helper_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include "render/ray/helpers/ray_helper_bonus.h"
 #include "render/utils/thread/thread_bonus.h"
 #include "renderer/parts/renderer_parts_bonus.h"
-#include "renderer/renderer_bonus_bonus.h"
+#include "renderer/renderer_bonus.h"
 
 void	render_strategy(t_render *render, t_ray *ray,
 	t_color *sample_color, uint64_t *seed)

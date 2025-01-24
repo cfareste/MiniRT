@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_helper_bonus_bonus.c                      :+:      :+:    :+:   */
+/*   exporter_helper_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:09:24 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:17:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "exporter_helper_bonus_bonus.h"
+#include "exporter_helper_bonus.h"
 
 int	is_exporter_active(t_exporter *exporter)
 {

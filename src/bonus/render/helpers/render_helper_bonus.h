@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_bonus_bonus.h                             :+:      :+:    :+:   */
+/*   render_helper_bonus.h                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
+/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
 /*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define EXPORT_BASE_DIR "exports/"
-#include "render/render_bonus_bonus.h"
-#include "window/jobs/jobs_bonus.h"
-#include "window/loader/loader_bonus_bonus.h"
 
-typedef struct s_exporter
-{
-	pthread_t		thread;
-	pthread_mutex_t	mutex;
-	int				active;
-	t_render		*render;
-	t_jobs			*jobs;
-	t_loader		*loader;
-}	t_exporter;
+#include "render/render_bonus.h"
 
-void	export_image(t_exporter *exporter, t_jobs *jobs);
+int		is_render_finished(t_render *render);
 
-void	init_exporter(t_exporter *exporter, t_render *render, t_jobs *jobs,
-			t_loader *loader);
+void	set_render_finish(t_render *render, int value);
 
-void	destroy_exporter(t_exporter *exporter);
+int		is_render_alive(t_render *render);

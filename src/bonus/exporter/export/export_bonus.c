@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 16:13:04 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "export_bonus.h"
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
-#include "../helpers/exporter_helper_bonus_bonus.h"
+#include "utils/utils_bonus.h"
+#include "../helpers/exporter_helper_bonus.h"
 #include "window/loader/strategies/progress/loader_progress_bonus.h"
 #include <fcntl.h>
 

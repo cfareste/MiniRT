@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:08:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "render/strategies/shared/strategies_shared_bonus.h"
 #include "scene/figure/material/helpers/material_helpers_bonus.h"
 

@@ -6,18 +6,18 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:35:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "load_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "../helpers/loader_helper_bonus.h"
 #include "window/jobs/job/types/image_resize/image_resize_job_bonus.h"
 #include "window/jobs/job/helpers/job_helper_bonus.h"
 #include "../strategies/strategies_bonus.h"
-#include "../loader_bonus_bonus.h"
+#include "../loader_bonus.h"
 
 static void	paint(t_load *load)
 {

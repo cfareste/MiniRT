@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
-#include "render/render_bonus_bonus.h"
+#include "utils/utils_bonus.h"
+#include "render/render_bonus.h"
 #include "render/utils/random/random_bonus.h"
 #include "scene/figure/material/helpers/material_helpers_bonus.h"
 #include <math.h>

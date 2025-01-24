@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:46:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_parser_bonus.h"
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper_bonus.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_render *render)

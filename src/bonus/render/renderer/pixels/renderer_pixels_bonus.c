@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:29:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer_pixels_bonus.h"
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "render/utils/random/random_bonus.h"
 
 void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)

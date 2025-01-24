@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window/window_bonus.h"
-#include "window/helpers/window_helper_bonus_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include "window/jobs/job/types/destroy/destroy_job_bonus.h"
 #include "window/jobs/job/helpers/job_helper_bonus.h"
 #include <stdio.h>

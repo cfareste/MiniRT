@@ -6,11 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/renderer/renderer_bonus_bonus.h"
+#include "render/renderer/renderer_bonus.h"
 #include "render/events/render_events_bonus.h"
 #include "scene/camera/helpers/camera_helper_bonus.h"
 #include "scene/camera/events/camera_events_bonus.h"

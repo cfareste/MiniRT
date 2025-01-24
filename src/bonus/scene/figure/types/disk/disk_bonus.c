@@ -6,11 +6,11 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "scene/figure/parser/figure_parser_bonus.h"
 #include "scene/figure/helpers/figure_helpers_bonus.h"
 #include "scene/figure/operations/figure_operations_bonus.h"

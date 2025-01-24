@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT_bonus.h"
 #include "composition_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "./helpers/lights/composition_lights_helpers_bonus.h"
 #include "./helpers/figures/composition_figures_helpers_bonus.h"
 #include "./helpers/settings/composition_settings_helpers_bonus.h"

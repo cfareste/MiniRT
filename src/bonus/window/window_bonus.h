@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:59:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # define ICON_PATH "assets/images/icon.png"
 # define KEY_REPEAT_RATE 0.04
 
-# include "render/render_bonus_bonus.h"
+# include "render/render_bonus.h"
 # include "utils/size/size_bonus.h"
-# include "exporter/exporter_bonus_bonus.h"
-# include "window/loader/loader_bonus_bonus.h"
+# include "exporter/exporter_bonus.h"
+# include "window/loader/loader_bonus.h"
 # include "jobs/jobs_bonus.h"
 # include "textures/textures_bonus.h"
 # include "cursor/window_cursor_bonus.h"

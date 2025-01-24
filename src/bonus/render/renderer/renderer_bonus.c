@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_bonus_bonus.c                             :+:      :+:    :+:   */
+/*   renderer_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer_bonus_bonus.h"
+#include "renderer_bonus.h"
 #include "libft.h"
-#include "utils/utils_bonus_bonus.h"
-#include "window/helpers/window_helper_bonus_bonus.h"
-#include "render/helpers/render_helper_bonus_bonus.h"
+#include "utils/utils_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
+#include "render/helpers/render_helper_bonus.h"
 #include "window/jobs/job/types/image_resize/image_resize_job_bonus.h"
 #include "window/jobs/job/helpers/job_helper_bonus.h"
 #include "../utils/thread/thread_bonus.h"

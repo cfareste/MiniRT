@@ -6,16 +6,16 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render/ray/helpers/ray_helper_bonus.h"
 #include "scene/figure/events/figure_events_bonus.h"
-#include "render/renderer/renderer_bonus_bonus.h"
+#include "render/renderer/renderer_bonus.h"
 #include "scene/camera/events/camera_events_bonus.h"
 #include "scene/selection/helpers/scene_selection_helpers_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 
 void	deselect_figure(t_render *render)
 {

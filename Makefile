@@ -332,17 +332,17 @@ BSRCS = miniRT_bonus.c \
 	cylinder_parser_bonus.c \
 	plane_bonus.c \
 	sphere_bonus.c \
-	render_bonus_bonus.c \
+	render_bonus.c \
 	window_bonus.c \
-	renderer_bonus_bonus.c \
+	renderer_bonus.c \
 	vector_bonus.c \
 	operation_bonus.c \
 	point_bonus.c \
 	reference_system_bonus.c \
-	render_helper_bonus_bonus.c \
-	window_helper_bonus_bonus.c \
+	render_helper_bonus.c \
+	window_helper_bonus.c \
 	size_bonus.c \
-	images_bonus_bonus.c \
+	images_bonus.c \
 	ray_helper_bonus.c \
 	ray_bonus.c \
 	light_utils_bonus.c \
@@ -359,9 +359,9 @@ BSRCS = miniRT_bonus.c \
 	bump_map_bonus.c \
 	scene_settings_bonus.c \
 	scene_settings_parser_bonus.c \
-	exporter_bonus_bonus.c \
-	image_bonus_bonus.c \
-	exporter_helper_bonus_bonus.c\
+	exporter_bonus.c \
+	image_bonus.c \
+	exporter_helper_bonus.c\
 	random_bonus.c \
 	thread_bonus.c \
 	pattern_bonus.c \
@@ -372,7 +372,7 @@ BSRCS = miniRT_bonus.c \
 	plane_pattern_bonus.c \
 	cylinder_pattern_bonus.c \
 	cone_pattern_bonus.c \
-	loader_bonus_bonus.c \
+	loader_bonus.c \
 	jobs_bonus.c \
 	job_bonus.c \
 	destroy_job_bonus.c \

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_bonus_bonus.c                             :+:      :+:    :+:   */
+/*   exporter_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exporter_bonus_bonus.h"
-#include "helpers/exporter_helper_bonus_bonus.h"
+#include "exporter_bonus.h"
+#include "helpers/exporter_helper_bonus.h"
 #include "window/jobs/job/types/export/export_job_bonus.h"
 
 void	export_image(t_exporter *exporter, t_jobs *jobs)

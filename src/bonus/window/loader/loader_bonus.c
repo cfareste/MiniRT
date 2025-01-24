@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader_bonus_bonus.c                               :+:      :+:    :+:   */
+/*   loader_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "loader_bonus_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "loader_bonus.h"
+#include "utils/utils_bonus.h"
 #include "helpers/loader_helper_bonus.h"
 #include "load/load_bonus.h"
 

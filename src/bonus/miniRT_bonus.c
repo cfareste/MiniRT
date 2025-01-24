@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "MLX42.h"
 #include "miniRT_bonus.h"
 #include "window/window_bonus.h"
-#include "window/helpers/window_helper_bonus_bonus.h"
+#include "window/helpers/window_helper_bonus.h"
 #include "window/jobs/jobs_bonus.h"
 #include "render/progressive/helpers/progressive_helper_bonus.h"
 #include "scene/settings/sky_box/sky_box_bonus.h"

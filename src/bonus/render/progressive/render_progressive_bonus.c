@@ -6,17 +6,17 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_progressive_bonus.h"
-#include "utils/utils_bonus_bonus.h"
+#include "utils/utils_bonus.h"
 #include "libft.h"
 #include "../ray/helpers/ray_helper_bonus.h"
 #include "../utils/color/color_operations/color_operations_bonus.h"
 #include "../utils/thread/thread_bonus.h"
-#include "../helpers/render_helper_bonus_bonus.h"
+#include "../helpers/render_helper_bonus.h"
 #include "../progressive/helpers/progressive_helper_bonus.h"
 #include "../renderer/parts/renderer_parts_bonus.h"
 

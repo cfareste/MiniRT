@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:00 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_events_bonus.h"
-#include "../renderer/renderer_bonus_bonus.h"
-#include "render/helpers/render_helper_bonus_bonus.h"
+#include "../renderer/renderer_bonus.h"
+#include "render/helpers/render_helper_bonus.h"
 #include "scene/selection/helpers/scene_selection_helpers_bonus.h"
 
 static void	switch_strategy(t_render *render, t_strategy new)

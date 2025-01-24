@@ -6,12 +6,12 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 15:39:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils_bonus_bonus.h"
+#include "utils_bonus.h"
 
 int	correct_file_extension(char *filename, char *extension)
 {
