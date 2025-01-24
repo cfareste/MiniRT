@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:49 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:39:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:48:19 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	try_parse_scene_setting(t_parser_ctx *ctx, char **args,
 	while (args[i])
 	{
 		if (!parse_scene_setting(ctx, args[i], settings))
-			throw_parse_err(ctx, ft_strjoin("Unknown scene param: ",
-					args[i]));
+			throw_parse_err(ctx, safe_ft_strjoin("Unknown scene param: ",
+					args[i], throw_sys_error, "strjoin"));
 		i++;
 	}
 	return (1);

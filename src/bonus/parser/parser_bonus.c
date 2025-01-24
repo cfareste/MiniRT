@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:03:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 		if (!try_parse_scene_elems(ctx, args, &window->render.scene)
 			&& !try_parse_render_elems(ctx, args, &window->render)
 			&& !try_parse_window_elems(ctx, args, window))
-			throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
+			throw_parse_err(ctx, safe_ft_strjoin("Unknown parameter: ",
+					*args, throw_sys_error, "strjoin"));
 	}
 	free_matrix(args);
 	free_matrix(splitted_by_comment);

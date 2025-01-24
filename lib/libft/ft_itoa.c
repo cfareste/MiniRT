@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:16:26 by arcanava          #+#    #+#             */
-/*   Updated: 2024/07/06 18:57:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:56:11 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static unsigned long	get_positive_lnum(long n)
 	return (n);
 }
 
-char	*safe_ft_ltoa(long n)
+char	*safe_ft_itoa(int n, void (*f)(char *), char *errmsg)
 {
 	char	*res;
 
-	res = ft_ltoa(n);
+	res = ft_itoa(n);
 	if (!res)
-		exit(ENOMEM);
+		f(errmsg);
 	return (res);
 }
 

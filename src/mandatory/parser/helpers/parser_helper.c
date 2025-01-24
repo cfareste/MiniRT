@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:15:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 12:15:59 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:02:31 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,16 @@ double	parse_double(t_parser_ctx *ctx, char *str)
 		str++;
 	}
 	if (*str || symbols_count > 1 || points_count > 1 || nums_count < 1)
-		throw_parse_err(ctx,
-			ft_strjoin("Invalid floating point number: ", aux));
+		throw_parse_err(ctx, safe_ft_strjoin("Invalid floating point number: ",
+				aux, throw_sys_error, "ft_strjoin"));
 	return (ft_atod(aux));
 }
 
 int	parse_int(t_parser_ctx *ctx, char *str)
 {
 	if (!ft_isnum(str))
-		throw_parse_err(ctx, ft_strjoin("Invalid integer number: ", str));
+		throw_parse_err(ctx, safe_ft_strjoin("Invalid integer number: ", str,
+				throw_sys_error, "ft_strjoin"));
 	return (ft_atoi(str));
 }
 
@@ -66,7 +67,8 @@ unsigned long	parse_ulong(t_parser_ctx *ctx, char *str)
 
 	num = ft_atoll(str);
 	if (!ft_isnum(str) || num < 0)
-		throw_parse_err(ctx, ft_strjoin("Invalid unsigned long number: ", str));
+		throw_parse_err(ctx, safe_ft_strjoin("Invalid unsigned long number: ",
+				str, throw_sys_error, "ft_strjoin"));
 	return ((unsigned long) num);
 }
 
