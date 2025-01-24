@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 16:04:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:15:22 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color_bonus.h"
 #include "libft.h"
-#include "utils/utils.h"
+#include "utils/utils_bonus_bonus.h"
 #include "parser/helpers/parser_helper_bonus.h"
 
 void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)

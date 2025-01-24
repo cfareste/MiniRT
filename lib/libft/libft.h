@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:55:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:13:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char		**ft_split(char const *s, char c);
 
 char		*ft_itoa(int n);
 
-char		*safe_ft_itoa(int n, void (*f)(char *), char *errmsg);
+char		*safe_ft_ltoa(long n, void (*f)(char *), char *errmsg);
 
 char		*ft_ltoa(long n);
 

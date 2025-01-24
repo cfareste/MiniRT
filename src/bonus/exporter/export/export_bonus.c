@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 15:56:54 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:13:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	fill_buffer(char *file_buff, int px_amount, t_export *export)
 		}
 		else if (iter[2] < 3)
 		{
-			num_str = safe_ft_itoa(export->image->pixels[iter[0]],
+			num_str = safe_ft_ltoa(export->image->pixels[iter[0]],
 					throw_sys_error, "itoa");
 			write_str(file_buff, num_str, iter + 1);
 			free(num_str);
