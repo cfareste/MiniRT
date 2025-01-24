@@ -1,0 +1,13 @@
+R max_depth:800	
+S name:Pathtracer	sky:160,200,255	sky_box:assets/textures/montmelo.png	
+W width:1160	height:649
+A 1	255,255,255
+L	2,2,3	6	255,255,255
+C -9.213,2.200,4.643	0.870,-0.251,-0.424	60	
+pl	7.945,1.194,-9.038	0.261,0.914,-0.312	219,219,219	mat:plastic:0.200:0	gl:232.727	
+sp	-1,0.500,0	3	250,250,250	mat:glass:1.520:1	
+sp	-3,0,3	2	200,200,100	mat:metallic:0	bm:assets/textures/metallic_rack.png:0.78350002:opengl
+co	0.500,0.500,-4	0,-1,0	2	3	200,100,200	
+cy	3,0,0	0,1,0	1	2	100,100,200	mat:plastic:0.600:0	
+sp	2,10,-4	6	255,255,255	mat:emissive:8	
+pl	0,-1,0	0,1,0	200,100,100	mat:metallic:0	gl:232.727	cd:250,215,160:236,112,99:1	

@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:03:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 09:41:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "../progressive/helpers/progressive_helper.h"
 #include "../renderer/parts/renderer_parts.h"
 
+#include <limits.h>
+
 void	init_progressive(t_rend_prog *prog, t_size *size)
 {
 	prog->colors = ft_calloc(size->width * size->height + 1,
@@ -31,6 +33,7 @@ void	init_progressive(t_rend_prog *prog, t_size *size)
 void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 	uint64_t *seed)
 {
+	static uint8_t	i = 0;
 	t_ray			ray;
 	t_color			*sample_color;
 	t_color			pixel_color;
@@ -40,10 +43,15 @@ void	render_prog_pixel(t_render_part *part, t_iterators *iter,
 		.colors + (iter->i * part->img_height) + iter->j;
 	set_ray_from_camera(&ray, part->render, iter, seed);
 	render_strategy(part->render, &ray, sample_color, seed);
-	multiply_color_scalar(sample_color,
-		1 / (float)(part->i + 1), &pixel_color);
-	mlx_put_pixel(part->render->image, iter->i, iter->j,
-		get_color_value(&pixel_color));
+	if (i == 20)
+	{
+		i = 0;
+		multiply_color_scalar(sample_color,
+			1 / (float)(part->i + 1), &pixel_color);
+		mlx_put_pixel(part->render->image, iter->i, iter->j,
+			get_color_value(&pixel_color));
+	}
+	i++;
 }
 
 static void	*render_prog_part(t_render_part *part)
