@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:02:03 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:46:42 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static void	set_hooks(t_window *window)
 void	init_window(t_window *window)
 {
 	window->icon = mlx_load_png(ICON_PATH);
-	window->mlx = mlx_init(1400, 900,
+	window->size.width = 1600;
+	window->size.height = 900;
+	window->mlx = mlx_init(window->size.width, window->size.height,
 			PROGRAM_NAME, false);
 	if (window->icon)
 		mlx_set_icon(window->mlx, window->icon);

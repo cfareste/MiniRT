@@ -126,7 +126,6 @@ compile_binary(){
 
 init_tester(){
 	print_header
-	compile_binary
 	if [ $? -ne 0 ]; then return 1; fi
 	create_test_scene
 	execute_tests $@

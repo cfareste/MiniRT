@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:30:32 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:05:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ void	set_viewport(t_camera *camera, t_viewport *vp, t_size w_size)
 	float	viewport_fov;
 
 	viewport_fov = tan((camera->fov * 0.5) * M_PI / 180);
-	vp->width = 2.0 * viewport_fov;
+	vp->width = 2.0 * viewport_fov * 4;
 	vp->height = vp->width / (w_size.width / (float) w_size.height);
 	vp->x_unit = vp->width / (float) w_size.width;
 	vp->y_unit = vp->height / (float) w_size.height;
-	// translate_point(&camera->position, &camera->front, 4,
-	// 	&vp->center);
+	translate_point(&camera->position, &camera->front, 4, &vp->center);
 	vp->start.x = vp->center.x - (vp->width * camera->right.x / 2.0) + \
 		(vp->height * camera->up.x / 2.0);
 	vp->start.y = vp->center.y - (vp->width * camera->right.y / 2.0) + \

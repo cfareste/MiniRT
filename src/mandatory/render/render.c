@@ -34,7 +34,6 @@ void	*render_parts(t_render *render)
 	t_iterators		px_iter;
 	uint32_t		i;
 	uint32_t		j;
-	
 
 	i = 0;
 	while (i < render->image->width)

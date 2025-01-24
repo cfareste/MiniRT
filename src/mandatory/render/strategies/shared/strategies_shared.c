@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:54:01 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:36:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:53:06 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	check_shadow_hits(t_figure **figure, t_ray *shadow_ray)
 	}
 }
 
-static void	compute_direct_lighting(t_direct_lighting *direct_lighting, t_light *light, t_color *color)
+static void	compute_direct_lighting(t_direct_lighting *direct_lighting,
+				t_light *light, t_color *color)
 {
 	t_vector	point_to_light;
 	float		distance;
@@ -75,12 +76,6 @@ void	check_collisions(t_scene *scene, t_ray *ray, t_hit_record *hit_record)
 	ft_bzero(hit_record, sizeof(t_hit_record));
 	hit_record->distance = FLT_MAX;
 	figure = scene->figures;
-	if (ray->direction.x == 0.0
-		&& ray->direction.y == 0.0
-		&& ray->direction.z == -1.0)
-		printf("Hola\n");
-	printf("Ray dir: %f, %f, %f\n",
-		ray->direction.x, ray->direction.y, ray->direction.z);
 	while (figure)
 	{
 		if (figure->hit(figure, ray, &hit_record->distance))

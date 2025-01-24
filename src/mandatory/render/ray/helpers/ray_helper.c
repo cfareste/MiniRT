@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 13:38:14 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:05:00 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	set_ray_from_camera(t_ray *ray, t_render *render,
 	camera = render->scene.camera;
 	origin = render->scene.camera->position;
 	set_viewport_coords(&vp_coords, render, iterators);
-	printf("Vp coord: %f, %f, %f\n",
-		vp_coords.x, vp_coords.y, vp_coords.z);
 	get_vector(&vp_coords, &origin, &direction);
 	set_ray(ray, &origin, &direction);
 }

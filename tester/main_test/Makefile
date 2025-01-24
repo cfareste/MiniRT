@@ -56,7 +56,10 @@ CCFLAGS += -Wall -Werror -Wextra -O3
 
 #----DIRS----#
 BIN_DIR = bin/
-SRC = ../../src/
+SRC = ../../src/mandatory/
+ifeq ($(BONUS), 1)
+	SRC = ../../src/bonus/
+endif
 INCLUDES = -I$(SRC)
 EXPORTS = ../../exports/
 

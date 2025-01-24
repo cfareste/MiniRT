@@ -313,7 +313,6 @@ MSRCS = miniRT.c \
 		vector_rotation.c \
 		vector.c \
 		render.c \
-		size.c \
 		errors.c \
 		file_utils.c
 

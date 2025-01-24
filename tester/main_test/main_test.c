@@ -6,23 +6,23 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:47:43 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 19:56:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:54:44 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "MLX42.h"
-#include "miniRT.h"
-#include "window/window.h"
-#include "window/helpers/window_helper_bonus.h"
-#include "window/jobs/jobs.h"
-#include "window/jobs/job/types/title/title_job.h"
-#include "render/renderer/renderer_bonus.h"
-#include "scene/parser/scene_parser.h"
-#include "scene/settings/sky_box/sky_box.h"
-#include "window/loader/loader_bonus.h"
-#include "exporter/helpers/exporter_helper_bonus.h"
-#include "utils/utils_bonus.h"
+#include "miniRT_bonus.h"
+#include "window/window_bonus.h"
+#include "window/helpers/window_helper_bonus_bonus.h"
+#include "window/jobs/jobs_bonus.h"
+#include "window/jobs/job/types/title/title_job_bonus.h"
+#include "render/renderer/renderer_bonus_bonus.h"
+#include "scene/parser/scene_parser_bonus.h"
+#include "scene/settings/sky_box/sky_box_bonus.h"
+#include "window/loader/loader_bonus_bonus.h"
+#include "exporter/helpers/exporter_helper_bonus_bonus.h"
+#include "utils/utils_bonus_bonus.h"
 
 void	throw_sys_error(char *msg)
 {
