@@ -62,7 +62,7 @@ static void	prepare(t_render_args *args, t_render *render,
 	if (args->resize)
 	{
 		wait_job(push_job(&window->jobs, init_img_resize_job(new_job(),
-					window->size, render->image, NULL)),
+					window->size, render->image, &window->size.mutex)),
 			(int (*)(void *)) is_render_alive, render);
 		fill_pixels(window->size, &render->pixels, &render->px_amount);
 		update_parts(render, &window->size);

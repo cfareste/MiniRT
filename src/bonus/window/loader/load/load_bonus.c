@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 16:18:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:19:32 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,23 @@ void	clean_load(t_loader *loader)
 {
 	t_size		img_size;
 	int			max;
-	int			i;
+	uint32_t	i;
+	uint32_t	j;
 
 	img_size = get_image_size(loader->image, &loader->img_mutex);
-	max = img_size.width * img_size.height * 4;
+	max = img_size.width * img_size.height;
 	i = 0;
 	pthread_mutex_lock(&loader->img_mutex);
-	while (i < max)
-		loader->image->pixels[i++] = 0;
+	while (i < img_size.width)
+	{
+		j = 0;
+		while (j < img_size.height)
+		{
+			mlx_put_pixel(loader->image, i, j, 0);
+			j++;
+		}
+		i++;
+	}
 	pthread_mutex_unlock(&loader->img_mutex);
 }
 
