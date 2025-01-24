@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:49 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:39:10 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	parse_scene_setting(t_parser_ctx *ctx, char *arg,
 	{
 		free(settings->name);
 		settings->name = ft_strdup(args[1]);
+		if (!settings->name)
+			throw_sys_error("Trying to alloc scene name");
 	}
 	else if (ft_strcmp(args[0], SCENE_SETT_SKY_COLOR) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))

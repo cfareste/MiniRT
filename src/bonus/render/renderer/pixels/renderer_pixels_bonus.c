@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:29:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)
 	}
 }
 
-// TODO: Test times with realloc
 void	fill_pixels(t_size img_size, t_pixel **pixels, size_t *px_amount)
 {
 	t_iterators	iter;

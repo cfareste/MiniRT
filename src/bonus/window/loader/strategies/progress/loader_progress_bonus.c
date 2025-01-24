@@ -6,13 +6,13 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:16:37 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 14:01:52 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:32:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/iterators/iterators_bonus.h"
 #include "../../helpers/loader_helper_bonus.h"
-#include "../helpers/loader_progress_helper_bonus.h"
+#include "helpers/loader_progress_helper_bonus.h"
 
 void	paint_pixel(t_iterators *it, t_loader *loader,
 			uint32_t	current)

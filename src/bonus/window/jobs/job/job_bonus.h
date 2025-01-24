@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:51 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:30:43 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef enum job_type
 {
 	ANON_JOB,
 	IMG_RESIZE_JOB,
-	TITLE_JOB,
 	DESTROY_JOB,
 	EXPORT_JOB,
 }	t_job_type;

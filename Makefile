@@ -208,7 +208,6 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs:\
 			$(SRC)window/jobs/job:\
 			$(SRC)window/jobs/job/helpers:\
-			$(SRC)window/jobs/job/types/title:\
 			$(SRC)window/jobs/job/types/destroy:\
 			$(SRC)window/jobs/job/types/anonymous:\
 			$(SRC)window/jobs/job/types/export:\
@@ -376,7 +375,6 @@ BSRCS = miniRT_bonus.c \
 	loader_bonus_bonus.c \
 	jobs_bonus.c \
 	job_bonus.c \
-	title_job_bonus.c \
 	destroy_job_bonus.c \
 	anon_job_bonus.c \
 	textures_bonus.c \
@@ -498,7 +496,7 @@ $(BIN_DIR)%.o: %.c Makefile
 	@mkdir -p $(BIN_DIR)
 	@$(CC) $(CCFLAGS) $(INCLUDES) -MMD -c $< -o $@
 
-clean: libft_clean test_clean
+clean: libft_clean
 	@rm -rf $(BIN_DIR)
 	@echo "$(RED)Binaries deleted$(DEF_COLOR)\n"
 
@@ -549,15 +547,6 @@ norm:
 	printf "$(BLUE)Testing the norm in $(WHITE_BOLD)$(LIBFT_DIR)$(BLUE)...$(RED_REGULAR)\n"
 	norminette $(LIBFT_DIR) | grep -v "OK" && printf "$(DEF_COLOR)" || printf "$(GREEN)[✓] Passed successfully!$(DEF_COLOR)\n"
 
-test:
-	cd tester && ./tester.sh
-
-min-test:
-	cd tester && ./tester.sh -n
-
-test_clean:
-	$(MAKE) --no-print-directory -C tester/main_test clean
-
 .PHONY: all \
 		clean \
 		fclean \
@@ -571,10 +560,7 @@ test_clean:
 		libft_fclean \
 		make_mlx \
 		mlx_fclean \
-		norm \
-		test \
-		min-test \
-		test-clean
+		norm
 
 -include $(DEPS)
 -include $(MDEPS)

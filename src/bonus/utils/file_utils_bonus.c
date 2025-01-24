@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:39:47 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ static char	*get_unique_filename(char *filename, int version)
 		free(token);
 	}
 	else
+	{
 		unique_tok = ft_strdup("");
+		if (!unique_tok)
+			throw_sys_error("ain't find it funny");
+	}
 	new = safe_ft_strjoin(filename,
 			unique_tok, throw_sys_error, "dynamic memory is broken!");
 	free(unique_tok);

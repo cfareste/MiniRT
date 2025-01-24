@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:33:35 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:40:59 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_texture	*push_texture(t_textures *textures, char *filename)
 	if (!texture)
 		throw_sys_error("allocating texture");
 	texture->path = ft_strdup(filename);
+	if (!texture->path)
+		throw_sys_error("ain't find it funny");
 	texture->next = textures->texture;
 	textures->texture = texture;
 	textures->amount += 1;

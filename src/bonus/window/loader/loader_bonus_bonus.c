@@ -6,7 +6,7 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 11:59:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:35:04 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	loader_update_size(t_loader *loader)
 	pthread_mutex_unlock(&loader->img_mutex);
 }
 
-// TODO: Check malloc nullcheck!
 void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size)
 {
 	t_load	*load;
