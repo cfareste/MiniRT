@@ -6,23 +6,18 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 14:04:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:53:47 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "quadrilater.h"
 #include "utils/utils_bonus.h"
 #include "scene/figure/figure.h"
-#include "parser/helpers/parser_helper.h"
-#include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/helpers/figure_helpers.h"
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
-#include "scene/figure/types/quadrilater/parser/quadrilater_parser.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
 #include "scene/figure/types/quadrilater/composer/quadrilater_composer.h"
 #include "libft.h"
-#include <stdio.h>
 #include <math.h>
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)

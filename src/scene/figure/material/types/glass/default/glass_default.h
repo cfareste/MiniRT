@@ -6,12 +6,10 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:29:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 13:29:48 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:27:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-
-#include "scene/figure/material/material.h"
 
 t_material	new_glass_default_mat(void);

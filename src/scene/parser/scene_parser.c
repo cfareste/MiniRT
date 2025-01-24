@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:40:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/04 19:30:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:02:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "scene_parser.h"
-#include "utils/utils_bonus.h"
+#include "scene/scene.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/camera/parser/camera_parser.h"
 #include "scene/light/ambient_light/ambient_light.h"
 #include "scene/light/parser/light_parser.h"
 #include "../settings/parser/scene_settings_parser.h"
 #include "parser/helpers/parser_helper.h"
-#include <fcntl.h>
 
 void	check_scene_parsing(t_parser_ctx *ctx, t_scene *scene)
 {

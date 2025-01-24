@@ -6,13 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 17:31:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:52:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "render/utils/color/color.h"
-#include "parser/parser.h"
 #include "scene/figure/figure.h"
 
 typedef struct s_scene_settings

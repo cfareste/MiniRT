@@ -6,26 +6,20 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 12:57:22 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 14:37:40 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:30:07 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "../../parser/figure_parser.h"
-#include "render/utils/vector/parser/vector_parser.h"
 #include "scene/figure/figure.h"
-#include "render/utils/quadratic/quadratic.h"
 #include "scene/figure/helpers/figure_helpers.h"
-#include "scene/figure/types/cone/parser/cone_parser.h"
 #include "scene/figure/types/cone/helpers/cone_helpers.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cone/pattern/cone_pattern.h"
 #include "scene/figure/types/cone/texture/bump_map_cone.h"
 #include "scene/figure/operations/figure_operations.h"
-#include "parser/helpers/parser_helper.h"
 #include "scene/figure/types/cone/composer/cone_composer.h"
-#include <math.h>
 
 static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {

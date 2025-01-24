@@ -6,14 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:35 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/28 14:40:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:05:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
+#include "scene/scene.h"
 #include "render/ray/ray.h"
-#include "render/render_bonus.h"
 #include "render/utils/color/color.h"
 
 typedef struct s_diffuse_params

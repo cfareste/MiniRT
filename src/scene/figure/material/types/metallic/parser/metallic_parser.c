@@ -6,13 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:46:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/11 11:53:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:18:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/helpers/parser_helper.h"
 #include "scene/figure/material/material.h"
-#include "libft.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_material *material)
 {

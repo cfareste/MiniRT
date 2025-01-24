@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   loader_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:09:25 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:58:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:03:15 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "loader_helper.h"
 
 int	loader_is_alive(t_loader *loader)

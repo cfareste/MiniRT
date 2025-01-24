@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   size.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:41 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/03 17:58:01 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:46:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "size.h"
 
 t_size	new_size(int width, int height)

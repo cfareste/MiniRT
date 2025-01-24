@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 20:18:22 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:26:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "libft.h"
 #include "textures.h"
-#include "window/loader/loader_bonus.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "utils/utils_bonus.h"
 #include "window/jobs/job/types/destroy/destroy_job.h"

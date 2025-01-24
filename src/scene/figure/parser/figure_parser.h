@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:48 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 02:36:12 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:03:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #define OPT_CD "cd"
 #define OPT_MAT "mat"
 #define OPT_GL "gl"
-#include "parser/parser.h"
 #include "../figure.h"
 
 int		try_parse_figure(t_parser_ctx *ctx,

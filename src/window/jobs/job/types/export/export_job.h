@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_job.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/18 13:31:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:14:00 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,4 @@
 #include "../../job.h"
 #include "exporter/export/export.h"
 
-t_job	*init_export_job(t_job *job, t_export *exporter);
+t_job	*init_export_job(t_job *job, t_export *export);

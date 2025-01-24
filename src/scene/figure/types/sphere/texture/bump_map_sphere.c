@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_sphere.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:21:31 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/22 14:54:26 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:42:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/figure/figure.h"
 #include "scene/figure/texture/texel/texel.h"
 #include "scene/figure/types/sphere/helpers/polar_coordinates.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"

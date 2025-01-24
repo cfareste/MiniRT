@@ -6,25 +6,17 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/20 14:06:15 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:50:04 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "box.h"
 #include "utils/utils_bonus.h"
-#include "scene/figure/figure.h"
-#include "parser/helpers/parser_helper.h"
-#include "scene/figure/parser/figure_parser.h"
-#include "scene/figure/types/box/parser/box_parser.h"
 #include "scene/figure/types/box/helpers/box_helpers.h"
 #include "scene/figure/types/box/pattern/box_pattern.h"
-#include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"
-#include "scene/figure/events/figure_events.h"
 #include "scene/figure/types/box/operations/box_operations.h"
 #include "scene/figure/types/box/composer/box_composer.h"
 #include "libft.h"
-#include <math.h>
 
 static int	hit(t_figure *figure, t_ray *ray, float *distance)
 {

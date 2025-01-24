@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:52 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 20:06:25 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:40:23 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "MLX42.h"
 #include "render/utils/coordinates/coordinates.h"
 #include "utils/size/size.h"
-#include "window/jobs/jobs.h"
-#include "async_flag/async_flag.h"
 #include "render/utils/color/color.h"
 #include <pthread.h>
 

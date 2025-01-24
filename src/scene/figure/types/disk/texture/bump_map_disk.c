@@ -6,13 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 23:08:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/24 23:20:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:08:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene/figure/figure.h"
 #include "render/utils/reference_system/reference_system.h"
-#include "scene/figure/helpers/base_attributes/base_attributes.h"
 #include "scene/figure/texture/bump_map/helpers/bump_map_helpers.h"
 
 void	get_disk_bump_normal(t_figure *figure, t_point *point, t_vector *res)

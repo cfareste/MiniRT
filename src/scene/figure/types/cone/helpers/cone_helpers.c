@@ -6,14 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 21:27:50 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/11/14 17:21:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:36:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/figure.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "render/utils/reference_system/reference_system.h"
-#include <stdlib.h>
 #include <math.h>
 
 static int	calculate_root(t_quadratic_params *params, t_figure *cone,

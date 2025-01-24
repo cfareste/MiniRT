@@ -6,19 +6,15 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:49:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:58:56 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "../../parser/figure_parser.h"
-#include "scene/figure/figure.h"
-#include "render/utils/vector/vector.h"
 #include "scene/figure/types/plane/pattern/plane_pattern.h"
 #include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/plane/texture/bump_map_plane.h"
-#include "scene/figure/events/figure_events.h"
 #include "scene/figure/types/plane/helpers/plane_helpers.h"
 #include "scene/figure/types/plane/composer/plane_composer.h"
 

@@ -6,21 +6,16 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:17:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:45:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:07:41 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "disk.h"
 #include "utils/utils_bonus.h"
-#include "scene/figure/figure.h"
-#include "parser/helpers/parser_helper.h"
 #include "scene/figure/parser/figure_parser.h"
 #include "scene/figure/helpers/figure_helpers.h"
-#include "scene/figure/types/disk/parser/disk_parser.h"
+#include "scene/figure/operations/figure_operations.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/disk/texture/bump_map_disk.h"
-#include "render/utils/reference_system/reference_system.h"
-#include "scene/figure/operations/figure_operations.h"
 #include "scene/figure/types/disk/composer/disk_composer.h"
 #include "libft.h"
 #include <stdio.h>

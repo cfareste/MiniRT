@@ -6,16 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 09:11:31 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 00:50:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:01:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus.h"
-#include "plane_parser.h"
 #include "render/utils/vector/parser/vector_parser.h"
 #include "../../../parser/figure_parser.h"
-#include "../plane.h"
 #include "parser/helpers/parser_helper.h"
 
 static void	check_parsing(t_parser_ctx *ctx, t_figure *plane)

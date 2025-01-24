@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   loader_text.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:01:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 17:15:10 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:51:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "loader_text.h"
 #include "../../helpers/loader_helper.h"
 
 // TODO: Own text with imgs!!

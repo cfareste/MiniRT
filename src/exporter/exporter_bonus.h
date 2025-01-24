@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exporter_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/25 20:01:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:37:21 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define EXPORT_BASE_DIR "exports/"
 #include "render/render_bonus.h"
 #include "window/jobs/jobs.h"
+#include "window/loader/loader_bonus.h"
 
 typedef struct s_exporter
 {

@@ -6,18 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:53 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 12:14:11 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:31:51 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
 #include "figure_parser.h"
-#include "../types/plane/parser/plane_parser.h"
-#include "../texture/bump_map/bump_map.h"
-#include "scene/figure/material/material.h"
 #include "parser/helpers/parser_helper.h"
-#include "render/utils/color/color_operations/color_operations.h"
 #include "scene/figure/parser/helpers/figure_parser_helpers.h"
 #include "scene/figure/types/box/parser/box_parser.h"
 #include "scene/figure/types/cone/parser/cone_parser.h"

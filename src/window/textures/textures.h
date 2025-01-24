@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:28:21 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 20:07:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:20:10 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "texture/texture.h"
-#include "window/loader/loader_bonus.h"
-#include "window/jobs/jobs.h"
 
 typedef struct s_textures
 {

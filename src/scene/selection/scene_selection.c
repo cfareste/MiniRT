@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   scene_selection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:18:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 15:06:02 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:58:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene_selection.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "scene/figure/events/figure_events.h"
 #include "render/renderer/renderer_bonus.h"
-#include "scene/figure/events/helpers/figure_events_helpers.h"
 #include "scene/camera/events/camera_events.h"
-#include "libft.h"
-#include "render/helpers/render_helper_bonus.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
 #include "utils/utils_bonus.h"
 

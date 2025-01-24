@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:46:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/16 18:15:08 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:09:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/ray/ray.h"
-#include "scene/light/light.h"
+#include "render/utils/color/color.h"
 #include "render/utils/hit_record/hit_record.h"
 #include "scene/figure/material/types/glass/glass.h"
 #include "scene/figure/material/types/diffuse/diffuse.h"

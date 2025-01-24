@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   light_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:41:12 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/20 16:56:37 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:07:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus.h"
 #include "parser/parser.h"
 #include "scene/light/light.h"
 #include "parser/helpers/parser_helper.h"

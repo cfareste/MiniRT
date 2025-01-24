@@ -6,14 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/11 01:14:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:46:44 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "loader_bonus.h"
 #include "utils/utils_bonus.h"
-#include "window/helpers/window_helper_bonus.h"
 #include "helpers/loader_helper.h"
 #include "load/load.h"
 

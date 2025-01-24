@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:29 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:41:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:14:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 #include "../../parser/figure_parser.h"
 #include "scene/figure/helpers/figure_helpers.h"
 #include "scene/figure/types/cylinder/helpers/cylinder_helpers.h"
-#include "render/utils/vector/parser/vector_parser.h"
-#include "scene/figure/types/cylinder/parser/cylinder_parser.h"
 #include "scene/figure/pattern/helpers/pattern_helpers.h"
 #include "scene/figure/types/cylinder/pattern/cylinder_pattern.h"
 #include "scene/figure/types/cylinder/texture/bump_map_cylinder.h"
-#include "parser/helpers/parser_helper.h"
 #include "scene/figure/operations/figure_operations.h"
 #include "scene/figure/types/cylinder/composer/cylinder_composer.h"
-#include <math.h>
 
 static void	rotate(t_figure *figure, t_camera *camera, t_point *factor)
 {

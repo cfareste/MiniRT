@@ -6,20 +6,16 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 10:13:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:31:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "window_events.h"
-#include "render/render_bonus.h"
 #include "render/renderer/renderer_bonus.h"
 #include "render/events/render_events.h"
 #include "scene/camera/helpers/camera_helper.h"
 #include "scene/camera/events/camera_events.h"
 #include "scene/selection/scene_selection.h"
 #include "composer/events/composer_events.h"
-#include "render/helpers/render_helper_bonus.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
 
 void	key_hook(mlx_key_data_t keydata, t_window *window)

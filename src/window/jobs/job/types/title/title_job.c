@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   title_job.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:59:03 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/28 17:08:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:09:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "title_job.h"
 #include "window/window.h"
-#include "utils/utils_bonus.h"
 
 static int	run(t_job *job, t_window *window)
 {
@@ -21,6 +19,7 @@ static int	run(t_job *job, t_window *window)
 	return (1);
 }
 
+// TODO: Delete this function??? (Not called anywhere)
 t_job	*init_title_job(t_job *job, char *arg)
 {
 	job->type = TITLE_JOB;

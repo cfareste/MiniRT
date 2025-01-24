@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   jobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:18:23 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 16:55:39 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:05:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "jobs.h"
-#include "utils/utils_bonus.h"
-#include <stdlib.h>
-
-#include "libft.h"
 
 t_job	*push_job(t_jobs *jobs, t_job *job)
 {

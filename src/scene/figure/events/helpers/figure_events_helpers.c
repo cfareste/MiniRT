@@ -6,12 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 00:44:38 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/12 12:11:36 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:43:48 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/scene.h"
-#include "render/utils/reference_system/reference_system.h"
 #include "scene/figure/types/box/default/box_default.h"
 #include "scene/figure/types/cone/default/cone_default.h"
 #include "scene/figure/types/cylinder/default/cylinder_default.h"

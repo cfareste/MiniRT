@@ -6,22 +6,17 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2024/12/18 14:55:29 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:39:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math.h"
 #include "libft.h"
-#include "../../parser/figure_parser.h"
 #include "utils/utils_bonus.h"
-#include "scene/figure/figure.h"
-#include "render/utils/vector/vector.h"
 #include "render/utils/quadratic/quadratic.h"
-#include "scene/figure/types/sphere/parser/sphere_parser.h"
 #include "scene/figure/types/sphere/pattern/sphere_pattern.h"
 #include "scene/figure/types/sphere/texture/bump_map_sphere.h"
 #include "scene/figure/types/sphere/composer/sphere_composer.h"
-#include "parser/helpers/parser_helper.h"
 
 static void	print_attrs(void *param)
 {

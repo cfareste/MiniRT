@@ -6,13 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:33 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 02:05:50 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:58:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "MLX42.h"
 #include "parser/parser.h"
 
 typedef enum e_bump_map_format

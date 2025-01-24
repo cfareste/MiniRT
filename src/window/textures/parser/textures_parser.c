@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:33:35 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 18:14:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:32:06 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "utils/utils_bonus.h"
-#include "textures_parser.h"
+#include "window/textures/textures.h"
 
 static t_texture	*push_texture(t_textures *textures, char *filename)
 {
