@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:35:41 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 20:59:08 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bump_map.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "parser/helpers/parser_helper.h"
 #include <string.h>
 #include <errno.h>

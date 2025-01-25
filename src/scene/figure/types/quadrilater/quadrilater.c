@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:53:05 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 19:53:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "scene/figure/figure.h"
 #include "scene/figure/helpers/figure_helpers.h"
 #include "scene/figure/types/plane/pattern/plane_pattern.h"

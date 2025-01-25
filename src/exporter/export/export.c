@@ -6,14 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 15:36:19 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "export.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
-#include "../helpers/exporter_helper_bonus.h"
+#include "utils/utils.h"
+#include "../helpers/exporter_helper.h"
 #include "window/loader/strategies/progress/loader_progress.h"
 #include <fcntl.h>
 

@@ -6,14 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 18:29:40 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 17:26:24 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:39 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "textures.h"
-#include "window/helpers/window_helper_bonus.h"
-#include "utils/utils_bonus.h"
+#include "window/helpers/window_helper.h"
+#include "utils/utils.h"
 #include "window/jobs/job/types/destroy/destroy_job.h"
 #include "window/jobs/job/helpers/job_helper.h"
 

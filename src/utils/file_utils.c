@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/25 14:17:01 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils_bonus.h"
+#include "utils.h"
 
 int	correct_file_extension(char *filename, char *extension)
 {

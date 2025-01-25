@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:50:14 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/20 14:03:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene/figure/figure.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "libft.h"
 
 char	*compose_quadrilater(t_figure *figure)

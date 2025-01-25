@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_bonus.c                                      :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:12:16 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 15:54:28 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "image_bonus.h"
+#include "image.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 
 static uint8_t	*pixels_dup(uint8_t	*pixels, int amount)
 {

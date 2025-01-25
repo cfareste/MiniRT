@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_bonus.c                                   :+:      :+:    :+:   */
+/*   exporter.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 15:56:05 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exporter_bonus.h"
-#include "helpers/exporter_helper_bonus.h"
+#include "exporter.h"
+#include "helpers/exporter_helper.h"
 #include "window/jobs/job/types/export/export_job.h"
 
 void	export_image(t_exporter *exporter, t_jobs *jobs)

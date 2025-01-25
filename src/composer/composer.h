@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   composer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:06:53 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 10:07:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:05 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define MODIFY_EXISTING 0
 #define CREATE_FILE 1
 
-#include "render/render_bonus.h"
+#include "render/render.h"
 #include "window/jobs/jobs.h"
 
 typedef struct s_composer

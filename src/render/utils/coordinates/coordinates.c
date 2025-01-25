@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   coordinates.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:20:12 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "coordinates.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "parser/helpers/parser_helper.h"
 
 void	parse_coordinates(t_parser_ctx *ctx, char *str,

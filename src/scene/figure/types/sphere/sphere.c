@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:42 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 19:39:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:33 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "render/utils/quadratic/quadratic.h"
 #include "scene/figure/types/sphere/pattern/sphere_pattern.h"
 #include "scene/figure/types/sphere/texture/bump_map_sphere.h"

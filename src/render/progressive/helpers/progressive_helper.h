@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   progressive_helper.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:59:52 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/15 17:54:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#include "render/render.h"
 
 void	clean_progress(t_rend_prog progress[STRATEGIES_AMOUNT]);
 

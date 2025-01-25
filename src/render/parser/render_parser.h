@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/06 17:44:41 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:18 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define NORMAL_MAP_KEY "normal_map"
 #define SOFT_SHADOWS_KEY "soft_shadows"
 #include "parser/parser.h"
-#include "../render_bonus.h"
+#include "../render.h"
 
 int		try_parse_render_elems(t_parser_ctx *ctx, char **args,
 			t_render *render);

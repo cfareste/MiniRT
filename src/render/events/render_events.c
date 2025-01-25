@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 21:54:55 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 15:59:57 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:53:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_events.h"
-#include "../renderer/renderer_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
+#include "../renderer/renderer.h"
+#include "render/helpers/render_helper.h"
 #include "scene/selection/helpers/scene_selection_helpers.h"
 
 static void	switch_strategy(t_render *render, t_strategy new)

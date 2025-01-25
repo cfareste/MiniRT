@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_bonus.c                                   :+:      :+:    :+:   */
+/*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:53:53 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:12:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:24 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer_bonus.h"
+#include "renderer.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
-#include "window/helpers/window_helper_bonus.h"
-#include "render/helpers/render_helper_bonus.h"
+#include "utils/utils.h"
+#include "window/helpers/window_helper.h"
+#include "render/helpers/render_helper.h"
 #include "window/jobs/job/types/image_resize/image_resize_job.h"
 #include "window/jobs/job/helpers/job_helper.h"
 #include "../utils/thread/thread.h"

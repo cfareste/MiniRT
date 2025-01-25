@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:33:35 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 14:21:46 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:40 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "window/textures/textures.h"
 
 static t_texture	*push_texture(t_textures *textures, char *filename)

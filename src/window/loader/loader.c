@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader_bonus.c                                     :+:      :+:    :+:   */
+/*   loader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 14:19:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "loader_bonus.h"
-#include "utils/utils_bonus.h"
+#include "loader.h"
+#include "utils/utils.h"
 #include "helpers/loader_helper.h"
 #include "load/load.h"
 

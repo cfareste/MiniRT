@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:54:48 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 21:09:02 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "figure.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "operations/figure_operations.h"
 #include <math.h>
 

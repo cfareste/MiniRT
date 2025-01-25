@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 21:06:15 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 18:16:16 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window/window.h"
-#include "exporter/helpers/exporter_helper_bonus.h"
+#include "exporter/helpers/exporter_helper.h"
 #include <stdlib.h>
 
 static	void	destroy(t_job *job)

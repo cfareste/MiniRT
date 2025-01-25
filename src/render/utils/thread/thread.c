@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:53:10 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:22:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:28 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 
 #ifdef DARWIN
 

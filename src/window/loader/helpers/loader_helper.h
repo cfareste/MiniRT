@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loader_helper.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:09:17 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/29 17:57:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../loader_bonus.h"
+#include "../loader.h"
 
 int		loader_is_alive(t_loader *loader);
 

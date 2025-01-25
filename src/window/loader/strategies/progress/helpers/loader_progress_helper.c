@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:05:47 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 17:57:11 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../loader_bonus.h"
+#include "../../../loader.h"
 
 double	get_progress_factor(t_progress *progress)
 {

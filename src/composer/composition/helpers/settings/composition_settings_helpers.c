@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   composition_settings_helpers.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:23:17 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 12:58:36 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:13 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composition_settings_helpers.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "libft.h"
 
 static char	*get_strategy_name(t_strategy strategy)

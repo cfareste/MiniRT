@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   load.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:01 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 18:47:31 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../loader_bonus.h"
+#include "../loader.h"
 #include <pthread.h>
 
 typedef struct s_load

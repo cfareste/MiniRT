@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:03 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/14 16:44:44 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # define ICON_PATH "assets/images/icon.png"
 # define KEY_REPEAT_RATE 0.04
 
-# include "render/render_bonus.h"
+# include "render/render.h"
 # include "utils/size/size.h"
-# include "exporter/exporter_bonus.h"
-# include "window/loader/loader_bonus.h"
+# include "exporter/exporter.h"
+# include "window/loader/loader.h"
 # include "jobs/jobs.h"
 # include "textures/textures.h"
 # include "cursor/window_cursor.h"

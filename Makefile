@@ -285,17 +285,17 @@ SRCS = miniRT.c \
 	cylinder_parser.c \
 	plane.c \
 	sphere.c \
-	render_bonus.c \
+	render.c \
 	window.c \
-	renderer_bonus.c \
+	renderer.c \
 	vector.c \
 	operation.c \
 	point.c \
 	reference_system.c \
-	render_helper_bonus.c \
-	window_helper_bonus.c \
+	render_helper.c \
+	window_helper.c \
 	size.c \
-	images_bonus.c \
+	images.c \
 	ray_helper.c \
 	ray.c \
 	light_utils.c \
@@ -312,9 +312,9 @@ SRCS = miniRT.c \
 	bump_map.c \
 	scene_settings.c \
 	scene_settings_parser.c \
-	exporter_bonus.c \
-	image_bonus.c \
-	exporter_helper_bonus.c\
+	exporter.c \
+	image.c \
+	exporter_helper.c\
 	random.c \
 	thread.c \
 	pattern.c \
@@ -325,7 +325,7 @@ SRCS = miniRT.c \
 	plane_pattern.c \
 	cylinder_pattern.c \
 	cone_pattern.c \
-	loader_bonus.c \
+	loader.c \
 	jobs.c \
 	job.c \
 	destroy_job.c \

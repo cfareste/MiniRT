@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image_bonus.h                                      :+:      :+:    :+:   */
+/*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 13:09:33 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:28:43 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
+/*   Updated: 2025/01/25 15:54:25 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "MLX42.h"
-#include "utils/size/size.h"
+#include "render/render.h"
 
-typedef struct s_image
-{
-	t_size	size;
-	uint8_t	*pixels;
-	char	*name;
-}	t_image;
+void	render(t_render *render);
 
-t_image	*image_dup(mlx_image_t *image, pthread_mutex_t *mutex);
-
-void	destroy_image(t_image *image);
+void	stop_render(t_render *render);

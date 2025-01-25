@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:52:17 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 18:07:25 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "job.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "libft.h"
 
 static int	run(t_job *job, t_window *window)

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render_progressive.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:40:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/24 10:04:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:19 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_progressive.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "libft.h"
 #include "../ray/helpers/ray_helper.h"
 #include "../utils/color/color_operations/color_operations.h"
 #include "../utils/thread/thread.h"
-#include "../helpers/render_helper_bonus.h"
+#include "../helpers/render_helper.h"
 #include "../progressive/helpers/progressive_helper.h"
 #include "../renderer/parts/renderer_parts.h"
 

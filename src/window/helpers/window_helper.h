@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_helper_bonus.h                            :+:      :+:    :+:   */
+/*   window_helper.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 13:09:07 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/17 20:41:08 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/27 20:57:00 by cfidalgo          #+#    #+#             */
+/*   Updated: 2025/01/25 15:51:02 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../exporter_bonus.h"
-#include "../export/export.h"
+#include "MLX42.h"
+#include "window/window.h"
 
-int		is_exporter_active(t_exporter *exporter);
+int			diff_sizes(t_size *a, t_size *b);
 
-void	set_exporter_active(t_exporter *exporter, int active);
+void		put_image(mlx_image_t *image, mlx_t *mlx, pthread_mutex_t *mutex);
 
-void	write_image(int fd, t_export *export, char *buff, int buff_len);
+t_window	*get_window(t_window *window);

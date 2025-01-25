@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 23:07:11 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 17:57:56 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:51:43 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composer.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "composition/composition.h"
 
 #include "libft.h"

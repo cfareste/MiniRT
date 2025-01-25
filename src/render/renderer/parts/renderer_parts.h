@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_parts.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:10 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/22 14:23:34 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../../render_bonus.h"
+#include "../../render.h"
 
 void	render_parts(t_render *render, t_strategy strategy, uint64_t *seed);
 

@@ -6,14 +6,14 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 15:31:34 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:45 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "parser.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "window/parser/window_parser.h"
 #include "scene/parser/scene_parser.h"
 #include "parser/helpers/parser_helper.h"

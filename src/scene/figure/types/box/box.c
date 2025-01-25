@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:40:34 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 20:50:04 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "scene/figure/types/box/helpers/box_helpers.h"
 #include "scene/figure/types/box/pattern/box_pattern.h"
 #include "scene/figure/types/quadrilater/helpers/quadrilater_helpers.h"

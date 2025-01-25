@@ -6,16 +6,16 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:02 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 17:09:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "window.h"
-#include "utils/utils_bonus.h"
-#include "helpers/window_helper_bonus.h"
-#include "render/renderer/renderer_bonus.h"
-#include "exporter/exporter_bonus.h"
+#include "utils/utils.h"
+#include "helpers/window_helper.h"
+#include "render/renderer/renderer.h"
+#include "exporter/exporter.h"
 #include "miniRT.h"
 #include "window/loader/helpers/loader_helper.h"
 #include "events/window_events.h"

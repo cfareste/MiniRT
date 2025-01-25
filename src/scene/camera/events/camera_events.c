@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   camera_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:34:13 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 20:04:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera_events.h"
-#include "utils/utils_bonus.h"
-#include "render/renderer/renderer_bonus.h"
+#include "utils/utils.h"
+#include "render/renderer/renderer.h"
 #include "libft.h"
 
 void	focus_camera_to_selection(t_camera *camera, t_figure *selection,

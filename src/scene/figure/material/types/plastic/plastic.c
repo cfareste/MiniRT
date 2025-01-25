@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:01:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 21:12:31 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils/utils_bonus.h"
-#include "render/render_bonus.h"
+#include "utils/utils.h"
+#include "render/render.h"
 #include "render/utils/random/random.h"
 #include "scene/figure/material/helpers/material_helpers.h"
 #include <math.h>

@@ -6,13 +6,13 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 02:28:11 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 18:09:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "composition.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "./helpers/lights/composition_lights_helpers.h"
 #include "./helpers/figures/composition_figures_helpers.h"
 #include "./helpers/settings/composition_settings_helpers.h"

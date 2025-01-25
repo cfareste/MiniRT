@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:57:06 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:51:28 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:51:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "MLX42.h"
 #include "miniRT.h"
 #include "window/window.h"
-#include "window/helpers/window_helper_bonus.h"
+#include "window/helpers/window_helper.h"
 #include "window/jobs/jobs.h"
 #include "render/progressive/helpers/progressive_helper.h"
 #include "scene/settings/sky_box/sky_box.h"

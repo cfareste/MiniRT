@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 20:37:08 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 18:53:06 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "scene_settings.h"
 #include <stdio.h>
 #include <stdlib.h>

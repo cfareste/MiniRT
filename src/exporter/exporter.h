@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exporter_bonus.h                                   :+:      :+:    :+:   */
+/*   exporter.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 17:44:43 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 19:37:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:30 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #define EXPORT_BASE_DIR "exports/"
-#include "render/render_bonus.h"
+#include "render/render.h"
 #include "window/jobs/jobs.h"
-#include "window/loader/loader_bonus.h"
+#include "window/loader/loader.h"
 
 typedef struct s_exporter
 {

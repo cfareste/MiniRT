@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strategies_shared.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:55:39 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:16:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:27 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#include "render/render.h"
 
 typedef struct s_sample_lights_params
 {

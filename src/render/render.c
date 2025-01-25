@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:24 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:27:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:55 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_bonus.h"
+#include "render.h"
 #include "libft.h"
-#include "helpers/render_helper_bonus.h"
-#include "window/helpers/window_helper_bonus.h"
+#include "helpers/render_helper.h"
+#include "window/helpers/window_helper.h"
 #include "render/ray/helpers/ray_helper.h"
 #include "render/utils/thread/thread.h"
 #include "renderer/parts/renderer_parts.h"
-#include "renderer/renderer_bonus.h"
+#include "renderer/renderer.h"
 
 void	render_strategy(t_render *render, t_ray *ray,
 	t_color *sample_color, uint64_t *seed)

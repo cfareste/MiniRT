@@ -6,11 +6,11 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:42:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 18:31:49 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render/renderer/renderer_bonus.h"
+#include "render/renderer/renderer.h"
 #include "render/events/render_events.h"
 #include "scene/camera/helpers/camera_helper.h"
 #include "scene/camera/events/camera_events.h"

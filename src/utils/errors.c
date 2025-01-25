@@ -6,12 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:45 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 18:45:03 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "window/window.h"
-#include "window/helpers/window_helper_bonus.h"
+#include "window/helpers/window_helper.h"
 #include "window/jobs/job/types/destroy/destroy_job.h"
 #include "window/jobs/job/helpers/job_helper.h"
 #include <stdio.h>

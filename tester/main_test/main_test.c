@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:47:43 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 14:28:58 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:55:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "MLX42.h"
 #include "miniRT.h"
 #include "window/window.h"
-#include "window/helpers/window_helper_bonus.h"
+#include "window/helpers/window_helper.h"
 #include "window/jobs/jobs.h"
-#include "render/renderer/renderer_bonus.h"
+#include "render/renderer/renderer.h"
 #include "scene/parser/scene_parser.h"
 #include "scene/settings/sky_box/sky_box.h"
-#include "window/loader/loader_bonus.h"
-#include "exporter/helpers/exporter_helper_bonus.h"
-#include "utils/utils_bonus.h"
+#include "window/loader/loader.h"
+#include "exporter/helpers/exporter_helper.h"
+#include "utils/utils.h"
 
 void	throw_sys_error(char *msg)
 {

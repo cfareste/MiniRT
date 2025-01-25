@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_bonus.h                                   :+:      :+:    :+:   */
+/*   render_helper.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 20:53:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:10:56 by arcanava         ###   ########.fr       */
+/*   Created: 2024/10/27 20:52:44 by cfidalgo          #+#    #+#             */
+/*   Updated: 2025/01/25 15:54:16 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "render/render_bonus.h"
+#include "render/render.h"
 
-void	render(t_render *render);
+int		is_render_finished(t_render *render);
 
-void	stop_render(t_render *render);
+void	set_render_finish(t_render *render, int value);
+
+int		is_render_alive(t_render *render);

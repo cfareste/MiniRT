@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loader_progress.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:16:37 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:19:33 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../../loader_bonus.h"
+#include "../../loader.h"
 
 double	get_progress_factor(t_progress *progress);
 

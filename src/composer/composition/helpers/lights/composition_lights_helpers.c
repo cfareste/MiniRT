@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   composition_lights_helpers.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:35:57 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 15:40:47 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:52:11 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "composition_lights_helpers.h"
-#include "utils/utils_bonus.h"
+#include "utils/utils.h"
 #include "libft.h"
 
 int	fill_ambient(t_composer *composer, t_light *ambiental, char **buffer)

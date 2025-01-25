@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   loader_text.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:01:38 by arcanava          #+#    #+#             */
-/*   Updated: 2024/11/27 17:02:58 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "../../loader_bonus.h"
+#include "../../loader.h"
 
 void	paint_text(t_loader *load, t_size img_size);

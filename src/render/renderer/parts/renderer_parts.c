@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_parts.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:07:50 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:54:26 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer_parts.h"
 #include "libft.h"
-#include "utils/utils_bonus.h"
-#include "../../helpers/render_helper_bonus.h"
+#include "utils/utils.h"
+#include "../../helpers/render_helper.h"
 
 void	join_parts(t_render_part *parts, int amount, t_rend_prog *progress)
 {
