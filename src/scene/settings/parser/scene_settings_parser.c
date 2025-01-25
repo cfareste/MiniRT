@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:32:49 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/10 02:30:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:14:38 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	parse_scene_setting(t_parser_ctx *ctx, char *arg,
 	{
 		free(settings->name);
 		settings->name = ft_strdup(args[1]);
+		if (!settings->name)
+			throw_sys_error("Trying to allocate scene name");
 	}
 	else if (ft_strcmp(args[0], SCENE_SETT_SKY_COLOR) == EQUAL_STRINGS
 		&& ensure_params_amount(ctx, args, 1))

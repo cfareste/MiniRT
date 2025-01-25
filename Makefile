@@ -205,7 +205,6 @@ vpath %.c	$(SRC):\
 			$(SRC)window/jobs:\
 			$(SRC)window/jobs/job:\
 			$(SRC)window/jobs/job/helpers:\
-			$(SRC)window/jobs/job/types/title:\
 			$(SRC)window/jobs/job/types/destroy:\
 			$(SRC)window/jobs/job/types/anonymous:\
 			$(SRC)window/jobs/job/types/export:\
@@ -329,7 +328,6 @@ SRCS = miniRT.c \
 	loader_bonus.c \
 	jobs.c \
 	job.c \
-	title_job.c \
 	destroy_job.c \
 	anon_job.c \
 	textures.c \

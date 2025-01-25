@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer_pixels.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:45 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:10:23 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:12:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	shuffle_pixels(t_pixel *array, size_t n, uint64_t *seed)
 	}
 }
 
-// TODO: Test times with realloc
 void	fill_pixels(t_size img_size, t_pixel **pixels, size_t *px_amount)
 {
 	t_iterators	iter;

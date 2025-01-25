@@ -6,13 +6,12 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:01:38 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 17:51:21 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:19:29 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../helpers/loader_helper.h"
 
-// TODO: Own text with imgs!!
 void	paint_text(t_loader *loader, t_size img_size)
 {
 	uint32_t	i;

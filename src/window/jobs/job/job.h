@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:14:28 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 18:06:00 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:13:09 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef enum job_type
 {
 	ANON_JOB,
 	IMG_RESIZE_JOB,
-	TITLE_JOB,
 	DESTROY_JOB,
 	EXPORT_JOB,
 }	t_job_type;

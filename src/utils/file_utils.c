@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:56:47 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 18:43:45 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:17:01 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ static char	*get_unique_filename(char *filename, int version)
 		free(token);
 	}
 	else
+	{
 		unique_tok = ft_strdup("");
+		if (!unique_tok)
+			throw_sys_error("trying to allocate unique token");
+	}
 	new = safe_ft_strjoin(filename,
 			unique_tok, throw_sys_error, "dynamic memory is broken!");
 	free(unique_tok);

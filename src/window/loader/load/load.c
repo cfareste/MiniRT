@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:11:06 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/03 18:19:11 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:18:32 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_load	*new_loader_load(t_loader *loader)
 
 	load = ft_calloc(1, sizeof(t_load));
 	if (!load)
-		return (NULL);
+		throw_sys_error("trying to allocate new loader");
 	load->loader = loader;
 	return (load);
 }
