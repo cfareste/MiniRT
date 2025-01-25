@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:00:08 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/18 00:38:35 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:35:20 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char		**ft_split(char const *s, char c);
 
 char		*ft_itoa(int n);
 
+char		*safe_ft_ltoa(long n, void (*f)(char *), char *errmsg);
+
 char		*ft_ltoa(long n);
 
 char		*ft_ultoa(unsigned long n);
@@ -164,8 +166,6 @@ long		ft_closest_multiple(long n, long x);
 void		ft_matrix_sort(char **matrix);
 
 void		ft_matrix_sort_lc(char **matrix);
-
-char		*safe_ft_ltoa(long n);
 
 long		get_positive_num(int n);
 

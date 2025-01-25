@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:55:51 by cfidalgo          #+#    #+#             */
-/*   Updated: 2025/01/23 16:19:18 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:31:31 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 #include "libft.h"
+#include "utils/utils_bonus.h"
 #include "parser/helpers/parser_helper.h"
 
 void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
@@ -22,7 +23,8 @@ void	parse_color(t_parser_ctx *ctx, char *params, t_color *color)
 	if (!color_parts)
 		throw_parse_err(ctx, "ft_split color");
 	if (!color_parts[0] || !color_parts[1] || !color_parts[2])
-		throw_parse_err(ctx, ft_strjoin("Missing color params: ", params));
+		throw_parse_err(ctx, safe_ft_strjoin("Missing color params: ", params,
+				throw_sys_error, "parsing color"));
 	color->red = parse_int(ctx, color_parts[0]) / (float) 255;
 	color->green = parse_int(ctx, color_parts[1]) / (float) 255;
 	color->blue = parse_int(ctx, color_parts[2]) / (float) 255;

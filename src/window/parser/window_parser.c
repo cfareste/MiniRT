@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:06:55 by arcanava          #+#    #+#             */
-/*   Updated: 2024/12/05 15:53:47 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:29:36 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	try_parse_window_elems(t_parser_ctx *ctx, char **args, t_window *window)
 	while (args[i])
 	{
 		if (!try_parse_window_elem(ctx, args[i], window))
-			throw_parse_err(ctx, ft_strjoin("Unknown window param: ",
-					args[i]));
+			throw_parse_err(ctx, safe_ft_strjoin("Unknown window param: ",
+					args[i], throw_sys_error, "parsing window settings"));
 		i++;
 	}
 	return (1);

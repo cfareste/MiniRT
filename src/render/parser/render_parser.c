@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_parser.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 21:18:46 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:00:56 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:42:35 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	try_parse_render_elems(t_parser_ctx *ctx, char **args,
 	while (args[i])
 	{
 		if (!try_parse_render_elem(ctx, args[i], render))
-			throw_parse_err(ctx, ft_strjoin("Unknown render param: ",
-					args[i]));
+			throw_parse_err(ctx, safe_ft_strjoin("Unknown render param: ",
+					args[i], throw_sys_error, "parsing render settings"));
 		i++;
 	}
 	return (1);

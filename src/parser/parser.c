@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 20:39:21 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 15:58:27 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:31:34 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	parse_line(t_parser_ctx *ctx, char *line, t_window *window)
 		if (!try_parse_scene_elems(ctx, args, &window->render.scene)
 			&& !try_parse_render_elems(ctx, args, &window->render)
 			&& !try_parse_window_elems(ctx, args, window))
-			throw_parse_err(ctx, ft_strjoin("Unknown parameter: ", *args));
+			throw_parse_err(ctx, safe_ft_strjoin("Unknown parameter: ", *args,
+					throw_sys_error, "parsing line"));
 	}
 	free_matrix(args);
 	free_matrix(splitted_by_comment);

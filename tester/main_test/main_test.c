@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:47:43 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/20 19:56:38 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:28:58 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "window/window.h"
 #include "window/helpers/window_helper_bonus.h"
 #include "window/jobs/jobs.h"
-#include "window/jobs/job/types/title/title_job.h"
 #include "render/renderer/renderer_bonus.h"
 #include "scene/parser/scene_parser.h"
 #include "scene/settings/sky_box/sky_box.h"
