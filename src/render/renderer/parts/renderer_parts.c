@@ -6,7 +6,7 @@
 /*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 22:48:06 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 15:54:26 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/25 16:05:49 by cfidalgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ void	update_parts(t_render *render, t_size *img_size)
 	i = 0;
 	while (i < render->parts_amount)
 	{
+		pthread_mutex_lock(&img_size->mutex);
 		render->parts[i].img_height = img_size->height;
+		pthread_mutex_unlock(&img_size->mutex);
 		render->parts[i].pixels_amount = render->px_amount
 			/ render->parts_amount;
 		render->parts[i].pixels = render->pixels
