@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loader_progress.c                                  :+:      :+:    :+:   */
+/*   loader_progress.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:16:37 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 17:59:03 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:32:20 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/iterators/iterators.h"
 #include "../../helpers/loader_helper.h"
-#include "window/loader/strategies/progress/helpers/loader_progress_helper.h"
+#include "helpers/loader_progress_helper.h"
 
 void	paint_pixel(t_iterators *it, t_loader *loader,
 			uint32_t	current)

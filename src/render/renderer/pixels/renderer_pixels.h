@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   renderer_pixels.h                                  :+:      :+:    :+:   */
+/*   renderer_pixels.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:45:38 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/16 18:10:45 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:05:21 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "stdint.h"
 #include "utils/size/size.h"
 #include "utils/iterators/iterators.h"
+#include <stdint.h>
 
 typedef t_iterators	t_pixel;
 
