@@ -7,8 +7,8 @@ A small raytracer using MLX, the graphic library of 42.
 * `OpenGL + Cocoa + IOKit || Glfw`
 ## Set up and run
 ```shell
-git clone https://github.com/cfareste/MiniRT.git \
-&& cd MiniRT \
+git clone https://github.com/cfareste/MiniRT.git miniRT \
+&& cd miniRT \
 && make \
-&& ./miniRT assets/scenes/extra_figures.rt;
+&& ./miniRT assets/scenes/pathtracer.rt;
 ```
