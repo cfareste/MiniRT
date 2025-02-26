@@ -59,6 +59,7 @@ Run `miniRT` executable file and pass your favourite scene `.rt` file as an argu
 | left click | Select object |
 | enter | De-select object |
 | n | New object |
+| backspace | Delete object |
 | t | Change object type |
 | m | Change object material |
 | w, a, s, s, shift, space | Move object position |
