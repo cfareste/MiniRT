@@ -4,9 +4,8 @@ A small raytracer using MLX, the graphic library of 42.
 GPU utilization is forbidden in this project. To enhance our goal of achieving smooth movement and fast rendering, we implemented multi-threading, pixel shuffling, and an optimized rendering mode during motion. This approach not only improves performance but also ensures a seamless visual experience.
 ## Index
 1. [Exports](#exports)
-2. [Requirements](#requirements)
-3. [Setup and run](#setup-and-run)
-4. [Controls](#controls)
+2. [Setup and run](#setup-and-run)
+3. [Controls](#controls)
 ## Exports
 ### [demo.rt](assets/scenes/demo.rt)
 ![assets/scenes/demo.rt_12000s](https://github.com/user-attachments/assets/05329a72-bafa-4b97-b03b-80fc9506a0a8)
@@ -21,16 +20,22 @@ GPU utilization is forbidden in this project. To enhance our goal of achieving s
 And more...
 
 👇 Try it yourself! 👇
-## Requirements
+## Setup and run
+### Requirements
 * Linux or MacOS
 * [Clang](https://releases.llvm.org/download.html)
 * [Cmake](https://cmake.org/download/)
-## Setup and run
+### Download and execute
 ```shell
 git clone https://github.com/cfareste/MiniRT.git miniRT \
 && cd miniRT \
 && make \
 && ./miniRT assets/scenes/pathtracer.rt;
+```
+### Execute
+Run 'miniRT' executable and pass your favourite scene from [assets/scenes](assets/scenes) as an argument.
+```shell
+./miniRT assets/scenes/demo.rt;
 ```
 ## Controls
 | Key(s) | Action(s) |
