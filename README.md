@@ -1,4 +1,4 @@
-# MiniRT
+# (Mini)RT
 A small raytracer using MLX, the graphic library of 42.
 
 GPU utilization is forbidden in this project. To enhance our goal of achieving smooth movement and fast rendering, we implemented multi-threading, pixel shuffling, and an optimized rendering mode during motion. This approach not only improves performance but also ensures a seamless visual experience.
