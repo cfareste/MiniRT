@@ -6,6 +6,7 @@ GPU utilization is forbidden in this project. To enhance our goal of achieving s
 1. [Exports](#exports)
 2. [Requirements](#requirements)
 3. [Setup and run](#setup-and-run)
+4. [Controls](#controls)
 ## Exports
 ### [assets/scenes/demo.rt](assets/scenes/demo.rt)
 ![assets/scenes/demo.rt_12000s](https://github.com/user-attachments/assets/05329a72-bafa-4b97-b03b-80fc9506a0a8)
@@ -31,3 +32,29 @@ git clone https://github.com/cfareste/MiniRT.git miniRT \
 && make \
 && ./miniRT assets/scenes/pathtracer.rt;
 ```
+## Controls
+| Key(s) | Action(s) |
+| --- | --- |
+| 1 | Switch render strategy to PathTracer |
+| 2 | Switch render strategy to RayTracer |
+| 3 | Switch render strategy to NormalMap |
+| 4 | Switch motion cheap render off |
+| 5 | Switch progressive render off |
+| x | Export .ppm image |
+| b | Block controls |
+| i, o | Regulate fov |
+| g, h | Regulate focus radius |
+| j, k | Regulate focus distance |
+| ctrl / cmd + s | Save changes to .rt file |
+| ctrl / cmd + shift + s | Duplicate .rt file |
+| esc | Quit program |
+### Edit mode
+| Key(s) | Action(s) |
+| --- | --- |
+| left click | Select object |
+| enter | De-select object |
+| n | New object |
+| t | Change object type |
+| m | Change object material |
+| w, a, s, s, shift, space | Move object position |
+| arrows, q, e | Rotate object |
