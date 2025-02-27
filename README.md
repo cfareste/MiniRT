@@ -45,22 +45,23 @@ Run `miniRT` executable file and pass your favourite `.rt` scene file as an argu
 | 3 | Switch render strategy to NormalMap |
 | 4 | Switch motion cheap render off |
 | 5 | Switch progressive render off |
-| x | Export .ppm image |
-| b | Block controls |
-| i, o | Regulate fov |
-| g, h | Regulate focus radius |
-| j, k | Regulate focus distance |
-| ctrl / cmd + s | Save changes to .rt file |
-| ctrl / cmd + shift + s | Duplicate .rt file |
+| X | Export .ppm image |
+| B | Block controls |
+| P | Pause / play progressive render |
+| I, O | Regulate fov |
+| G, H | Regulate focus radius |
+| J, K | Regulate focus distance |
+| ctrl / cmd + S | Save changes to .rt file |
+| ctrl / cmd + shift + S | Duplicate .rt file |
 | esc | Quit program |
 ### Edit mode
 | Key(s) | Action(s) |
 | --- | --- |
 | left click | Select object |
 | enter | De-select object |
-| n | New object |
+| N | New object |
 | backspace | Delete object |
-| t | Change object type |
-| m | Change object material |
-| w, a, s, s, shift, space | Move object position |
-| arrows, q, e | Rotate object |
+| T | Change object type |
+| M | Change object material |
+| W, A, S, D, shift, space | Move object position |
+| arrows, Q, E | Rotate object |
