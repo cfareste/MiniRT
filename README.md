@@ -33,7 +33,7 @@ git clone https://github.com/cfareste/MiniRT.git miniRT \
 && ./miniRT assets/scenes/pathtracer.rt;
 ```
 ### Execute
-Run `miniRT` executable file and pass your favourite scene `.rt` file as an argument (examples given on [assets/scenes](assets/scenes)).
+Run `miniRT` executable file and pass your favourite `.rt` scene file as an argument (examples given on [assets/scenes](assets/scenes)).
 ```shell
 ./miniRT assets/scenes/demo.rt;
 ```
