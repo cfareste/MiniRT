@@ -47,21 +47,28 @@ Run `miniRT` executable file and pass your favourite `.rt` scene file as an argu
 | 5 | Switch progressive render off |
 | X | Export .ppm image |
 | B | Block controls |
+| R / F5 | Restart render |
 | P | Pause / play progressive render |
-| I, O | Regulate fov |
+| L | Toggle loader visibility |
+| C | Reset camera |
+| Left click | Select object & switch to edit mode|
+| I, O | Regulate [FOV](https://wikipedia.org/wiki/Field_of_view) |
 | G, H | Regulate focus radius |
 | J, K | Regulate focus distance |
-| ctrl / cmd + S | Save changes to .rt file |
-| ctrl / cmd + shift + S | Duplicate .rt file |
-| esc | Quit program |
+| Ctrl / Cmd + S | Save changes to .rt file |
+| Ctrl / Cmd + Shift + S | Duplicate .rt file |
+| W, A, S, D, shift, space | Move camera position |
+| Arrows | Move camera orientation |
+| Esc | Quit program |
 ### Edit mode
 | Key(s) | Action(s) |
 | --- | --- |
-| left click | Select object |
-| enter | De-select object |
-| N | New object |
-| backspace | Delete object |
-| T | Change object type |
-| M | Change object material |
-| W, A, S, D, shift, space | Move object position |
-| arrows, Q, E | Rotate object |
+| Left click | Select object |
+| Enter / Right click | De-select object |
+| N | New figure |
+| Backspace | Delete figure |
+| T | Next figure type |
+| M | Next figure material |
+| F | Focus camera to figure |
+| W, A, S, D, shift, space | Move figure position |
+| Arrows, Q, E | Rotate figure |
