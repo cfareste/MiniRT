@@ -2,9 +2,9 @@ S name:SkyBox sky_box:assets/textures/noche.png
 R samples:20 max_depth:8
 W width:1600 height:900
 
-A   1 255,255,255
+A   1 254,254,254
 
-L  2,6,0   30    255,255,255
+L  2,6,0   30    254,254,254
 
 C 	0,1,2	 0,0,-1 	130		0.0	1.0
 

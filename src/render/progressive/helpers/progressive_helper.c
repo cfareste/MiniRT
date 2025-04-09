@@ -6,14 +6,14 @@
 /*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:59:36 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/23 16:01:35 by arcanava         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:53:30 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "progressive_helper.h"
 #include "libft.h"
 
-void	reset_progress(t_rend_prog progress[STRATEGIES_AMOUNT], t_size *size,
+void	reset_progress(t_rend_prog *progress, t_size *size,
 			int parts_amount)
 {
 	int	i;
@@ -36,7 +36,7 @@ void	reset_progress(t_rend_prog progress[STRATEGIES_AMOUNT], t_size *size,
 	}
 }
 
-void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
+void	restart_progress(t_rend_prog *progress,
 			t_size *img_size)
 {
 	int	i;
@@ -52,7 +52,7 @@ void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
 	}
 }
 
-void	clean_progress(t_rend_prog progress[STRATEGIES_AMOUNT])
+void	clean_progress(t_rend_prog *progress)
 {
 	int	i;
 

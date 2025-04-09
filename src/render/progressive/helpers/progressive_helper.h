@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   progressive_helper.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 14:59:52 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 15:54:20 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:51:33 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 #include "render/render.h"
 
-void	clean_progress(t_rend_prog progress[STRATEGIES_AMOUNT]);
+void	clean_progress(t_rend_prog *progress);
 
-void	restart_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
+void	restart_progress(t_rend_prog *progress,
 			t_size *img_size);
 
-void	reset_progress(t_rend_prog progress[STRATEGIES_AMOUNT],
+void	reset_progress(t_rend_prog *progress,
 			t_size *size, int parts_amount);

@@ -1,9 +1,9 @@
-S name:Pathtracer sky:160,200,255 sky_box:assets/textures/montmelo.png
+S name:Pathtracer sky:160,200,254 sky_box:assets/textures/montmelo.png
 R max_depth:8
 W width:1600 height:900
-A   0.9 255,255,255
+A   0.9 254,254,254
 
-L 2,2,3   6   255,255,255
+L 2,2,3   6   254,254,254
 
 # Cameras
 	# Semi up - front
@@ -16,7 +16,7 @@ L 2,2,3   6   255,255,255
 	cy	3,0,0			0,1,0		1	2		100,100,200			mat:plastic:0.6:0
 
 # Emissive
-	sp 	2,10,-4			6						255,255,255			mat:emissive:8
+	sp 	2,10,-4			6						254,254,254			mat:emissive:8
 
 # Floor
 	pl 	0,-1,0			0,1,0					200,100,100										cd:250,215,160:236,112,99:1

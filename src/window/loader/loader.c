@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfidalgo <cfidalgo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: arcanava <arcanava@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:33:19 by arcanava          #+#    #+#             */
-/*   Updated: 2025/01/25 15:54:37 by cfidalgo         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:19:29 by arcanava         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	loader_show(t_loader *loader, t_loader_mode mode, t_loader_size size)
 		loader_hide(loader);
 	loader_set_alive(loader, 1);
 	load = new_loader_load(loader);
-	if (!load)
-		write(2, "Loader not being shown!\n", 24);
 	loader->lsize = size;
 	loader->mode = mode;
 	if (!loader_is_alive(loader))
