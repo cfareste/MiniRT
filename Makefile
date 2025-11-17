@@ -102,8 +102,8 @@ ifeq ($(UNAME_S), Darwin)
 	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
 endif
 ifeq ($(UNAME_S), Linux)
-	WINDOW_WIDTH := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 1 | xargs)
-	WINDOW_HEIGHT := $(shell xrandr | grep "*" | awk '{ print $1 }' | cut -d'x' -f 2 | cut -d' ' -f 1)
+	WINDOW_WIDTH := $(shell xrandr | grep "*" | awk '{ print $$1 }' | cut -d'x' -f 1 | head -n1)
+	WINDOW_HEIGHT := $(shell xrandr | grep "*" | awk '{ print $$1 }' | cut -d'x' -f 2 | head -n1)
 	CCFLAGS += -D WINDOW_WIDTH=$(WINDOW_WIDTH) -D WINDOW_HEIGHT=$(WINDOW_HEIGHT)
 endif
 
